@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Pistachio的博客 | Pistachio&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://pistachiol.github.io/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.min.css">
+
+
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Pistachio&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<header class="intro-header" style="background-image: url('/img/bg_Jerry.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    <h1>Pistachio&#39;s Blog</h1>
+                    <!--<hr class="small">-->
+                    <span class="subheading">To Be A Lean Developer!</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        
+
+<!-- USE SIDEBAR -->
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                post-container
+            ">
+            
+                <!-- Main Content -->
+
+
+<div class="post-preview">
+
+    <a href="/2020/02/11/2020-02-11-二分查找-DataStructrue/">
+        <h2 class="post-title">
+            二分查找
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            日常刷LeetCode的时候，用暴力解决了一道困难级别的题目，其时间限制是log(m+n)，才发现真正做法是用二分查找，因此补补相关知识。
+1. 基本思想二分查找也称为是折半查找，属于有序查找算法。用给定值k先与中间结点的关键字比较，中间结点把线形表分成两个子表，若相等则查找成功；若不相等，再根据k与该中间结点关键字的比较结果确定下一步查找哪个子表，这样递归进行，直到查找到或查找结束发现表中......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-02-11
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/02/07/2020-02-07-无重复字符最长子串-LeetCode/">
+        <h2 class="post-title">
+            无重复字符最长子串——set集合的妙用
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            LeetCode 3.无重复字符最长子串
+
+给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。
+输入: “pwwkew”输出: 3
+
+
+这题的思路是“滑动窗口”，即判断字符串的每一个字符，在set集合中是否存在，若不存在（set.end()）就加入到集合中；若存在，则把字符串左边去掉。
+每个变量设置得非常巧妙，不用for循环遍历s，而通过index的数量控制循环次数。而cnt留......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-02-07
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/02/05/2020-02-05-数据结构知识点-Datastructure/">
+        <h2 class="post-title">
+            链表
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            初始化一个结点123ListNode node = new ListNode();  //初始化一个空结点，无值（不提倡这样写）ListNode node = new ListNode(0); //初始化一个节点值为0的空结点（最常用的规范写法）
+
+
+
+
+
+...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-02-05
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/02/02/2020-02-02-搭建Jekyll博客-博客/">
+        <h2 class="post-title">
+            Jekyll搭建博客
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            1.先安装rvm  通过rvm安装ruby环境1curl -sSL https://get.rvm.io | bash -s stable
+
+查看是否安装成功
+1rvm -v
+
+
+
+2.换国内源查看现在的源
+1gem sources -l
+
+删除之前的源
+1gem sources --remove
+
+增加国内源
+1gem sources -a https://gems.ruby-china.......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-02-02
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/01/31/2020-1-31-安装deepin后要做的事情-linux/">
+        <h2 class="post-title">
+            安装deepin后要做的事情
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            1. 换源1vim /etc/apt/sources.list
+
+
+2. 命令行主题配置下载oh-my-zsh通过curl
+1sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+通过wget
+1sh -c "$(wget -O- https://raw......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-01-31
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/12/11/2019-12-11-LinuxShell命令模拟器-linux/">
+        <h2 class="post-title">
+            LinuxShell命令模拟器
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            LinuxShell命令模拟器一.原理分析0.终端执行步骤​    1）读取用户从键盘输入的命令，终端会分析是否是内部命令。如果是，则把命令分解为系统调用，并传给linux内核。如果不是，若不是再检查是否是一个应用程序，模拟shell的命令解析器正是这样。上述两种情况也不是的话，则报出错误信息。
+​    2）分析命令，以命令名为文件名，将其他参数改造为系统调用execve()内核级系统调用......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-12-11
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/12/11/2019-12-11-PTA_L1-043阅览室-PTA/">
+        <h2 class="post-title">
+            PTA技巧
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            L1-043 阅览室
+
+这道题要求一天内所有书的借阅次数和阅读时长，如果有些书只有借没有还，或者只有还没有借，则忽略不处理。
+借书的时候书本不能被借阅，因此首先想到用结构体把书的属性写在一起。
+
+巧妙之处是，通过结构体数组访问不同id的书的属性，且能通过标记思想限制一本书在一段时间内只能被一位读者借阅。
+最后求平均阅读时间（阅读时间/阅读次数）可能会是浮点数，其中阅读时长和阅读次数都是整数，......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-12-11
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/12/09/2019-12-09-欧几里得的应用-math/">
+        <h2 class="post-title">
+            欧几里得的应用
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            PTA N个数（包括分数）求和
+这道题要对分数进行处理，分子相加起来可能会爆long long，因此要把输进来的分子与分母进行约分（通过gcd找出最大公约数），然后通过lcm找出最小公倍数进行通分，最后把分子相加后，再与分母约分。
+有几个点要进行判断的：
+
+判断思路是，可以把求出来的数分为分数，整数和0。分数可以分真分数和假分数。
+
+真分数：题目要求分子小于分母，在这个情况下则能直接输出。
+......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-12-09
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/12/03/2019-12-03-求因子个数/">
+        <h2 class="post-title">
+            有关因子数的解法
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            一. 求因子的个数题意大概是，输入一个数，输出这个数因子的个数。
+1234567891011121314151617181920212223242526#include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;cmath&gt;using namespace std;int mai......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-12-03
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/11/29/2019-11-29-stl-栈/">
+        <h2 class="post-title">
+            栈
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            栈的基本操作:
+stack  s;
+s.push(item)  //入栈
+s.top() 返回栈顶元素
+s.pop()删除栈顶元素
+s.size() //返回栈中元素个数
+s.empty()检查栈是否为空，为空返回true，否则返回false
+新生赛题目
+输入一个字符串，通过处理能使字符串中两个相邻且相同的字符互相消除，得到新的字符串，然后继续对新字符串消除，知道没有相同的字符。
+
+inpu......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-11-29
+    </p>
+
+</div>
+<hr>
+
+
+
+<!-- Pager -->
+
+<ul class="pager">
+    
+    
+        <li class="next">
+            <a href="/page/2/">Older Posts &rarr;</a>
+        </li>
+    
+</ul>
+
+
+
+                <!-- 如果开启评论功能 -->
+                
+
+            </div>
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-3 col-lg-offset-0
+                col-md-3 col-md-offset-0
+                col-sm-12
+                col-xs-12
+                sidebar-container
+            ">
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#数据结构" title="数据结构" rel="7">数据结构</a>
+                            
+                        
+                            
+                            <a href="/tags/#读书笔记" title="读书笔记" rel="4">读书笔记</a>
+                            
+                        
+                            
+                            <a href="/tags/#STL" title="STL" rel="5">STL</a>
+                            
+                        
+                            
+                            <a href="/tags/#数论" title="数论" rel="7">数论</a>
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#Linux" title="Linux" rel="2">Linux</a>
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#字符串" title="字符串" rel="2">字符串</a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#博客" title="博客" rel="2">博客</a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Short About -->
+                <section class="visible-md visible-lg">
+                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
+                    <div class="short-about">
+
+                        
+                            <img src="/img/avatar.jpeg" />
+                        
+
+                        
+                            <p>我要成为魔法师!</p>
+                        
+
+                        <!-- SNS Link -->
+                        <ul class="list-inline">
+                            
+                            
+                            
+
+                            
+
+                            
+
+                            
+                                <li>
+                                    <a target="_blank"  href="https://github.com/pistachioL">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                            
+                            
+                            
+                            
+                        </ul>
+                    </div>
+                </section>
+                
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="https://greenhathg.github.io/" target="_blank">肖喵喵</a></li>
+                    
+                        <li><a href="http://huangxuan.me" target="_blank">Hux Blog</a></li>
+                    
+                </ul>
+                
+            </div>
+        
+    </div>
+</div>
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/pistachioL">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Pistachio&#39;s Blog 2020 
+                    <br>
+                    Theme by <a href="http://huangxuan.me" target="_blank" rel="noopener">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks" target="_blank" rel="noopener">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://pistachiol.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-49627206-1';
+    var _gaDomain = 'huangxuan.me';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4cc1f2d8f3067386cc5cdb626a202900';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://pistachiol.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

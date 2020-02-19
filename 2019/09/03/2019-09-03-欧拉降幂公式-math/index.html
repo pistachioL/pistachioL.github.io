@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          欧拉函数 - Pistachio的博客 | Pistachio&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://pistachiol.github.io/2019/09/03/2019-09-03-欧拉降幂公式-math/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.min.css">
+
+
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Pistachio&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://pistachiol.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/bg_Jerry.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#数论" title="数论">数论</a>
+                        
+                    </div>
+                    <h1>欧拉函数</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Liao on
+                        2019-09-03
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h3 id="1-欧拉函数"><a href="#1-欧拉函数" class="headerlink" title="1. 欧拉函数"></a>1. 欧拉函数</h3><p>​    对正整数n，欧拉函数是小于n的正整数中与n互质的数的数目。例如φ(8)=4，因为1,3,5,7均和8互质。</p>
+<p>对φ(N)的值,我们可以通俗地理解为小于N且与N互质的数的个数(包含1) </p>
+<h5 id="欧拉函数公式"><a href="#欧拉函数公式" class="headerlink" title="欧拉函数公式"></a>欧拉函数公式</h5><p>$$<br>φ(x) = x \times (1-\frac{1}{p_1}) \times (1-\frac{1}{p_2}) \times …..\times (1-\frac{1}{p_n})<br>$$</p>
+<p>(其中p1, p2……pn为x的所有质因数，x是不为0的整数)*</p>
+<p>​    φ(1) = 1（唯一和1互质的数(小于等于1)就是1本身）。 </p>
+<p>注意：每种质因数只一个。比如 12 = 2x2x3 ,则有<br>$$<br>euler(12) = 12 \times( 1-\frac{1}{2}) \times (1-\frac{1}{3}) = 4<br>$$</p>
+<h5 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h5><ol>
+<li><p>当n为质数时，φ(n)=n−1</p>
+</li>
+<li><p>当n=p^k时（p是素数)，φ(n) = φ(p^k) = p^k-p^k -1=p^k-1(p-1)</p>
+</li>
+<li><p>若n,m互质，φ(nm) = φ(n)φ(m) = (n−1)(m−1)</p>
+</li>
+<li><p>若n是奇数，则φ(2n)=φ(n)</p>
+</li>
+</ol>
+<h5 id="特殊性质"><a href="#特殊性质" class="headerlink" title="特殊性质"></a>特殊性质</h5><ol>
+<li><p>当a与n互质时(n&gt;2)有 :<br>$$<br>a^{φ(n)}mod n = 1    (恒等于)<br>$$<br>此公式即 <strong>欧拉定理</strong></p>
+</li>
+<li><p>当a与n互质,且n为质数时(即:gcd(a,n)=1)则上式有:<br>$$<br>a^{(n-1)} mod    n = 1(恒等于)<br>$$<br>此公式即 <strong>费马小定理</strong></p>
+</li>
+</ol>
+<p>  3.小于n,且与n互质的数的和:<br>$$<br> \frac{φ(n)\times n}{2}  (n&gt;2)<br>$$</p>
+<h3 id="2-应用"><a href="#2-应用" class="headerlink" title="2.应用"></a>2.应用</h3><p>$$<br>求7^{222}的个位数  \</p>
+<p>​        求个位数,则是模10,故想到n=10,φ(10) = 4 \</p>
+<p>​        由于7和10是互质, \</p>
+<p>​        所以由欧拉定理得到:7^4 mod 10 = 1    \      </p>
+<p>​        故7^{222}mod10 = 7^{4*55} * 7^2 mod10 = 49mod10 = 9<br>$$</p>
+<h3 id="3-例题"><a href="#3-例题" class="headerlink" title="3.例题"></a>3.例题</h3><p><img src="/.io//%E6%AC%A7%E6%8B%89%E9%99%8D%E5%B9%82%E5%85%AC%E5%BC%8F/1.png" alt></p>
+<p><img src="/.io//%E6%AC%A7%E6%8B%89%E9%99%8D%E5%B9%82%E5%85%AC%E5%BC%8F/2.png" alt></p>
+<p>给出L,求出最小、是L整数倍,并且每一位都是8的数字的长度。</p>
+<p>每一位只有8，则想到<br>$$<br>1111…1111 \times 8 = (10^{n-1}+10^n+…+10^2+10^1+10^0) = \frac{10^n-1}{9} \times 8<br>$$<br>式子中n则是位数的长度</p>
+<p>因为这个数字要被L整除，则想到同余式：<br>$$<br>L | 8 \times \frac{10^n-1}{9}<br>$$<br>​<br>$$<br>9L | 8 \times 10^n-1<br>$$<br>设d = gcd(8,L)<br>$$<br>\frac{9L}{d} | \frac{8}{d}\times 10^n - 1<br>$$<br>明显看出，9L/d 与 8/d是互质的</p>
+<p>则得到</p>
+<p>=&gt;<br>$$<br>\frac{9L}{d} | 10^n-1<br>$$<br>此式子表示10^n-1是9L/d的整数倍</p>
+<p>=&gt;<br>$$<br>10^n -1 = m \times \frac{9L}{d}<br>$$<br>根据同余式子可以写成</p>
+<p>=&gt;<br>$$<br>10^n ≡ 1mod\frac{9L}{d}<br>$$<br>若10和9L/d不互质，则无解</p>
+<p>如果互质，则有<br>$$<br>10^{φ(\frac{9L}{d})}≡1mod\frac{9L}{d}<br>$$ { }</p>
+<blockquote>
+<p>但是题目要求是最小的指数，所以我们需要在ϕ(9L/d)的因子中看是否有快速幂取模后等于1的，并且我们只需要判断它的因子就足够了</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line">ll L;</span><br><span class="line"><span class="function">ll <span class="title">mul</span><span class="params">(ll a,ll b,ll mod)</span></span>&#123;    <span class="comment">//快速乘的速度并不能加速两个数相乘,但是可以防止数据超过long long 而最大化速度</span></span><br><span class="line">        ll ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(b)&#123;</span><br><span class="line">                <span class="keyword">if</span>(b &amp; <span class="number">1</span>)</span><br><span class="line">                        ans = (ans + a) % mod;</span><br><span class="line">                a = (a + a) % mod;</span><br><span class="line">                b &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">q_pow</span><span class="params">(ll a,ll b,ll mod)</span></span>&#123;</span><br><span class="line">        ll ans = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(b)&#123;</span><br><span class="line">                <span class="keyword">if</span>(b &amp; <span class="number">1</span>)</span><br><span class="line">                        ans = mul(ans,a,mod);</span><br><span class="line">                a = mul(a,a,mod);</span><br><span class="line">                b &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">Euler</span><span class="params">(ll n)</span></span>&#123;    <span class="comment">//欧拉函数求一个数的因子有多少个</span></span><br><span class="line">        ll ans = n;</span><br><span class="line">        <span class="keyword">for</span>(ll i = <span class="number">2</span>; i * i &lt;= n; i++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(n % i == <span class="number">0</span>)&#123;</span><br><span class="line">                        ans = ans / i * (i - <span class="number">1</span>);</span><br><span class="line">                        <span class="keyword">while</span>(n % i == <span class="number">0</span>) n /= i;</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(n &gt; <span class="number">1</span>) ans = ans / n * (n - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">gcd</span><span class="params">(ll a,ll b)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> b ? gcd(b,a%b) : a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> cas = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(~<span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;L))&#123;</span><br><span class="line">                <span class="keyword">if</span>(L == <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">                ll p = <span class="number">9</span> * L / gcd(L,<span class="number">8</span>);</span><br><span class="line">                ll d = gcd(<span class="number">10</span>,p);</span><br><span class="line">                <span class="keyword">if</span>(d != <span class="number">1</span>)&#123;</span><br><span class="line">                        <span class="built_in">printf</span>(<span class="string">"Case %d: 0\n"</span>,++cas);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                        ll phi = Euler(p);</span><br><span class="line">                        ll ans = phi;</span><br><span class="line">                        ll m = <span class="built_in">sqrt</span>((<span class="keyword">double</span>)phi);</span><br><span class="line">                        <span class="keyword">bool</span> flag = <span class="literal">false</span>;</span><br><span class="line">                        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++)&#123;<span class="comment">//直接枚举前根号phi个phi的因子</span></span><br><span class="line">                                <span class="keyword">if</span>(phi % i == <span class="number">0</span> &amp;&amp; q_pow(<span class="number">10</span>,i,p) == <span class="number">1</span>)&#123;</span><br><span class="line">                                        ans = i;</span><br><span class="line">                                        flag = <span class="literal">true</span>;</span><br><span class="line">                                        <span class="keyword">break</span>;</span><br><span class="line">                                &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">if</span>(!flag)&#123;<span class="comment">//找不到的话再去枚举后面的</span></span><br><span class="line">                                <span class="keyword">for</span>(<span class="keyword">int</span> i = m; i &gt;= <span class="number">2</span>; i--)&#123;</span><br><span class="line">                                        <span class="keyword">if</span>(phi % i == <span class="number">0</span> &amp;&amp; q_pow(<span class="number">10</span>,phi/i,p) == <span class="number">1</span>)&#123;</span><br><span class="line">                                                ans = phi / i;</span><br><span class="line">                                                <span class="keyword">break</span>;</span><br><span class="line">                                        &#125;</span><br><span class="line">                                &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="built_in">printf</span>(<span class="string">"Case %d: %lld\n"</span>,++cas,ans);</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p><a href="https://blog.csdn.net/codeswarrior/article/details/81474958" target="_blank" rel="noopener">https://blog.csdn.net/codeswarrior/article/details/81474958</a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span> ;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> LL;</span><br><span class="line"><span class="keyword">char</span> b[<span class="number">1000006</span>] ;</span><br><span class="line">LL a ,c ;</span><br><span class="line"><span class="function">LL <span class="title">qpower</span><span class="params">(LL a ,LL b ,LL mod )</span> </span>&#123;</span><br><span class="line">    LL ans = <span class="number">1</span> ;</span><br><span class="line">    <span class="keyword">while</span>(b)&#123;</span><br><span class="line">        <span class="keyword">if</span>(b&amp;<span class="number">1</span>) &#123;</span><br><span class="line">            ans = ans* a%mod ;</span><br><span class="line">        &#125;</span><br><span class="line">        a = a*a %mod ;</span><br><span class="line">        b&gt;&gt;=<span class="number">1</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans %mod;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">LL <span class="title">phi</span><span class="params">(LL n)</span> </span>&#123; <span class="comment">// 求单个值的欧拉函数</span></span><br><span class="line">	LL ans = n ;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span> ; i*i&lt;=n ; i++ ) &#123;</span><br><span class="line">		<span class="keyword">if</span>(!(n%i))&#123;</span><br><span class="line">			ans = ans/i*(i<span class="number">-1</span>) ;</span><br><span class="line">			<span class="keyword">while</span>(n%i == <span class="number">0</span> )&#123;</span><br><span class="line">				n/=i ;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(n&gt;<span class="number">1</span>) ans = ans/n*(n<span class="number">-1</span>) ;</span><br><span class="line">	<span class="keyword">return</span> ans ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span>(~<span class="built_in">scanf</span>(<span class="string">"%lld %s %lld"</span>,&amp;a,b,&amp;c))&#123;</span><br><span class="line">		LL len = <span class="built_in">strlen</span>(b) ;</span><br><span class="line">		LL p = phi(c) ;</span><br><span class="line">		LL ans = <span class="number">0</span> ;</span><br><span class="line">		<span class="keyword">for</span>(LL i = <span class="number">0</span> ; i&lt;len ; i++)&#123;</span><br><span class="line">			ans = (ans*<span class="number">10</span> +b[i] -<span class="string">'0'</span>)%p ;</span><br><span class="line">		&#125;</span><br><span class="line">		ans +=p ;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,qpower(a,ans,c));</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span> ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2019/09/04/2019-09-04-algorithm-Bellma-Ford/" data-toggle="tooltip" data-placement="top" title="Bellma Ford">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2019/09/02/2019-09-02-快速幂-math/" data-toggle="tooltip" data-placement="top" title="快速幂">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#数论" title="数论">数论</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="https://greenhathg.github.io/" target="_blank">肖喵喵</a></li>
+                    
+                        <li><a href="http://huangxuan.me" target="_blank">Hux Blog</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "hexo-theme-huxblog";
+    var disqus_identifier = "https://pistachiol.github.io/2019/09/03/2019-09-03-%E6%AC%A7%E6%8B%89%E9%99%8D%E5%B9%82%E5%85%AC%E5%BC%8F-math/";
+    var disqus_url = "https://pistachiol.github.io/2019/09/03/2019-09-03-%E6%AC%A7%E6%8B%89%E9%99%8D%E5%B9%82%E5%85%AC%E5%BC%8F-math/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/pistachioL">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Pistachio&#39;s Blog 2020 
+                    <br>
+                    Theme by <a href="http://huangxuan.me" target="_blank" rel="noopener">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks" target="_blank" rel="noopener">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://pistachiol.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-49627206-1';
+    var _gaDomain = 'huangxuan.me';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4cc1f2d8f3067386cc5cdb626a202900';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://pistachiol.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
