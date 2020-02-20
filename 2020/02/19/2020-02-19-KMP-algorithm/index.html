@@ -17,7 +17,7 @@
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2019/07/12/2020-02-19-KMP-algorithm/">
+    <link rel="canonical" href="https://pistachiol.github.io/2020/02/19/2020-02-19-KMP-algorithm/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -171,7 +171,7 @@
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
-                        2019-07-12
+                        2020-02-19
                     </span>
                 </div>
             </div>
@@ -244,13 +244,23 @@
 <p><em>注意 最长前缀最后一个字符是不要的，故把next[0]初始化为-1，对应到模式串的每一个字符。</em></p>
 <p><strong>Pattern: A B A B C A B A A</strong></p>
 <p><strong>next[]</strong>={-1,0, 0, 1, 2, 0, 1, 2, 3}</p>
-<h3 id="2-KMP的实现过程"><a href="#2-KMP的实现过程" class="headerlink" title="2.KMP的实现过程"></a>2.KMP的实现过程</h3><p><strong>Leetcode 28 实现strStr()</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getNext</span><span class="params">(<span class="keyword">int</span> next[],<span class="built_in">string</span> pattern,<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    next[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">int</span> k = <span class="number">-1</span>;  </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span>(k&gt;<span class="number">-1</span> &amp;&amp; pattern[i] != pattern[k+<span class="number">1</span>])</span><br><span class="line">            k = next[k];</span><br><span class="line">        <span class="keyword">if</span>(pattern[i] == pattern[k+<span class="number">1</span>])</span><br><span class="line">            k += <span class="number">1</span>;</span><br><span class="line">        next[i] = k;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=n<span class="number">-1</span>;i&gt;<span class="number">0</span>;i--)</span><br><span class="line">        next[i] = next[i<span class="number">-1</span>]+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="2-KMP的实现过程"><a href="#2-KMP的实现过程" class="headerlink" title="2.KMP的实现过程"></a>2.KMP的实现过程</h3><blockquote>
+<p>主串和匹配串依次匹配，当在失配的地方，查看当前next[i]，模式串从Pattern[next[i]]开始进行匹配</p>
+</blockquote>
+<p><img src="/.io//liao/Documents/myBlog/source/_posts/assets/KMP/1.png" alt></p>
+<p><img src="/.io//liao/Documents/myBlog/source/_posts/assets/KMP/3.png" alt="3"></p>
 <blockquote>
 <p>haystack：主串</p>
 <p>needle：模式串</p>
 <p>return：如果能找到，返回主串出现模式串的第一个下标；否则返回-1；</p>
 </blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">get_next</span><span class="params">(<span class="keyword">int</span> next[],<span class="built_in">string</span> pattern,<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    next[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">int</span> k = <span class="number">-1</span>;  </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span>(k&gt;<span class="number">-1</span> &amp;&amp; pattern[i] != pattern[k+<span class="number">1</span>])</span><br><span class="line">            k = next[k];</span><br><span class="line">        <span class="keyword">if</span>(pattern[i] == pattern[k+<span class="number">1</span>])</span><br><span class="line">            k += <span class="number">1</span>;</span><br><span class="line">        next[i] = k;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=n<span class="number">-1</span>;i&gt;<span class="number">0</span>;i--)</span><br><span class="line">        next[i] = next[i<span class="number">-1</span>]+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">strStr</span><span class="params">(<span class="built_in">string</span> haystack, <span class="built_in">string</span> needle)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len1 = haystack.<span class="built_in">size</span>();</span><br><span class="line">    <span class="keyword">int</span> len2 = needle.<span class="built_in">size</span>();</span><br><span class="line">    <span class="keyword">if</span>(len2 == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> next[<span class="number">100000</span>];</span><br><span class="line">    get_next(next,needle,len2);</span><br><span class="line">    <span class="keyword">int</span> i=<span class="number">0</span>,j=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(i&lt;len1 &amp;&amp; j&lt;len2)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(j == <span class="number">-1</span> || haystack[i] == needle[j])</span><br><span class="line">        &#123;</span><br><span class="line">            i++;</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            j = next[j];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(j &gt;= len2)</span><br><span class="line">            <span class="keyword">return</span> i-len2;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">kmp</span><span class="params">(<span class="built_in">string</span> haystack, <span class="built_in">string</span> needle)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len1 = haystack.<span class="built_in">size</span>();</span><br><span class="line">    <span class="keyword">int</span> len2 = needle.<span class="built_in">size</span>();</span><br><span class="line">    <span class="keyword">if</span>(len2 == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> next[<span class="number">100000</span>];</span><br><span class="line">    getNext(next,needle,len2);</span><br><span class="line">    <span class="keyword">int</span> i=<span class="number">0</span>,j=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(i&lt;len1 &amp;&amp; j&lt;len2)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(j == <span class="number">-1</span> || haystack[i] == needle[j])</span><br><span class="line">        &#123;</span><br><span class="line">            i++;</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            j = next[j];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(j &gt;= len2)</span><br><span class="line">            <span class="keyword">return</span> i-len2;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -262,13 +272,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2019/07/12/2020-02-11/" data-toggle="tooltip" data-placement="top" title="经典排序算法">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2019/07/12/2019-07-12-Laravel导出excel数据-php/" data-toggle="tooltip" data-placement="top" title="Laravel导出excel数据">Next Post &rarr;</a>
+                            <a href="/2020/02/11/2020-02-11-二分查找-DataStructrue/" data-toggle="tooltip" data-placement="top" title="二分查找">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -333,8 +339,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2019/07/12/2020-02-19-KMP-algorithm/";
-    var disqus_url = "https://pistachiol.github.io/2019/07/12/2020-02-19-KMP-algorithm/";
+    var disqus_identifier = "https://pistachiol.github.io/2020/02/19/2020-02-19-KMP-algorithm/";
+    var disqus_url = "https://pistachiol.github.io/2020/02/19/2020-02-19-KMP-algorithm/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
