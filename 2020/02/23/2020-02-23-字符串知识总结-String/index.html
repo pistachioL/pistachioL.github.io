@@ -13,11 +13,11 @@
 
     <title>
         
-          无重复字符最长子串——set集合的妙用 - Pistachio的博客 | Pistachio&#39;s Blog
+          字符串知识总结 - Pistachio的博客 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2020/02/07/2020-02-07-无重复字符最长子串-LeetCode/">
+    <link rel="canonical" href="https://pistachiol.github.io/2020/02/23/2020-02-23-字符串知识总结-String/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -164,14 +164,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#LeetCode" title="LeetCode">LeetCode</a>
+                          <a class="tag" href="/tags/#字符串" title="字符串">字符串</a>
                         
                     </div>
-                    <h1>无重复字符最长子串——set集合的妙用</h1>
+                    <h1>字符串知识总结</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
-                        2020-02-07
+                        2020-02-23
                     </span>
                 </div>
             </div>
@@ -190,17 +190,14 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p><strong>LeetCode 3.无重复字符最长子串</strong></p>
-<blockquote>
-<p>给定一个字符串，请你找出其中不含有重复字符的 <strong>最长子串</strong> 的长度。</p>
-<p>输入: “pwwkew”输出: 3</p>
-</blockquote>
-<ul>
-<li>这题的思路是“滑动窗口”，即判断字符串的每一个字符，在set集合中是否存在，若不存在（set.end()）就加入到集合中；若存在，则把字符串左边去掉。</li>
-<li>每个变量设置得非常巧妙，不用for循环遍历s，而通过index的数量控制循环次数。而cnt留在if中，只有等插入元素到set的时候才有可能改变maxn的值，当进入else去掉集合中的元素时，maxn的值仍没有影响。</li>
-<li>强制转换集合的类型：(int)set.size()</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">set</span>&lt;<span class="keyword">char</span>&gt;cache;</span><br><span class="line">        <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> maxn = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(index &lt; s.<span class="built_in">size</span>())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(cache.<span class="built_in">find</span>(s[index]) == cache.<span class="built_in">end</span>())  </span><br><span class="line">            &#123;</span><br><span class="line">                cache.insert(s[index++]);</span><br><span class="line">                maxn = <span class="built_in">max</span>(maxn,(<span class="keyword">int</span>)cache.<span class="built_in">size</span>());</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                cache.erase(s[left++]); </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> maxn;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+                <h3 id="读入有空格的字符串"><a href="#读入有空格的字符串" class="headerlink" title="读入有空格的字符串"></a>读入有空格的字符串</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="built_in">string</span> str;</span><br><span class="line">getline(<span class="built_in">cin</span>,str);</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="读入有空格的字符数组"><a href="#读入有空格的字符数组" class="headerlink" title="读入有空格的字符数组"></a>读入有空格的字符数组</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> str[<span class="number">10000</span>]</span><br><span class="line"><span class="built_in">cin</span>.getline(str,<span class="number">10000</span>);</span><br></pre></td></tr></table></figure>
+
+
+
 
 
                 <hr>
@@ -209,13 +206,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2020/02/11/2020-02-11-二分查找-DataStructrue/" data-toggle="tooltip" data-placement="top" title="二分查找">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2020/02/05/2020-02-05-数据结构知识点-Datastructure/" data-toggle="tooltip" data-placement="top" title="链表">Next Post &rarr;</a>
+                            <a href="/2020/02/19/2020-02-19-KMP-algorithm/" data-toggle="tooltip" data-placement="top" title="KMP">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -248,7 +241,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#LeetCode" title="LeetCode">LeetCode</a>
+                          <a class="tag" href="/tags/#字符串" title="字符串">字符串</a>
                         
                     </div>
                 </section>
@@ -280,8 +273,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2020/02/07/2020-02-07-%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2-LeetCode/";
-    var disqus_url = "https://pistachiol.github.io/2020/02/07/2020-02-07-%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2-LeetCode/";
+    var disqus_identifier = "https://pistachiol.github.io/2020/02/23/2020-02-23-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93-String/";
+    var disqus_url = "https://pistachiol.github.io/2020/02/23/2020-02-23-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93-String/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
