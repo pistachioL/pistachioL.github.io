@@ -212,6 +212,30 @@ Leetcode
 
 <div class="post-preview">
 
+    <a href="/2020/02/24/2020-02-25-二进制数-algorithm/">
+        <h2 class="post-title">
+            位运算
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            LeetCode 求二进制数中1的个数
+这是一种更高效的思路，把整数减1，再与原来的数做与运算，会把原来的二进制数最右边的1去掉。计算有多少次去掉1的操作，即可知道1的个数。
+n = n &amp; (n-1) 
+123456789int hammingWeight(uint32_t n) &#123;       int cnt = 0;       while(n)       &#12......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-02-24
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2020/02/23/2020-02-24-摩尔投票算法-algorithm/">
         <h2 class="post-title">
             摩尔投票算法
@@ -426,33 +450,6 @@ Leetcode 21 合并两个有序链表
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2019/12/11/2019-12-11-PTA_L1-043阅览室-PTA/">
-        <h2 class="post-title">
-            PTA技巧
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            L1-043 阅览室
-
-这道题要求一天内所有书的借阅次数和阅读时长，如果有些书只有借没有还，或者只有还没有借，则忽略不处理。
-借书的时候书本不能被借阅，因此首先想到用结构体把书的属性写在一起。
-
-巧妙之处是，通过结构体数组访问不同id的书的属性，且能通过标记思想限制一本书在一段时间内只能被一位读者借阅。
-最后求平均阅读时间（阅读时间/阅读次数）可能会是浮点数，其中阅读时长和阅读次数都是整数，......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-12-11
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -530,7 +527,7 @@ Leetcode 21 合并两个有序链表
                             
                         
                             
-                            <a href="/tags/#算法" title="算法" rel="2">算法</a>
+                            <a href="/tags/#算法" title="算法" rel="3">算法</a>
                             
                         
                             
