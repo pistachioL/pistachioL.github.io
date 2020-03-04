@@ -103,14 +103,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -230,6 +230,11 @@
 <p>NULL-&gt;1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL</p>
 <p>用迭代的方法解决：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    ListNode *next;</span><br><span class="line">    ListNode(<span class="keyword">int</span> x): val(x),next(<span class="literal">NULL</span>) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"> <span class="function">ListNode* <span class="title">reverseList</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">NULL</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        ListNode *p0 = <span class="literal">NULL</span>;</span><br><span class="line">        ListNode *p1 = head;</span><br><span class="line">        ListNode *p2 = head-&gt;next;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span>(p1 != <span class="literal">NULL</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            p1 -&gt; next = p0; <span class="comment">//反转指向</span></span><br><span class="line">            p0 = p1; <span class="comment">//指针前进</span></span><br><span class="line">            p1 = p2; <span class="comment">//指针前进</span></span><br><span class="line">            <span class="keyword">if</span>(p2 != <span class="literal">NULL</span>)</span><br><span class="line">                p2 = p2-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> p0;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>用递归方法解决：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ListNode* <span class="title">reverseList</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span>(head == <span class="literal">NULL</span>|| head-&gt;next == <span class="literal">NULL</span>)</span><br><span class="line">           <span class="keyword">return</span> head;</span><br><span class="line">       ListNode *newhead = reverseList(head-&gt;next);<span class="comment">//把新头结点递归到链表的最后一个元素，从后往前翻转。</span></span><br><span class="line">       head-&gt;next-&gt;next = head;  <span class="comment">//后一个结点指向前一个结点</span></span><br><span class="line">       head-&gt;next = <span class="literal">NULL</span>;  <span class="comment">//断了前一个结点指向后一个节点的关系</span></span><br><span class="line">       <span class="keyword">return</span> newhead;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
