@@ -13,11 +13,11 @@
 
     <title>
         
-          STL之vector - Pistachio的楼阁 | Pistachio&#39;s Blog
+          位运算 - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2020/03/05/2020-03-05-vector-stl/">
+    <link rel="canonical" href="https://pistachiol.github.io/2020/03/06/2020-03-06-位运算-math/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -171,14 +171,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#STL" title="STL">STL</a>
+                          <a class="tag" href="/tags/#note" title="note">note</a>
                         
                     </div>
-                    <h1>STL之vector</h1>
+                    <h1>位运算</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
-                        2020-03-05
+                        2020-03-06
                     </span>
                 </div>
             </div>
@@ -197,8 +197,59 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p><code>vector&lt;int&gt; vec(int size)</code></p>
-<p><code>vector&lt;int&gt; vec(int size, int val)</code> 创建一个大小为size，且值均为val的容器。</p>
+                <p>由于计算机存储数据都是以二进制的形式存储，位运算实质时对二进制数进行操作。在做题目的的时候，通过位运算处理数据速度很快，便能使缩短计算时间。</p>
+<h3 id="1-位运算的种类"><a href="#1-位运算的种类" class="headerlink" title="1. 位运算的种类"></a>1. 位运算的种类</h3><table>
+<thead>
+<tr>
+<th>含义</th>
+<th>运算符</th>
+<th>解释和例子</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>左移</td>
+<td><code>&lt;&lt;</code></td>
+<td>高位丢弃，低位补0。x&lt;&lt;n  相当于x乘2^n  (0011 &lt;&lt; 1 ==  0110)</td>
+</tr>
+<tr>
+<td>右移</td>
+<td><code>&gt;&gt;</code></td>
+<td>无符号数，高位补0；有符号数在不同编译器填补的数不同，高位补1算术移位，补0的时逻辑移位。 x&gt;&gt;n 相当于x除2^n</td>
+</tr>
+<tr>
+<td>按位或</td>
+<td>|</td>
+<td>0011 | 1011 == 1011</td>
+</tr>
+<tr>
+<td>按位与</td>
+<td>&amp;</td>
+<td>0011 &amp; 1011 == 0011</td>
+</tr>
+<tr>
+<td>按位取反</td>
+<td>~</td>
+<td>~0011 == 1100 (注意负数的时候在补码位置时1)   ~-1 == 0</td>
+</tr>
+<tr>
+<td>按位异或</td>
+<td>^</td>
+<td>0011 ^ 1011 == 1000  (两位相同为0，不同为1)</td>
+</tr>
+</tbody></table>
+<h3 id="2-使用技巧"><a href="#2-使用技巧" class="headerlink" title="2. 使用技巧"></a>2. 使用技巧</h3><h5 id="1-判断奇偶"><a href="#1-判断奇偶" class="headerlink" title="1)判断奇偶"></a>1)判断奇偶</h5><p>只需要个位数判断是0还是1</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(a &amp; <span class="number">1</span>)&#123;  <span class="comment">//相当于a % 2 == 1</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"a是奇数"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"a是偶数"</span> &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="2-交换两数"><a href="#2-交换两数" class="headerlink" title="2)交换两数"></a>2)交换两数</h5><p>不需要引入第三方变量</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Swap</span><span class="params">(<span class="keyword">int</span> &amp;a, <span class="keyword">int</span> &amp;b)</span></span>&#123;</span><br><span class="line">    a ^= b;  <span class="comment">//a = a^b; 复合操作</span></span><br><span class="line">    b ^= a;</span><br><span class="line">    a ^= b;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="3-符号变换"><a href="#3-符号变换" class="headerlink" title="3) 符号变换"></a>3) 符号变换</h5><p>负数变正数，正数变负数，只需要取反加一</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">signReversal</span><span class="params">(<span class="keyword">int</span> a)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> ~a + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
 
                 <hr>
@@ -207,13 +258,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2020/03/06/2020-03-06-位运算-math/" data-toggle="tooltip" data-placement="top" title="位运算">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2020/03/03/2020-03-03-双指针-algorithm/" data-toggle="tooltip" data-placement="top" title="双指针">Next Post &rarr;</a>
+                            <a href="/2020/03/05/2020-03-05-vector-stl/" data-toggle="tooltip" data-placement="top" title="STL之vector">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -246,7 +293,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#STL" title="STL">STL</a>
+                          <a class="tag" href="/tags/#note" title="note">note</a>
                         
                     </div>
                 </section>
@@ -278,8 +325,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2020/03/05/2020-03-05-vector-stl/";
-    var disqus_url = "https://pistachiol.github.io/2020/03/05/2020-03-05-vector-stl/";
+    var disqus_identifier = "https://pistachiol.github.io/2020/03/06/2020-03-06-%E4%BD%8D%E8%BF%90%E7%AE%97-math/";
+    var disqus_url = "https://pistachiol.github.io/2020/03/06/2020-03-06-%E4%BD%8D%E8%BF%90%E7%AE%97-math/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

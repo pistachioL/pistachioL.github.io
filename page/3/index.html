@@ -190,6 +190,32 @@
 
 <div class="post-preview">
 
+    <a href="/2019/10/12/2019-11-03-WaitNotify通知机制-操作系统/">
+        <h2 class="post-title">
+            Wait&Notify的通知机制
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            Wait&amp;Notify的通知机制
+​        wait表示线程的等待，调用该方法会导致线程阻塞，直至另一线程调用notify或notifyAll方法才可另其继续执行。经典的生产者、消费者模式即是使用wait/notify机制得以完成。
+
+
+1.当线程A（消费者）调用wait()时，A会把锁释放出来，使自己进入等待状态，同时加入“锁对象”的等待队列。
+2.线程B获取锁后，调用no......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-10-12
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2019/10/12/2019-10-12-中国剩余定理-math/">
         <h2 class="post-title">
             中国剩余定理
@@ -418,29 +444,6 @@ tar -xjvf f......
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2019/09/03/2019-09-03-欧拉降幂公式-math/">
-        <h2 class="post-title">
-            欧拉函数
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            1. 欧拉函数​    对正整数n，欧拉函数是小于n的正整数中与n互质的数的数目。例如φ(8)=4，因为1,3,5,7均和8互质。
-对φ(N)的值,我们可以通俗地理解为小于N且与N互质的数的个数(包含1) 
-欧拉函数公式$$φ(x) = x \times (1-\frac{1}{p_1}) \times (1-\frac{1}{p_2}) \times …..\times (1-\frac{......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-09-03
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -482,8 +485,6 @@ tar -xjvf f......
                             
                         
                             
-                            <a href="/tags/#git" title="git" rel="2">git</a>
-                            
                         
                             
                             <a href="/tags/#数据结构" title="数据结构" rel="7">数据结构</a>
@@ -494,7 +495,7 @@ tar -xjvf f......
                             
                         
                             
-                            <a href="/tags/#STL" title="STL" rel="5">STL</a>
+                            <a href="/tags/#STL" title="STL" rel="6">STL</a>
                             
                         
                             
@@ -525,6 +526,8 @@ tar -xjvf f......
                         
                             
                             <a href="/tags/#算法" title="算法" rel="4">算法</a>
+                            
+                        
                             
                         
                             
