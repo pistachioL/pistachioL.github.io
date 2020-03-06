@@ -13,11 +13,11 @@
 
     <title>
         
-          链表 - Pistachio的楼阁 | Pistachio&#39;s Blog
+          git的常用操作 - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2020/02/05/2020-02-05-链表-Datastructure/">
+    <link rel="canonical" href="https://pistachiol.github.io/2020/03/05/2020-03-05-vector-stl/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -171,14 +171,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#数据结构" title="数据结构">数据结构</a>
+                          <a class="tag" href="/tags/#git" title="git">git</a>
                         
                     </div>
-                    <h1>链表</h1>
+                    <h1>git的常用操作</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
-                        2020-02-05
+                        2020-03-05
                     </span>
                 </div>
             </div>
@@ -197,53 +197,8 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h4 id="初始化一个结点"><a href="#初始化一个结点" class="headerlink" title="初始化一个结点"></a>初始化一个结点</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ListNode node = <span class="keyword">new</span> ListNode();  <span class="comment">//初始化一个空结点，无值（不提倡这样写）</span></span><br><span class="line"></span><br><span class="line">ListNode node = <span class="keyword">new</span> ListNode(<span class="number">0</span>); <span class="comment">//初始化一个节点值为0的空结点（最常用的规范写法）</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>Leetcode 21 合并两个有序链表</strong></p>
-<blockquote>
-<p>输入：1-&gt;2-&gt;4,  1-&gt;3-&gt;4</p>
-<p>输出：1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4</p>
-</blockquote>
-<p><img src="../images/LinkList/1.png" alt></p>
-<p>比较l1 l2结点值的大小，如果l1&lt;= l2，则把l1的结点装在新链表p中，并把l1指针后移。p指向下一个结点。</p>
-<p><img src="/.io//liao/Documents/myBlog/source/_posts/assets/LinkList/2.png" alt></p>
-<p>指针移动之后，到目前的l1和l2比较，显然l2结点比较大，于是把l2放在p链表，l2链表指向下一个结点。</p>
-<p><img src="/.io//liao/Documents/myBlog/source/_posts/assets/LinkList/3.png" alt></p>
-<p>如此类推……</p>
-<p><img src="/.io//liao/Documents/myBlog/source/_posts/assets/LinkList/4.png" alt></p>
-<p><img src="/.io//liao/Documents/myBlog/source/_posts/assets/LinkList/5.png" alt></p>
-<p><img src="/.io//liao/Documents/myBlog/source/_posts/assets/LinkList/6666.png" alt></p>
-<p>直到指针指向NULL时，（跳出了循环）把另外一个链表剩下的结点拼接到链表p就行（因为链表都是有序的），-再返回head-&gt;next就能把合并出来的新链表返回。</p>
-<p><img src="/.io//liao/Documents/myBlog/source/_posts/assets/LinkList/7777.png" alt></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ListNode* <span class="title">mergeTwoLists</span><span class="params">(ListNode* l1, ListNode* l2)</span> </span>&#123;</span><br><span class="line">     ListNode *head = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">     ListNode *p = head;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">while</span>(l1 != <span class="literal">NULL</span> &amp;&amp; l2 != <span class="literal">NULL</span>)</span><br><span class="line">     &#123;</span><br><span class="line">         <span class="keyword">if</span>(l1-&gt;val &lt;= l2-&gt;val)</span><br><span class="line">         &#123;</span><br><span class="line">             p -&gt; next = l1;    <span class="comment">//在新链表上插入值</span></span><br><span class="line">             l1 = l1 -&gt; next;   <span class="comment">//原链表指针指向下一个</span></span><br><span class="line">         &#125;</span><br><span class="line">         <span class="keyword">else</span></span><br><span class="line">         &#123;</span><br><span class="line">             p -&gt; next = l2;</span><br><span class="line">             l2 = l2 -&gt; next;</span><br><span class="line">         &#125;</span><br><span class="line">         p = p -&gt; next;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">if</span>(l1 != <span class="literal">NULL</span>)</span><br><span class="line">         p -&gt; next = l1;</span><br><span class="line">     <span class="keyword">if</span>(l2 != <span class="literal">NULL</span>)</span><br><span class="line">         p -&gt; next = l2;</span><br><span class="line">     </span><br><span class="line">     <span class="keyword">return</span> head-&gt;next;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>反转链表</strong></p>
-<blockquote>
-<p>反转单链表</p>
-<p>输入: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL</p>
-<p>输出: 5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NULL</p>
-</blockquote>
-<p>NULL-&gt;1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL</p>
-<p>用迭代的方法解决：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    ListNode *next;</span><br><span class="line">    ListNode(<span class="keyword">int</span> x): val(x),next(<span class="literal">NULL</span>) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"> <span class="function">ListNode* <span class="title">reverseList</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">NULL</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        ListNode *p0 = <span class="literal">NULL</span>;</span><br><span class="line">        ListNode *p1 = head;</span><br><span class="line">        ListNode *p2 = head-&gt;next;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span>(p1 != <span class="literal">NULL</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            p1 -&gt; next = p0; <span class="comment">//反转指向</span></span><br><span class="line">            p0 = p1; <span class="comment">//指针前进</span></span><br><span class="line">            p1 = p2; <span class="comment">//指针前进</span></span><br><span class="line">            <span class="keyword">if</span>(p2 != <span class="literal">NULL</span>)</span><br><span class="line">                p2 = p2-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> p0;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>用递归方法解决：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ListNode* <span class="title">reverseList</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span>(head == <span class="literal">NULL</span>|| head-&gt;next == <span class="literal">NULL</span>)</span><br><span class="line">           <span class="keyword">return</span> head;</span><br><span class="line">       ListNode *newhead = reverseList(head-&gt;next);<span class="comment">//把新头结点递归到链表的最后一个元素，从后往前翻转。</span></span><br><span class="line">       head-&gt;next-&gt;next = head;  <span class="comment">//后一个结点指向前一个结点</span></span><br><span class="line">       head-&gt;next = <span class="literal">NULL</span>;  <span class="comment">//断了前一个结点指向后一个节点的关系</span></span><br><span class="line">       <span class="keyword">return</span> newhead;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<p><strong>返回链表倒数第k个节点</strong></p>
-<p>双指针解法：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ListNode* <span class="title">getKthFromEnd</span><span class="params">(ListNode* head, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">      ListNode *p,*q;</span><br><span class="line">      p = head, q = head;</span><br><span class="line">      <span class="keyword">while</span>(k--)&#123;</span><br><span class="line">          p = p-&gt;next;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">while</span>(p)&#123;</span><br><span class="line">          p = p-&gt;next;</span><br><span class="line">          q = q-&gt;next;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> q;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
+                <h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p><code>vector&lt;int&gt; vec(int size)</code></p>
+<p><code>vector&lt;int&gt; vec(int size, int val)</code> 创建一个大小为size，且值均为val的容器。</p>
 
 
                 <hr>
@@ -252,13 +207,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2020/02/11/2020-02-11-二分查找-DataStructrue/" data-toggle="tooltip" data-placement="top" title="二分查找">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2020/02/02/2020-02-02-搭建Jekyll博客-博客/" data-toggle="tooltip" data-placement="top" title="Jekyll搭建博客">Next Post &rarr;</a>
+                            <a href="/2020/03/03/2020-03-03-双指针-algorithm/" data-toggle="tooltip" data-placement="top" title="双指针">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -291,7 +242,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#数据结构" title="数据结构">数据结构</a>
+                          <a class="tag" href="/tags/#git" title="git">git</a>
                         
                     </div>
                 </section>
@@ -323,8 +274,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2020/02/05/2020-02-05-%E9%93%BE%E8%A1%A8-Datastructure/";
-    var disqus_url = "https://pistachiol.github.io/2020/02/05/2020-02-05-%E9%93%BE%E8%A1%A8-Datastructure/";
+    var disqus_identifier = "https://pistachiol.github.io/2020/03/05/2020-03-05-vector-stl/";
+    var disqus_url = "https://pistachiol.github.io/2020/03/05/2020-03-05-vector-stl/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
