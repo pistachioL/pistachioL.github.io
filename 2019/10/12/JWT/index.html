@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          JWT - Pistachio的楼阁 | Pistachio&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://pistachiol.github.io/2019/10/12/JWT/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.min.css">
+
+
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Pistachio&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://pistachiol.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/bg_Jerry.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#读书笔记" title="读书笔记">读书笔记</a>
+                        
+                    </div>
+                    <h1>JWT</h1>
+                    <h2 class="subheading">基于Token的身份认证</h2>
+                    <span class="meta">
+                        Posted by Liao on
+                        2019-10-12
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h3 id="JWT是什么"><a href="#JWT是什么" class="headerlink" title="JWT是什么"></a>JWT是什么</h3><ul>
+<li><p>JWT本质是Token，用于验证身份的凭证。这个凭证能允许我们使用JWT在用户和服务器之间传递安全可靠的信息。</p>
+</li>
+<li><p>是经过base64编码字符串。</p>
+</li>
+</ul>
+<h3 id="Cookie-Session认证机制"><a href="#Cookie-Session认证机制" class="headerlink" title="Cookie-Session认证机制"></a>Cookie-Session认证机制</h3><blockquote>
+<p>​    客户端（用户）通过用户名和密码进行身份认证，但是下回发请求的时候又得验证以下。</p>
+<p>​    解决的办法是，用户成功登录之后，会在服务器端产生一条记录（<strong>Session</strong>），说明这用户是谁，然后把session_id传给客户端，并存入用户的<strong>Cookie</strong>。下次用户向服务器发送请求时，只需携带着包含用户信息的Cookie，看能否在服务器中找到记录，若可以则通过了身份认证，则把用户请求的数据返回到客户端。</p>
+</blockquote>
+<p>上面提到的Session，会存储在服务器磁盘、内存或者数据库中，我们需要期清理过期的Session。</p>
+<h5 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h5><ul>
+<li>可以主动清除session</li>
+<li>session保存在服务器端，相对较为安全</li>
+<li>结合cookie使用，较为灵活，兼容性较好</li>
+</ul>
+<h5 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h5><ul>
+<li><p>服务器压力大：每个用户在认证后，Session 信息都会保存在服务器的内存中，开销大。</p>
+</li>
+<li><p>难以扩展：对于基于 Session 的分布式系统、集群，要实现负载均衡，需要做多机共享session机制，实现方法可将session存储到数据库中或者redis中，加大了对数据库额外的开销和维护。</p>
+</li>
+<li><p>会有跨域问题</p>
+</li>
+</ul>
+<h3 id="JWT身份认证"><a href="#JWT身份认证" class="headerlink" title="JWT身份认证"></a>JWT身份认证</h3><h5 id="为什么要使用Token？"><a href="#为什么要使用Token？" class="headerlink" title="为什么要使用Token？"></a>为什么要使用Token？</h5><ul>
+<li>JWT本质是用于验证身份的凭证，这个凭证能允许我们使用JWT在用户和服务器之间传递安全可靠的信息。</li>
+<li>信息基于 base64 编码转换为 ASCII 码，字节占用很小，便于传输。</li>
+<li>基于 Token 的鉴权机制保持了 HTTP 协议的无状态型，每次操作都会生成新的JWT，不需要在服务器端存储用户的记录，因此也没必要保存JWT，真正实现无状态，从而实现更简单的水平扩展。</li>
+</ul>
+<p><img src="/2019/10/12/JWT/JWT/3.png" alt></p>
+<ol>
+<li>客户端使用用户名和密码进行登录；</li>
+<li>服务器端接收到请求后，取验证用户名和密码；</li>
+<li>验证成功后，服务器会签发一个Token，再把Token签发到客户端；</li>
+<li>客户端接收到Token之后，会存储到Cookie或者Local Storage；</li>
+<li>客户端每次向服务器发出请求时，都要携带服务器端签发的Token；</li>
+<li>服务器端接收到请求，去验证客户端携带的Token，如果验证成功，则返回客户端请求的数据。</li>
+</ol>
+<h3 id="Token的创建过程"><a href="#Token的创建过程" class="headerlink" title="Token的创建过程"></a>Token的创建过程</h3><blockquote>
+<p>​    JWT的Token由三部分组成：Header+Payload+Signature    </p>
+</blockquote>
+<p><img src="/2019/10/12/JWT/JWT/1.png" alt></p>
+<h5 id="1）Header-创建头部"><a href="#1）Header-创建头部" class="headerlink" title="1）Header 创建头部"></a>1）Header 创建头部</h5><p>Header 部分是一个 JSON 对象，描述 JWT 的元数据。</p>
+<p>{<br>  “alg”: “HS256”,<br> “typ”: “JWT”<br> }</p>
+<p>alg属性表示签名的算法（algorithm），默认是 HMAC SHA256（这个算法的密钥只有认证服务器和应用服务器知道），用什么 hash 算法来生成 JWT 签名模块（下文描述）。</p>
+<p>typ属性表示这个令牌（token）的类型（type），JWT 令牌统一写为JWT。</p>
+<p><img src="/2019/10/12/JWT/JWT/2.png" alt></p>
+<h5 id="2）Payload-创建负载"><a href="#2）Payload-创建负载" class="headerlink" title="2）Payload 创建负载"></a>2）Payload 创建负载</h5><p>Payload 部分也是一个 JSON 对象，用来存放实际需要传递的数据。官方给出了json数据的字段。</p>
+<p>{</p>
+<p>​    “iss (issuer)”：签发人<br>​    exp (expiration time)：过期时间<br>​    sub (subject)：主题<br>​    aud (audience)：受众<br>​    nbf (Not Before)：生效时间<br>​    iat (Issued At)：签发时间<br>​    jti (JWT ID)：编号</p>
+<p> }</p>
+<p>当然，我们也可以自定义。</p>
+<p>{<br>  “exp”: “1234567890”,<br>  “username”: “test”</p>
+<p>}</p>
+<p><img src="/2019/10/12/JWT/JWT/3.png" alt></p>
+<p>注意一点，<strong>payload 是一定不能够携带敏感数据如密码等信息的</strong></p>
+<h5 id="3）Signature-签名"><a href="#3）Signature-签名" class="headerlink" title="3）Signature 签名"></a>3）Signature 签名</h5><p>签名的目的主要是为了验证我是 “我“，把前两部分（Header、Payload）和用户的密钥进行哈希，防止数据篡改。换言之，即使Header或Payload被篡改，但篡改者不知到密钥是什么，无法生成签名，形成Token，服务器端无法通过验证。</p>
+<p>生成签名的步骤：</p>
+<p>​        ①Base64URL对生成的 header 和 payload 进行 base64url编码，然后把编码生成的字符串中间通过句号（.）连接起来。</p>
+<p>​        ②把密钥<strong><em>secret</em></strong>和data进行hash算法加密，生成签名，再进行base64编码，生成签名。(此处的secret是指用户的密钥，通过HA256或者其他方法进行加密)</p>
+<p><code>H</code>MACSHA256 (<code>base64UrlEncode(header) + &quot;.&quot; + base64UrlEncode(payload),  secret )</code></p>
+<p>延伸：</p>
+<p><strong>加密认证</strong></p>
+<p>JWT的签名除了通过密钥（secret）的<strong>HMAC加密</strong>算法，还支持公钥或私钥的<strong>RSA</strong> or <strong>ECDSA</strong>算法。</p>
+<p><strong>加密方法</strong></p>
+<ol>
+<li><strong>对称加密：</strong>指的就是加、解密使用的同是一串密钥，所以被称做对称加密。对称加密只有一个密钥作为私钥。<br>常见的对称加密算法：DES，AES等。</li>
+<li><strong>非对称加密：</strong>指的是加、解密使用不同的密钥，一把作为公开的公钥，另一把作为私钥。公钥加密的信息，只有私钥才能解密。反之，私钥加密的信息，只有公钥才能解密。 最常用的非对称加密算法：RSA</li>
+</ol>
+<h5 id="4）三个模块合并成Token"><a href="#4）三个模块合并成Token" class="headerlink" title="4）三个模块合并成Token"></a>4）三个模块合并成Token</h5><p>产生签名之后，把Header、Payload、Signature 三个部分用 “ . ” 拼成一个字符串。</p>
+<p><img src="/2019/10/12/JWT/JWT/4.png" alt></p>
+<p>自此，用户得到了服务器返回的Token（凭证）。用户下次登录的时候，在过期时间之内或者注销会话之内，可以凭这这个Token免密登录。</p>
+<h5 id="5-校验JWT"><a href="#5-校验JWT" class="headerlink" title="5.校验JWT"></a>5.校验JWT</h5><p>​        由于应用知道密钥，当用户向应用发起携带 JWT 的 API 请求时，应用可以执行签名算法。然后应用可以校验用户 hash 操作生成的签名是否和 JWT 中的签名匹配（即它匹配认证服务器创建的 JWT 签名），若匹配一致，则认证通过，返回请求的数据。</p>
+<!--签发JWT的时候需要密钥-->
+<!--验证的时候需要公钥：验证使用 RS256 算法签发的 JWT，需要在文件系统上读取公钥文件里的内容。然后用 jwt 的 verify 方法去做验证。-->
+
+
+
+
+
+<h3 id="JWT适用场景"><a href="#JWT适用场景" class="headerlink" title="JWT适用场景"></a>JWT适用场景</h3><ul>
+<li><p>做简单的 Restful API 认证，从RESTful API查询使用JSON数据。RESTful API的原则之一是它应该是无状态的，这意味着当发出请求时，总会返回带有参数的响应，不会产生附加影响。</p>
+</li>
+<li><p>每次请求刷新 jwt。</p>
+</li>
+</ul>
+<h3 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h3><p>  JWT 本质上是通过时间换空间，服务器不存储用户状态信息，但是每个用户请求都会消耗 CPU 时间来验证 Token。</p>
+<blockquote>
+<p>XSS攻击是恶意网页程序（通常是JavaScript）对网站进行攻击。攻击成功后，攻击者可能得到包括但不限于更高的权限（如执行一些操作）、私密网页内容、会话和cookie等各种内容。</p>
+</blockquote>
+<p>服务器返回的Token是存储在客户端的Cookie或者Local Storage中，故容易发生XSS攻击。</p>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ul>
+<li><p>为了防止中间人窃取Token，从而发生CSRF 攻击，使用https对请求进行加密传输。</p>
+</li>
+<li><p>JWT的信息是不加密存储的，不可存敏感信息。</p>
+</li>
+<li><p>设置一个表较短的过期时间。JWT是安全，但也不是绝对的，比如针对同一个接口，JWT字符串被截取后，且在有效期内，在不篡改JWT字符串的情况下，也是可以模拟请求进行访问的。颁发一个有效期极短的JWT，即使暴露了危险也很小。</p>
+</li>
+<li><p>生成签名字段时，支持使用密钥字符串签名（安全性较低），也支持使用 RSA、ECDSA 私钥签名。</p>
+</li>
+</ul>
+<p>​        </p>
+<p><a href="https://juejin.im/entry/5bb211b7e51d450e5c478e0b" target="_blank" rel="noopener">https://juejin.im/entry/5bb211b7e51d450e5c478e0b</a></p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2019/11/22/深夜奇想/" data-toggle="tooltip" data-placement="top" title="深夜奇想">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2019/10/12/WaitNotify通知机制/" data-toggle="tooltip" data-placement="top" title="Wait&Notify的通知机制">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#读书笔记" title="读书笔记">读书笔记</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="https://greenhathg.github.io/" target="_blank">肖喵喵</a></li>
+                    
+                        <li><a href="http://huangxuan.me" target="_blank">Hux Blog</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "hexo-theme-huxblog";
+    var disqus_identifier = "https://pistachiol.github.io/2019/10/12/JWT/";
+    var disqus_url = "https://pistachiol.github.io/2019/10/12/JWT/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/pistachioL">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Pistachio&#39;s Blog 2020 
+                    <br>
+                    Theme by <a href="http://huangxuan.me" target="_blank" rel="noopener">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks" target="_blank" rel="noopener">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://pistachiol.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-49627206-1';
+    var _gaDomain = 'huangxuan.me';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4cc1f2d8f3067386cc5cdb626a202900';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://pistachiol.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

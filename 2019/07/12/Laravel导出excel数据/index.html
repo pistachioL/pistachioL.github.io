@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Laravel导出excel数据 - Pistachio的楼阁 | Pistachio&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://pistachiol.github.io/2019/07/12/Laravel导出excel数据/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.min.css">
+
+
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Pistachio&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://pistachiol.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/bg_Jerry.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#PHP" title="PHP">PHP</a>
+                        
+                    </div>
+                    <h1>Laravel导出excel数据</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Liao on
+                        2019-07-12
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="Laravel-导出excel"><a href="#Laravel-导出excel" class="headerlink" title="Laravel 导出excel"></a>Laravel 导出excel</h1><h3 id="1-扩展包的安装"><a href="#1-扩展包的安装" class="headerlink" title="1.扩展包的安装"></a>1.扩展包的安装</h3><p>在laravel项目下的terminal安装：</p>
+<p><code>composer require maatwebsite/excel</code>  </p>
+<h3 id="2-config-app-php文件下的providers数组下加载如下类："><a href="#2-config-app-php文件下的providers数组下加载如下类：" class="headerlink" title="2.config/app.php文件下的providers数组下加载如下类："></a>2.config/app.php文件下的providers数组下加载如下类：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'providers'</span> =&gt; [</span><br><span class="line">...</span><br><span class="line">Maatwebsite\Excel\ExcelServiceProvider::class,</span><br><span class="line">],</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-aliases-数组下加载如下类："><a href="#3-aliases-数组下加载如下类：" class="headerlink" title="3.aliases 数组下加载如下类："></a>3.aliases 数组下加载如下类：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'aliases'</span> =&gt; [</span><br><span class="line">   ...</span><br><span class="line"> <span class="string">'Excel'</span> =&gt; Maatwebsite\Excel\Facades\Excel::class,</span><br><span class="line"> ],</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-生成Laravel-Excel的配置文件"><a href="#4-生成Laravel-Excel的配置文件" class="headerlink" title="4.生成Laravel Excel的配置文件"></a>4.生成Laravel Excel的配置文件</h3><p><code>php artisan vendor:publish --provider=&quot;Maatwebsite\Excel\ExcelServiceProvider&quot;</code> </p>
+<p>然后你会发现在<strong>config</strong>目录下有一个<strong>excel.php</strong>文件  </p>
+<h3 id="5-excel数据导出"><a href="#5-excel数据导出" class="headerlink" title="5.excel数据导出"></a>5.excel数据导出</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Http</span>\<span class="title">Controllers</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Http</span>\<span class="title">Request</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">App</span>\<span class="title">Http</span>\<span class="title">Requests</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">App</span>\<span class="title">Http</span>\<span class="title">Controllers</span>\<span class="title">Controller</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Excel</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExcelController</span> <span class="keyword">extends</span> <span class="title">Controller</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">export</span><span class="params">()</span></span>&#123;</span><br><span class="line">		$cellData = [</span><br><span class="line">			[<span class="string">'学号'</span>,<span class="string">'姓名'</span>,<span class="string">'成绩'</span>],</span><br><span class="line">			[<span class="string">'10001'</span>,<span class="string">'AAAAA'</span>,<span class="string">'99'</span>],</span><br><span class="line">			[<span class="string">'10002'</span>,<span class="string">'BBBBB'</span>,<span class="string">'92'</span>],</span><br><span class="line">			[<span class="string">'10003'</span>,<span class="string">'CCCCC'</span>,<span class="string">'95'</span>],</span><br><span class="line">			[<span class="string">'10004'</span>,<span class="string">'DDDDD'</span>,<span class="string">'89'</span>],</span><br><span class="line">			[<span class="string">'10005'</span>,<span class="string">'EEEEE'</span>,<span class="string">'96'</span>],</span><br><span class="line">		];</span><br><span class="line">		Excel::create(<span class="string">'学生成绩'</span>,<span class="function"><span class="keyword">function</span><span class="params">($excel)</span> <span class="title">use</span> <span class="params">($cellData)</span></span>&#123;     <span class="comment">//批量赋值</span></span><br><span class="line">			$excel-&gt;sheet(<span class="string">'score'</span>, <span class="function"><span class="keyword">function</span><span class="params">($sheet)</span> <span class="title">use</span> <span class="params">($cellData)</span></span>&#123;</span><br><span class="line">				$sheet-&gt;rows($cellData);</span><br><span class="line">			&#125;);</span><br><span class="line">		&#125;)-&gt;export(<span class="string">'xls'</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="excel数据导入"><a href="#excel数据导入" class="headerlink" title="excel数据导入"></a>excel数据导入</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">一、数据量较小的时候：</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">import</span><span class="params">()</span></span>&#123;</span><br><span class="line">    $res = Excel::load(<span class="string">'excel文件的具体位置'</span>, <span class="function"><span class="keyword">function</span><span class="params">($reader)</span> </span>&#123;</span><br><span class="line">        $data = $reader-&gt;all();</span><br><span class="line">        dd($data);</span><br><span class="line">    &#125;)-&gt;getSheet()-&gt;toArray();</span><br><span class="line">    dd($result); <span class="comment">// 打印出excel表中数据的结果</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">二、数据量较大的时候  <span class="comment">//处理200条数据</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">import</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">         Excel::Filter（<span class="string">'chunk'</span>）-&gt;load(<span class="string">'excel文件的具体位置'</span>)-&gt;chunk(<span class="number">200</span>,<span class="function"><span class="keyword">function</span><span class="params">($reader)</span></span>&#123;</span><br><span class="line">            dd($reader);</span><br><span class="line">          &#125;);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-参考事例"><a href="#5-参考事例" class="headerlink" title="5.参考事例"></a>5.参考事例</h3><h3 id="dataController-php"><a href="#dataController-php" class="headerlink" title="dataController.php"></a>dataController.php</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">upload</span><span class="params">(Request $request,Excel $excel)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>($request-&gt;isMethod(<span class="string">'POST'</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//var_dump($_FILES);</span></span><br><span class="line">        $file = $request-&gt;file(<span class="string">'source'</span>); <span class="comment">//从表单处获取上传文件</span></span><br><span class="line">        <span class="comment">//文件是否上传成功</span></span><br><span class="line">        <span class="keyword">if</span>($file-&gt;isValid())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//原文件名</span></span><br><span class="line">            $originalName = $file-&gt;getClientOriginalName();</span><br><span class="line">            <span class="comment">//扩展名</span></span><br><span class="line">            $ext = $file-&gt; getClientOriginalExtension();  <span class="comment">//上传文件的后缀(xlsx)</span></span><br><span class="line">            <span class="comment">//MimeType</span></span><br><span class="line">            $type = $file -&gt;getClientMimeType(); <span class="comment">//媒体类型</span></span><br><span class="line">            <span class="comment">//临时绝对路径</span></span><br><span class="line">            $realPath = $file -&gt;getRealPath();</span><br><span class="line">            $filename = uniqid() . <span class="string">'.'</span> . $ext;</span><br><span class="line">            Storage::disk(<span class="string">'uploads'</span>)-&gt;put($filename, file_get_contents($realPath)); <span class="comment">//把上传的文件保存在磁盘</span></span><br><span class="line"> </span><br><span class="line">            $result = $excel-&gt;load(<span class="string">'storage\app\uploads/'</span>.$filename, <span class="function"><span class="keyword">function</span><span class="params">($reader)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">            &#125;)-&gt;getSheet()-&gt;toArray();   <span class="comment">//（把excel表格存储到app\storage文件夹下）通过相对路径获取到excel表格的数据  转为二维数组</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//dd($result); //能打印出上传的文件</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">foreach</span> ($result <span class="keyword">as</span> $value)  <span class="comment">//从数组中取出值</span></span><br><span class="line">            &#123;</span><br><span class="line">                $info = <span class="keyword">new</span> Upload();   <span class="comment">//创建一个模型的对象（Upload.php是连接数据库的模型）</span></span><br><span class="line">                $info-&gt; department = $value[<span class="string">'0'</span>];</span><br><span class="line">                $info-&gt; name = $value[<span class="string">'1'</span>];</span><br><span class="line">                $info-&gt; phone = $value[<span class="string">'2'</span>];</span><br><span class="line">                $info-&gt; short_number = $value[<span class="string">'3'</span>] ;</span><br><span class="line"></span><br><span class="line">               $res =  $info -&gt; save();</span><br><span class="line">             &#125;</span><br><span class="line">            <span class="keyword">if</span>($res)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">return</span> redirect(<span class="string">'/show'</span>)-&gt;with(<span class="string">'success'</span>,<span class="string">'成功上传！'</span>);</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> view(<span class="string">'file\fileUpload'</span>);  <span class="comment">//返回视图</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Model-php"><a href="#Model-php" class="headerlink" title="Model.php"></a>Model.php</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">App</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Database</span>\<span class="title">Eloquent</span>\<span class="title">Model</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Upload</span> <span class="keyword">extends</span> <span class="title">Model</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> $table = <span class="string">'info'</span>;</span><br><span class="line">    <span class="keyword">public</span> $timestamps = <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">protected</span> $fillable = [<span class="string">'department'</span>,<span class="string">'name'</span>,<span class="string">'phone'</span>,<span class="string">'short_number'</span>];<span class="comment">//可批量赋值</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="文件上传的视频链接："><a href="#文件上传的视频链接：" class="headerlink" title="文件上传的视频链接："></a>文件上传的视频链接：</h5><p><a href="https://www.imooc.com/learn/219" target="_blank" rel="noopener">https://www.imooc.com/learn/219</a></p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2019/07/12/树/" data-toggle="tooltip" data-placement="top" title="树">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2019/02/18/hello-world/" data-toggle="tooltip" data-placement="top" title="今天博客又搬回hexo啦～">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#PHP" title="PHP">PHP</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="https://greenhathg.github.io/" target="_blank">肖喵喵</a></li>
+                    
+                        <li><a href="http://huangxuan.me" target="_blank">Hux Blog</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "hexo-theme-huxblog";
+    var disqus_identifier = "https://pistachiol.github.io/2019/07/12/Laravel%E5%AF%BC%E5%87%BAexcel%E6%95%B0%E6%8D%AE/";
+    var disqus_url = "https://pistachiol.github.io/2019/07/12/Laravel%E5%AF%BC%E5%87%BAexcel%E6%95%B0%E6%8D%AE/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/pistachioL">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Pistachio&#39;s Blog 2020 
+                    <br>
+                    Theme by <a href="http://huangxuan.me" target="_blank" rel="noopener">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks" target="_blank" rel="noopener">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://pistachiol.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-49627206-1';
+    var _gaDomain = 'huangxuan.me';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '4cc1f2d8f3067386cc5cdb626a202900';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://pistachiol.github.io/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
