@@ -197,8 +197,14 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p><code>vector&lt;int&gt; vec(int size)</code></p>
-<p><code>vector&lt;int&gt; vec(int size, int val)</code> 创建一个大小为size，且值均为val的容器。</p>
+                <p>vector能像数组那样表示，而且提供了很多接口，因此使用方便。</p>
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p><code>vector&lt;int&gt; vec(int size); //创建一个大小size()的容器</code>　</p>
+<p><code>vector&lt;int&gt; vec(int size, int val);  //创建一个大小为size，且值均为val的容器</code> </p>
+<h3 id="vector的二维数组"><a href="#vector的二维数组" class="headerlink" title="vector的二维数组"></a>vector的二维数组</h3><p>二维数组可表示成<code>vecotr&lt;vector&lt;int&gt;&gt;vec</code></p>
+<h5 id="行列的表示"><a href="#行列的表示" class="headerlink" title="行列的表示"></a>行列的表示</h5><p>​    行表示：<code>vec.size()</code></p>
+<p>​    列表示：<code>vec[0].size()</code></p>
+<h5 id="初始化-1"><a href="#初始化-1" class="headerlink" title="初始化"></a>初始化</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">memset</span>(vec,<span class="number">-1</span>,<span class="keyword">sizeof</span>(vec));  <span class="comment">//把二维数组初始化为-1</span></span><br></pre></td></tr></table></figure>
+
 
 
                 <hr>
