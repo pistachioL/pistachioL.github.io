@@ -209,11 +209,14 @@
 
 
 
-<h3 id="字符的运算和转化"><a href="#字符的运算和转化" class="headerlink" title="字符的运算和转化"></a>字符的运算和转化</h3><p>字符-‘0’就转化成数字。</p>
-<p>数字+’0’转化成字符</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> a=<span class="string">'3'</span>,b=<span class="string">'1'</span>;</span><br><span class="line">a = a -<span class="string">'0'</span> + <span class="string">'1'</span>;  <span class="comment">//a = 4</span></span><br><span class="line">a = (a - <span class="string">'0'</span>) % <span class="number">2</span> + <span class="string">'0'</span>;   <span class="comment">//a=1</span></span><br></pre></td></tr></table></figure>
+<h3 id="字符的运算和转化"><a href="#字符的运算和转化" class="headerlink" title="字符的运算和转化"></a>字符的运算和转化</h3><h5 id="字符-‘0’就转化成数字。"><a href="#字符-‘0’就转化成数字。" class="headerlink" title="字符-‘0’就转化成数字。"></a>字符-‘0’就转化成数字。</h5><h5 id="数字-’0’转化成字符"><a href="#数字-’0’转化成字符" class="headerlink" title="数字+’0’转化成字符"></a>数字+’0’转化成字符</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> a=<span class="string">'3'</span>,b=<span class="string">'1'</span>;</span><br><span class="line">a = a -<span class="string">'0'</span> + <span class="string">'1'</span>;  <span class="comment">//a = 4</span></span><br><span class="line">a = (a - <span class="string">'0'</span>) % <span class="number">2</span> + <span class="string">'0'</span>;   <span class="comment">//a=1</span></span><br></pre></td></tr></table></figure>
 
-<p><strong>例题：LeetCode二进制求和</strong></p>
+<h5 id="整型-浮点型转字符串"><a href="#整型-浮点型转字符串" class="headerlink" title="整型/浮点型转字符串"></a>整型/浮点型转字符串</h5><p>①<code>string to_string(int n);</code></p>
+<p>②</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">Int_to_String</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">ostringstream</span> stream;</span><br><span class="line"></span><br><span class="line">    stream&lt;&lt;n; <span class="comment">//n为int类型</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> stream.str();</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
 <h3 id="substr-int-index-int-num-从下标index开始，取num个数"><a href="#substr-int-index-int-num-从下标index开始，取num个数" class="headerlink" title="substr(int index, int num) 　从下标index开始，取num个数"></a>substr(int index, int num) 　从下标index开始，取num个数</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  <span class="built_in">string</span> s1 =<span class="string">"abcdefgh"</span>;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; s1.substr(<span class="number">3</span>,<span class="number">4</span>) &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">defg</span></span><br><span class="line"><span class="comment">**/</span></span><br></pre></td></tr></table></figure>
 
 
@@ -221,6 +224,9 @@
 <h3 id="查找字符串数组中每个字符串的每一个字符。"><a href="#查找字符串数组中每个字符串的每一个字符。" class="headerlink" title="查找字符串数组中每个字符串的每一个字符。"></a>查找字符串数组中每个字符串的每一个字符。</h3><p><code>vector&lt;string&gt;words={&quot;hello&quot;,&quot;leecode&quot;,&quot;code&quot;};</code></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="built_in">string</span> <span class="keyword">word</span> : words)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">char</span> ch : <span class="keyword">word</span>)&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+
+
+<p>#####</p>
 
 
                 <hr>
