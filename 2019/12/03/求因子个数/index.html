@@ -226,6 +226,18 @@
 
 
 
+
+
+<p><strong>LeetCode 丑数</strong></p>
+<blockquote>
+<p>只包含质因数的正整数就是丑数</p>
+</blockquote>
+<p>通过while循环不断判断2,3,5是否num的质数，如果是则继续判断，<strong>直到num为1</strong>。</p>
+<p>最后通过return判断num满不满足为1。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isUgly</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span>(num == <span class="number">0</span>)</span><br><span class="line">           <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">       <span class="keyword">while</span>(num % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">           num /= <span class="number">2</span>;</span><br><span class="line">       <span class="keyword">while</span>(num % <span class="number">3</span> == <span class="number">0</span>)</span><br><span class="line">           num /= <span class="number">3</span>;</span><br><span class="line">       <span class="keyword">while</span>(num % <span class="number">5</span> == <span class="number">0</span> )</span><br><span class="line">           num /= <span class="number">5</span>;</span><br><span class="line">       <span class="keyword">return</span> num == <span class="number">1</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+
                 <hr>
 
                 
