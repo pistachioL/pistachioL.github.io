@@ -13,11 +13,11 @@
 
     <title>
         
-          STL之vector - Pistachio的楼阁 | Pistachio&#39;s Blog
+          二叉树 - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2020/03/05/vector/">
+    <link rel="canonical" href="https://pistachiol.github.io/2020/03/21/BinaryTree/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -171,14 +171,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#STL" title="STL">STL</a>
+                          <a class="tag" href="/tags/#数据结构" title="数据结构">数据结构</a>
                         
                     </div>
-                    <h1>STL之vector</h1>
+                    <h1>二叉树</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
-                        2020-03-05
+                        2020-03-21
                     </span>
                 </div>
             </div>
@@ -197,13 +197,16 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p>vector能像数组那样表示，而且提供了很多接口，因此使用方便。</p>
-<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p><code>vector&lt;int&gt; vec(int size); //创建一个大小size()的容器</code>　</p>
-<p><code>vector&lt;int&gt; vec(int size, int val);  //创建一个大小为size，且值均为val的容器</code> </p>
-<h3 id="vector的二维数组"><a href="#vector的二维数组" class="headerlink" title="vector的二维数组"></a>vector的二维数组</h3><p>二维数组可表示成<code>vecotr&lt;vector&lt;int&gt;&gt;vec</code></p>
-<h5 id="行列的表示"><a href="#行列的表示" class="headerlink" title="行列的表示"></a>行列的表示</h5><p>​    行表示：<code>vec.size()</code></p>
-<p>​    列表示：<code>vec[0].size()</code></p>
-<h5 id="初始化-1"><a href="#初始化-1" class="headerlink" title="初始化"></a>初始化</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">memset</span>(vec,<span class="number">-1</span>,<span class="keyword">sizeof</span>(vec));  <span class="comment">//把二维数组初始化为-1</span></span><br></pre></td></tr></table></figure>
+                <p>无论是LeetCode的题目还是竞赛题，很多都有关对二叉树的操作，因此有必要对做过的题目进行一番总结。</p>
+<p><strong>二叉树的层次遍历</strong></p>
+<p>BFS方式实现（队列）</p>
+<p>要注意队列的结点类型！</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; <span class="title">levelOrder</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; res;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">NULL</span>)</span><br><span class="line">            <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">        <span class="built_in">queue</span>&lt;TreeNode*&gt; q;  </span><br><span class="line">        q.push(root);</span><br><span class="line">        <span class="keyword">int</span> cnt;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(!q.empty())&#123;</span><br><span class="line">            <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;level;</span><br><span class="line">            cnt = q.<span class="built_in">size</span>();</span><br><span class="line">            <span class="keyword">while</span>(cnt--)&#123;</span><br><span class="line">                TreeNode* tmp = q.front();</span><br><span class="line">                q.pop();</span><br><span class="line">                level.push_back(tmp-&gt;val);</span><br><span class="line">                <span class="keyword">if</span>(tmp-&gt;left)</span><br><span class="line">                    q.push(tmp-&gt;left);</span><br><span class="line">                <span class="keyword">if</span>(tmp-&gt;right)</span><br><span class="line">                    q.push(tmp-&gt;right);</span><br><span class="line">            &#125;</span><br><span class="line">            res.push_back(level);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>DFS版（递归）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;res;</span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; <span class="title">levelOrder</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">    DFS(root,<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DFS</span><span class="params">(TreeNode* root, <span class="keyword">int</span> level)</span></span>&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;ans;</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">if</span>(res.<span class="built_in">size</span>() == level)</span><br><span class="line">        res.resize(level+<span class="number">1</span>);</span><br><span class="line">    res[level].push_back(root-&gt;val); <span class="comment">//第level层插入元素</span></span><br><span class="line">    <span class="keyword">if</span>(root-&gt;left) </span><br><span class="line">        DFS(root-&gt;left,level+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span>(root-&gt;right)</span><br><span class="line">        DFS(root-&gt;right,level+<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -213,13 +216,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2020/03/06/位运算/" data-toggle="tooltip" data-placement="top" title="位运算">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2020/03/03/双指针/" data-toggle="tooltip" data-placement="top" title="双指针">Next Post &rarr;</a>
+                            <a href="/2020/03/21/STL之hash-map/" data-toggle="tooltip" data-placement="top" title="STL之unordered_map">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -252,7 +251,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#STL" title="STL">STL</a>
+                          <a class="tag" href="/tags/#数据结构" title="数据结构">数据结构</a>
                         
                     </div>
                 </section>
@@ -284,8 +283,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2020/03/05/vector/";
-    var disqus_url = "https://pistachiol.github.io/2020/03/05/vector/";
+    var disqus_identifier = "https://pistachiol.github.io/2020/03/21/BinaryTree/";
+    var disqus_url = "https://pistachiol.github.io/2020/03/21/BinaryTree/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
