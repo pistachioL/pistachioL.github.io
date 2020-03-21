@@ -13,11 +13,11 @@
 
     <title>
         
-          欧几里得的应用 - Pistachio的楼阁 | Pistachio&#39;s Blog
+          扩展欧几里得算法的应用 - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2019/12/09/欧几里得的应用/">
+    <link rel="canonical" href="https://pistachiol.github.io/2020/03/21/扩展欧几里得算法/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -174,11 +174,11 @@
                           <a class="tag" href="/tags/#数论" title="数论">数论</a>
                         
                     </div>
-                    <h1>欧几里得的应用</h1>
+                    <h1>扩展欧几里得算法的应用</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
-                        2019-12-09
+                        2020-03-21
                     </span>
                 </div>
             </div>
@@ -197,24 +197,23 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="PTA-N个数（包括分数）求和"><a href="#PTA-N个数（包括分数）求和" class="headerlink" title="PTA N个数（包括分数）求和"></a>PTA <a href="https://pintia.cn/problem-sets/994805046380707840/problems/994805133597065216" target="_blank" rel="noopener">N个数（包括分数）求和</a></h3><p><img src="/2019/12/09/%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%9A%84%E5%BA%94%E7%94%A8/1.png" alt></p>
-<p>这道题要对分数进行处理，分子相加起来可能会爆long long，因此要把输进来的分子与分母进行约分（通过gcd找出最大公约数），然后通过lcm找出最小公倍数进行通分，最后把分子相加后，再与分母约分。</p>
-<p>有几个点要进行判断的：</p>
+                <p><strong>LeetCode 水壶问题</strong></p>
+<blockquote>
+<p>有两个容量分别为 <em>x</em>升 和 <em>y</em>升 的水壶以及无限多的水。请判断能否通过使用这两个水壶，从而可以得到恰好 <em>z</em>升 的水？</p>
+<p>如果可以，最后请用以上水壶中的一或两个来盛放取得的 <em>z升</em> 水。</p>
+<p>你允许：</p>
 <ul>
-<li><p>判断思路是，可以把求出来的数分为分数，整数和0。分数可以分真分数和假分数。</p>
-</li>
-<li><p>真分数：题目要求分子小于分母，在这个情况下则能直接输出。</p>
-</li>
-<li><p>假分数：如果分子大于分母（假分数），则要变成带分数，输出带分数左边的整数和右边的真分数。</p>
-</li>
-<li><p>0和整数判断后直接输出即可。</p>
-</li>
+<li>装满任意一个水壶</li>
+<li>清空任意一个水壶</li>
+<li>从一个水壶向另外一个水壶倒水，直到装满或者倒空</li>
 </ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> fz[<span class="number">105</span>],fm[<span class="number">105</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> b == <span class="number">0</span> ? a : gcd(b,a%b);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lcm</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a/gcd(a,b) * b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d/%d"</span>,&amp;fz[i],&amp;fm[i]);  <span class="comment">//分子分母格式输入</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//约分</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> tmp = gcd(fz[i],fm[i]);</span><br><span class="line">        fz[i] = fz[i]/tmp;</span><br><span class="line">        fm[i] = fm[i]/tmp;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//通分 找出最小公倍数</span></span><br><span class="line">    ll lcms = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        lcms = lcm(lcms,fm[i]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        fz[i] = fz[i]*(lcms/fm[i]);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    ll sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        sum = sum + fz[i];  <span class="comment">//分子相加</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//约分</span></span><br><span class="line">    ll t = gcd(sum,lcms);</span><br><span class="line">    ll fz1 = sum/t;</span><br><span class="line">    ll fm1 = lcms/t;</span><br><span class="line">    ll z = fz1/fm1; <span class="comment">//带分数左边的整数</span></span><br><span class="line">    ll ans1 = fz1%fm1;  <span class="comment">//余数</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(fz1 % fm1 != <span class="number">0</span>)  <span class="comment">//分数</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(fz1 &lt; fm1) <span class="comment">//  7/24</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(fz1/fm1 == <span class="number">0</span>)</span><br><span class="line">                <span class="built_in">cout</span> &lt;&lt; fz1 &lt;&lt; <span class="string">"/"</span> &lt;&lt; fm1 &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(fz1 &gt;fm1) <span class="comment">//  10/3  假分数</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(fz1/fm1!=<span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">cout</span> &lt;&lt; z &lt;&lt; <span class="string">" "</span> &lt;&lt; ans1 &lt;&lt; <span class="string">"/"</span> &lt;&lt; fm1 &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(fz1 % fm1 == <span class="number">0</span>)  <span class="comment">//整数</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; z &lt;&lt;<span class="built_in">endl</span>;  <span class="comment">//直接输出整数</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>  <span class="comment">// 0</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"0"</span> &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
+</blockquote>
+<p>样例：　x=3,  y=5,  z=4  true,</p>
+<p>​        因为<code>4 % gcd(3,5) == 4 % 1 == 0</code></p>
+<p>问题可以转化为<code>a*x + b*y = z</code></p>
+<p>思路：若a,b的最大公约数为gcd(a,b)，则z会是gcd(a,b)的整数倍！</p>
+<p>恰好利用欧几里得的扩展定理</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> b == <span class="number">0</span> ? a : gcd(b,a%b);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">bool</span> <span class="title">canMeasureWater</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> z)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> (z == <span class="number">0</span> || (x+y &gt;= z &amp;&amp; z % gcd(x,y) == <span class="number">0</span>));</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -224,13 +223,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2019/12/11/PTA/" data-toggle="tooltip" data-placement="top" title="PTA技巧">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2019/12/03/求因子个数/" data-toggle="tooltip" data-placement="top" title="有关因子数的解法">Next Post &rarr;</a>
+                            <a href="/2020/03/19/Palindrome/" data-toggle="tooltip" data-placement="top" title="回文串">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -295,8 +290,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2019/12/09/%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%9A%84%E5%BA%94%E7%94%A8/";
-    var disqus_url = "https://pistachiol.github.io/2019/12/09/%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%9A%84%E5%BA%94%E7%94%A8/";
+    var disqus_identifier = "https://pistachiol.github.io/2020/03/21/%E6%89%A9%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95/";
+    var disqus_url = "https://pistachiol.github.io/2020/03/21/%E6%89%A9%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
