@@ -96,14 +96,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -187,6 +187,53 @@
             
                 <!-- Main Content -->
 
+
+<div class="post-preview">
+
+    <a href="/2020/03/22/Prime/">
+        <h2 class="post-title">
+            Prime
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            试除法求素数（通常会超时）
+1234567891011121314151617bool isPrime(int n)&#123;       for(int i = 2; i &lt;= sqrt(n); i++)&#123;           if(n%i==0)               return false;       &#125;       return true;   ......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-03-22
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/03/22/PowerSet/">
+        <h2 class="post-title">
+            幂集
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+幂集，也是原集合的所有子集
+
+位运算求幂集
+1234567891011121314vector&lt;vector&lt;int&gt;&gt; subsets(vector&lt;int&gt;&amp; nums) &#123;       vector&lt;vector&lt;int&gt;&gt;ans;       for(int i = 0; i &lt; (1&lt;&lt......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-03-22
+    </p>
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -332,7 +379,7 @@ LeetCode 快乐数
 
     <a href="/2020/03/06/位运算/">
         <h2 class="post-title">
-            位运算
+            位运算总结
         </h2>
         <h3 class="post-subtitle">
             
@@ -412,59 +459,6 @@ vector的二维数组二维数组可表示成vecotr&lt;vector&lt;i......
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2020/02/25/二进制数/">
-        <h2 class="post-title">
-            位运算
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            LeetCode 求二进制数中1的个数
-这是一种更高效的思路，把整数减1，再与原来的数做与运算，会把原来的二进制数最右边的1去掉。计算有多少次去掉1的操作，即可知道1的个数。
-n = n &amp; (n-1) 
-123456789int hammingWeight(uint32_t n) &#123;       int cnt = 0;       while(n)       &#12......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-02-25
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/02/24/全排列/">
-        <h2 class="post-title">
-            全排列
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            全排列涉及循环和递归。递归由递归关系式和递归出口组成。
-在每一次循环中，可以从左到右确定一个数字，然后通过递归让剩下k-1个数进行全排列。
-也可以从右到左，先确定最后一个数字，然后把前面k-1个数字进行全排列。
-Leetcode
-
-输入: [1,2,3]
-输出:[  [1,2,3],  [1,3,2],  [2,1,3],  [2,3,1],  [3,1,2],  [3,2,1]]
-
-思路一......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-02-24
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -500,11 +494,9 @@ Leetcode
                     <div class="tags">
                         
                             
-                        
-                            
-                        
-                            
                             <a href="/tags/#数据结构" title="数据结构" rel="8">数据结构</a>
+                            
+                        
                             
                         
                             
@@ -512,19 +504,7 @@ Leetcode
                             
                         
                             
-                            <a href="/tags/#STL" title="STL" rel="7">STL</a>
-                            
-                        
-                            
-                            <a href="/tags/#数论" title="数论" rel="8">数论</a>
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#Linux" title="Linux" rel="2">Linux</a>
-                            
-                        
+                            <a href="/tags/#算法" title="算法" rel="7">算法</a>
                             
                         
                             
@@ -536,13 +516,25 @@ Leetcode
                             
                         
                             
+                            <a href="/tags/#STL" title="STL" rel="7">STL</a>
+                            
+                        
+                            
                         
                             
                             <a href="/tags/#博客" title="博客" rel="2">博客</a>
                             
                         
                             
-                            <a href="/tags/#算法" title="算法" rel="5">算法</a>
+                        
+                            
+                            <a href="/tags/#Linux" title="Linux" rel="2">Linux</a>
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#数论" title="数论" rel="9">数论</a>
                             
                         
                             
