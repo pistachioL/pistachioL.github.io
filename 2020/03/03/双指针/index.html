@@ -233,6 +233,14 @@
 
 
 
+<p><strong>LeetCode 找出链表的中间结点</strong></p>
+<blockquote>
+<p>若有两个结点，返回第二个</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ListNode* <span class="title">middleNode</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">       ListNode* fast = head;</span><br><span class="line">       ListNode* slow = head;</span><br><span class="line">       <span class="keyword">while</span>(fast &amp;&amp; fast-&gt;next)&#123;</span><br><span class="line">           slow = slow-&gt;next;</span><br><span class="line">           fast = fast-&gt;next-&gt;next;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> slow;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+
                 <hr>
 
                 
