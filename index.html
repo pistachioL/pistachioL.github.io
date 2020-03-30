@@ -190,6 +190,125 @@
 
 <div class="post-preview">
 
+    <a href="/2020/03/30/约瑟夫环问题/">
+        <h2 class="post-title">
+            约瑟夫环问题
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            LeetCode
+
+0,1,,n-1这n个数字排成一个圆圈，从数字0开始，每次从这个圆圈里删除第m个数字。求出这个圆圈里剩下的最后一个数字。
+
+1234567int lastRemaining(int n, int m) &#123;       int ans = 0;       for(int i = 2; i &lt;= n; i++)&#123;           ans = (......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-03-30
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/03/26/Prototype/">
+        <h2 class="post-title">
+            原型模式
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            深克隆实现深克隆有两种方式
+1.种是采用序列化的方式实现2.采用依次克隆各个可变的引用类型域 覆盖Object中的clone方法， 实现深拷贝...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-03-26
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/03/25/PHP面向对象/">
+        <h2 class="post-title">
+            PHP面向对象
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            构造方法只要类被实例化之后，构造方法会被执行，就是在对象执行方法之前。
+构造方法必须为public，否则无法被实例化
+12345678910111213&lt;?phpclass Number&#123;    public function __construct()&#123;        echo "1输出";   		echo "2输出";    &#125;public func......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-03-25
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/03/24/单调栈/">
+        <h2 class="post-title">
+            单调栈
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            LeetCode　接雨水
+
+123456789101112131415161718192021int trap(vector&lt;int&gt;&amp; height) &#123;        int n = height.size();        if(n &lt; 3)&#123;            return 0;        &#125;        int a......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-03-24
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/03/24/DP/">
+        <h2 class="post-title">
+            动态规划
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            LeetCode　按摩师
+
+给定预约时长，找到最优的预约集合(时长最长)，且不能接收相邻的预约
+输入： [2,1,4,5,3,1,1,3]输出： 12解释： 选择 1 号预约、 3 号预约、 5 号预约和 8 号预约，总时长 = 2 + 4 + 3 + 3 = 12。
+
+12345678910111213int massage(vector&lt;int&gt;&amp; nums) &#1......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-03-24
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2020/03/22/Prime/">
         <h2 class="post-title">
             Prime
@@ -320,145 +439,6 @@ BFS方式实现（队列）
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2020/03/19/Palindrome/">
-        <h2 class="post-title">
-            回文串
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            LeetCode 最长回文串
-
-在给定包含大小写的字符串中，找出这些字母构成的最长回文串，构造时注意区分大小写
-
-这道题目不同在于可以通过构造找出最长回文串，于是可以通过找规律求得。
-首先把每个字母出现的个数统计出来，放进vector中（方便处理）。
-查看vector中每个字母出现的次数，如果字母出现的个数时偶数，一定可以构成回文串，则可以把这些个数直接加起来；
-如果字母出现的个数是奇数，则......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-03-19
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/03/18/FastSlowPoint/">
-        <h2 class="post-title">
-            快慢指针
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            快指针走两步，慢指针走一步，当它们相等时就是走了一个循环，为一个周期。
-LeetCode 快乐数
-
-对于一个正整数，将这个数字替换为每个位置上的数字平方和，循环多次，如果能变为１则是快乐数，否则不是。
-
-这道题用递归做的话，若正整数很大，递归层次深一点，就会导致调用栈爆了。
-12345678910111213141516171819int getNext(int n)&#123;      ......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-03-18
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/03/06/位运算/">
-        <h2 class="post-title">
-            位运算总结
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            由于计算机存储数据都是以二进制的形式存储，位运算实质时对二进制数进行操作。在做题目的的时候，通过位运算处理数据速度很快，便能使缩短计算时间。
-1. 位运算的种类
-
-
-含义
-运算符
-解释和例子
-
-
-
-左移
-&lt;&lt;
-高位丢弃，低位补0。x&lt;&lt;n  相当于x乘2^n  (0011 &lt;&lt; 1 ==  0110)
-
-
-右移
-&gt;&gt;
-无符号数，高位补0；有符号......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-03-06
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/03/05/STL之vector/">
-        <h2 class="post-title">
-            STL之vector
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            vector能像数组那样表示，而且提供了很多接口，因此使用方便。
-初始化vector&lt;int&gt; vec(int size); //创建一个大小size()的容器　
-vector&lt;int&gt; vec(int size, int val);  //创建一个大小为size，且值均为val的容器 
-vector的二维数组二维数组可表示成vecotr&lt;vector&lt;i......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-03-05
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/03/03/双指针/">
-        <h2 class="post-title">
-            双指针
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            LeetCode题目总结LeetCode 合并两个排序的数组
-1234567891011121314151617181920212223242526272829303132333435363738394041void merge(vector&lt;int&gt;&amp; A, int m, vector&lt;int&gt;&amp; B, int n) &#123;        ve......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-03-03
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -494,7 +474,7 @@ vector的二维数组二维数组可表示成vecotr&lt;vector&lt;i......
                     <div class="tags">
                         
                             
-                            <a href="/tags/#数据结构" title="数据结构" rel="8">数据结构</a>
+                            <a href="/tags/#数据结构" title="数据结构" rel="9">数据结构</a>
                             
                         
                             
@@ -512,13 +492,15 @@ vector的二维数组二维数组可表示成vecotr&lt;vector&lt;i......
                             
                         
                             
-                        
+                            <a href="/tags/#PHP" title="PHP" rel="2">PHP</a>
                             
                         
                             
                         
                             
-                            <a href="/tags/#数论" title="数论" rel="9">数论</a>
+                        
+                            
+                            <a href="/tags/#数论" title="数论" rel="10">数论</a>
                             
                         
                             
@@ -533,6 +515,10 @@ vector的二维数组二维数组可表示成vecotr&lt;vector&lt;i......
                         
                             
                             <a href="/tags/#Linux" title="Linux" rel="2">Linux</a>
+                            
+                        
+                            
+                        
                             
                         
                             

@@ -13,11 +13,11 @@
 
     <title>
         
-          Pistachio的楼阁 | Pistachio&#39;s Blog
+          单调栈 - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/page/6/">
+    <link rel="canonical" href="https://pistachiol.github.io/2020/03/24/单调栈/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -153,327 +153,107 @@
 
 
     <!-- Main Content -->
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/bg_Jerry.jpg')">
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://pistachiol.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/bg_Jerry.jpg')
+    }
+</style>
+<header class="intro-header" >
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>Pistachio&#39;s Blog</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">To Be A Lean Developer!</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#数据结构" title="数据结构">数据结构</a>
+                        
+                    </div>
+                    <h1>单调栈</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Liao on
+                        2020-03-24
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
-
-<!-- USE SIDEBAR -->
     <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-            
-                <!-- Main Content -->
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
 
-
-<div class="post-preview">
-
-    <a href="/2019/08/14/优先队列/">
-        <h2 class="post-title">
-            优先队列
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            优先队列一. 定义priority_queue&lt;Type, Container, Functional&gt;
-​    Type 就是数据类型，Container 就是容器类型（Container必须是用数组实现的容器，比如vector,queue等等，但不能用 list。STL里面默认用的是vector），Functional 就是比较的方式。
-​        每一个点都带一个数......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-08-14
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/07/24/C语言小知识/">
-        <h2 class="post-title">
-            编程小知识
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            1）字符变数字：str[i]-‘0’
-2）char *strncpy(char *dest,const char *src,size_t n)把str所指向的字符串复制最多n个字符到dest
-123456789101112131415161718#include &lt;stdio.h&gt;#include &lt;string.h&gt;int main()&#123;   char s......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-07-24
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/07/24/队列基本用法/">
-        <h2 class="post-title">
-            队列基本用法
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            牛客上做的一个题目：https://ac.nowcoder.com/acm/contest/258/A 
-以样例为例：
-123456输入3 71 2 1 5 4 4 1输出 5
-
-容量为3，文章长度为7，第二行为文章内容。依题意，检索到相同的就为同一个单词，当单词数量大于容量的时候，软件会清空最早存入内存的单词，腾出单元，存放新单词。因此符合队列先进先出的特点。
-
-1234567891011......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-07-24
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/07/12/git常用操作/">
-        <h2 class="post-title">
-            git的常用操作
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            git常用操作github上传laravel项目git init
-git remote add origin git@github.com:pistachioL/xxx.git
-git add .
-git commit -m &quot;xxxx&quot;
-git push origin master -f
-删除远程关联
-git remote rm origin
-创建新分支git bran......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-07-12
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/07/12/树/">
-        <h2 class="post-title">
-            树
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            2019蓝桥杯校内选拔一题
-一棵包含有2019个结点的树，最多包含多少个叶结点？
-
-解法1：
-首先他问“最多”，当然便是完全二叉树（满二叉树）了。
-记i为树的层数，由完全二叉树的性质可得，结点总数为$$2^i-1$$，叶子结点总数为$$2^(i-1)$$，列出等式即可计算出。
-解法2：
-二叉树的性质：叶子结点 = 度为2的结点数 + 1
-当二叉树叶子结点最多时，即度为2的结点数最多，度为1的......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-07-12
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/07/12/Laravel导出excel数据/">
-        <h2 class="post-title">
-            Laravel导出excel数据
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            Laravel 导出excel1.扩展包的安装在laravel项目下的terminal安装：
-composer require maatwebsite/excel  
-2.config/app.php文件下的providers数组下加载如下类：1234'providers' =&gt; [...Maatwebsite\Excel\ExcelServiceProvider::class,],
-......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-07-12
-    </p>
-
-</div>
-<hr>
+                <p><strong>LeetCode　接雨水</strong></p>
+<p><img src="/2020/03/24/%E5%8D%95%E8%B0%83%E6%A0%88/1.png" alt></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">trap</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; <span class="built_in">height</span>)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = <span class="built_in">height</span>.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span>(n &lt; <span class="number">3</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt;st;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">            <span class="keyword">while</span>(!st.empty() &amp;&amp; <span class="built_in">height</span>[i] &gt; <span class="built_in">height</span>[st.top()])&#123;</span><br><span class="line">                <span class="keyword">int</span> top = st.top();</span><br><span class="line">                st.pop();</span><br><span class="line">                <span class="keyword">if</span>(st.empty())</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">int</span> <span class="built_in">width</span> = i - st.top() - <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">int</span> h = <span class="built_in">min</span>(<span class="built_in">height</span>[i],<span class="built_in">height</span>[st.top()]) - <span class="built_in">height</span>[top];</span><br><span class="line">                ans += <span class="built_in">width</span> * h;</span><br><span class="line">            &#125;</span><br><span class="line">            st.push(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<!-- Pager -->
+                <hr>
 
-<ul class="pager">
-    
-        <li class="previous">
-            <a href="/page/5/">&larr; Newer Posts</a>
-        </li>
-    
-    
-</ul>
+                
 
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2020/03/25/PHP面向对象/" data-toggle="tooltip" data-placement="top" title="PHP面向对象">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2020/03/24/DP/" data-toggle="tooltip" data-placement="top" title="动态规划">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
 
+                
 
-                <!-- 如果开启评论功能 -->
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
                 
 
             </div>
+    <!-- Side Catalog Container -->
+        
+
     <!-- Sidebar Container -->
+
             <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
                 <!-- Featured Tags -->
                 
                 <section>
                     <!-- no hr -->
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
-                        
-                            
-                            <a href="/tags/#数据结构" title="数据结构" rel="9">数据结构</a>
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#读书笔记" title="读书笔记" rel="4">读书笔记</a>
-                            
-                        
-                            
-                            <a href="/tags/#算法" title="算法" rel="7">算法</a>
-                            
-                        
-                            
-                            <a href="/tags/#字符串" title="字符串" rel="4">字符串</a>
-                            
-                        
-                            
-                            <a href="/tags/#PHP" title="PHP" rel="2">PHP</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#数论" title="数论" rel="10">数论</a>
-                            
-                        
-                            
-                            <a href="/tags/#STL" title="STL" rel="7">STL</a>
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#博客" title="博客" rel="2">博客</a>
-                            
-                        
-                            
-                            <a href="/tags/#Linux" title="Linux" rel="2">Linux</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
+                       
+                          <a class="tag" href="/tags/#数据结构" title="数据结构">数据结构</a>
                         
                     </div>
                 </section>
                 
 
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
-
-                        
-                            <img src="/img/avatar.jpeg" />
-                        
-
-                        
-                            <p>我要成为魔法师!</p>
-                        
-
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            
-                            
-
-                            
-
-                            
-
-                            
-                                <li>
-                                    <a target="_blank"  href="https://github.com/pistachioL">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-                            
-                            
-                            
-                        </ul>
-                    </div>
-                </section>
-                
                 <!-- Friends Blog -->
                 
                 <hr>
@@ -488,9 +268,66 @@ composer require maatwebsite/excel
                 </ul>
                 
             </div>
-        
+
+        </div>
     </div>
-</div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "hexo-theme-huxblog";
+    var disqus_identifier = "https://pistachiol.github.io/2020/03/24/%E5%8D%95%E8%B0%83%E6%A0%88/";
+    var disqus_url = "https://pistachiol.github.io/2020/03/24/%E5%8D%95%E8%B0%83%E6%A0%88/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
 
     <!-- Footer -->
