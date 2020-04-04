@@ -13,11 +13,11 @@
 
     <title>
         
-          约瑟夫环问题 - Pistachio的楼阁 | Pistachio&#39;s Blog
+          适配器模式 - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2020/03/30/约瑟夫环问题/">
+    <link rel="canonical" href="https://pistachiol.github.io/2020/04/02/AdapterPattern/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -171,14 +171,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#数论" title="数论">数论</a>
+                          <a class="tag" href="/tags/#设计模式" title="设计模式">设计模式</a>
                         
                     </div>
-                    <h1>约瑟夫环问题</h1>
+                    <h1>适配器模式</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
-                        2020-03-30
+                        2020-04-02
                     </span>
                 </div>
             </div>
@@ -197,12 +197,19 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p><strong>LeetCode</strong></p>
-<blockquote>
-<p>0,1,,n-1这n个数字排成一个圆圈，从数字0开始，每次从这个圆圈里删除第m个数字。求出这个圆圈里剩下的最后一个数字。</p>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lastRemaining</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++)&#123;</span><br><span class="line">           ans = (ans+m) %i;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> ans;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+                <p>实例：有一个220v电压，需要适配器转成5V电压才能给手机充电。</p>
+<h3 id="类适配器"><a href="#类适配器" class="headerlink" title="类适配器"></a>类适配器</h3><p><img src="/2020/04/02/AdapterPattern/1.png" alt></p>
+<p>被适配器类:Voltage220V 适配类:Voltage5V </p>
+<p>通过适配器类VoltageAdapter继承Voltage220V（拿到220V电压），并且实现了Voltage5V的接口（并转乘5V）</p>
+<p>手机类依赖Voltage5V，实质上是依赖VoltageAdapter</p>
+<h3 id="对象适配器"><a href="#对象适配器" class="headerlink" title="对象适配器"></a>对象适配器</h3><p>对类适配器模式进行改进，不需要继承原先的类，而是直接持有被适配对象</p>
+<p>通过合成复用原则，由继承关系转变为聚合关系</p>
+<p><img src="/2020/04/02/AdapterPattern/2.png" alt></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">VoltageAapter</span> <span class="keyword">implements</span> <span class="title">Voltage</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Voltage220 voltage220;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+
+
+<h3 id="接口适配器"><a href="#接口适配器" class="headerlink" title="接口适配器"></a>接口适配器</h3><p>如果不需要试下全部接口中的方法，可先设计一个抽象类实现接口，并为该接口的每个方法提供默认空方法，那么该抽象类的子类就能有选择性地覆盖父类某些方法来实现需求。</p>
 
 
                 <hr>
@@ -211,13 +218,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2020/04/02/AdapterPattern/" data-toggle="tooltip" data-placement="top" title="适配器模式">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2020/03/26/Prototype/" data-toggle="tooltip" data-placement="top" title="原型模式">Next Post &rarr;</a>
+                            <a href="/2020/03/30/约瑟夫环问题/" data-toggle="tooltip" data-placement="top" title="约瑟夫环问题">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -250,7 +253,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#数论" title="数论">数论</a>
+                          <a class="tag" href="/tags/#设计模式" title="设计模式">设计模式</a>
                         
                     </div>
                 </section>
@@ -282,8 +285,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2020/03/30/%E7%BA%A6%E7%91%9F%E5%A4%AB%E7%8E%AF%E9%97%AE%E9%A2%98/";
-    var disqus_url = "https://pistachiol.github.io/2020/03/30/%E7%BA%A6%E7%91%9F%E5%A4%AB%E7%8E%AF%E9%97%AE%E9%A2%98/";
+    var disqus_identifier = "https://pistachiol.github.io/2020/04/02/AdapterPattern/";
+    var disqus_url = "https://pistachiol.github.io/2020/04/02/AdapterPattern/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

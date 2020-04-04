@@ -190,6 +190,32 @@
 
 <div class="post-preview">
 
+    <a href="/2020/04/02/AdapterPattern/">
+        <h2 class="post-title">
+            适配器模式
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            实例：有一个220v电压，需要适配器转成5V电压才能给手机充电。
+类适配器
+被适配器类:Voltage220V 适配类:Voltage5V 
+通过适配器类VoltageAdapter继承Voltage220V（拿到220V电压），并且实现了Voltage5V的接口（并转乘5V）
+手机类依赖Voltage5V，实质上是依赖VoltageAdapter
+对象适配器对类适配器模式进行改进，不需要继......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-04-02
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2020/03/30/约瑟夫环问题/">
         <h2 class="post-title">
             约瑟夫环问题
@@ -406,39 +432,6 @@ BFS方式实现（队列）
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2020/03/21/扩展欧几里得算法/">
-        <h2 class="post-title">
-            扩展欧几里得算法的应用
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            LeetCode 水壶问题
-
-有两个容量分别为 x升 和 y升 的水壶以及无限多的水。请判断能否通过使用这两个水壶，从而可以得到恰好 z升 的水？
-如果可以，最后请用以上水壶中的一或两个来盛放取得的 z升 水。
-你允许：
-
-装满任意一个水壶
-清空任意一个水壶
-从一个水壶向另外一个水壶倒水，直到装满或者倒空
-
-
-样例：　x=3,  y=5,  z=4  true,
-​        因为4 %......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-03-21
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -525,6 +518,8 @@ BFS方式实现（队列）
                         
                             
                         
+                            
+                            <a href="/tags/#设计模式" title="设计模式" rel="2">设计模式</a>
                             
                         
                     </div>
