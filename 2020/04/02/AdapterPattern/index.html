@@ -202,7 +202,8 @@
 <p>被适配器类:Voltage220V 适配类:Voltage5V </p>
 <p>通过适配器类VoltageAdapter继承Voltage220V（拿到220V电压），并且实现了Voltage5V的接口（并转乘5V）</p>
 <p>手机类依赖Voltage5V，实质上是依赖VoltageAdapter</p>
-<h3 id="对象适配器"><a href="#对象适配器" class="headerlink" title="对象适配器"></a>对象适配器</h3><p>对类适配器模式进行改进，不需要继承原先的类，而是直接持有被适配对象</p>
+<h3 id="对象适配器"><a href="#对象适配器" class="headerlink" title="对象适配器"></a>对象适配器</h3><p>由于Java单继承原因</p>
+<p>对类适配器模式进行改进，不需要继承原先的类，而是直接持有被适配对象</p>
 <p>通过合成复用原则，由继承关系转变为聚合关系</p>
 <p><img src="/2020/04/02/AdapterPattern/2.png" alt></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">VoltageAapter</span> <span class="keyword">implements</span> <span class="title">Voltage</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Voltage220 voltage220;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -217,6 +218,10 @@
                 
 
                 <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2020/04/08/CompositePattern/" data-toggle="tooltip" data-placement="top" title="组合模式">&larr; Previous Post</a>
+                        </li>
                     
                     
                         <li class="next">
