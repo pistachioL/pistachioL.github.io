@@ -190,6 +190,34 @@
 
 <div class="post-preview">
 
+    <a href="/2020/04/14/decoratorPattern/">
+        <h2 class="post-title">
+            装饰者模式
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            原理动态地把职责添加到对象上，若想添加功能，装饰着类提供了比继承更有弹性的方案。
+把被装饰着放到装饰者中管理，例如调料是装饰者，单品咖啡是被装饰者，则把单品咖啡放到调料中管理。
+
+例子：很多中单品咖啡，很多种调料的不同组合
+
+这种模式的好处是，当再需要增加一个单品咖啡时，只需要继承Coffee，即可计算出不同调料（装饰者）组合的价钱。
+
+...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-04-14
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2020/04/08/CompositePattern/">
         <h2 class="post-title">
             组合模式
@@ -253,7 +281,13 @@
         </h3>
         <div class="post-content-preview">
             冒泡排序基本思想：*两两数字比较 *，比较在每一趟遍历中，看当前数字会不会比下一个大，如果比下一个大则交换。每一趟交换中能找到最大的数，放在末尾。
-12345678910111213141516vector&lt;int&gt; Bubble_Sort(vector&lt;int&gt;&amp; nums) &#123;        for(int i = nums.size() - 1......
+最好情况：顺序 只需遍历一遍 T = O(N)
+最坏情况：逆序 全部都得排序　T = O(N^2)
+如数组：５，３，７，１０，６，１８，４
+第一趟：能把最大值放到最后
+【３，５】，７，６，１０，４，１８　
+３，【５，７】，１０，６，１８，４　
+３......
         </div>
     </a>
     <p class="post-meta">
@@ -405,31 +439,6 @@
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2020/03/22/PowerSet/">
-        <h2 class="post-title">
-            幂集
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-幂集，也是原集合的所有子集
-
-位运算求幂集
-1234567891011121314vector&lt;vector&lt;int&gt;&gt; subsets(vector&lt;int&gt;&amp; nums) &#123;       vector&lt;vector&lt;int&gt;&gt;ans;       for(int i = 0; i &lt; (1&lt;&lt......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-03-22
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -517,7 +526,7 @@
                             
                         
                             
-                            <a href="/tags/#设计模式" title="设计模式" rel="3">设计模式</a>
+                            <a href="/tags/#设计模式" title="设计模式" rel="4">设计模式</a>
                             
                         
                     </div>
