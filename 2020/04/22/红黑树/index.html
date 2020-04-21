@@ -197,19 +197,20 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p><strong>红黑树（Red Black Tree）</strong>是对二叉搜索树的改进，解决二叉搜索树多次插入新节点导致的不平衡问题。</p>
-<p>其底层的结构是<strong>二叉查找树</strong>。</p>
+                <p><strong>红黑树（Red Black Tree）</strong>是对二叉搜索树的改进，解决二叉搜索树多次插入新节点导致的不平衡问题。对于搜索、插入和删除较多操作的情况下，通常使用红黑树。</p>
+<p>红黑树的底层结构是<strong>二叉查找树</strong>。</p>
 <p>其产生过程：链表-&gt;二叉树-&gt;二叉查找树-&gt;自平衡的二叉查找树</p>
 <p><img src="/2020/04/22/%E7%BA%A2%E9%BB%91%E6%A0%91/1.png" alt></p>
-<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><p>以下特性保证了红黑树的平衡特性</p>
+<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><p>以下特性保证了红黑树的平衡特性，确保没有一条路径比其它路径长出两倍</p>
 <ul>
-<li>是自平衡的二叉搜索树</li>
+<li>是自平衡的二叉查找树</li>
 <li>结点是红色或黑色</li>
 <li>根节点（没有入度或者没有父节点）是黑色的</li>
 <li>每个叶子节点都是黑色的空结点（NIL结点）</li>
 <li>每个红色节点的两个子节点都是黑色。(从每个叶子到根的所有路径上不能有两个连续的红色节点)</li>
+<li>从任一节点到其每个叶子的所有路径都包含相同数目的黑色节点</li>
 </ul>
-<p>###　旋转</p>
+<p>###　插入</p>
 <p>旋转和变色规则：<strong>所有插入的点默认是红色</strong></p>
 <h5 id="1-变色"><a href="#1-变色" class="headerlink" title="1) 变色"></a>1) 变色</h5><p>红变黑，黑变红。</p>
 <p>什么时候变颜色呢？举个栗子插入6：</p>
@@ -225,7 +226,6 @@
 <p><img src="/2020/04/22/%E7%BA%A2%E9%BB%91%E6%A0%91/2.gif" alt></p>
 <p>接着上述情况：</p>
 <p><img src="/2020/04/22/%E7%BA%A2%E9%BB%91%E6%A0%91/7.png" alt></p>
-<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p>JDK8中的HashMap</p>
 
 
                 <hr>
