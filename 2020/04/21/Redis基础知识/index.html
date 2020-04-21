@@ -13,11 +13,11 @@
 
     <title>
         
-          装饰者模式 - Pistachio的楼阁 | Pistachio&#39;s Blog
+          Redis基础知识 - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2020/04/14/decoratorPattern/">
+    <link rel="canonical" href="https://pistachiol.github.io/2020/04/21/Redis基础知识/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -171,14 +171,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#设计模式" title="设计模式">设计模式</a>
+                          <a class="tag" href="/tags/#Redis" title="Redis">Redis</a>
                         
                     </div>
-                    <h1>装饰者模式</h1>
+                    <h1>Redis基础知识</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
-                        2020-04-14
+                        2020-04-21
                     </span>
                 </div>
             </div>
@@ -197,13 +197,59 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>动态地把职责添加到对象上，若想添加功能，装饰着类提供了比继承更有弹性的方案。</p>
-<p>把被装饰着放到装饰者中管理，例如调料是装饰者，单品咖啡是被装饰者，则把单品咖啡放到调料中管理。</p>
-<p><img src="/2020/04/14/decoratorPattern/1.png" alt></p>
-<p>例子：很多中单品咖啡，很多种调料的不同组合</p>
-<p><img src="/2020/04/14/decoratorPattern/2.png" alt></p>
-<p>这种模式的好处是，当再需要增加一个单品咖啡时，只需要继承Coffee，即可计算出不同调料（装饰者）组合的价钱。</p>
-<p><img src="/2020/04/14/decoratorPattern/3.png" alt></p>
+                <h3 id="启动、状态、结束"><a href="#启动、状态、结束" class="headerlink" title="启动、状态、结束"></a>启动、状态、结束</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl status redis<span class="literal">-server</span></span><br><span class="line">systemctl status redis<span class="literal">-server</span></span><br><span class="line">systemctl stop redis<span class="literal">-server</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>默认端口时6379</p>
+</li>
+<li><p>有16个数据库，每一个从下标0开始</p>
+</li>
+<li><p>统一管理密码，16个库同样密码</p>
+</li>
+</ul>
+<h3 id="连接服务"><a href="#连接服务" class="headerlink" title="连接服务"></a>连接服务</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis<span class="literal">-cli</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DBSIZE //当前数据库key的个数</span><br><span class="line">keys *   //查看所有的key</span><br><span class="line">SELECT 7  //选择数据库,默认是0号数据库</span><br><span class="line">FLUSHALL 　//清空所有数据库</span><br><span class="line">FLUSHDB //清空当前数据库</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h3><h4 id="1-String类型"><a href="#1-String类型" class="headerlink" title="1) String类型"></a>1) String类型</h4><p>key | value(int/string/float)</p>
+<p><code>set</code> <code>get</code> </p>
+<p><code>incr</code>自增</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">set string1 liao</span><br><span class="line">get string1</span><br><span class="line">set num <span class="number">1</span>   //num为key <span class="number">1</span>为val</span><br><span class="line">incr num</span><br><span class="line">get num</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-List类型"><a href="#2-List类型" class="headerlink" title="2)  List类型"></a>2)  List类型</h4><p><code>lpush</code>  从左边插入元素</p>
+<p><code>rpop</code>从右边取出元素</p>
+<p><code>llen</code> 容器中元素的个数</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lpush list1 <span class="number">13</span></span><br><span class="line">lpush list1 <span class="number">12</span></span><br><span class="line">rpop list1</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3-Set类型"><a href="#3-Set类型" class="headerlink" title="3) Set类型"></a>3) Set类型</h4><p><code>sadd</code>增加元素</p>
+<p><code>scard</code>查看容器元素个数</p>
+<p><code>srem</code>删除容器元素</p>
+<p><code>sismember</code>查看是否有某个元素</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sadd set1 12</span><br><span class="line">sadd set1 13</span><br><span class="line">sadd set1 14</span><br><span class="line">scard set1</span><br><span class="line">srem set1 13</span><br><span class="line">sismember set1 13</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="4-Hash类型（散列类型）"><a href="#4-Hash类型（散列类型）" class="headerlink" title="4) Hash类型（散列类型）"></a>4) Hash类型（散列类型）</h4><p>key-&gt;val 一个键只能对应一个值</p>
+<p> <code>hset</code>插入</p>
+<p> <code>hget</code>通过key取出值</p>
+<p> <code>hmget</code>取出多个</p>
+<p> <code>hlen</code>容器中多少个元素</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hset hash1 key1 12</span><br><span class="line">hset hash1 key2 13</span><br><span class="line">hset hash1 key2 14 //修改key2 的值为14</span><br><span class="line">hget hash1 key1</span><br><span class="line">hmget hash1 key1 key2</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="5-Zset-Sort-Set-类型"><a href="#5-Zset-Sort-Set-类型" class="headerlink" title="5) Zset (Sort Set)类型"></a>5) Zset (Sort Set)类型</h4><p>score和value是一个整体</p>
+<p><img src="/2020/04/21/Redis%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/1.png" alt></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">zadd zset1 10.1 val1 </span><br><span class="line">zadd zset1 11.2 val2 </span><br><span class="line">zadd zset1 9.2</span><br><span class="line"></span><br><span class="line">zcard zset1  //查看容器元素个数</span><br><span class="line"></span><br><span class="line">zrange zset1 0 2 withscores //把0-2范围内的值从小到大列出</span><br><span class="line"></span><br><span class="line">zrank zset1 val2 //查看val2的排行</span><br></pre></td></tr></table></figure>
+
 
 
                 <hr>
@@ -212,13 +258,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2020/04/18/操作系统的内存管理/" data-toggle="tooltip" data-placement="top" title="操作系统的内存管理">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2020/04/08/CompositePattern/" data-toggle="tooltip" data-placement="top" title="组合模式">Next Post &rarr;</a>
+                            <a href="/2020/04/18/操作系统的内存管理/" data-toggle="tooltip" data-placement="top" title="操作系统的内存管理">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -251,7 +293,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#设计模式" title="设计模式">设计模式</a>
+                          <a class="tag" href="/tags/#Redis" title="Redis">Redis</a>
                         
                     </div>
                 </section>
@@ -283,8 +325,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2020/04/14/decoratorPattern/";
-    var disqus_url = "https://pistachiol.github.io/2020/04/14/decoratorPattern/";
+    var disqus_identifier = "https://pistachiol.github.io/2020/04/21/Redis%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/";
+    var disqus_url = "https://pistachiol.github.io/2020/04/21/Redis%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

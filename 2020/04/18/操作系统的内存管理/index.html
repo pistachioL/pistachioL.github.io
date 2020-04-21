@@ -13,11 +13,11 @@
 
     <title>
         
-          装饰者模式 - Pistachio的楼阁 | Pistachio&#39;s Blog
+          操作系统的内存管理 - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2020/04/14/decoratorPattern/">
+    <link rel="canonical" href="https://pistachiol.github.io/2020/04/18/操作系统的内存管理/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -171,14 +171,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#设计模式" title="设计模式">设计模式</a>
+                          <a class="tag" href="/tags/#操作系统" title="操作系统">操作系统</a>
                         
                     </div>
-                    <h1>装饰者模式</h1>
+                    <h1>操作系统的内存管理</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
-                        2020-04-14
+                        2020-04-18
                     </span>
                 </div>
             </div>
@@ -197,13 +197,15 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>动态地把职责添加到对象上，若想添加功能，装饰着类提供了比继承更有弹性的方案。</p>
-<p>把被装饰着放到装饰者中管理，例如调料是装饰者，单品咖啡是被装饰者，则把单品咖啡放到调料中管理。</p>
-<p><img src="/2020/04/14/decoratorPattern/1.png" alt></p>
-<p>例子：很多中单品咖啡，很多种调料的不同组合</p>
-<p><img src="/2020/04/14/decoratorPattern/2.png" alt></p>
-<p>这种模式的好处是，当再需要增加一个单品咖啡时，只需要继承Coffee，即可计算出不同调料（装饰者）组合的价钱。</p>
-<p><img src="/2020/04/14/decoratorPattern/3.png" alt></p>
+                <p>操作系统加载进内存之后，要对内存进行管理</p>
+<h3 id="计算机基本硬件结构"><a href="#计算机基本硬件结构" class="headerlink" title="计算机基本硬件结构"></a>计算机基本硬件结构</h3><p><img src="/2020/04/18/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/1.png" alt></p>
+<h3 id="操作系统管理内存的不同方法"><a href="#操作系统管理内存的不同方法" class="headerlink" title="操作系统管理内存的不同方法"></a>操作系统管理内存的不同方法</h3><ul>
+<li>程序重定位</li>
+<li>分段</li>
+<li>分页</li>
+<li>虚拟内存（硬盘）</li>
+<li>按需分页虚拟内存</li>
+</ul>
 
 
                 <hr>
@@ -213,12 +215,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2020/04/18/操作系统的内存管理/" data-toggle="tooltip" data-placement="top" title="操作系统的内存管理">&larr; Previous Post</a>
+                            <a href="/2020/04/21/Redis基础知识/" data-toggle="tooltip" data-placement="top" title="Redis基础知识">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2020/04/08/CompositePattern/" data-toggle="tooltip" data-placement="top" title="组合模式">Next Post &rarr;</a>
+                            <a href="/2020/04/14/decoratorPattern/" data-toggle="tooltip" data-placement="top" title="装饰者模式">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -251,7 +253,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#设计模式" title="设计模式">设计模式</a>
+                          <a class="tag" href="/tags/#操作系统" title="操作系统">操作系统</a>
                         
                     </div>
                 </section>
@@ -283,8 +285,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2020/04/14/decoratorPattern/";
-    var disqus_url = "https://pistachiol.github.io/2020/04/14/decoratorPattern/";
+    var disqus_identifier = "https://pistachiol.github.io/2020/04/18/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/";
+    var disqus_url = "https://pistachiol.github.io/2020/04/18/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

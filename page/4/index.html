@@ -190,6 +190,56 @@
 
 <div class="post-preview">
 
+    <a href="/2020/01/31/安装deepin后要做的事情/">
+        <h2 class="post-title">
+            安装deepin后要做的事情
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            1. 换源1vim /etc/apt/sources.list
+
+
+2. 命令行主题配置下载oh-my-zsh通过curl
+1sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+通过wget
+1sh -c "$(wget -O- https://raw......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-01-31
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/12/11/LinuxShell命令模拟器/">
+        <h2 class="post-title">
+            LinuxShell命令模拟器
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            LinuxShell命令模拟器一.原理分析0.终端执行步骤​    1）读取用户从键盘输入的命令，终端会分析是否是内部命令。如果是，则把命令分解为系统调用，并传给linux内核。如果不是，若不是再检查是否是一个应用程序，模拟shell的命令解析器正是这样。上述两种情况也不是的话，则报出错误信息。
+​    2）分析命令，以命令名为文件名，将其他参数改造为系统调用execve()内核级系统调用......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-12-11
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2019/12/11/PTA/">
         <h2 class="post-title">
             PTA技巧
@@ -406,64 +456,6 @@ Cookie-Session认证机制
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2019/10/12/中国剩余定理/">
-        <h2 class="post-title">
-            中国剩余定理
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            1.定义中国剩余定理 (Chinese Remainder Theorem, CRT) 可求解如下形式的一元线性同余方程组（其中  两两互质）：
-
-物不知数问题：一个整数除以3余2、除以5余3、除以7余2，求这个整数。
-定理1：两个数相加，如果存在一个加数，不能被整数a整除，那么它们的和，就不能被整数a整除。
-定理2：两数不能整除，若除数扩大（或缩小）了几倍，而被除数不变，则其商和余数也同时......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-10-12
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/10/12/欧几里得/">
-        <h2 class="post-title">
-            欧几里得
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            求最大公约数（最大公因子　GCD）
-质因数分解法
-
-例如：求24和60的最大公约数，先分解质因数，得24=2×2×2×3，60=2×2×3×5，24与60的全部公有的质因数是2、2、3，它们的积是2×2×3=12，所以，（24，60）=12。
-
-
-
-
-辗转相除法
-gcd(a,b) = gcd(b,a mod b)
-
-
-1234int gcd(int a,int b)&#123;	return......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-10-12
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -556,6 +548,10 @@ gcd(a,b) = gcd(b,a mod b)
                         
                             
                             <a href="/tags/#设计模式" title="设计模式" rel="4">设计模式</a>
+                            
+                        
+                            
+                        
                             
                         
                     </div>
