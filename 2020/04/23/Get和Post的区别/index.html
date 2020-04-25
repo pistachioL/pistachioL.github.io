@@ -13,11 +13,11 @@
 
     <title>
         
-          Redis基础知识 - Pistachio的楼阁 | Pistachio&#39;s Blog
+          Get和Post的区别 - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2020/04/21/Redis基础知识/">
+    <link rel="canonical" href="https://pistachiol.github.io/2020/04/23/Get和Post的区别/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -171,14 +171,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#Redis" title="Redis">Redis</a>
+                          <a class="tag" href="/tags/#HTTP" title="HTTP">HTTP</a>
                         
                     </div>
-                    <h1>Redis基础知识</h1>
+                    <h1>Get和Post的区别</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
-                        2020-04-21
+                        2020-04-23
                     </span>
                 </div>
             </div>
@@ -197,70 +197,17 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="启动、状态、结束"><a href="#启动、状态、结束" class="headerlink" title="启动、状态、结束"></a>启动、状态、结束</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl status redis<span class="literal">-server</span></span><br><span class="line">systemctl status redis<span class="literal">-server</span></span><br><span class="line">systemctl stop redis<span class="literal">-server</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>默认端口时6379</p>
-</li>
-<li><p>有16个数据库，每一个从下标0开始</p>
-</li>
-<li><p>统一管理密码，16个库同样密码</p>
-</li>
-</ul>
-<h3 id="连接服务"><a href="#连接服务" class="headerlink" title="连接服务"></a>连接服务</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis<span class="literal">-cli</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DBSIZE //当前数据库key的个数</span><br><span class="line">keys *   //查看所有的key</span><br><span class="line">SELECT 7  //选择数据库,默认是0号数据库</span><br><span class="line">FLUSHALL 　//清空所有数据库</span><br><span class="line">FLUSHDB //清空当前数据库</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h3><h4 id="1-String类型"><a href="#1-String类型" class="headerlink" title="1) String类型"></a>1) String类型</h4><p>key | value(int/string/float)</p>
-<p><code>set</code> <code>get</code> </p>
-<p><code>incr</code>自增</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">set string1 liao</span><br><span class="line">get string1</span><br><span class="line">set num <span class="number">1</span>   //num为key <span class="number">1</span>为val</span><br><span class="line">incr num</span><br><span class="line">get num</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="2-List类型"><a href="#2-List类型" class="headerlink" title="2)  List类型"></a>2)  List类型</h4><p><code>lpush</code>  从左边插入元素</p>
-<p><code>rpop</code>从右边取出元素</p>
-<p><code>llen</code> 容器中元素的个数</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lpush list1 <span class="number">13</span></span><br><span class="line">lpush list1 <span class="number">12</span></span><br><span class="line">rpop list1</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="3-Set类型"><a href="#3-Set类型" class="headerlink" title="3) Set类型"></a>3) Set类型</h4><p><code>sadd</code>增加元素</p>
-<p><code>scard</code>查看容器元素个数</p>
-<p><code>srem</code>删除容器元素</p>
-<p><code>sismember</code>查看是否有某个元素</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sadd set1 12</span><br><span class="line">sadd set1 13</span><br><span class="line">sadd set1 14</span><br><span class="line">scard set1</span><br><span class="line">srem set1 13</span><br><span class="line">sismember set1 13</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="4-Hash类型（散列类型）"><a href="#4-Hash类型（散列类型）" class="headerlink" title="4) Hash类型（散列类型）"></a>4) Hash类型（散列类型）</h4><p>key-&gt;val 一个键只能对应一个值</p>
-<p> <code>hset</code>插入</p>
-<p> <code>hget</code>通过key取出值</p>
-<p> <code>hmget</code>取出多个</p>
-<p> <code>hlen</code>容器中多少个元素</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hset hash1 key1 12</span><br><span class="line">hset hash1 key2 13</span><br><span class="line">hset hash1 key2 14 //修改key2 的值为14</span><br><span class="line">hget hash1 key1</span><br><span class="line">hmget hash1 key1 key2</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="5-Zset-Sort-Set-类型"><a href="#5-Zset-Sort-Set-类型" class="headerlink" title="5) Zset (Sort Set)类型"></a>5) Zset (Sort Set)类型</h4><p>score和value是一个整体</p>
-<p><img src="/2020/04/21/Redis%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/1.png" alt></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">zadd zset1 10.1 val1 </span><br><span class="line">zadd zset1 11.2 val2 </span><br><span class="line">zadd zset1 9.2</span><br><span class="line"></span><br><span class="line">zcard zset1  //查看容器元素个数</span><br><span class="line"></span><br><span class="line">zrange zset1 0 2 withscores //把0-2范围内的值从小到大列出</span><br><span class="line"></span><br><span class="line">zrank zset1 val2 //查看val2的排行</span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="rehash"><a href="#rehash" class="headerlink" title="rehash"></a>rehash</h5><h3 id="Redis是单线程的"><a href="#Redis是单线程的" class="headerlink" title="Redis是单线程的"></a>Redis是单线程的</h3><p>Redis利用队列技术将并发访问变为串行访问，消除了传统数据库串行控制的开销</p>
-<h3 id="使用Redis的优势"><a href="#使用Redis的优势" class="headerlink" title="使用Redis的优势"></a>使用Redis的优势</h3><p>   1.速度快，因为数据存在内存中，类似于HashMap，HashMap的优势就是查找和操作的时间复杂度都是O(1)</p>
-<ol start="2">
-<li><p>支持丰富数据类型，支持string，list，set，sorted set，hash</p>
-<p>3.支持事务</p>
-</li>
-<li><p>丰富的特性：可用于缓存，消息，按key设置过期时间，过期后将会自动删除</p>
-</li>
+                <h3 id="使用上的区别"><a href="#使用上的区别" class="headerlink" title="使用上的区别"></a>使用上的区别</h3><ol>
+<li>GET通过URL或Cookie传参，而POST将数据放在BODY中（是HTTP的约定）</li>
+<li>GET方式提交的数据有长度限制，而POST的数据则可以非常大。HTTP协议对GET和POST长度没有限制，并且对HTTP头和Body都没有长度的要求。只是因为它们使用的操作系统和浏览器设置的不同引起的区别。</li>
+<li>POST比GET安全，因为数据在地址栏上不可见。通过GET提交数据，用户名和密码将明文出现在URL上，因为登录页面有可能被浏览器缓存，其他人查看浏览器的历史纪录，那么别人就可以拿到你的账号和密码了，除此之外，使用GET提交数据还可能会造成Cross-site request forgery攻击。</li>
 </ol>
+<h3 id="本质区别"><a href="#本质区别" class="headerlink" title="本质区别"></a>本质区别</h3><p>GET和POST最大的区别主要是GET请求是幂等性的，POST请求不是。</p>
+<blockquote>
+<p>幂等性是指一次和多次请求某一个资源应该具有同样的副作用。简单来说意味着对同一URL的多个请求应该返回同样的结果。</p>
+</blockquote>
+<p>而增删改的操作不具有幂等性，故不能用GET做增删改的操作</p>
+<p>[]: <a href="https://juejin.im/entry/597ca6caf265da3e301e64db" target="_blank" rel="noopener">https://juejin.im/entry/597ca6caf265da3e301e64db</a></p>
 
 
                 <hr>
@@ -270,12 +217,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2020/04/22/红黑树/" data-toggle="tooltip" data-placement="top" title="红黑树">&larr; Previous Post</a>
+                            <a href="/2020/04/24/序列和/" data-toggle="tooltip" data-placement="top" title="序列和">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2020/04/18/操作系统的内存管理/" data-toggle="tooltip" data-placement="top" title="操作系统的内存管理">Next Post &rarr;</a>
+                            <a href="/2020/04/23/MySQL的高可扩展/" data-toggle="tooltip" data-placement="top" title="MySQL的高可扩展">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -308,7 +255,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#Redis" title="Redis">Redis</a>
+                          <a class="tag" href="/tags/#HTTP" title="HTTP">HTTP</a>
                         
                     </div>
                 </section>
@@ -340,8 +287,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2020/04/21/Redis%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/";
-    var disqus_url = "https://pistachiol.github.io/2020/04/21/Redis%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/";
+    var disqus_identifier = "https://pistachiol.github.io/2020/04/23/Get%E5%92%8CPost%E7%9A%84%E5%8C%BA%E5%88%AB/";
+    var disqus_url = "https://pistachiol.github.io/2020/04/23/Get%E5%92%8CPost%E7%9A%84%E5%8C%BA%E5%88%AB/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

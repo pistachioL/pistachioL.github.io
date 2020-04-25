@@ -13,11 +13,11 @@
 
     <title>
         
-          Redis基础知识 - Pistachio的楼阁 | Pistachio&#39;s Blog
+          序列和 - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2020/04/21/Redis基础知识/">
+    <link rel="canonical" href="https://pistachiol.github.io/2020/04/24/序列和/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -171,14 +171,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#Redis" title="Redis">Redis</a>
+                          <a class="tag" href="/tags/#数论" title="数论">数论</a>
                         
                     </div>
-                    <h1>Redis基础知识</h1>
+                    <h1>序列和</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
-                        2020-04-21
+                        2020-04-24
                     </span>
                 </div>
             </div>
@@ -197,70 +197,15 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="启动、状态、结束"><a href="#启动、状态、结束" class="headerlink" title="启动、状态、结束"></a>启动、状态、结束</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl status redis<span class="literal">-server</span></span><br><span class="line">systemctl status redis<span class="literal">-server</span></span><br><span class="line">systemctl stop redis<span class="literal">-server</span></span><br></pre></td></tr></table></figure>
+                <blockquote>
+<p>给出一个正整数N和长度L，找出一段长度大于等于L的连续非负整数，他们的和恰好为N。答案可能有多个，我我们需要找出长度最小的那个。 例如 N = 18 L = 2： 5 + 6 + 7 = 18 3 + 4 + 5 + 6 = 18 都是满足要求的，但是我们输出更短的 5 6 7</p>
+</blockquote>
+<p>Sn = (a1 + an) * n / 2 = N</p>
+<p>​          [a1+a1+(n-1)*d] * n = 2N</p>
+<p>​                            a1 = (2N-n^2+n)/2</p>
+<p>由连续的非负整数可知这一串数字是差为1的等差数列</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,l;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n &gt;&gt; l;</span><br><span class="line">    <span class="keyword">bool</span> flag = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = l; i &lt;= <span class="number">100</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>((<span class="number">2</span> * n + i - i * i) % (<span class="number">2</span> * i) == <span class="number">0</span>)&#123;</span><br><span class="line">            flag = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">int</span> a1 = (<span class="number">2</span> * n + i - i * i) / (<span class="number">2</span> * i);</span><br><span class="line">            <span class="keyword">if</span>(a1 &lt; <span class="number">0</span>)</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i - <span class="number">1</span>; j++)&#123;</span><br><span class="line">                <span class="keyword">int</span> a = a1 + j;</span><br><span class="line">                <span class="built_in">cout</span> &lt;&lt; a &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; a1 + i - <span class="number">1</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(flag == <span class="literal">false</span>)</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"No"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li><p>默认端口时6379</p>
-</li>
-<li><p>有16个数据库，每一个从下标0开始</p>
-</li>
-<li><p>统一管理密码，16个库同样密码</p>
-</li>
-</ul>
-<h3 id="连接服务"><a href="#连接服务" class="headerlink" title="连接服务"></a>连接服务</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis<span class="literal">-cli</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DBSIZE //当前数据库key的个数</span><br><span class="line">keys *   //查看所有的key</span><br><span class="line">SELECT 7  //选择数据库,默认是0号数据库</span><br><span class="line">FLUSHALL 　//清空所有数据库</span><br><span class="line">FLUSHDB //清空当前数据库</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h3><h4 id="1-String类型"><a href="#1-String类型" class="headerlink" title="1) String类型"></a>1) String类型</h4><p>key | value(int/string/float)</p>
-<p><code>set</code> <code>get</code> </p>
-<p><code>incr</code>自增</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">set string1 liao</span><br><span class="line">get string1</span><br><span class="line">set num <span class="number">1</span>   //num为key <span class="number">1</span>为val</span><br><span class="line">incr num</span><br><span class="line">get num</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="2-List类型"><a href="#2-List类型" class="headerlink" title="2)  List类型"></a>2)  List类型</h4><p><code>lpush</code>  从左边插入元素</p>
-<p><code>rpop</code>从右边取出元素</p>
-<p><code>llen</code> 容器中元素的个数</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lpush list1 <span class="number">13</span></span><br><span class="line">lpush list1 <span class="number">12</span></span><br><span class="line">rpop list1</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="3-Set类型"><a href="#3-Set类型" class="headerlink" title="3) Set类型"></a>3) Set类型</h4><p><code>sadd</code>增加元素</p>
-<p><code>scard</code>查看容器元素个数</p>
-<p><code>srem</code>删除容器元素</p>
-<p><code>sismember</code>查看是否有某个元素</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sadd set1 12</span><br><span class="line">sadd set1 13</span><br><span class="line">sadd set1 14</span><br><span class="line">scard set1</span><br><span class="line">srem set1 13</span><br><span class="line">sismember set1 13</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="4-Hash类型（散列类型）"><a href="#4-Hash类型（散列类型）" class="headerlink" title="4) Hash类型（散列类型）"></a>4) Hash类型（散列类型）</h4><p>key-&gt;val 一个键只能对应一个值</p>
-<p> <code>hset</code>插入</p>
-<p> <code>hget</code>通过key取出值</p>
-<p> <code>hmget</code>取出多个</p>
-<p> <code>hlen</code>容器中多少个元素</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hset hash1 key1 12</span><br><span class="line">hset hash1 key2 13</span><br><span class="line">hset hash1 key2 14 //修改key2 的值为14</span><br><span class="line">hget hash1 key1</span><br><span class="line">hmget hash1 key1 key2</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="5-Zset-Sort-Set-类型"><a href="#5-Zset-Sort-Set-类型" class="headerlink" title="5) Zset (Sort Set)类型"></a>5) Zset (Sort Set)类型</h4><p>score和value是一个整体</p>
-<p><img src="/2020/04/21/Redis%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/1.png" alt></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">zadd zset1 10.1 val1 </span><br><span class="line">zadd zset1 11.2 val2 </span><br><span class="line">zadd zset1 9.2</span><br><span class="line"></span><br><span class="line">zcard zset1  //查看容器元素个数</span><br><span class="line"></span><br><span class="line">zrange zset1 0 2 withscores //把0-2范围内的值从小到大列出</span><br><span class="line"></span><br><span class="line">zrank zset1 val2 //查看val2的排行</span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="rehash"><a href="#rehash" class="headerlink" title="rehash"></a>rehash</h5><h3 id="Redis是单线程的"><a href="#Redis是单线程的" class="headerlink" title="Redis是单线程的"></a>Redis是单线程的</h3><p>Redis利用队列技术将并发访问变为串行访问，消除了传统数据库串行控制的开销</p>
-<h3 id="使用Redis的优势"><a href="#使用Redis的优势" class="headerlink" title="使用Redis的优势"></a>使用Redis的优势</h3><p>   1.速度快，因为数据存在内存中，类似于HashMap，HashMap的优势就是查找和操作的时间复杂度都是O(1)</p>
-<ol start="2">
-<li><p>支持丰富数据类型，支持string，list，set，sorted set，hash</p>
-<p>3.支持事务</p>
-</li>
-<li><p>丰富的特性：可用于缓存，消息，按key设置过期时间，过期后将会自动删除</p>
-</li>
-</ol>
 
 
                 <hr>
@@ -270,12 +215,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2020/04/22/红黑树/" data-toggle="tooltip" data-placement="top" title="红黑树">&larr; Previous Post</a>
+                            <a href="/2020/04/24/Nginx和Php-fpm的运行原理/" data-toggle="tooltip" data-placement="top" title="Nginx解析PHP的原理">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2020/04/18/操作系统的内存管理/" data-toggle="tooltip" data-placement="top" title="操作系统的内存管理">Next Post &rarr;</a>
+                            <a href="/2020/04/23/Get和Post的区别/" data-toggle="tooltip" data-placement="top" title="Get和Post的区别">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -308,7 +253,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#Redis" title="Redis">Redis</a>
+                          <a class="tag" href="/tags/#数论" title="数论">数论</a>
                         
                     </div>
                 </section>
@@ -340,8 +285,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2020/04/21/Redis%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/";
-    var disqus_url = "https://pistachiol.github.io/2020/04/21/Redis%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/";
+    var disqus_identifier = "https://pistachiol.github.io/2020/04/24/%E5%BA%8F%E5%88%97%E5%92%8C/";
+    var disqus_url = "https://pistachiol.github.io/2020/04/24/%E5%BA%8F%E5%88%97%E5%92%8C/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

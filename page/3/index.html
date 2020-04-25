@@ -190,6 +190,159 @@
 
 <div class="post-preview">
 
+    <a href="/2020/03/21/STL之hash-map/">
+        <h2 class="post-title">
+            STL之unordered_map
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            定义​    该容器提供了Key-Value的存储和查找功能
+
+无序性：unordered_map中的元素根据哈希值存储到桶中，以允许通过键直接快速访问每个元素
+唯一性：unordered_map中每个元素的值是唯一的
+关联性：unorederd_map 是一个关联容器，其中的元素根据键来引用，而不是根据索引来引用。
+
+插入值12345678910111213141516171819#inc......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-03-21
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/03/21/扩展欧几里得算法/">
+        <h2 class="post-title">
+            扩展欧几里得算法的应用
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            LeetCode 水壶问题
+
+有两个容量分别为 x升 和 y升 的水壶以及无限多的水。请判断能否通过使用这两个水壶，从而可以得到恰好 z升 的水？
+如果可以，最后请用以上水壶中的一或两个来盛放取得的 z升 水。
+你允许：
+
+装满任意一个水壶
+清空任意一个水壶
+从一个水壶向另外一个水壶倒水，直到装满或者倒空
+
+
+样例：　x=3,  y=5,  z=4  true,
+​        因为4 %......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-03-21
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/03/19/Palindrome/">
+        <h2 class="post-title">
+            回文串
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            LeetCode 最长回文串
+
+在给定包含大小写的字符串中，找出这些字母构成的最长回文串，构造时注意区分大小写
+
+这道题目不同在于可以通过构造找出最长回文串，于是可以通过找规律求得。
+首先把每个字母出现的个数统计出来，放进vector中（方便处理）。
+查看vector中每个字母出现的次数，如果字母出现的个数时偶数，一定可以构成回文串，则可以把这些个数直接加起来；
+如果字母出现的个数是奇数，则......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-03-19
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/03/18/FastSlowPoint/">
+        <h2 class="post-title">
+            快慢指针
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            快指针走两步，慢指针走一步，当它们相等时就是走了一个循环，为一个周期。
+LeetCode 快乐数
+
+对于一个正整数，将这个数字替换为每个位置上的数字平方和，循环多次，如果能变为１则是快乐数，否则不是。
+
+这道题用递归做的话，若正整数很大，递归层次深一点，就会导致调用栈爆了。
+12345678910111213141516171819int getNext(int n)&#123;      ......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-03-18
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/03/06/位运算/">
+        <h2 class="post-title">
+            位运算总结
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            由于计算机存储数据都是以二进制的形式存储，位运算实质时对二进制数进行操作。在做题目的的时候，通过位运算处理数据速度很快，便能使缩短计算时间。
+1. 位运算的种类
+
+
+含义
+运算符
+解释和例子
+
+
+
+左移
+&lt;&lt;
+高位丢弃，低位补0。x&lt;&lt;n  相当于x乘2^n  (0011 &lt;&lt; 1 ==  0110)
+
+
+右移
+&gt;&gt;
+无符号数，高位补0；有符号......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-03-06
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2020/03/05/STL之vector/">
         <h2 class="post-title">
             STL之vector
@@ -313,137 +466,6 @@ Leetcode 主要元素
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2020/02/23/字符串知识总结/">
-        <h2 class="post-title">
-            字符串知识总结
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            读入有空格的字符串123#include &lt;string&gt;string str;getline(cin,str);
-
-
-
-读入有空格的字符数组12char str[10000]cin.getline(str,10000);
-
-
-
-字符拼接到字符串123string s = "";  //字符串要初始化char c;s += c;
-
-
-
-字符的运算和转化字符-‘0’就转化成数字。数......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-02-23
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/02/19/KMP/">
-        <h2 class="post-title">
-            KMP
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            1.求前缀表next[]为什么要求前缀表？
-如果用暴力的双指针，在失配的时候又从模式串的开头重新匹配，增加了回溯的次数，效率低，复杂度为O(m*n)。
-前面已经匹配上的不用再搜索，通过next[]数组，在失去匹配的地方找到该元素的前后缀个数n，移动到模式串的下标n。复杂度时O(m+n)。
-通俗来说，next数组存放每个元素之前的字符串，最长公共前后缀的个数。
-
-如何求next[]呢？Text......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-02-19
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/02/18/hello-world/">
-        <h2 class="post-title">
-            今天博客又搬回hexo啦～
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Qu......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-02-18
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/02/11/二分查找/">
-        <h2 class="post-title">
-            二分查找
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            日常刷LeetCode的时候，用暴力解决了一道困难级别的题目，其时间限制是log(m+n)，才发现真正做法是用二分查找，因此补补相关知识。
-1. 基本思想二分查找也称为是折半查找，属于有序查找算法。用给定值k先与中间结点的关键字比较，中间结点把线形表分成两个子表，若相等则查找成功；若不相等，再根据k与该中间结点关键字的比较结果确定下一步查找哪个子表，这样递归进行，直到查找到或查找结束发现表中......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-02-11
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/02/05/链表/">
-        <h2 class="post-title">
-            链表
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            初始化一个结点123ListNode node = new ListNode();  //初始化一个空结点，无值（不提倡这样写）ListNode node = new ListNode(0); //初始化一个节点值为0的空结点（最常用的规范写法）
-
-
-
-Leetcode 21 合并两个有序链表
-
-输入：1-&gt;2-&gt;4,  1-&gt;3-&gt;4
-输出：1-&gt;1-&gt;......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-02-05
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -501,7 +523,7 @@ Leetcode 21 合并两个有序链表
                             
                         
                             
-                            <a href="/tags/#PHP" title="PHP" rel="2">PHP</a>
+                            <a href="/tags/#PHP" title="PHP" rel="3">PHP</a>
                             
                         
                             
@@ -509,7 +531,7 @@ Leetcode 21 合并两个有序链表
                             
                         
                             
-                            <a href="/tags/#数论" title="数论" rel="10">数论</a>
+                            <a href="/tags/#数论" title="数论" rel="11">数论</a>
                             
                         
                             
@@ -536,6 +558,12 @@ Leetcode 21 合并两个有序链表
                         
                             
                             <a href="/tags/#设计模式" title="设计模式" rel="4">设计模式</a>
+                            
+                        
+                            
+                        
+                            
+                        
                             
                         
                             

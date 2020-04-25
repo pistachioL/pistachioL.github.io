@@ -190,6 +190,128 @@
 
 <div class="post-preview">
 
+    <a href="/2019/09/25/爬取软考网站实践/">
+        <h2 class="post-title">
+            爬取软考网站实践
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            1. 基本要求爬取文字 图像
+2. 反爬虫 正则表达式3.文字存入文档 分词频统计接口参数
+http://www.rkpass.cn/tk_jiexi.jsp?product_id=201905281544305456038&amp;tixing=xuanze
+...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-09-25
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/09/22/python爬虫学习笔记/">
+        <h2 class="post-title">
+            python爬虫学习笔记
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            安装requests库install requests```1234567&#96;&#96;&#96;pythonimport requestsr &#x3D; requests.get(&quot;https:&#x2F;&#x2F;www.baidu.com&quot;)r.status_code   #返回状态码r.encoding(&quot;utf-8&quot;)r.text ......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-09-22
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/09/13/线段树/">
+        <h2 class="post-title">
+            线段树
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            1.定义
+线段树（segment tree） 是用来存放给定区间内对应信息的一种数据结构。线段树是二叉树，一个区间每次被折半往下分，所以往下查找，（二叉树的二分查找）最多lon2n次就能查找到。
+
+有两种操作：
+​    1）求某段区间的和
+​    2）修改某个区间的值
+2.过程1）建立二叉树
+​    
+2）剪枝部分  e.g.求区间[2,5]的和
+
+可以直接返回 return0，即不用......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-09-13
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/09/12/linux常用命令-/">
+        <h2 class="post-title">
+            linux常用命令
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            SCP上传下载1.从服务器拉取文件夹到本地scp -r root@xx.xxx.x.xx:文件所在路径 /home/Document
+2.从本地上传文件到服务器scp -r /home/Document root@xx.xxx.x.xx:/home/default
+3.rsync文件压缩tar -xvf file.tar
+tar -xzvf  file.tar.gz 
+tar -xjvf f......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-09-12
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/09/04/Bellma-Ford/">
+        <h2 class="post-title">
+            Bellma Ford
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            1.定义Bellman-Ford 算法是一种用于计算带权有向图中单(一个)源(顶点)最短路径的问题（单源指的是只有一个起点）：给定一个起点，求它到所有结点的最短路径。Bellman-Ford 算法能适应一般的情况（即存在负权边的情况），V*E&lt;10^7。​        Bellman-Ford 算法采用动态规划进行设计，时间复杂度 O(V*E)，其中 V 为顶点数量，E 为边的数量。......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-09-04
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2019/09/03/欧拉降幂公式/">
         <h2 class="post-title">
             欧拉函数
@@ -311,135 +433,6 @@ void union(int x,int y): 找到两个元素的根，并把其中一个元素（�
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2019/08/16/STL之map/">
-        <h2 class="post-title">
-            STL之map
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            一 定义C++中map提供的是一种键值对容器，里面的数据都是成对出现的。每一对中的第一个值称之为关键字(key)，每个关键字只能在map中出现一次；第二个称之为该关键字的对应值。
-map的底层实现时红黑树，查询的时间复杂度时log(n)
-1map&lt;type,type&gt; mymap;
-
-二 声明1#include&lt;map&gt;
-
-三 插入操作1.通过inset插入
-1234......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-08-16
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/08/15/STL之set集合/">
-        <h2 class="post-title">
-            STL之set集合
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            一 定义​        set A;
-二 用法​        A.insert(item);
-​        A.earse(item);   //删除元素item
-​        A.clear();   //清空set
-​        A.empty();
-​        A.size()
-​        A.find(k);
-​        A.lower_bound(......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-08-15
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/08/14/优先队列/">
-        <h2 class="post-title">
-            优先队列
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            优先队列一. 定义priority_queue&lt;Type, Container, Functional&gt;
-​    Type 就是数据类型，Container 就是容器类型（Container必须是用数组实现的容器，比如vector,queue等等，但不能用 list。STL里面默认用的是vector），Functional 就是比较的方式。
-​        每一个点都带一个数......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-08-14
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/07/24/C语言小知识/">
-        <h2 class="post-title">
-            编程小知识
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            1）字符变数字：str[i]-‘0’
-2）char *strncpy(char *dest,const char *src,size_t n)把str所指向的字符串复制最多n个字符到dest
-123456789101112131415161718#include &lt;stdio.h&gt;#include &lt;string.h&gt;int main()&#123;   char s......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-07-24
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/07/24/队列基本用法/">
-        <h2 class="post-title">
-            队列基本用法
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            牛客上做的一个题目：https://ac.nowcoder.com/acm/contest/258/A 
-以样例为例：
-123456输入3 71 2 1 5 4 4 1输出 5
-
-容量为3，文章长度为7，第二行为文章内容。依题意，检索到相同的就为同一个单词，当单词数量大于容量的时候，软件会清空最早存入内存的单词，腾出单元，存放新单词。因此符合队列先进先出的特点。
-
-1234567891011......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-07-24
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -497,7 +490,7 @@ map的底层实现时红黑树，查询的时间复杂度时log(n)
                             
                         
                             
-                            <a href="/tags/#PHP" title="PHP" rel="2">PHP</a>
+                            <a href="/tags/#PHP" title="PHP" rel="3">PHP</a>
                             
                         
                             
@@ -505,7 +498,7 @@ map的底层实现时红黑树，查询的时间复杂度时log(n)
                             
                         
                             
-                            <a href="/tags/#数论" title="数论" rel="10">数论</a>
+                            <a href="/tags/#数论" title="数论" rel="11">数论</a>
                             
                         
                             
@@ -532,6 +525,12 @@ map的底层实现时红黑树，查询的时间复杂度时log(n)
                         
                             
                             <a href="/tags/#设计模式" title="设计模式" rel="4">设计模式</a>
+                            
+                        
+                            
+                        
+                            
+                        
                             
                         
                             

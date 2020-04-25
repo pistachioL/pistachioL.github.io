@@ -13,11 +13,11 @@
 
     <title>
         
-          Redis基础知识 - Pistachio的楼阁 | Pistachio&#39;s Blog
+          Nginx解析PHP的原理 - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2020/04/21/Redis基础知识/">
+    <link rel="canonical" href="https://pistachiol.github.io/2020/04/24/Nginx和Php-fpm的运行原理/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -171,14 +171,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#Redis" title="Redis">Redis</a>
+                          <a class="tag" href="/tags/#Nginx" title="Nginx">Nginx</a>
                         
                     </div>
-                    <h1>Redis基础知识</h1>
+                    <h1>Nginx解析PHP的原理</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
-                        2020-04-21
+                        2020-04-24
                     </span>
                 </div>
             </div>
@@ -197,70 +197,29 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="启动、状态、结束"><a href="#启动、状态、结束" class="headerlink" title="启动、状态、结束"></a>启动、状态、结束</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl status redis<span class="literal">-server</span></span><br><span class="line">systemctl status redis<span class="literal">-server</span></span><br><span class="line">systemctl stop redis<span class="literal">-server</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>默认端口时6379</p>
-</li>
-<li><p>有16个数据库，每一个从下标0开始</p>
-</li>
-<li><p>统一管理密码，16个库同样密码</p>
-</li>
-</ul>
-<h3 id="连接服务"><a href="#连接服务" class="headerlink" title="连接服务"></a>连接服务</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis<span class="literal">-cli</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DBSIZE //当前数据库key的个数</span><br><span class="line">keys *   //查看所有的key</span><br><span class="line">SELECT 7  //选择数据库,默认是0号数据库</span><br><span class="line">FLUSHALL 　//清空所有数据库</span><br><span class="line">FLUSHDB //清空当前数据库</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h3><h4 id="1-String类型"><a href="#1-String类型" class="headerlink" title="1) String类型"></a>1) String类型</h4><p>key | value(int/string/float)</p>
-<p><code>set</code> <code>get</code> </p>
-<p><code>incr</code>自增</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">set string1 liao</span><br><span class="line">get string1</span><br><span class="line">set num <span class="number">1</span>   //num为key <span class="number">1</span>为val</span><br><span class="line">incr num</span><br><span class="line">get num</span><br></pre></td></tr></table></figure>
+                <p>Nginx是一个高性能的服务器，能处理HTTP请求，并能做反向代理。</p>
+<p>Nginx本身不会对PHP进行解析，而是通过进程管理器php-fpm对其进行解析。</p>
+<p>Nginx通过反向代理的功能将动态请求转向php-fpm。</p>
+<h3 id="Cgi"><a href="#Cgi" class="headerlink" title="Cgi"></a>Cgi</h3><p>Cgi是Common Gateway Interface的缩写。过去服务器只能处理静态语言，无法对动态语言（PHP）进行处理。Cgi协议是用于解决语言解释器（PHP、Python等）与服务器的通信，只要写程序的时候按照cgi协议写就行。</p>
+<h3 id="FastCgi"><a href="#FastCgi" class="headerlink" title="FastCgi"></a>FastCgi</h3><p>服务器接收到一个请求时，要fork一个cgi进程，请求结束的时候要杀掉一个进程，十分浪费资源，于是出现了fastcgi对cgi进行改良。fastcgi处理完请求后，不会杀掉进程，而是保留它，使它一次能处理多请求。</p>
+<h3 id="php-fpm"><a href="#php-fpm" class="headerlink" title="php-fpm"></a>php-fpm</h3><p>php-fpm就是php-Fcstcgi Process Manager，是PHP对FastCgi的一个实现，实现对进程的管理。</p>
+<p>进程包括master和worker两种进程。master只有一个，用于监听端口(默认是socket)，接收来自服务器的请求；而worker可以有多个进程（按照实际配置），每个进程内部嵌入PHP解释器，是PHP代码真正执行的地方。</p>
+<p>在Linux上，Nginx与php-fpm的通信有<strong>TCP Socket</strong>　和　<strong>Unix Socket</strong>两种方式</p>
+<blockquote>
+<p>Unix socket 又叫 IPC (inter-process communication 进程间通信) socket，用于实现同一主机上的进程间通信，这种方式需要在 nginx 配置文件中填写 php-fpm 的 socket 文件位置。</p>
+</blockquote>
+<p>两者区别：</p>
+<p>Unix Socket通信效率高，但不稳定。由于 Unix socket 不需要经过网络协议栈，不需要封装解封装、计算校验和、维护序号和应答等，只是将应用层数据从一个进程拷贝到另一个进程，所以其效率比 TCP Socket 的方式要高，可减少不必要的 tcp 开销。</p>
+<p>Unix Socket 高并发时不稳定，连接数爆发时，会产生大量的长时缓存，在没有面向连接协议的支撑下，大数据包可能会直接出错不返回异常。</p>
+<p>而 TCP 是面向连接的协议，可以更好的保证通信的正确性和完整性。</p>
+<p>因此可以屡一下当有url输入时处理的流程：</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">访问www.example.com </span><br><span class="line">	<span class="string">|</span></span><br><span class="line">浏览器缓存</span><br><span class="line">	<span class="string">|</span></span><br><span class="line">DNS域名解析</span><br><span class="line">	<span class="string">|</span></span><br><span class="line">TCP进行连接</span><br><span class="line">	<span class="string">|</span></span><br><span class="line">HTTP请求与相应给Nginx服务器</span><br><span class="line">	<span class="string">|</span></span><br><span class="line">跳转到入口文件www.example.com/index.php</span><br><span class="line">	<span class="string">|</span></span><br><span class="line">加载nginx的fastcgi模块</span><br><span class="line">	<span class="string">|</span></span><br><span class="line">fast-cgi监听<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9000</span>地址</span><br><span class="line">    <span class="string">|</span></span><br><span class="line">www.example.com/index.php请求到达<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9000</span></span><br><span class="line">    <span class="string">|</span></span><br><span class="line">php-fpm监听<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9000</span></span><br><span class="line">    <span class="string">|</span></span><br><span class="line">php-fpm接收到请求，启用worker进程处理请求</span><br><span class="line">    <span class="string">|</span></span><br><span class="line">php-fpm处理完请求，返回给nginx</span><br><span class="line">    <span class="string">|</span></span><br><span class="line">nginx将结果通过http返回给浏览器</span><br></pre></td></tr></table></figure>
 
 
 
-<h4 id="2-List类型"><a href="#2-List类型" class="headerlink" title="2)  List类型"></a>2)  List类型</h4><p><code>lpush</code>  从左边插入元素</p>
-<p><code>rpop</code>从右边取出元素</p>
-<p><code>llen</code> 容器中元素的个数</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lpush list1 <span class="number">13</span></span><br><span class="line">lpush list1 <span class="number">12</span></span><br><span class="line">rpop list1</span><br></pre></td></tr></table></figure>
 
 
-
-<h4 id="3-Set类型"><a href="#3-Set类型" class="headerlink" title="3) Set类型"></a>3) Set类型</h4><p><code>sadd</code>增加元素</p>
-<p><code>scard</code>查看容器元素个数</p>
-<p><code>srem</code>删除容器元素</p>
-<p><code>sismember</code>查看是否有某个元素</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sadd set1 12</span><br><span class="line">sadd set1 13</span><br><span class="line">sadd set1 14</span><br><span class="line">scard set1</span><br><span class="line">srem set1 13</span><br><span class="line">sismember set1 13</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="4-Hash类型（散列类型）"><a href="#4-Hash类型（散列类型）" class="headerlink" title="4) Hash类型（散列类型）"></a>4) Hash类型（散列类型）</h4><p>key-&gt;val 一个键只能对应一个值</p>
-<p> <code>hset</code>插入</p>
-<p> <code>hget</code>通过key取出值</p>
-<p> <code>hmget</code>取出多个</p>
-<p> <code>hlen</code>容器中多少个元素</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hset hash1 key1 12</span><br><span class="line">hset hash1 key2 13</span><br><span class="line">hset hash1 key2 14 //修改key2 的值为14</span><br><span class="line">hget hash1 key1</span><br><span class="line">hmget hash1 key1 key2</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="5-Zset-Sort-Set-类型"><a href="#5-Zset-Sort-Set-类型" class="headerlink" title="5) Zset (Sort Set)类型"></a>5) Zset (Sort Set)类型</h4><p>score和value是一个整体</p>
-<p><img src="/2020/04/21/Redis%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/1.png" alt></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">zadd zset1 10.1 val1 </span><br><span class="line">zadd zset1 11.2 val2 </span><br><span class="line">zadd zset1 9.2</span><br><span class="line"></span><br><span class="line">zcard zset1  //查看容器元素个数</span><br><span class="line"></span><br><span class="line">zrange zset1 0 2 withscores //把0-2范围内的值从小到大列出</span><br><span class="line"></span><br><span class="line">zrank zset1 val2 //查看val2的排行</span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="rehash"><a href="#rehash" class="headerlink" title="rehash"></a>rehash</h5><h3 id="Redis是单线程的"><a href="#Redis是单线程的" class="headerlink" title="Redis是单线程的"></a>Redis是单线程的</h3><p>Redis利用队列技术将并发访问变为串行访问，消除了传统数据库串行控制的开销</p>
-<h3 id="使用Redis的优势"><a href="#使用Redis的优势" class="headerlink" title="使用Redis的优势"></a>使用Redis的优势</h3><p>   1.速度快，因为数据存在内存中，类似于HashMap，HashMap的优势就是查找和操作的时间复杂度都是O(1)</p>
-<ol start="2">
-<li><p>支持丰富数据类型，支持string，list，set，sorted set，hash</p>
-<p>3.支持事务</p>
-</li>
-<li><p>丰富的特性：可用于缓存，消息，按key设置过期时间，过期后将会自动删除</p>
-</li>
-</ol>
+<p>[]: <a href="https://learnku.com/articles/23694?order_by=vote_count&amp;amp" target="_blank" rel="noopener">https://learnku.com/articles/23694?order_by=vote_count&amp;amp</a>;</p>
 
 
                 <hr>
@@ -270,12 +229,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2020/04/22/红黑树/" data-toggle="tooltip" data-placement="top" title="红黑树">&larr; Previous Post</a>
+                            <a href="/2020/04/24/PHP垃圾回收机制/" data-toggle="tooltip" data-placement="top" title="PHP垃圾回收机制">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2020/04/18/操作系统的内存管理/" data-toggle="tooltip" data-placement="top" title="操作系统的内存管理">Next Post &rarr;</a>
+                            <a href="/2020/04/24/序列和/" data-toggle="tooltip" data-placement="top" title="序列和">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -308,7 +267,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#Redis" title="Redis">Redis</a>
+                          <a class="tag" href="/tags/#Nginx" title="Nginx">Nginx</a>
                         
                     </div>
                 </section>
@@ -340,8 +299,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2020/04/21/Redis%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/";
-    var disqus_url = "https://pistachiol.github.io/2020/04/21/Redis%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/";
+    var disqus_identifier = "https://pistachiol.github.io/2020/04/24/Nginx%E5%92%8CPhp-fpm%E7%9A%84%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86/";
+    var disqus_url = "https://pistachiol.github.io/2020/04/24/Nginx%E5%92%8CPhp-fpm%E7%9A%84%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

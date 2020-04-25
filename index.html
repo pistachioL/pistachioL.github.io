@@ -190,6 +190,127 @@
 
 <div class="post-preview">
 
+    <a href="/2020/04/24/PHP垃圾回收机制/">
+        <h2 class="post-title">
+            PHP垃圾回收机制
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            PHP5.3以前 引用计数机制PHP5.3之前使用过内存回收算法Reference Counting 引用计数。
+其思想是，为内存对象分配一个计数器，当内存对象建立时计数器初始化为1。（如$a = &quot;hello world&quot;）
+以后每一个新变量引用该变量，(如赋值$a = $b)，计数器加1；当减少引用次内存对象(unset($a))，计数器减1。
+把一个变量赋值给另一变......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-04-24
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/04/24/Nginx和Php-fpm的运行原理/">
+        <h2 class="post-title">
+            Nginx解析PHP的原理
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            Nginx是一个高性能的服务器，能处理HTTP请求，并能做反向代理。
+Nginx本身不会对PHP进行解析，而是通过进程管理器php-fpm对其进行解析。
+Nginx通过反向代理的功能将动态请求转向php-fpm。
+CgiCgi是Common Gateway Interface的缩写。过去服务器只能处理静态语言，无法对动态语言（PHP）进行处理。Cgi协议是用于解决语言解释器（PHP、Pyth......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-04-24
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/04/24/序列和/">
+        <h2 class="post-title">
+            序列和
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+给出一个正整数N和长度L，找出一段长度大于等于L的连续非负整数，他们的和恰好为N。答案可能有多个，我我们需要找出长度最小的那个。 例如 N = 18 L = 2： 5 + 6 + 7 = 18 3 + 4 + 5 + 6 = 18 都是满足要求的，但是我们输出更短的 5 6 7
+
+Sn = (a1 + an) * n / 2 = N
+​          [a1+a1+(n-1)*d] *......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-04-24
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/04/23/Get和Post的区别/">
+        <h2 class="post-title">
+            Get和Post的区别
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            使用上的区别
+GET通过URL或Cookie传参，而POST将数据放在BODY中（是HTTP的约定）
+GET方式提交的数据有长度限制，而POST的数据则可以非常大。HTTP协议对GET和POST长度没有限制，并且对HTTP头和Body都没有长度的要求。只是因为它们使用的操作系统和浏览器设置的不同引起的区别。
+POST比GET安全，因为数据在地址栏上不可见。通过GET提交数据，用户名和密码将明......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-04-23
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/04/23/MySQL的高可扩展/">
+        <h2 class="post-title">
+            MySQL的高可扩展
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            MySQL 优化查询MySQL提供了一个 EXPLAIN 命令, 它可以对 SELECT 语句进行分析, 并输出 SELECT 执行的详细信息, 以供开发人员针对性优化
+###　分区表
+工作原理对用户来说，分区表是独立的逻辑表，但是MySQL底层将其分成多个物理子表，每一个分区表都是独立的表文件，这些对于用户来说是透明的。
+创建表时使用partition by子句定义每个分区存放的数据，执行......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-04-23
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2020/04/22/红黑树/">
         <h2 class="post-title">
             红黑树
@@ -337,131 +458,6 @@
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2020/04/02/AdapterPattern/">
-        <h2 class="post-title">
-            适配器模式
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            实例：有一个220v电压，需要适配器转成5V电压才能给手机充电。
-类适配器
-被适配器类:Voltage220V 适配类:Voltage5V 
-通过适配器类VoltageAdapter继承Voltage220V（拿到220V电压），并且实现了Voltage5V的接口（并转乘5V）
-手机类依赖Voltage5V，实质上是依赖VoltageAdapter
-对象适配器由于Java单继承原因
-对类适配......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-04-02
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/03/31/排序算法/">
-        <h2 class="post-title">
-            排序算法
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            冒泡排序基本思想：*两两数字比较 *，比较在每一趟遍历中，看当前数字会不会比下一个大，如果比下一个大则交换。每一趟交换中能找到最大的数，放在末尾。
-最好情况：顺序 只需遍历一遍 T = O(N)
-最坏情况：逆序 全部都得排序　T = O(N^2)
-如数组：５，３，７，１０，６，１８，４
-第一趟：能把最大值放到最后
-【３，５】，７，６，１０，４，１８　
-３，【５，７】，１０，６，１８，４　
-３......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-03-31
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/03/30/约瑟夫环问题/">
-        <h2 class="post-title">
-            约瑟夫环问题
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            LeetCode
-
-0,1,,n-1这n个数字排成一个圆圈，从数字0开始，每次从这个圆圈里删除第m个数字。求出这个圆圈里剩下的最后一个数字。
-
-1234567int lastRemaining(int n, int m) &#123;       int ans = 0;       for(int i = 2; i &lt;= n; i++)&#123;           ans = (......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-03-30
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/03/26/Prototype/">
-        <h2 class="post-title">
-            原型模式
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            深克隆实现深克隆有两种方式
-1.种是采用序列化的方式实现2.采用依次克隆各个可变的引用类型域 覆盖Object中的clone方法， 实现深拷贝...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-03-26
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/03/25/PHP面向对象/">
-        <h2 class="post-title">
-            PHP面向对象
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            构造方法只要类被实例化之后，构造方法会被执行，就是在对象执行方法之前。
-构造方法必须为public，否则无法被实例化
-12345678910111213&lt;?phpclass Number&#123;    public function __construct()&#123;        echo "1输出";   		echo "2输出";    &#125;public func......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-03-25
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -515,7 +511,7 @@
                             
                         
                             
-                            <a href="/tags/#PHP" title="PHP" rel="2">PHP</a>
+                            <a href="/tags/#PHP" title="PHP" rel="3">PHP</a>
                             
                         
                             
@@ -523,7 +519,7 @@
                             
                         
                             
-                            <a href="/tags/#数论" title="数论" rel="10">数论</a>
+                            <a href="/tags/#数论" title="数论" rel="11">数论</a>
                             
                         
                             
@@ -550,6 +546,12 @@
                         
                             
                             <a href="/tags/#设计模式" title="设计模式" rel="4">设计模式</a>
+                            
+                        
+                            
+                        
+                            
+                        
                             
                         
                             
