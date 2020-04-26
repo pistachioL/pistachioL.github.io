@@ -13,11 +13,11 @@
 
     <title>
         
-          链表 - Pistachio的楼阁 | Pistachio&#39;s Blog
+          合并k个链表 - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2020/02/05/链表/">
+    <link rel="canonical" href="https://pistachiol.github.io/2020/04/26/合并k个链表/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -174,11 +174,11 @@
                           <a class="tag" href="/tags/#数据结构" title="数据结构">数据结构</a>
                         
                     </div>
-                    <h1>链表</h1>
+                    <h1>合并k个链表</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
-                        2020-02-05
+                        2020-04-26
                     </span>
                 </div>
             </div>
@@ -197,58 +197,22 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h4 id="初始化一个结点"><a href="#初始化一个结点" class="headerlink" title="初始化一个结点"></a>初始化一个结点</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ListNode node = <span class="keyword">new</span> ListNode();  <span class="comment">//初始化一个空结点，无值（不提倡这样写）</span></span><br><span class="line"></span><br><span class="line">ListNode node = <span class="keyword">new</span> ListNode(<span class="number">0</span>); <span class="comment">//初始化一个节点值为0的空结点（最常用的规范写法）</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>Leetcode 21 合并两个有序链表</strong></p>
+                <p>　　在之前的文章中分析过合并两个有序的链表，今天遇到一道题就是合并多个链表，则有<strong>分治法</strong>和<strong>优先队列</strong>的解法。</p>
+<p><strong>分治法</strong></p>
+<p>分治法的思想是，把一个复杂问题分解成两个或者更多相同或相似的子问题，再把子问题分成更小的子问题，直到最后的子问题可以简单地直接求解，最后把子问题的解合并，就得到原问题的解啦。（昨天百度一面的时候问过这个问题）</p>
 <blockquote>
-<p>输入：1-&gt;2-&gt;4,  1-&gt;3-&gt;4</p>
-<p>输出：1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4</p>
+<p>[  1-&gt;4-&gt;5,  1-&gt;3-&gt;4,  2-&gt;6]    输出: 1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4-&gt;5-&gt;6</p>
 </blockquote>
-<p><img src="/2020/02/05/%E9%93%BE%E8%A1%A8/1.png" alt></p>
-<p>比较l1 l2结点值的大小，如果l1&lt;= l2，则把l1的结点装在新链表p中，并把l1指针后移。p指向下一个结点。</p>
-<p><img src="/2020/02/05/%E9%93%BE%E8%A1%A8/2.png" alt></p>
-<p>指针移动之后，到目前的l1和l2比较，显然l2结点比较大，于是把l2放在p链表，l2链表指向下一个结点。</p>
-<p><img src="/2020/02/05/%E9%93%BE%E8%A1%A8/3.png" alt></p>
-<p>如此类推……</p>
-<p><img src="/2020/02/05/%E9%93%BE%E8%A1%A8/4.png" alt></p>
-<p><img src="/2020/02/05/%E9%93%BE%E8%A1%A8/5.png" alt></p>
-<p><img src="/2020/02/05/%E9%93%BE%E8%A1%A8/6666.png" alt></p>
-<p>直到指针指向NULL时，（跳出了循环）把另外一个链表剩下的结点拼接到链表p就行（因为链表都是有序的），-再返回head-&gt;next就能把合并出来的新链表返回。</p>
-<p><img src="/2020/02/05/%E9%93%BE%E8%A1%A8/7777.png" alt></p>
-<p><strong>迭代版代码：</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ListNode* <span class="title">mergeTwoLists</span><span class="params">(ListNode* l1, ListNode* l2)</span> </span>&#123;</span><br><span class="line">     ListNode *head = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">     ListNode *p = head;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">while</span>(l1 != <span class="literal">NULL</span> &amp;&amp; l2 != <span class="literal">NULL</span>)</span><br><span class="line">     &#123;</span><br><span class="line">         <span class="keyword">if</span>(l1-&gt;val &lt;= l2-&gt;val)</span><br><span class="line">         &#123;</span><br><span class="line">             p -&gt; next = l1;    <span class="comment">//在新链表上插入值</span></span><br><span class="line">             l1 = l1 -&gt; next;   <span class="comment">//原链表指针指向下一个</span></span><br><span class="line">         &#125;</span><br><span class="line">         <span class="keyword">else</span></span><br><span class="line">         &#123;</span><br><span class="line">             p -&gt; next = l2;</span><br><span class="line">             l2 = l2 -&gt; next;</span><br><span class="line">         &#125;</span><br><span class="line">         p = p -&gt; next;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">if</span>(l1 != <span class="literal">NULL</span>)</span><br><span class="line">         p -&gt; next = l1;</span><br><span class="line">     <span class="keyword">if</span>(l2 != <span class="literal">NULL</span>)</span><br><span class="line">         p -&gt; next = l2;</span><br><span class="line">     </span><br><span class="line">     <span class="keyword">return</span> head-&gt;next;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>首先把容器中每一个链表通过 <code>merge()</code> 拆解，直到剩下一个个链表，再通过<code>mergeTwoLinks()</code>把相邻的链表进行有序合并。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">ListNode* mergeTwoLinks(ListNode* list1, ListNode* list2)* list1, ListNode* liists2)2&#123;</span><br><span class="line">       <span class="keyword">if</span> (!list1) &#123;</span><br><span class="line">            <span class="keyword">return</span> list2;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!list2) &#123;</span><br><span class="line">            <span class="keyword">return</span> list1;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (list1-&gt;val &lt; list2-&gt;val) &#123;  <span class="comment">//比较每个相邻链表每个结点值的大小，再进行合并</span></span><br><span class="line">            list1-&gt;next = mergeTwoLinks(list1-&gt;next, list2);</span><br><span class="line">            <span class="keyword">return</span> list1;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            list2-&gt;next = mergeTwoLinks(list1, list2-&gt;next);</span><br><span class="line">            <span class="keyword">return</span> list2;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">ListNode* <span class="title">merge</span><span class="params">(<span class="built_in">vector</span>&lt;ListNode*&gt;&amp; lists, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(left == right)</span><br><span class="line">            <span class="keyword">return</span> lists[left];</span><br><span class="line">        <span class="comment">//也可写成left + (right - left) / 2;</span></span><br><span class="line">        <span class="keyword">int</span> mid =  (right + left) &gt;&gt; <span class="number">1</span>; <span class="comment">//二进制，相当于除2</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">//不断拆分　直到剩下一个个链表</span></span><br><span class="line">        ListNode* l1 = merge(lists, left, mid);</span><br><span class="line">        ListNode* l2 = merge(lists, mid + <span class="number">1</span>, right);</span><br><span class="line">        <span class="comment">//每个链表合并（合并的时候做了排序）</span></span><br><span class="line">        <span class="keyword">return</span> mergeTwoLinks(l1,l2);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">ListNode* <span class="title">mergeKLists</span><span class="params">(<span class="built_in">vector</span>&lt;ListNode*&gt;&amp; lists)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(lists.<span class="built_in">size</span>() == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        <span class="keyword">return</span> merge(lists, <span class="number">0</span>, lists.<span class="built_in">size</span>() - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
-<p><strong>递归版代码：</strong>(时间复杂度和空间复杂度相对比迭代的少)</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ListNode* <span class="title">mergeTwoLists</span><span class="params">(ListNode* list1, ListNode* list2)</span></span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (!list1) &#123;</span><br><span class="line">            <span class="keyword">return</span> list2;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!list2) &#123;</span><br><span class="line">            <span class="keyword">return</span> list1;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (list1-&gt;val &lt; list2-&gt;val) &#123;</span><br><span class="line">            list1-&gt;next = mergeTwoLists(list1-&gt;next, list2);</span><br><span class="line">            <span class="keyword">return</span> list1;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            list2-&gt;next = mergeTwoLists(list1, list2-&gt;next);</span><br><span class="line">            <span class="keyword">return</span> list2;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<p><strong>反转链表</strong></p>
+<p>(实践证明，合并两链表的时候，用递归的方法比迭代的方法更优)</p>
+<p><strong>优先队列</strong></p>
+<p>参考LeetCode题解</p>
 <blockquote>
-<p>反转单链表</p>
-<p>输入: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL</p>
-<p>输出: 5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NULL</p>
+<p>我们需要维护当前每个链表没有被合并的元素的最前面一个，k 个链表就最多有 k 个满足这样条件的元素，每次在这些元素里面选取 val 属性最小的元素合并到答案中。在选取最小元素的时候，我们可以用优先队列来优化这个过程。</p>
 </blockquote>
-<p>NULL-&gt;1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL</p>
-<p>用迭代的方法解决：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    ListNode *next;</span><br><span class="line">    ListNode(<span class="keyword">int</span> x): val(x),next(<span class="literal">NULL</span>) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"> <span class="function">ListNode* <span class="title">reverseList</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">NULL</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        ListNode *p0 = <span class="literal">NULL</span>;</span><br><span class="line">        ListNode *p1 = head;</span><br><span class="line">        ListNode *p2 = head-&gt;next;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span>(p1 != <span class="literal">NULL</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            p1 -&gt; next = p0; <span class="comment">//反转指向</span></span><br><span class="line">            p0 = p1; <span class="comment">//指针前进</span></span><br><span class="line">            p1 = p2; <span class="comment">//指针前进</span></span><br><span class="line">            <span class="keyword">if</span>(p2 != <span class="literal">NULL</span>)</span><br><span class="line">                p2 = p2-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> p0;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>用递归方法解决：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ListNode* <span class="title">reverseList</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span>(head == <span class="literal">NULL</span>|| head-&gt;next == <span class="literal">NULL</span>)</span><br><span class="line">           <span class="keyword">return</span> head;</span><br><span class="line">       ListNode *newhead = reverseList(head-&gt;next);<span class="comment">//把新头结点递归到链表的最后一个元素，从后往前翻转。</span></span><br><span class="line">       head-&gt;next-&gt;next = head;  <span class="comment">//后一个结点指向前一个结点</span></span><br><span class="line">       head-&gt;next = <span class="literal">NULL</span>;  <span class="comment">//断了前一个结点指向后一个节点的关系</span></span><br><span class="line">       <span class="keyword">return</span> newhead;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<p><strong>返回链表倒数第k个节点</strong></p>
-<p>双指针解法：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ListNode* <span class="title">getKthFromEnd</span><span class="params">(ListNode* head, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">      ListNode *p,*q;</span><br><span class="line">      p = head, q = head;</span><br><span class="line">      <span class="keyword">while</span>(k--)&#123;</span><br><span class="line">          p = p-&gt;next;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">while</span>(p)&#123;</span><br><span class="line">          p = p-&gt;next;</span><br><span class="line">          q = q-&gt;next;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> q;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Status</span>&#123;</span></span><br><span class="line">        <span class="keyword">int</span> val;</span><br><span class="line">        ListNode* ptr;</span><br><span class="line">        <span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> Status &amp;rhs) <span class="keyword">const</span>&#123; 　<span class="comment">// &lt; 是重载运算符</span></span><br><span class="line">            <span class="keyword">return</span> val &gt; rhs.val;  <span class="comment">//优先队列相反，此处是从小到大出队</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">     priority_queue &lt;Status&gt; q;</span><br><span class="line"> <span class="function">ListNode* <span class="title">mergeKLists</span><span class="params">(<span class="built_in">vector</span>&lt;ListNode*&gt;&amp; lists)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (ListNode* node: lists) &#123;</span><br><span class="line">            <span class="keyword">if</span> (node) q.push(&#123;node-&gt;val, node&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode head, *tail = &amp;head;</span><br><span class="line">        <span class="keyword">while</span> (!q.empty()) &#123;</span><br><span class="line">            Status f = q.top(); q.pop();</span><br><span class="line">            tail-&gt;next = f.ptr; </span><br><span class="line">            tail = tail-&gt;next;</span><br><span class="line">            <span class="keyword">if</span> (f.ptr-&gt;next) q.push(&#123;f.ptr-&gt;next-&gt;val, f.ptr-&gt;next&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> head.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -258,13 +222,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2020/02/11/二分查找/" data-toggle="tooltip" data-placement="top" title="二分查找">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2020/02/02/搭建Jekyll博客/" data-toggle="tooltip" data-placement="top" title="Jekyll搭建博客">Next Post &rarr;</a>
+                            <a href="/2020/04/24/PHP垃圾回收机制/" data-toggle="tooltip" data-placement="top" title="PHP垃圾回收机制">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -329,8 +289,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2020/02/05/%E9%93%BE%E8%A1%A8/";
-    var disqus_url = "https://pistachiol.github.io/2020/02/05/%E9%93%BE%E8%A1%A8/";
+    var disqus_identifier = "https://pistachiol.github.io/2020/04/26/%E5%90%88%E5%B9%B6k%E4%B8%AA%E9%93%BE%E8%A1%A8/";
+    var disqus_url = "https://pistachiol.github.io/2020/04/26/%E5%90%88%E5%B9%B6k%E4%B8%AA%E9%93%BE%E8%A1%A8/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

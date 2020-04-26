@@ -216,6 +216,16 @@
 <p>long long 占8字节64位</p>
 <h3 id="pair-lt-int-int-gt-是一种类型"><a href="#pair-lt-int-int-gt-是一种类型" class="headerlink" title="pair&lt;int, int&gt; 是一种类型"></a>pair&lt;int, int&gt; 是一种类型</h3><p><code>pair&lt;int, int&gt;x</code></p>
 <p>通过<code>x.first x.second来引用其元素</code></p>
+<p>###　字符数组　字符指针</p>
+<p><em>今天百度面试被问道这题</em></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> *str = <span class="string">"abcff"</span>;  <span class="comment">//字符指针</span></span><br><span class="line"><span class="keyword">char</span> str1[] = &#123;<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>&#125;; <span class="comment">//字符数组</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="built_in">strlen</span>(str) &lt;&lt;<span class="built_in">endl</span>;  <span class="comment">// 5</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="built_in">strlen</span>(str1) &lt;&lt;<span class="built_in">endl</span>;  <span class="comment">// 9</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="keyword">sizeof</span>(str)/<span class="keyword">sizeof</span>(<span class="keyword">char</span>) &lt;&lt; <span class="built_in">endl</span>;　<span class="comment">//8　在64位系统中，8代表的是指针的大小，指针占8字节。</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="keyword">sizeof</span>(str1)/<span class="keyword">sizeof</span>(<span class="keyword">char</span>) &lt;&lt; <span class="built_in">endl</span>; <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+
+<p>char*类型，<code>sizeof()</code>计算出指针的大小，32位系统占4字节，64位系统占8字节，与char *的字符串长度无关系；而可以计算出字符数组char a[]中元素个数，而非指针大小。</p>
+<blockquote>
+<p>但是如果将其用于参数传递的话，子函数中获取的将不再是字符串数组类型，而是指针，这个要特别注意。</p>
+</blockquote>
+<p><code>strlen()</code>可以计算字符指针字符串的真实值大小，判断方法是找’\0’，根据’\0’来计算长度。</p>
+<p><a href="https://blog.csdn.net/xc889078/article/details/8910812" target="_blank" rel="noopener">https://blog.csdn.net/xc889078/article/details/8910812</a></p>
 
 
                 <hr>
