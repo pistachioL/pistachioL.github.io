@@ -190,6 +190,33 @@
 
 <div class="post-preview">
 
+    <a href="/2019/12/11/PTA/">
+        <h2 class="post-title">
+            PTA技巧
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            L1-043 阅览室
+
+这道题要求一天内所有书的借阅次数和阅读时长，如果有些书只有借没有还，或者只有还没有借，则忽略不处理。
+借书的时候书本不能被借阅，因此首先想到用结构体把书的属性写在一起。
+
+巧妙之处是，通过结构体数组访问不同id的书的属性，且能通过标记思想限制一本书在一段时间内只能被一位读者借阅。
+最后求平均阅读时间（阅读时间/阅读次数）可能会是浮点数，其中阅读时长和阅读次数都是整数，......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-12-11
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2019/12/09/欧几里得的应用/">
         <h2 class="post-title">
             欧几里得的应用
@@ -437,30 +464,6 @@ gcd(a,b) = gcd(b,a mod b)
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2019/09/28/同余定理/">
-        <h2 class="post-title">
-            同余定理
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            定理同余,顾名思义是相同的余数,如果a mod m == b mod m,则说m为同余的模.
-也可这样理解:m|(a-b),即(a-b)是m的整数倍.
-给定一个正整数m，如果两个整数a和b满足（a-b）能够被m整除，即（a-b）/m得到一个整数，那么就称整数a与b对模m同余，记作a≡b(mod m)。
-...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-09-28
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -500,7 +503,7 @@ gcd(a,b) = gcd(b,a mod b)
                     <div class="tags">
                         
                             
-                            <a href="/tags/#数据结构" title="数据结构" rel="11">数据结构</a>
+                            <a href="/tags/#数据结构" title="数据结构" rel="12">数据结构</a>
                             
                         
                             
