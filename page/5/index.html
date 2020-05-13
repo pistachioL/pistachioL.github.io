@@ -190,6 +190,189 @@
 
 <div class="post-preview">
 
+    <a href="/2020/02/19/KMP/">
+        <h2 class="post-title">
+            KMP
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            1.求前缀表next[]为什么要求前缀表？
+如果用暴力的双指针，在失配的时候又从模式串的开头重新匹配，增加了回溯的次数，效率低，复杂度为O(m*n)。
+前面已经匹配上的不用再搜索，通过next[]数组，在失去匹配的地方找到该元素的前后缀个数n，移动到模式串的下标n。复杂度时O(m+n)。
+通俗来说，next数组存放每个元素之前的字符串，最长公共前后缀的个数。
+
+如何求next[]呢？Text......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-02-19
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/02/18/hello-world/">
+        <h2 class="post-title">
+            今天博客又搬回hexo啦～
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
+Qu......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-02-18
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/02/11/二分查找/">
+        <h2 class="post-title">
+            二分查找
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            日常刷LeetCode的时候，用暴力解决了一道困难级别的题目，其时间限制是log(m+n)，才发现真正做法是用二分查找，因此补补相关知识。
+1. 基本思想二分查找也称为是折半查找，属于有序查找算法。用给定值k先与中间结点的关键字比较，中间结点把线形表分成两个子表，若相等则查找成功；若不相等，再根据k与该中间结点关键字的比较结果确定下一步查找哪个子表，这样递归进行，直到查找到或查找结束发现表中......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-02-11
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/02/05/链表/">
+        <h2 class="post-title">
+            链表
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            初始化一个结点123ListNode node = new ListNode();  //初始化一个空结点，无值（不提倡这样写）ListNode node = new ListNode(0); //初始化一个节点值为0的空结点（最常用的规范写法）
+
+
+
+Leetcode 21 合并两个有序链表
+
+输入：1-&gt;2-&gt;4,  1-&gt;3-&gt;4
+输出：1-&gt;1-&gt;......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-02-05
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/02/02/搭建Jekyll博客/">
+        <h2 class="post-title">
+            Jekyll搭建博客
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            1.先安装rvm  通过rvm安装ruby环境1curl -sSL https://get.rvm.io | bash -s stable
+
+查看是否安装成功
+1rvm -v
+
+
+
+2.换国内源查看现在的源
+1gem sources -l
+
+删除之前的源
+1gem sources --remove
+
+增加国内源
+1gem sources -a https://gems.ruby-china.......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-02-02
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/01/31/安装deepin后要做的事情/">
+        <h2 class="post-title">
+            安装deepin后要做的事情
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            1. 换源1vim /etc/apt/sources.list
+
+
+2. 命令行主题配置下载oh-my-zsh通过curl
+1sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+通过wget
+1sh -c "$(wget -O- https://raw......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-01-31
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/12/11/LinuxShell命令模拟器/">
+        <h2 class="post-title">
+            LinuxShell命令模拟器
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            LinuxShell命令模拟器一.原理分析0.终端执行步骤​    1）读取用户从键盘输入的命令，终端会分析是否是内部命令。如果是，则把命令分解为系统调用，并传给linux内核。如果不是，若不是再检查是否是一个应用程序，模拟shell的命令解析器正是这样。上述两种情况也不是的话，则报出错误信息。
+​    2）分析命令，以命令名为文件名，将其他参数改造为系统调用execve()内核级系统调用......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-12-11
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2019/12/11/PTA/">
         <h2 class="post-title">
             PTA技巧
@@ -265,205 +448,6 @@
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2019/11/29/栈/">
-        <h2 class="post-title">
-            栈
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            栈的基本操作:
-stack  s;
-s.push(item)  //入栈
-s.top() 返回栈顶元素
-s.pop()删除栈顶元素
-s.size() //返回栈中元素个数
-s.empty()检查栈是否为空，为空返回true，否则返回false
-新生赛题目
-输入一个字符串，通过处理能使字符串中两个相邻且相同的字符互相消除，得到新的字符串，然后继续对新字符串消除，知道没有相同的字符。
-
-inpu......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-11-29
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/11/27/字符串/">
-        <h2 class="post-title">
-            字符串
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            hdu 1238
-找出字符串中，连续子串（逆子串）相等的长度
-简单字符串处理
-首先要读懂题意，题目给出一串手机号，按格式从大到小输出手机号中含有的数字，存入arr数组，再输出每个手机号的数字在arr数组中的下标。
-处理的几个巧妙之处：
-
-首先把vis数组初始化为1（默认手机号的每个数字都已经访问过），然后通过循环查询，出现手机号码中的数字则记录，没有出现则通过判断语句筛掉了，实现找出没有重复......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-11-27
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/11/22/深夜奇想/">
-        <h2 class="post-title">
-            深夜奇想
-        </h2>
-        <h3 class="post-subtitle">
-             "Hello 2020,Bye 2019!"
-        </h3>
-        <div class="post-content-preview">
-            
-“Yeah It’s on. ”
-
-前言其实大一的时候就想用博客来总结技术经验，记录生活点滴。但囿于在学习其他东西搁了很久。在今年暑假，开始学习算法，想通过一个平台来自己学习和分析的过程，便正式使用博客啦～
-
----
-
-大一的我（懵懂、进取的小萌新）​        刚刚进入大学，便认识到一个非常好玩而且十分特别的互联网组织——星空学生创新中心，一个以互联网为主的校级组织。当时二话不说赶紧......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Pistachio on
-        2019-11-22
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/10/12/JWT/">
-        <h2 class="post-title">
-            JWT
-        </h2>
-        <h3 class="post-subtitle">
-            基于Token的身份认证
-        </h3>
-        <div class="post-content-preview">
-            JWT是什么
-JWT本质是Token，用于验证身份的凭证。这个凭证能允许我们使用JWT在用户和服务器之间传递安全可靠的信息。
-
-是经过base64编码字符串。
-
-
-Cookie-Session认证机制
-​    客户端（用户）通过用户名和密码进行身份认证，但是下回发请求的时候又得验证以下。
-​    解决的办法是，用户成功登录之后，会在服务器端产生一条记录（Session），说明这用户是谁，......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-10-12
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/10/12/WaitNotify通知机制/">
-        <h2 class="post-title">
-            Wait&Notify的通知机制
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            Wait&amp;Notify的通知机制
-​        wait表示线程的等待，调用该方法会导致线程阻塞，直至另一线程调用notify或notifyAll方法才可另其继续执行。经典的生产者、消费者模式即是使用wait/notify机制得以完成。
-
-
-1.当线程A（消费者）调用wait()时，A会把锁释放出来，使自己进入等待状态，同时加入“锁对象”的等待队列。
-2.线程B获取锁后，调用no......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-10-12
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/10/12/中国剩余定理/">
-        <h2 class="post-title">
-            中国剩余定理
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            1.定义中国剩余定理 (Chinese Remainder Theorem, CRT) 可求解如下形式的一元线性同余方程组（其中  两两互质）：
-
-物不知数问题：一个整数除以3余2、除以5余3、除以7余2，求这个整数。
-定理1：两个数相加，如果存在一个加数，不能被整数a整除，那么它们的和，就不能被整数a整除。
-定理2：两数不能整除，若除数扩大（或缩小）了几倍，而被除数不变，则其商和余数也同时......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-10-12
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/10/12/欧几里得/">
-        <h2 class="post-title">
-            欧几里得
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            求最大公约数（最大公因子　GCD）
-质因数分解法
-
-例如：求24和60的最大公约数，先分解质因数，得24=2×2×2×3，60=2×2×3×5，24与60的全部公有的质因数是2、2、3，它们的积是2×2×3=12，所以，（24，60）=12。
-
-
-
-
-辗转相除法
-gcd(a,b) = gcd(b,a mod b)
-
-
-1234int gcd(int a,int b)&#123;	return......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-10-12
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -503,9 +487,11 @@ gcd(a,b) = gcd(b,a mod b)
                     <div class="tags">
                         
                             
-                            <a href="/tags/#数据结构" title="数据结构" rel="12">数据结构</a>
+                            <a href="/tags/#设计模式" title="设计模式" rel="4">设计模式</a>
                             
                         
+                            
+                            <a href="/tags/#数据结构" title="数据结构" rel="13">数据结构</a>
                             
                         
                             
@@ -513,7 +499,13 @@ gcd(a,b) = gcd(b,a mod b)
                             
                         
                             
-                            <a href="/tags/#算法" title="算法" rel="8">算法</a>
+                        
+                            
+                            <a href="/tags/#算法" title="算法" rel="9">算法</a>
+                            
+                        
+                            
+                        
                             
                         
                             
@@ -529,7 +521,11 @@ gcd(a,b) = gcd(b,a mod b)
                             
                         
                             
-                            <a href="/tags/#数论" title="数论" rel="11">数论</a>
+                        
+                            
+                            <a href="/tags/#数论" title="数论" rel="12">数论</a>
+                            
+                        
                             
                         
                             
@@ -555,17 +551,7 @@ gcd(a,b) = gcd(b,a mod b)
                             
                         
                             
-                            <a href="/tags/#设计模式" title="设计模式" rel="4">设计模式</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
+                            <a href="/tags/#MySQL" title="MySQL" rel="5">MySQL</a>
                             
                         
                     </div>

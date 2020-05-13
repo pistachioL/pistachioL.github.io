@@ -190,6 +190,175 @@
 
 <div class="post-preview">
 
+    <a href="/2019/09/22/python爬虫学习笔记/">
+        <h2 class="post-title">
+            python爬虫学习笔记
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            安装requests库install requests```1234567&#96;&#96;&#96;pythonimport requestsr &#x3D; requests.get(&quot;https:&#x2F;&#x2F;www.baidu.com&quot;)r.status_code   #返回状态码r.encoding(&quot;utf-8&quot;)r.text ......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-09-22
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/09/13/线段树/">
+        <h2 class="post-title">
+            线段树
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            1.定义
+线段树（segment tree） 是用来存放给定区间内对应信息的一种数据结构。线段树是二叉树，一个区间每次被折半往下分，所以往下查找，（二叉树的二分查找）最多lon2n次就能查找到。
+
+有两种操作：
+​    1）求某段区间的和
+​    2）修改某个区间的值
+2.过程1）建立二叉树
+​    
+2）剪枝部分  e.g.求区间[2,5]的和
+
+可以直接返回 return0，即不用......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-09-13
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/09/12/linux常用命令-/">
+        <h2 class="post-title">
+            linux常用命令
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            SCP上传下载1.从服务器拉取文件夹到本地scp -r root@xx.xxx.x.xx:文件所在路径 /home/Document
+2.从本地上传文件到服务器scp -r /home/Document root@xx.xxx.x.xx:/home/default
+3.rsync文件压缩tar -xvf file.tar
+tar -xzvf  file.tar.gz 
+tar -xjvf f......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-09-12
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/09/04/Bellma-Ford/">
+        <h2 class="post-title">
+            Bellma Ford
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            1.定义Bellman-Ford 算法是一种用于计算带权有向图中单(一个)源(顶点)最短路径的问题（单源指的是只有一个起点）：给定一个起点，求它到所有结点的最短路径。Bellman-Ford 算法能适应一般的情况（即存在负权边的情况），V*E&lt;10^7。​        Bellman-Ford 算法采用动态规划进行设计，时间复杂度 O(V*E)，其中 V 为顶点数量，E 为边的数量。......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-09-04
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/09/03/欧拉降幂公式/">
+        <h2 class="post-title">
+            欧拉函数
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            1. 欧拉函数​    对正整数n，欧拉函数是小于n的正整数中与n互质的数的数目。例如φ(8)=4，因为1,3,5,7均和8互质。
+对φ(N)的值,我们可以通俗地理解为小于N且与N互质的数的个数(包含1) 
+欧拉函数公式$$φ(x) = x \times (1-\frac{1}{p_1}) \times (1-\frac{1}{p_2}) \times …..\times (1-\frac{......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-09-03
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/09/02/快速幂/">
+        <h2 class="post-title">
+            快速幂
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            快速幂模板
+12345678910111213long long fastpow(long long x,long long n)&#123;    int base = x;    int res = 1;    while(n)    &#123;        if(n&amp;1)            res = (res%mod * base%mod)%mod;        b......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-09-02
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/08/31/BFS/">
+        <h2 class="post-title">
+            BFS
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            1. 定义​    树的BFS：从根节点开始，从左到右，从上到下进行的层次遍历；
+
+​    图的BFS：从根节点出发，找与该结点相邻的所有结点，如此类推，一层层遍历。
+
+​       图没有根结点，就得找一个点作为根节点。例如是A，则找与A相连距离1条边的结点，有B、C；再找与A距离2条边的结点有D、E；最后与A距离为3的结点有F。故BFS的遍历顺序为：ABCDEF
+注意，取的点不同，有......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-08-31
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2019/08/28/并查集/">
         <h2 class="post-title">
             并查集
@@ -268,192 +437,6 @@ map的底层实现时红黑树，查询的时间复杂度时log(n)
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2019/08/15/STL之set集合/">
-        <h2 class="post-title">
-            STL之set集合
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            一 定义​        set A;
-二 用法​        A.insert(item);
-​        A.earse(item);   //删除元素item
-​        A.clear();   //清空set
-​        A.empty();
-​        A.size()
-​        A.find(k);
-​        A.lower_bound(......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-08-15
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/08/14/优先队列/">
-        <h2 class="post-title">
-            优先队列
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            优先队列一. 定义优先队列不再遵循先入先出的原则，而是分为两种情况：
-
-最大优先队列，无论入队顺序，当前最大的元素优先出队。
-最小优先队列，无论入队顺序，当前最小的元素优先出队。
-
-因此可以用最大堆来实现最大优先队列，每一次入队操作就是堆的插入操作，每一次出队操作就是删除堆顶节点。优先队列的入队和出队的时间复杂度和二叉堆结点上浮下沉的一样，都是O(logn)，n为队列元素个数
-priorit......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-08-14
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/07/24/C语言小知识/">
-        <h2 class="post-title">
-            编程小知识
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            1）字符变数字：str[i]-‘0’
-2）char *strncpy(char *dest,const char *src,size_t n)把str所指向的字符串复制最多n个字符到dest
-123456789101112131415161718#include &lt;stdio.h&gt;#include &lt;string.h&gt;int main()&#123;   char s......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-07-24
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/07/24/队列基本用法/">
-        <h2 class="post-title">
-            队列基本用法
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            牛客上做的一个题目：https://ac.nowcoder.com/acm/contest/258/A 
-以样例为例：
-123456输入3 71 2 1 5 4 4 1输出 5
-
-容量为3，文章长度为7，第二行为文章内容。依题意，检索到相同的就为同一个单词，当单词数量大于容量的时候，软件会清空最早存入内存的单词，腾出单元，存放新单词。因此符合队列先进先出的特点。
-
-1234567891011......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-07-24
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/07/12/git常用操作/">
-        <h2 class="post-title">
-            git的常用操作
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            git常用操作github上传laravel项目git init
-git remote add origin git@github.com:pistachioL/xxx.git
-git add .
-git commit -m &quot;xxxx&quot;
-git push origin master -f
-删除远程关联
-git remote rm origin
-创建新分支git bran......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-07-12
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/07/12/树/">
-        <h2 class="post-title">
-            树
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            2019蓝桥杯校内选拔一题
-一棵包含有2019个结点的树，最多包含多少个叶结点？
-
-解法1：
-首先他问“最多”，当然便是完全二叉树（满二叉树）了。
-记i为树的层数，由完全二叉树的性质可得，结点总数为$$2^i-1$$，叶子结点总数为$$2^(i-1)$$，列出等式即可计算出。
-解法2：
-二叉树的性质：叶子结点 = 度为2的结点数 + 1
-当二叉树叶子结点最多时，即度为2的结点数最多，度为1的......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-07-12
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/07/12/Laravel导出excel数据/">
-        <h2 class="post-title">
-            Laravel导出excel数据
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            Laravel 导出excel1.扩展包的安装在laravel项目下的terminal安装：
-composer require maatwebsite/excel  
-2.config/app.php文件下的providers数组下加载如下类：1234'providers' =&gt; [...Maatwebsite\Excel\ExcelServiceProvider::class,],
-......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-07-12
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -464,6 +447,10 @@ composer require maatwebsite/excel
             <a href="/page/6/">&larr; Newer Posts</a>
         </li>
     
+    
+        <li class="next">
+            <a href="/page/8/">Older Posts &rarr;</a>
+        </li>
     
 </ul>
 
@@ -489,9 +476,11 @@ composer require maatwebsite/excel
                     <div class="tags">
                         
                             
-                            <a href="/tags/#数据结构" title="数据结构" rel="12">数据结构</a>
+                            <a href="/tags/#设计模式" title="设计模式" rel="4">设计模式</a>
                             
                         
+                            
+                            <a href="/tags/#数据结构" title="数据结构" rel="13">数据结构</a>
                             
                         
                             
@@ -499,7 +488,13 @@ composer require maatwebsite/excel
                             
                         
                             
-                            <a href="/tags/#算法" title="算法" rel="8">算法</a>
+                        
+                            
+                            <a href="/tags/#算法" title="算法" rel="9">算法</a>
+                            
+                        
+                            
+                        
                             
                         
                             
@@ -515,7 +510,11 @@ composer require maatwebsite/excel
                             
                         
                             
-                            <a href="/tags/#数论" title="数论" rel="11">数论</a>
+                        
+                            
+                            <a href="/tags/#数论" title="数论" rel="12">数论</a>
+                            
+                        
                             
                         
                             
@@ -541,17 +540,7 @@ composer require maatwebsite/excel
                             
                         
                             
-                            <a href="/tags/#设计模式" title="设计模式" rel="4">设计模式</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
+                            <a href="/tags/#MySQL" title="MySQL" rel="5">MySQL</a>
                             
                         
                     </div>

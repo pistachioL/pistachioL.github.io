@@ -190,6 +190,194 @@
 
 <div class="post-preview">
 
+    <a href="/2020/05/14/MySQL锁/">
+        <h2 class="post-title">
+            MySQL锁
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            锁是控制线程或进程并发的机制
+锁的分类按照数据操作的类型划分
+读锁（共享锁）：同一份数据，多个读操作可以同时进行，互不影响
+写锁（排它锁）：当前写操作还没完成，会阻断其他写锁和读锁
+
+session1 加了读锁，当前session1不能读其他未加锁的表，而且不能插入或更新锁定的表。session2可以读或操作未加锁的表，但如果对加读锁的表进行操作，会一直等待获得锁（阻塞），直到上读锁的表释放......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-05-14
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/05/13/MySQL索引/">
+        <h2 class="post-title">
+            MySQL索引
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            定义
+索引是帮助MySQL获取数据的数据结构（索引是数据结构－B-Tree）
+
+也可理解为“排好序的快速查找的数据结构”
+
+索引本身很大，不可能全部存储在内存，因此索引往往会以索引文件的形式存储在磁盘中。
+优势与劣势
+优势    
+
+提高数据检索效率，降低数据库IO的成本
+降低数据排序成本，降低CPU的消耗
+
+
+劣势
+
+索引列会占用磁盘空间。索引实际上也是一张表，该表保存了主键和索引字段，并......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-05-13
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/05/13/MySQL存储引擎/">
+        <h2 class="post-title">
+            MySQL存储引擎
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            常见类型InnoDB,MyISAM,Memory  还有Achive,Blackhole,CSV
+MySQL5.5之后默认的引擎是InnoDB
+MySQL与MyISAM的比较
+
+
+对比项
+MyISAM
+InnoDB
+
+
+
+主外键
+不支持
+支持
+
+
+事务
+不支持
+支持
+
+
+行表锁
+表锁（操作一条记录会锁住整个表）不适合高并发
+行锁（操作时只锁住某一行，不对其他行有影响）适合高并发
+
+
+缓存
+只......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-05-13
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/05/13/MySQL事务隔离级别/">
+        <h2 class="post-title">
+            MySQL事务隔离级别
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            事务事务是由一组SQL语句组成的一个执行单元，该执行单元要么全部执行或全部不执行
+并发当要同时执行多个事务时，这些事务访问数据库中相同的数据时，如果没有相应的事务隔离级别，就会引发各种并发问题：
+
+曾经被问过一个问题：如果有人同时查看预约系统的数据，有没有相应的措施？其实是在考数据库的并发问题啊
+
+
+脏读（未提交读）如2个事务T1、T2，如果T1读取了已被T2更新过但没有提交的字段之后，若T......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-05-13
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/05/12/斐波那契数列/">
+        <h2 class="post-title">
+            斐波那契数列
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            　
+斐波那契一个重要性质:斐波那契数列的相邻每个数的最大公约数gcd(n-2,n-1)是相同的。
+...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-05-12
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/05/09/Trie树/">
+        <h2 class="post-title">
+            Trie树
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            Trie树Trie树，又称字典树、前缀树，是一种树形结构，它是一种专门处理字符串匹配的数据结构，用来解决在一组字符串集合中快速查找某个字符串的问题。
+Trie树的特点
+
+根节点不包含字符，根节点外的每一个结点表示一个字母
+从根节点到某一个结点连起来的路径，成为有一个字符串
+每个节点的子节点所包含的字符不相同
+
+插入https://juejin.im/post/5c2c096251882579......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-05-09
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2020/05/02/树状数组/">
         <h2 class="post-title">
             树状数组
@@ -289,173 +477,6 @@ CgiCgi是Common Gateway Interface的缩写。过去服务器只能处理静态�
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2020/04/24/序列和/">
-        <h2 class="post-title">
-            序列和
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-给出一个正整数N和长度L，找出一段长度大于等于L的连续非负整数，他们的和恰好为N。答案可能有多个，我我们需要找出长度最小的那个。 例如 N = 18 L = 2： 5 + 6 + 7 = 18 3 + 4 + 5 + 6 = 18 都是满足要求的，但是我们输出更短的 5 6 7
-
-Sn = (a1 + an) * n / 2 = N
-​          [a1+a1+(n-1)*d] *......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-04-24
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/04/23/Get和Post的区别/">
-        <h2 class="post-title">
-            Get和Post的区别
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            使用上的区别
-GET通过URL或Cookie传参，而POST将数据放在BODY中（是HTTP的约定）
-GET方式提交的数据有长度限制，而POST的数据则可以非常大。HTTP协议对GET和POST长度没有限制，并且对HTTP头和Body都没有长度的要求。只是因为它们使用的操作系统和浏览器设置的不同引起的区别。
-POST比GET安全，因为数据在地址栏上不可见。通过GET提交数据，用户名和密码将明......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-04-23
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/04/23/MySQL的高可扩展/">
-        <h2 class="post-title">
-            MySQL的高可扩展
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            MySQL 优化查询MySQL提供了一个 EXPLAIN 命令, 它可以对 SELECT 语句进行分析, 并输出 SELECT 执行的详细信息, 以供开发人员针对性优化
-###　分区表
-工作原理对用户来说，分区表是独立的逻辑表，但是MySQL底层将其分成多个物理子表，每一个分区表都是独立的表文件，这些对于用户来说是透明的。
-创建表时使用partition by子句定义每个分区存放的数据，执行......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-04-23
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/04/22/红黑树/">
-        <h2 class="post-title">
-            红黑树
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            红黑树（Red Black Tree）是对二叉搜索树的改进，解决二叉搜索树多次插入新节点导致的不平衡问题。对于搜索、插入和删除较多操作的情况下，通常使用红黑树。
-红黑树的底层结构是二叉查找树。
-其产生过程：链表-&gt;二叉树-&gt;二叉查找树-&gt;自平衡的二叉查找树
-
-特性以下特性保证了红黑树的平衡特性，确保没有一条路径比其它路径长出两倍
-
-是自平衡的二叉查找树
-结点是红色或黑色
-根......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-04-22
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/04/21/Redis基础知识/">
-        <h2 class="post-title">
-            Redis基础知识
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            启动、状态、结束123systemctl status redis-serversystemctl status redis-serversystemctl stop redis-server
-
-
-默认端口时6379
-
-有16个数据库，每一个从下标0开始
-
-统一管理密码，16个库同样密码
-
-
-连接服务1redis-cli
-
-
-
-基本命令12345DBSIZE //当前数据库key的个数key......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-04-21
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/04/18/操作系统的内存管理/">
-        <h2 class="post-title">
-            操作系统的内存管理
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            操作系统加载进内存之后，要对内存进行管理
-计算机基本硬件结构
-操作系统管理内存的不同方法
-程序重定位
-分段
-分页
-虚拟内存（硬盘）
-按需分页虚拟内存
-
-...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-04-18
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -491,9 +512,11 @@ POST比GET安全，因为数据在地址栏上不可见。通过GET提交数据�
                     <div class="tags">
                         
                             
-                            <a href="/tags/#数据结构" title="数据结构" rel="12">数据结构</a>
+                            <a href="/tags/#设计模式" title="设计模式" rel="4">设计模式</a>
                             
                         
+                            
+                            <a href="/tags/#数据结构" title="数据结构" rel="13">数据结构</a>
                             
                         
                             
@@ -501,7 +524,13 @@ POST比GET安全，因为数据在地址栏上不可见。通过GET提交数据�
                             
                         
                             
-                            <a href="/tags/#算法" title="算法" rel="8">算法</a>
+                        
+                            
+                            <a href="/tags/#算法" title="算法" rel="9">算法</a>
+                            
+                        
+                            
+                        
                             
                         
                             
@@ -517,7 +546,11 @@ POST比GET安全，因为数据在地址栏上不可见。通过GET提交数据�
                             
                         
                             
-                            <a href="/tags/#数论" title="数论" rel="11">数论</a>
+                        
+                            
+                            <a href="/tags/#数论" title="数论" rel="12">数论</a>
+                            
+                        
                             
                         
                             
@@ -543,17 +576,7 @@ POST比GET安全，因为数据在地址栏上不可见。通过GET提交数据�
                             
                         
                             
-                            <a href="/tags/#设计模式" title="设计模式" rel="4">设计模式</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
+                            <a href="/tags/#MySQL" title="MySQL" rel="5">MySQL</a>
                             
                         
                     </div>

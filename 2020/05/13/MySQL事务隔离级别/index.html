@@ -13,11 +13,11 @@
 
     <title>
         
-          欧几里得 - Pistachio的楼阁 | Pistachio&#39;s Blog
+          MySQL事务隔离级别 - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2019/10/12/欧几里得/">
+    <link rel="canonical" href="https://pistachiol.github.io/2020/05/13/MySQL事务隔离级别/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -171,14 +171,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#数论" title="数论">数论</a>
+                          <a class="tag" href="/tags/#MySQL" title="MySQL">MySQL</a>
                         
                     </div>
-                    <h1>欧几里得</h1>
+                    <h1>MySQL事务隔离级别</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
-                        2019-10-12
+                        2020-05-13
                     </span>
                 </div>
             </div>
@@ -197,48 +197,31 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="求最大公约数（最大公因子-GCD）"><a href="#求最大公约数（最大公因子-GCD）" class="headerlink" title="求最大公约数（最大公因子　GCD）"></a>求最大公约数（最大公因子　GCD）</h3><ul>
-<li><p>质因数分解法</p>
+                <h3 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h3><p>事务是由一组SQL语句组成的一个执行单元，该执行单元要么全部执行或全部不执行</p>
+<h3 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h3><p>当要同时执行多个事务时，这些事务访问数据库中相同的数据时，如果没有相应的事务隔离级别，就会引发各种并发问题：</p>
 <blockquote>
-<p>例如：求24和60的最大公约数，先分解质因数，得24=2×2×2×3，60=2×2×3×5，24与60的全部公有的质因数是2、2、3，它们的积是2×2×3=12，所以，（24，60）=12。</p>
+<p>曾经被问过一个问题：如果有人同时查看预约系统的数据，有没有相应的措施？其实是在考数据库的并发问题啊</p>
 </blockquote>
+<ul>
+<li><p>脏读（未提交读）<br>如2个事务T1、T2，如果T1读取了已被T2更新过但<strong>没有提交</strong>的字段之后，若T2回滚，T1读取的内容是暂时且无效的</p>
+</li>
+<li><p>不可重复读</p>
+<p>如2个事务T1、T2，如果T1读取了一个字段，然后T2<strong>更新</strong>了该字段并提交之后，T1再次读同一个字段，值就不同了（重点是更新）</p>
+</li>
+<li><p>幻读</p>
+<p>如2个事务T1T2，如果T1从数据表读了一个字段，然后T2在表中<strong>插入</strong>新的行，之后如果T1再读取同一个表，就会出现多了几行（重点是插入）</p>
 </li>
 </ul>
-<ul>
-<li><p>辗转相除法</p>
-<p><strong>gcd(a,b) = gcd(b,a mod b)</strong></p>
-</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> b == <span class="number">0</span>?a:gcd(b,a%b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>迭代形式</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="keyword">int</span> r;</span><br><span class="line">   <span class="keyword">while</span>(b!=<span class="number">0</span>)</span><br><span class="line">   &#123;</span><br><span class="line">      r = b;</span><br><span class="line">      b = a%b;</span><br><span class="line">      a = r;</span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="keyword">int</span> a,b;</span><br><span class="line">   <span class="built_in">cin</span> &gt;&gt; a &gt;&gt; b;</span><br><span class="line">   <span class="built_in">cout</span> &lt;&lt;  gcd(a,b) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li><p>C++内置函数法</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">std</span>::__gcd(a,b);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">24</span>,b=<span class="number">60</span>;</span><br><span class="line">    <span class="keyword">int</span> ans = gcd(a,b);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<h3 id="最小公倍数（LCM）"><a href="#最小公倍数（LCM）" class="headerlink" title="最小公倍数（LCM）"></a>最小公倍数（LCM）</h3><blockquote>
-<p>把几个数先分别分解质因数，再把各数中的全部公有的质因数和独有的质因数提取出来连乘，所得的积就是这几个数的最小公倍数</p>
-<p>求6和15的LCM。先分解质因数，得6=2×3，15=3×5，2×3×5=30，30是6和15的公倍数中最小的一个，所以[6，15]=30。</p>
+<h3 id="MySQL的事务隔离级别"><a href="#MySQL的事务隔离级别" class="headerlink" title="MySQL的事务隔离级别"></a>MySQL的事务隔离级别</h3><blockquote>
+<p>MySQL支持4种事务隔离级别，Oracle支持2种（Read Commit,Serializable）</p>
 </blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lcm</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a/gcd(a,b) * b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="扩展欧几里得算法"><a href="#扩展欧几里得算法" class="headerlink" title="扩展欧几里得算法"></a>扩展欧几里得算法</h3><p>方程符合ax + by = n，则gcd(a,b)能整除n,可用扩展欧几里得算法求（x0,y0)</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">exgcd</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b,<span class="keyword">int</span> &amp;x,<span class="keyword">int</span> &amp;y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(b==<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        x = <span class="number">1</span>;</span><br><span class="line">        y = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    exgcd(b,a%b,x,y);</span><br><span class="line">    <span class="keyword">int</span> tmp = x;</span><br><span class="line">    x = y;</span><br><span class="line">    y = tmp - (a-b)*y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
+<ol>
+<li>READ UNCOMMITED（读未提交数据）</li>
+<li>READ COMMITED（读已提交的数据）</li>
+<li>REPETABLE READ(可重复读)　<strong>MySQL默认</strong></li>
+<li>SERIALIZABLE(串行化)</li>
+</ol>
+<p><img src="/2020/05/13/MySQL%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/1.png" alt></p>
 
 
                 <hr>
@@ -248,12 +231,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2019/10/12/WaitNotify通知机制/" data-toggle="tooltip" data-placement="top" title="Wait&Notify的通知机制">&larr; Previous Post</a>
+                            <a href="/2020/05/13/MySQL存储引擎/" data-toggle="tooltip" data-placement="top" title="MySQL存储引擎">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2019/10/12/中国剩余定理/" data-toggle="tooltip" data-placement="top" title="中国剩余定理">Next Post &rarr;</a>
+                            <a href="/2020/05/12/斐波那契数列/" data-toggle="tooltip" data-placement="top" title="斐波那契数列">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -286,7 +269,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#数论" title="数论">数论</a>
+                          <a class="tag" href="/tags/#MySQL" title="MySQL">MySQL</a>
                         
                     </div>
                 </section>
@@ -318,8 +301,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2019/10/12/%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97/";
-    var disqus_url = "https://pistachiol.github.io/2019/10/12/%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97/";
+    var disqus_identifier = "https://pistachiol.github.io/2020/05/13/MySQL%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/";
+    var disqus_url = "https://pistachiol.github.io/2020/05/13/MySQL%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

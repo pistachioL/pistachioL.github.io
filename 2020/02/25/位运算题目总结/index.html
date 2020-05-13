@@ -13,11 +13,11 @@
 
     <title>
         
-          欧几里得 - Pistachio的楼阁 | Pistachio&#39;s Blog
+          位运算题目总结 - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2019/10/12/欧几里得/">
+    <link rel="canonical" href="https://pistachiol.github.io/2020/02/25/位运算题目总结/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -171,14 +171,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#数论" title="数论">数论</a>
+                          <a class="tag" href="/tags/#算法" title="算法">算法</a>
                         
                     </div>
-                    <h1>欧几里得</h1>
+                    <h1>位运算题目总结</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
-                        2019-10-12
+                        2020-02-25
                     </span>
                 </div>
             </div>
@@ -197,48 +197,31 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="求最大公约数（最大公因子-GCD）"><a href="#求最大公约数（最大公因子-GCD）" class="headerlink" title="求最大公约数（最大公因子　GCD）"></a>求最大公约数（最大公因子　GCD）</h3><ul>
-<li><p>质因数分解法</p>
+                <p><strong>LeetCode 求二进制数中1的个数</strong></p>
+<p>这是一种更高效的思路，把整数减1，再与原来的数做与运算，会把原来的二进制数最右边的1去掉。计算有多少次去掉1的操作，即可知道1的个数。</p>
+<p><code>n = n &amp; (n-1)</code> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">hammingWeight</span><span class="params">(<span class="keyword">uint32_t</span> n)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">while</span>(n)</span><br><span class="line">       &#123;</span><br><span class="line">           cnt++;</span><br><span class="line">           n = n &amp; (n<span class="number">-1</span>);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> cnt;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>LeetCode 2的幂</strong></p>
 <blockquote>
-<p>例如：求24和60的最大公约数，先分解质因数，得24=2×2×2×3，60=2×2×3×5，24与60的全部公有的质因数是2、2、3，它们的积是2×2×3=12，所以，（24，60）=12。</p>
+<p>输入一个数，判断是不是2的幂次方</p>
 </blockquote>
-</li>
-</ul>
-<ul>
-<li><p>辗转相除法</p>
-<p><strong>gcd(a,b) = gcd(b,a mod b)</strong></p>
-</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> b == <span class="number">0</span>?a:gcd(b,a%b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>迭代形式</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="keyword">int</span> r;</span><br><span class="line">   <span class="keyword">while</span>(b!=<span class="number">0</span>)</span><br><span class="line">   &#123;</span><br><span class="line">      r = b;</span><br><span class="line">      b = a%b;</span><br><span class="line">      a = r;</span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="keyword">int</span> a,b;</span><br><span class="line">   <span class="built_in">cin</span> &gt;&gt; a &gt;&gt; b;</span><br><span class="line">   <span class="built_in">cout</span> &lt;&lt;  gcd(a,b) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2的幂次方，只要满足<code>n&gt;0 &amp;&amp; (n &amp; (n-1)) == 0</code>即可。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isPowerOfTwo</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span>(n &gt; <span class="number">0</span> &amp;&amp; (n &amp; (n<span class="number">-1</span>)) == <span class="number">0</span>)</span><br><span class="line">           <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">       <span class="keyword">else</span></span><br><span class="line">           <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<ul>
-<li><p>C++内置函数法</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">std</span>::__gcd(a,b);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">24</span>,b=<span class="number">60</span>;</span><br><span class="line">    <span class="keyword">int</span> ans = gcd(a,b);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<h3 id="最小公倍数（LCM）"><a href="#最小公倍数（LCM）" class="headerlink" title="最小公倍数（LCM）"></a>最小公倍数（LCM）</h3><blockquote>
-<p>把几个数先分别分解质因数，再把各数中的全部公有的质因数和独有的质因数提取出来连乘，所得的积就是这几个数的最小公倍数</p>
-<p>求6和15的LCM。先分解质因数，得6=2×3，15=3×5，2×3×5=30，30是6和15的公倍数中最小的一个，所以[6，15]=30。</p>
+<p><strong>汉明距离</strong></p>
+<blockquote>
+<p>汉明距离是指两个数字对应二进制位不同的位置的数目。如1   (0 0 0 1)　4   (0 1 0 0)，第1,3位不同</p>
 </blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lcm</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a/gcd(a,b) * b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">hammingDistance</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> n = x ^ y;</span><br><span class="line">        <span class="keyword">while</span>(n)&#123;</span><br><span class="line">            n = n &amp; (n<span class="number">-1</span>);</span><br><span class="line">            res++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
-
-
-<h3 id="扩展欧几里得算法"><a href="#扩展欧几里得算法" class="headerlink" title="扩展欧几里得算法"></a>扩展欧几里得算法</h3><p>方程符合ax + by = n，则gcd(a,b)能整除n,可用扩展欧几里得算法求（x0,y0)</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">exgcd</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b,<span class="keyword">int</span> &amp;x,<span class="keyword">int</span> &amp;y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(b==<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        x = <span class="number">1</span>;</span><br><span class="line">        y = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    exgcd(b,a%b,x,y);</span><br><span class="line">    <span class="keyword">int</span> tmp = x;</span><br><span class="line">    x = y;</span><br><span class="line">    y = tmp - (a-b)*y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
+<p>2020/05/12美团笔试</p>
+<p><strong>最大的汉明距离</strong></p>
+<p>当时没有考虑清楚，每个数之间的汉明距离都要算一遍，而简单地一次遍历相邻数字的汉明距离，所以只通过了18%，现在复盘刷到类似的题目时突然想起来了……</p>
 
 
                 <hr>
@@ -248,12 +231,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2019/10/12/WaitNotify通知机制/" data-toggle="tooltip" data-placement="top" title="Wait&Notify的通知机制">&larr; Previous Post</a>
+                            <a href="/2020/03/03/双指针/" data-toggle="tooltip" data-placement="top" title="双指针">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2019/10/12/中国剩余定理/" data-toggle="tooltip" data-placement="top" title="中国剩余定理">Next Post &rarr;</a>
+                            <a href="/2020/02/25/二进制数/" data-toggle="tooltip" data-placement="top" title="二进制的总结">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -286,7 +269,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#数论" title="数论">数论</a>
+                          <a class="tag" href="/tags/#算法" title="算法">算法</a>
                         
                     </div>
                 </section>
@@ -318,8 +301,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2019/10/12/%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97/";
-    var disqus_url = "https://pistachiol.github.io/2019/10/12/%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97/";
+    var disqus_identifier = "https://pistachiol.github.io/2020/02/25/%E4%BD%8D%E8%BF%90%E7%AE%97%E9%A2%98%E7%9B%AE%E6%80%BB%E7%BB%93/";
+    var disqus_url = "https://pistachiol.github.io/2020/02/25/%E4%BD%8D%E8%BF%90%E7%AE%97%E9%A2%98%E7%9B%AE%E6%80%BB%E7%BB%93/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

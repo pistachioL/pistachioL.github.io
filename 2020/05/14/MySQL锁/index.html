@@ -13,11 +13,11 @@
 
     <title>
         
-          欧几里得 - Pistachio的楼阁 | Pistachio&#39;s Blog
+          MySQL锁 - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2019/10/12/欧几里得/">
+    <link rel="canonical" href="https://pistachiol.github.io/2020/05/14/MySQL锁/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -171,14 +171,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#数论" title="数论">数论</a>
+                          <a class="tag" href="/tags/#MySQL" title="MySQL">MySQL</a>
                         
                     </div>
-                    <h1>欧几里得</h1>
+                    <h1>MySQL锁</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
-                        2019-10-12
+                        2020-05-14
                     </span>
                 </div>
             </div>
@@ -197,48 +197,16 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="求最大公约数（最大公因子-GCD）"><a href="#求最大公约数（最大公因子-GCD）" class="headerlink" title="求最大公约数（最大公因子　GCD）"></a>求最大公约数（最大公因子　GCD）</h3><ul>
-<li><p>质因数分解法</p>
-<blockquote>
-<p>例如：求24和60的最大公约数，先分解质因数，得24=2×2×2×3，60=2×2×3×5，24与60的全部公有的质因数是2、2、3，它们的积是2×2×3=12，所以，（24，60）=12。</p>
-</blockquote>
-</li>
+                <p>锁是控制线程或进程并发的机制</p>
+<h3 id="锁的分类"><a href="#锁的分类" class="headerlink" title="锁的分类"></a>锁的分类</h3><h5 id="按照数据操作的类型划分"><a href="#按照数据操作的类型划分" class="headerlink" title="按照数据操作的类型划分"></a>按照数据操作的类型划分</h5><ul>
+<li>读锁（共享锁）：同一份数据，多个读操作可以同时进行，互不影响</li>
+<li>写锁（排它锁）：当前写操作还没完成，会阻断其他写锁和读锁</li>
 </ul>
-<ul>
-<li><p>辗转相除法</p>
-<p><strong>gcd(a,b) = gcd(b,a mod b)</strong></p>
-</li>
+<p>session1 加了读锁，当前session1不能读其他未加锁的表，而且不能插入或更新锁定的表。session2可以读或操作未加锁的表，但如果对加读锁的表进行操作，会一直等待获得锁（阻塞），直到上读锁的表释放锁之后，session2获得锁，操作完成。</p>
+<h5 id="按照数据操作的粒度划分"><a href="#按照数据操作的粒度划分" class="headerlink" title="按照数据操作的粒度划分"></a>按照数据操作的粒度划分</h5><ul>
+<li>行锁（偏写）</li>
+<li>表锁（偏读）</li>
 </ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> b == <span class="number">0</span>?a:gcd(b,a%b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>迭代形式</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="keyword">int</span> r;</span><br><span class="line">   <span class="keyword">while</span>(b!=<span class="number">0</span>)</span><br><span class="line">   &#123;</span><br><span class="line">      r = b;</span><br><span class="line">      b = a%b;</span><br><span class="line">      a = r;</span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="keyword">int</span> a,b;</span><br><span class="line">   <span class="built_in">cin</span> &gt;&gt; a &gt;&gt; b;</span><br><span class="line">   <span class="built_in">cout</span> &lt;&lt;  gcd(a,b) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li><p>C++内置函数法</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">std</span>::__gcd(a,b);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">24</span>,b=<span class="number">60</span>;</span><br><span class="line">    <span class="keyword">int</span> ans = gcd(a,b);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<h3 id="最小公倍数（LCM）"><a href="#最小公倍数（LCM）" class="headerlink" title="最小公倍数（LCM）"></a>最小公倍数（LCM）</h3><blockquote>
-<p>把几个数先分别分解质因数，再把各数中的全部公有的质因数和独有的质因数提取出来连乘，所得的积就是这几个数的最小公倍数</p>
-<p>求6和15的LCM。先分解质因数，得6=2×3，15=3×5，2×3×5=30，30是6和15的公倍数中最小的一个，所以[6，15]=30。</p>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lcm</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a/gcd(a,b) * b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="扩展欧几里得算法"><a href="#扩展欧几里得算法" class="headerlink" title="扩展欧几里得算法"></a>扩展欧几里得算法</h3><p>方程符合ax + by = n，则gcd(a,b)能整除n,可用扩展欧几里得算法求（x0,y0)</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">exgcd</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b,<span class="keyword">int</span> &amp;x,<span class="keyword">int</span> &amp;y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(b==<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        x = <span class="number">1</span>;</span><br><span class="line">        y = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    exgcd(b,a%b,x,y);</span><br><span class="line">    <span class="keyword">int</span> tmp = x;</span><br><span class="line">    x = y;</span><br><span class="line">    y = tmp - (a-b)*y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 
 
                 <hr>
@@ -247,13 +215,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2019/10/12/WaitNotify通知机制/" data-toggle="tooltip" data-placement="top" title="Wait&Notify的通知机制">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2019/10/12/中国剩余定理/" data-toggle="tooltip" data-placement="top" title="中国剩余定理">Next Post &rarr;</a>
+                            <a href="/2020/05/13/MySQL索引/" data-toggle="tooltip" data-placement="top" title="MySQL索引">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -286,7 +250,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#数论" title="数论">数论</a>
+                          <a class="tag" href="/tags/#MySQL" title="MySQL">MySQL</a>
                         
                     </div>
                 </section>
@@ -318,8 +282,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2019/10/12/%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97/";
-    var disqus_url = "https://pistachiol.github.io/2019/10/12/%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97/";
+    var disqus_identifier = "https://pistachiol.github.io/2020/05/14/MySQL%E9%94%81/";
+    var disqus_url = "https://pistachiol.github.io/2020/05/14/MySQL%E9%94%81/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

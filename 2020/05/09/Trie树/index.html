@@ -13,11 +13,11 @@
 
     <title>
         
-          欧几里得 - Pistachio的楼阁 | Pistachio&#39;s Blog
+          Trie树 - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2019/10/12/欧几里得/">
+    <link rel="canonical" href="https://pistachiol.github.io/2020/05/09/Trie树/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -171,14 +171,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#数论" title="数论">数论</a>
+                          <a class="tag" href="/tags/#数据结构" title="数据结构">数据结构</a>
                         
                     </div>
-                    <h1>欧几里得</h1>
+                    <h1>Trie树</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
-                        2019-10-12
+                        2020-05-09
                     </span>
                 </div>
             </div>
@@ -197,48 +197,15 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="求最大公约数（最大公因子-GCD）"><a href="#求最大公约数（最大公因子-GCD）" class="headerlink" title="求最大公约数（最大公因子　GCD）"></a>求最大公约数（最大公因子　GCD）</h3><ul>
-<li><p>质因数分解法</p>
-<blockquote>
-<p>例如：求24和60的最大公约数，先分解质因数，得24=2×2×2×3，60=2×2×3×5，24与60的全部公有的质因数是2、2、3，它们的积是2×2×3=12，所以，（24，60）=12。</p>
-</blockquote>
-</li>
-</ul>
+                <h1 id="Trie树"><a href="#Trie树" class="headerlink" title="Trie树"></a>Trie树</h1><p>Trie树，又称字典树、前缀树，是一种树形结构，它是一种专门处理字符串匹配的数据结构，用来解决在一组字符串集合中快速查找某个字符串的问题。</p>
+<h3 id="Trie树的特点"><a href="#Trie树的特点" class="headerlink" title="Trie树的特点"></a>Trie树的特点</h3><p><img src="/2020/05/09/Trie%E6%A0%91/1.png" alt></p>
 <ul>
-<li><p>辗转相除法</p>
-<p><strong>gcd(a,b) = gcd(b,a mod b)</strong></p>
-</li>
+<li>根节点不包含字符，根节点外的每一个结点表示一个字母</li>
+<li>从根节点到某一个结点连起来的路径，成为有一个字符串</li>
+<li>每个节点的子节点所包含的字符不相同</li>
 </ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> b == <span class="number">0</span>?a:gcd(b,a%b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>迭代形式</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="keyword">int</span> r;</span><br><span class="line">   <span class="keyword">while</span>(b!=<span class="number">0</span>)</span><br><span class="line">   &#123;</span><br><span class="line">      r = b;</span><br><span class="line">      b = a%b;</span><br><span class="line">      a = r;</span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="keyword">int</span> a,b;</span><br><span class="line">   <span class="built_in">cin</span> &gt;&gt; a &gt;&gt; b;</span><br><span class="line">   <span class="built_in">cout</span> &lt;&lt;  gcd(a,b) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li><p>C++内置函数法</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">std</span>::__gcd(a,b);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">24</span>,b=<span class="number">60</span>;</span><br><span class="line">    <span class="keyword">int</span> ans = gcd(a,b);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<h3 id="最小公倍数（LCM）"><a href="#最小公倍数（LCM）" class="headerlink" title="最小公倍数（LCM）"></a>最小公倍数（LCM）</h3><blockquote>
-<p>把几个数先分别分解质因数，再把各数中的全部公有的质因数和独有的质因数提取出来连乘，所得的积就是这几个数的最小公倍数</p>
-<p>求6和15的LCM。先分解质因数，得6=2×3，15=3×5，2×3×5=30，30是6和15的公倍数中最小的一个，所以[6，15]=30。</p>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lcm</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a/gcd(a,b) * b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="扩展欧几里得算法"><a href="#扩展欧几里得算法" class="headerlink" title="扩展欧几里得算法"></a>扩展欧几里得算法</h3><p>方程符合ax + by = n，则gcd(a,b)能整除n,可用扩展欧几里得算法求（x0,y0)</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">exgcd</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b,<span class="keyword">int</span> &amp;x,<span class="keyword">int</span> &amp;y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(b==<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        x = <span class="number">1</span>;</span><br><span class="line">        y = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    exgcd(b,a%b,x,y);</span><br><span class="line">    <span class="keyword">int</span> tmp = x;</span><br><span class="line">    x = y;</span><br><span class="line">    y = tmp - (a-b)*y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
+<h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><p><a href="https://juejin.im/post/5c2c096251882579717db3d2#heading-9" target="_blank" rel="noopener">https://juejin.im/post/5c2c096251882579717db3d2#heading-9</a></p>
+<p><a href="https://www.cnblogs.com/huangxincheng/archive/2012/11/25/2788268.html" target="_blank" rel="noopener">https://www.cnblogs.com/huangxincheng/archive/2012/11/25/2788268.html</a></p>
 
 
                 <hr>
@@ -248,12 +215,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2019/10/12/WaitNotify通知机制/" data-toggle="tooltip" data-placement="top" title="Wait&Notify的通知机制">&larr; Previous Post</a>
+                            <a href="/2020/05/12/斐波那契数列/" data-toggle="tooltip" data-placement="top" title="斐波那契数列">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2019/10/12/中国剩余定理/" data-toggle="tooltip" data-placement="top" title="中国剩余定理">Next Post &rarr;</a>
+                            <a href="/2020/05/02/树状数组/" data-toggle="tooltip" data-placement="top" title="树状数组">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -286,7 +253,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#数论" title="数论">数论</a>
+                          <a class="tag" href="/tags/#数据结构" title="数据结构">数据结构</a>
                         
                     </div>
                 </section>
@@ -318,8 +285,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2019/10/12/%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97/";
-    var disqus_url = "https://pistachiol.github.io/2019/10/12/%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97/";
+    var disqus_identifier = "https://pistachiol.github.io/2020/05/09/Trie%E6%A0%91/";
+    var disqus_url = "https://pistachiol.github.io/2020/05/09/Trie%E6%A0%91/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

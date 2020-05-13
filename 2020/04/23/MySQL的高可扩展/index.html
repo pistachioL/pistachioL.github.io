@@ -197,7 +197,22 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="MySQL-优化查询"><a href="#MySQL-优化查询" class="headerlink" title="MySQL 优化查询"></a>MySQL 优化查询</h3><p>MySQL提供了一个 EXPLAIN 命令, 它可以对 <code>SELECT</code> 语句进行分析, 并输出 <code>SELECT</code> 执行的详细信息, 以供开发人员针对性优化</p>
+                <h3 id="MySQL的性能分析"><a href="#MySQL的性能分析" class="headerlink" title="MySQL的性能分析"></a>MySQL的性能分析</h3><ul>
+<li><p>MySQL Query Optimizer(自带的优化器)</p>
+</li>
+<li><p>MySQL常见的瓶颈</p>
+<ul>
+<li>CPU饱和：通常发生在数据装入内存或者从磁盘中读数据</li>
+<li>磁盘IO饱和：载入的数据远大于内存的容量</li>
+<li>服务器性能饱和：可以通过<strong>top/free/vmstat/iostat</strong>查看系统性能状态</li>
+</ul>
+</li>
+<li><p>Explain查询</p>
+<ul>
+<li>MySQL提供了一个 EXPLAIN 命令, 它可以对 <code>SELECT</code> 语句进行分析, 并输出 <code>SELECT</code> 执行的详细信息, 以供开发人员针对性优化</li>
+</ul>
+</li>
+</ul>
 <p>###　分区表</p>
 <h5 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h5><p>对用户来说，分区表是独立的逻辑表，但是MySQL底层将其分成多个物理子表，每一个分区表都是独立的表文件，这些对于用户来说是透明的。</p>
 <p>创建表时使用partition by子句定义每个分区存放的数据，执行查询时，优化器会根据分区定义过滤没有我们所需数据的分区，使得查询时只查询数据所在分区即可。</p>

@@ -13,11 +13,11 @@
 
     <title>
         
-          欧几里得 - Pistachio的楼阁 | Pistachio&#39;s Blog
+          MySQL索引 - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2019/10/12/欧几里得/">
+    <link rel="canonical" href="https://pistachiol.github.io/2020/05/13/MySQL索引/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -171,14 +171,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#数论" title="数论">数论</a>
+                          <a class="tag" href="/tags/#MySQL" title="MySQL">MySQL</a>
                         
                     </div>
-                    <h1>欧几里得</h1>
+                    <h1>MySQL索引</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
-                        2019-10-12
+                        2020-05-13
                     </span>
                 </div>
             </div>
@@ -197,48 +197,47 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="求最大公约数（最大公因子-GCD）"><a href="#求最大公约数（最大公因子-GCD）" class="headerlink" title="求最大公约数（最大公因子　GCD）"></a>求最大公约数（最大公因子　GCD）</h3><ul>
-<li><p>质因数分解法</p>
-<blockquote>
-<p>例如：求24和60的最大公约数，先分解质因数，得24=2×2×2×3，60=2×2×3×5，24与60的全部公有的质因数是2、2、3，它们的积是2×2×3=12，所以，（24，60）=12。</p>
+                <h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><blockquote>
+<p>索引是帮助MySQL获取数据的数据结构（索引是数据结构－B-Tree）</p>
 </blockquote>
+<p>也可理解为“<strong>排好序</strong>的快速<strong>查找</strong>的数据结构”</p>
+<p><img src="/2020/05/13/MySQL%E7%B4%A2%E5%BC%95/1.png" alt></p>
+<p>索引本身很大，不可能全部存储在内存，因此索引往往会以索引文件的形式存储在<strong>磁盘</strong>中。</p>
+<h3 id="优势与劣势"><a href="#优势与劣势" class="headerlink" title="优势与劣势"></a>优势与劣势</h3><ul>
+<li><p>优势    </p>
+<ul>
+<li>提高数据<strong>检索</strong>效率，降低数据库IO的成本</li>
+<li>降低数据<strong>排序</strong>成本，降低CPU的消耗</li>
+</ul>
+</li>
+<li><p>劣势</p>
+<ul>
+<li><p>索引列会占用磁盘空间。索引实际上也是一张表，该表保存了主键和索引字段，并指向实体表的记录。</p>
+</li>
+<li><p>虽然加大查询速度，但会降低写表的操作（inset,update,delete），对表更新操作的时候，MySQL不仅要保存数据，还要保存索引文件中新添加的索引字段（会调整由于更新带来的键值变化后的索引信息），更新B-tree</p>
+</li>
+<li><p>要通过人为处理不断调整出最优的索引</p>
 </li>
 </ul>
-<ul>
-<li><p>辗转相除法</p>
-<p><strong>gcd(a,b) = gcd(b,a mod b)</strong></p>
 </li>
 </ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> b == <span class="number">0</span>?a:gcd(b,a%b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>迭代形式</li>
+<h3 id="索引分类"><a href="#索引分类" class="headerlink" title="索引分类"></a>索引分类</h3><ul>
+<li>单值索引：一个索引只能包含一个列，一个表中可有多个单值索引</li>
+<li>复合索引：一个索引可以包含多个列</li>
+<li>唯一索引：索引列的值必须唯一，但可以为空</li>
 </ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="keyword">int</span> r;</span><br><span class="line">   <span class="keyword">while</span>(b!=<span class="number">0</span>)</span><br><span class="line">   &#123;</span><br><span class="line">      r = b;</span><br><span class="line">      b = a%b;</span><br><span class="line">      a = r;</span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="keyword">int</span> a,b;</span><br><span class="line">   <span class="built_in">cin</span> &gt;&gt; a &gt;&gt; b;</span><br><span class="line">   <span class="built_in">cout</span> &lt;&lt;  gcd(a,b) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
+<p>###　索引结构</p>
 <ul>
-<li><p>C++内置函数法</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">std</span>::__gcd(a,b);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">24</span>,b=<span class="number">60</span>;</span><br><span class="line">    <span class="keyword">int</span> ans = gcd(a,b);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
+<li>BTree索引</li>
+<li>Hash索引</li>
+<li>full-text全文索引</li>
+<li>R-Tree索引</li>
 </ul>
-<h3 id="最小公倍数（LCM）"><a href="#最小公倍数（LCM）" class="headerlink" title="最小公倍数（LCM）"></a>最小公倍数（LCM）</h3><blockquote>
-<p>把几个数先分别分解质因数，再把各数中的全部公有的质因数和独有的质因数提取出来连乘，所得的积就是这几个数的最小公倍数</p>
-<p>求6和15的LCM。先分解质因数，得6=2×3，15=3×5，2×3×5=30，30是6和15的公倍数中最小的一个，所以[6，15]=30。</p>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lcm</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a/gcd(a,b) * b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="扩展欧几里得算法"><a href="#扩展欧几里得算法" class="headerlink" title="扩展欧几里得算法"></a>扩展欧几里得算法</h3><p>方程符合ax + by = n，则gcd(a,b)能整除n,可用扩展欧几里得算法求（x0,y0)</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">exgcd</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b,<span class="keyword">int</span> &amp;x,<span class="keyword">int</span> &amp;y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(b==<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        x = <span class="number">1</span>;</span><br><span class="line">        y = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    exgcd(b,a%b,x,y);</span><br><span class="line">    <span class="keyword">int</span> tmp = x;</span><br><span class="line">    x = y;</span><br><span class="line">    y = tmp - (a-b)*y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
+<h4 id="BTree的检索原理"><a href="#BTree的检索原理" class="headerlink" title="BTree的检索原理"></a>BTree的检索原理</h4><p><img src="/2020/05/13/MySQL%E7%B4%A2%E5%BC%95/2.png" alt></p>
+<p>分别有根，数据项和叶子结点。其中浅蓝色表示磁盘，深蓝色是数据项，黄色时指针。</p>
+<p><strong>非叶子节点不存储真实数据，只存储指引搜索方向的数据项</strong>，17,35并不是真实存在数据表中。</p>
+<h5 id="索引检索原理"><a href="#索引检索原理" class="headerlink" title="索引检索原理"></a>索引检索原理</h5><p>若查找s数据项29，查找过程是：首先把磁盘块1加载到内存，发生1次IO，通过二分搜索确定29在17和35之间，锁定磁盘块的p2指针；通过磁盘1中的p2指针把磁盘块3加载到内存（内存相比磁盘IO的时间非常短，可忽略不计），发生第二次IO。再确定29在26~30之间，通过指针p2把磁盘块8加载到内存，发生第三次IO，再做二分查找，结束查询，共三次IO。</p>
+<p>三层的B+Tree可以表示上百万的数据，如果上百万的数据只需三次IO，性能的提升是很大的。若没有索引，每个数据项都发生一次IO，则要上百万的IO，成本很高。</p>
 
 
                 <hr>
@@ -248,12 +247,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2019/10/12/WaitNotify通知机制/" data-toggle="tooltip" data-placement="top" title="Wait&Notify的通知机制">&larr; Previous Post</a>
+                            <a href="/2020/05/14/MySQL锁/" data-toggle="tooltip" data-placement="top" title="MySQL锁">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2019/10/12/中国剩余定理/" data-toggle="tooltip" data-placement="top" title="中国剩余定理">Next Post &rarr;</a>
+                            <a href="/2020/05/13/MySQL存储引擎/" data-toggle="tooltip" data-placement="top" title="MySQL存储引擎">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -286,7 +285,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#数论" title="数论">数论</a>
+                          <a class="tag" href="/tags/#MySQL" title="MySQL">MySQL</a>
                         
                     </div>
                 </section>
@@ -318,8 +317,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2019/10/12/%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97/";
-    var disqus_url = "https://pistachiol.github.io/2019/10/12/%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97/";
+    var disqus_identifier = "https://pistachiol.github.io/2020/05/13/MySQL%E7%B4%A2%E5%BC%95/";
+    var disqus_url = "https://pistachiol.github.io/2020/05/13/MySQL%E7%B4%A2%E5%BC%95/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

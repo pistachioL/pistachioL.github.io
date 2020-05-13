@@ -13,7 +13,7 @@
 
     <title>
         
-          位运算 - Pistachio的楼阁 | Pistachio&#39;s Blog
+          二进制的总结 - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
@@ -174,7 +174,7 @@
                           <a class="tag" href="/tags/#算法" title="算法">算法</a>
                         
                     </div>
-                    <h1>位运算</h1>
+                    <h1>二进制的总结</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
@@ -213,6 +213,14 @@
 
 
 
+<p><strong>汉明距离</strong></p>
+<blockquote>
+<p>汉明距离是指两个数字对应二进制位不同的位置的数目。如1   (0 0 0 1)　4   (0 1 0 0)，第1,3位不同</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">hammingDistance</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> n = x ^ y;</span><br><span class="line">        <span class="keyword">while</span>(n)&#123;</span><br><span class="line">            n = n &amp; (n<span class="number">-1</span>);</span><br><span class="line">            res++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
                 <hr>
 
                 
@@ -220,7 +228,7 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2020/03/03/双指针/" data-toggle="tooltip" data-placement="top" title="双指针">&larr; Previous Post</a>
+                            <a href="/2020/02/25/位运算题目总结/" data-toggle="tooltip" data-placement="top" title="位运算题目总结">&larr; Previous Post</a>
                         </li>
                     
                     
