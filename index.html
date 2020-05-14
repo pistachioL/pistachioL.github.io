@@ -190,6 +190,32 @@
 
 <div class="post-preview">
 
+    <a href="/2020/05/14/Linux权限/">
+        <h2 class="post-title">
+            Linux权限
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            Linux权限
+ Linux下权限的粒度有：拥有者、群组、其他组。每个文件都可以针对三个粒度，设置不同的rwx(读写执行)权限
+
+文件权限chmod数字权限的使用4 2 1分别表示读，写，执行，文件权限的组合由它们组合表示
+文件拥有者权限chownhttps://blog.csdn.net/u013197629/article/details/73608613
+...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-05-14
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2020/05/14/MySQL锁/">
         <h2 class="post-title">
             MySQL锁
@@ -198,12 +224,13 @@
             
         </h3>
         <div class="post-content-preview">
-            锁是控制线程或进程并发的机制
+            隔离性的底层实现其中事务的隔离性底层实现的原理是锁
 锁的分类按照数据操作的类型划分
 读锁（共享锁）：同一份数据，多个读操作可以同时进行，互不影响
 写锁（排它锁）：当前写操作还没完成，会阻断其他写锁和读锁
 
-session1 加了读锁，当前session1不能读其他未加锁的表，而且不能插入或更新锁定的表。session2可以读或操作未加锁的表，但如果对加读锁的表进行操作，会一直等待获得锁（阻塞），直到上读锁的表释放......
+
+session1 加了读锁，当前session1不能读其他未加锁的表，而且不能插入或更新锁定的表。session2可以读或操作未加锁的表，但如果对加读锁的表进行操作，会一直等待获得锁（阻......
         </div>
     </a>
     <p class="post-meta">
@@ -260,9 +287,9 @@ session1 加了读锁，当前session1不能读其他未加锁的表，而且不
             
         </h3>
         <div class="post-content-preview">
-            常见类型InnoDB,MyISAM,Memory  还有Achive,Blackhole,CSV
-MySQL5.5之后默认的引擎是InnoDB
-MySQL与MyISAM的比较
+            常见类型InnoDB/MyISAM/Memory /Achive/Blackhole/CSV
+MySQL5.5之后默认的引擎是InnoDB，有自动提交功能。若想关闭可使用set autocommit = 0;则需要手动commit事务。
+InnoDB与MyISAM的比较
 
 
 对比项
@@ -282,12 +309,7 @@ InnoDB
 
 
 行表锁
-表锁（操作一条记录会锁住整个表）不适合高并发
-行锁（操作时只锁住某一行，不对其他行有影响）适合高并发
-
-
-缓存
-只......
+表锁（操作一条记录......
         </div>
     </a>
     <p class="post-meta">
@@ -453,30 +475,6 @@ A是原数组，C是新开辟的数组，C[i]的意思是求前lowbit(i)个元�
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2020/04/24/Nginx和Php-fpm的运行原理/">
-        <h2 class="post-title">
-            Nginx解析PHP的原理
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            Nginx是一个高性能的服务器，能处理HTTP请求，并能做反向代理。
-Nginx本身不会对PHP进行解析，而是通过进程管理器php-fpm对其进行解析。
-Nginx通过反向代理的功能将动态请求转向php-fpm。
-CgiCgi是Common Gateway Interface的缩写。过去服务器只能处理静态语言，无法对动态语言（PHP）进行处理。Cgi协议是用于解决语言解释器（PHP、Pyth......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-04-24
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -520,6 +518,8 @@ CgiCgi是Common Gateway Interface的缩写。过去服务器只能处理静态�
                             
                         
                             
+                        
+                            
                             <a href="/tags/#读书笔记" title="读书笔记" rel="4">读书笔记</a>
                             
                         
@@ -532,8 +532,6 @@ CgiCgi是Common Gateway Interface的缩写。过去服务器只能处理静态�
                             
                         
                             
-                        
-                            
                             <a href="/tags/#字符串" title="字符串" rel="4">字符串</a>
                             
                         
@@ -541,6 +539,10 @@ CgiCgi是Common Gateway Interface的缩写。过去服务器只能处理静态�
                             <a href="/tags/#PHP" title="PHP" rel="3">PHP</a>
                             
                         
+                            
+                        
+                            
+                            <a href="/tags/#MySQL" title="MySQL" rel="5">MySQL</a>
                             
                         
                             
@@ -564,19 +566,15 @@ CgiCgi是Common Gateway Interface的缩写。过去服务器只能处理静态�
                             
                         
                             
-                            <a href="/tags/#Linux" title="Linux" rel="2">Linux</a>
+                        
+                            
+                            <a href="/tags/#Linux" title="Linux" rel="3">Linux</a>
                             
                         
                             
                         
                             
                         
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#MySQL" title="MySQL" rel="5">MySQL</a>
                             
                         
                     </div>

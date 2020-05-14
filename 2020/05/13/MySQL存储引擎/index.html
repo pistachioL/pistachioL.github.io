@@ -197,9 +197,9 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="常见类型"><a href="#常见类型" class="headerlink" title="常见类型"></a>常见类型</h3><p>InnoDB,MyISAM,Memory  还有Achive,Blackhole,CSV</p>
-<p>MySQL5.5之后默认的引擎是InnoDB</p>
-<h3 id="MySQL与MyISAM的比较"><a href="#MySQL与MyISAM的比较" class="headerlink" title="MySQL与MyISAM的比较"></a>MySQL与MyISAM的比较</h3><table>
+                <h3 id="常见类型"><a href="#常见类型" class="headerlink" title="常见类型"></a>常见类型</h3><p>InnoDB/MyISAM/Memory /Achive/Blackhole/CSV</p>
+<p>MySQL5.5之后默认的引擎是InnoDB，有自动提交功能。若想关闭可使用<code>set autocommit = 0;</code>则需要手动commit事务。</p>
+<h3 id="InnoDB与MyISAM的比较"><a href="#InnoDB与MyISAM的比较" class="headerlink" title="InnoDB与MyISAM的比较"></a>InnoDB与MyISAM的比较</h3><table>
 <thead>
 <tr>
 <th>对比项</th>

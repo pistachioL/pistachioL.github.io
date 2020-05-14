@@ -197,8 +197,12 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p>vector能像数组那样表示，而且提供了很多接口，因此使用方便。</p>
-<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p><code>vector&lt;int&gt; vec(int size); //创建一个大小size()的容器</code>　</p>
+                <ul>
+<li>vector封装了数组，拥有连续的内存空间，并且起始地址不变，能够高效地进行<strong>存取</strong>，时间复杂度为O(1)</li>
+<li>但由于其内存空间是连续的，在进行插入或删除操作时，会造成内存块拷贝，时间复杂度为O(n)；另外，在数组内存空间不够时，也会重新申请一块内存空间进行内存拷贝。</li>
+</ul>
+<p>（与list数据结构相反，用于不同的场景）</p>
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p>vector<int> vec(int size); //创建一个大小size()的容器`　</int></p>
 <p><code>vector&lt;int&gt; vec(int size, int val);  //创建一个大小为size，且值均为val的容器</code> </p>
 <p><code>vector&lt;vector&lt;int&gt;&gt; vec(int row, vector&lt;int&gt;(int size, int val)) //行数，一维数组的初始化</code> </p>
 <h3 id="vector的二维数组"><a href="#vector的二维数组" class="headerlink" title="vector的二维数组"></a>vector的二维数组</h3><p>二维数组可表示成<code>vecotr&lt;vector&lt;int&gt;&gt;vec</code></p>

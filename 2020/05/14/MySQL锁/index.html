@@ -197,15 +197,48 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p>锁是控制线程或进程并发的机制</p>
+                <h3 id="隔离性的底层实现"><a href="#隔离性的底层实现" class="headerlink" title="隔离性的底层实现"></a>隔离性的底层实现</h3><p>其中事务的<strong>隔离性</strong>底层实现的原理是<strong>锁</strong></p>
 <h3 id="锁的分类"><a href="#锁的分类" class="headerlink" title="锁的分类"></a>锁的分类</h3><h5 id="按照数据操作的类型划分"><a href="#按照数据操作的类型划分" class="headerlink" title="按照数据操作的类型划分"></a>按照数据操作的类型划分</h5><ul>
 <li>读锁（共享锁）：同一份数据，多个读操作可以同时进行，互不影响</li>
 <li>写锁（排它锁）：当前写操作还没完成，会阻断其他写锁和读锁</li>
 </ul>
+<blockquote>
 <p>session1 加了读锁，当前session1不能读其他未加锁的表，而且不能插入或更新锁定的表。session2可以读或操作未加锁的表，但如果对加读锁的表进行操作，会一直等待获得锁（阻塞），直到上读锁的表释放锁之后，session2获得锁，操作完成。</p>
-<h5 id="按照数据操作的粒度划分"><a href="#按照数据操作的粒度划分" class="headerlink" title="按照数据操作的粒度划分"></a>按照数据操作的粒度划分</h5><ul>
-<li>行锁（偏写）</li>
-<li>表锁（偏读）</li>
+</blockquote>
+<h5 id="按照数据操作的粒度划"><a href="#按照数据操作的粒度划" class="headerlink" title="按照数据操作的粒度划"></a>按照数据操作的粒度划</h5><ul>
+<li><p>行锁（偏写）</p>
+<ul>
+<li><p>锁定粒度最小，发生冲突率低，并发度也最高</p>
+</li>
+<li><p>偏向InnoDB存储引擎</p>
+</li>
+<li><p>锁定一行：在session1<code>select * from table where a = 8 for update</code>，此时锁定后只有session1自己可以继续，其他线程来操作数据会阻塞，直到session1 commit事务</p>
+</li>
+<li><p>分析系统中行锁争夺情况<code>show status like &#39;innodb_row_lock%&#39;</code>,其中有三个重要状态变量：<strong>innodb_row_lock_time_avg平均等待时长/innodb_row_lock_waits等待总次数/innodb_row_lock_time等待总时长</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>表锁（偏读）</p>
+<ul>
+<li>读锁会阻塞写，但不会阻塞读。而写锁会把读和写都阻塞，MyISAM以读为主，故不能作为频繁更新操作，会导致阻塞。</li>
+</ul>
+</li>
+</ul>
+<h3 id="锁的种类"><a href="#锁的种类" class="headerlink" title="锁的种类"></a>锁的种类</h3><ul>
+<li><p>乐观锁</p>
+</li>
+<li><p>悲观锁</p>
+<ul>
+<li>共享锁S（行锁）</li>
+<li>排它锁X（行锁）</li>
+<li>意向共享锁IS（表锁）</li>
+<li>意向排它锁IX（表锁）</li>
+</ul>
+</li>
+<li><p>自增锁</p>
+</li>
 </ul>
 
 
@@ -214,6 +247,10 @@
                 
 
                 <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2020/05/14/Linux权限/" data-toggle="tooltip" data-placement="top" title="Linux权限">&larr; Previous Post</a>
+                        </li>
                     
                     
                         <li class="next">
