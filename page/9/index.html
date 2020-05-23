@@ -13,11 +13,11 @@
 
     <title>
         
-          红黑树 - Pistachio的楼阁 | Pistachio&#39;s Blog
+          Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2020/04/22/红黑树/">
+    <link rel="canonical" href="https://pistachiol.github.io/page/9/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -153,133 +153,326 @@
 
 
     <!-- Main Content -->
-    
-<!-- Image to hack wechat -->
-<!-- <img src="https://pistachiol.github.io/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
-
-<!-- Post Header -->
-<style type="text/css">
-    header.intro-header{
-        background-image: url('/img/bg_Jerry.jpg')
-    }
-</style>
-<header class="intro-header" >
+    <!-- Page Header -->
+<header class="intro-header" style="background-image: url('/img/bg_Jerry.jpg')">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <div class="tags">
-                        
-                          <a class="tag" href="/tags/#数据结构" title="数据结构">数据结构</a>
-                        
-                    </div>
-                    <h1>红黑树</h1>
-                    <h2 class="subheading"></h2>
-                    <span class="meta">
-                        Posted by Liao on
-                        2020-04-22
-                    </span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    <h1>Pistachio&#39;s Blog</h1>
+                    <!--<hr class="small">-->
+                    <span class="subheading">To Be A Lean Developer!</span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Post Content -->
-<article>
-    <div class="container">
-        <div class="row">
 
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        
+
+<!-- USE SIDEBAR -->
     <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                post-container">
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                post-container
+            ">
+            
+                <!-- Main Content -->
 
-                <p><strong>红黑树（Red Black Tree）</strong>是对二叉搜索树的改进，解决二叉搜索树多次插入新节点导致的不平衡问题。对于搜索、插入和删除较多操作的情况下，通常使用红黑树。</p>
-<p>红黑树的底层结构是<strong>二叉查找树</strong>。</p>
-<p>其产生过程：链表-&gt;二叉树-&gt;二叉查找树-&gt;自平衡的二叉查找树</p>
-<p><img src="/2020/04/22/%E7%BA%A2%E9%BB%91%E6%A0%91/1.png" alt></p>
-<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><p>以下特性保证了红黑树的平衡特性，确保没有一条路径比其它路径长出两倍</p>
-<ul>
-<li>是自平衡的二叉查找树</li>
-<li>结点是红色或黑色</li>
-<li>根节点（没有入度或者没有父节点）是黑色的</li>
-<li>每个叶子节点都是黑色的空结点（NIL结点）</li>
-<li>每个红色节点的两个子节点都是黑色。(从每个叶子到根的所有路径上不能有两个连续的红色节点)</li>
-<li>从任一节点到其每个叶子的所有路径都包含相同数目的黑色节点</li>
+
+<div class="post-preview">
+
+    <a href="/2019/07/24/C语言小知识/">
+        <h2 class="post-title">
+            编程小知识
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            1）字符变数字：str[i]-‘0’
+2）char *strncpy(char *dest,const char *src,size_t n)把str所指向的字符串复制最多n个字符到dest
+123456789101112131415161718#include &lt;stdio.h&gt;#include &lt;string.h&gt;int main()&#123;   char s......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-07-24
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/07/24/队列基本用法/">
+        <h2 class="post-title">
+            队列基本用法
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            牛客上做的一个题目：https://ac.nowcoder.com/acm/contest/258/A 
+以样例为例：
+123456输入3 71 2 1 5 4 4 1输出 5
+
+容量为3，文章长度为7，第二行为文章内容。依题意，检索到相同的就为同一个单词，当单词数量大于容量的时候，软件会清空最早存入内存的单词，腾出单元，存放新单词。因此符合队列先进先出的特点。
+
+1234567891011......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-07-24
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/07/12/git常用操作/">
+        <h2 class="post-title">
+            git的常用操作
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            git常用操作github上传laravel项目git init
+git remote add origin git@github.com:pistachioL/xxx.git
+git add .
+git commit -m &quot;xxxx&quot;
+git push origin master -f
+删除远程关联
+git remote rm origin
+创建新分支git bran......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-07-12
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/07/12/树/">
+        <h2 class="post-title">
+            树
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            2019蓝桥杯校内选拔一题
+一棵包含有2019个结点的树，最多包含多少个叶结点？
+
+解法1：
+首先他问“最多”，当然便是完全二叉树（满二叉树）了。
+记i为树的层数，由完全二叉树的性质可得，结点总数为$$2^i-1$$，叶子结点总数为$$2^(i-1)$$，列出等式即可计算出。
+解法2：
+二叉树的性质：叶子结点 = 度为2的结点数 + 1
+当二叉树叶子结点最多时，即度为2的结点数最多，度为1的......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-07-12
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/07/12/Laravel导出excel数据/">
+        <h2 class="post-title">
+            Laravel导出excel数据
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            Laravel 导出excel1.扩展包的安装在laravel项目下的terminal安装：
+composer require maatwebsite/excel  
+2.config/app.php文件下的providers数组下加载如下类：1234'providers' =&gt; [...Maatwebsite\Excel\ExcelServiceProvider::class,],
+......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-07-12
+    </p>
+
+</div>
+<hr>
+
+
+
+<!-- Pager -->
+
+<ul class="pager">
+    
+        <li class="previous">
+            <a href="/page/8/">&larr; Newer Posts</a>
+        </li>
+    
+    
 </ul>
-<h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><p>旋转和变色规则：<strong>所有插入的点默认是红色</strong></p>
-<h5 id="1-变色"><a href="#1-变色" class="headerlink" title="1) 变色"></a>1) 变色</h5><p>红变黑，黑变红。</p>
-<p>什么时候变颜色呢？举个栗子插入6：</p>
-<p><img src="/2020/04/22/%E7%BA%A2%E9%BB%91%E6%A0%91/4.png" alt></p>
-<p>由于二叉查找树的性质，结点6要插在这里。这时，6的父结点也是红色，其叔叔结点也是红色，则把父节点和叔叔结点变黑，并把爷爷结点变红。</p>
-<h5 id="2-左旋"><a href="#2-左旋" class="headerlink" title="2) 左旋"></a>2) 左旋</h5><p>左旋的情况：父结点是红色，叔叔结点是黑色，并且当前结点在右子树上。</p>
-<p>左旋的过程：</p>
-<p><img src="/2020/04/22/%E7%BA%A2%E9%BB%91%E6%A0%91/3.gif" alt></p>
-<p>接着上面的情况，变完色之后：</p>
-<p><img src="/2020/04/22/%E7%BA%A2%E9%BB%91%E6%A0%91/5.png" alt>)——&gt;<img src="/2020/04/22/%E7%BA%A2%E9%BB%91%E6%A0%91/6.png" alt></p>
-<h5 id="3-右旋"><a href="#3-右旋" class="headerlink" title="3) 右旋"></a>3) 右旋</h5><p>右旋的情况：父结点是红色，叔叔结点是黑色，并且当前结点在左子树上。</p>
-<p>要把父结点变为黑色，把爷爷结点变为红色，再进行右旋。</p>
-<p><img src="/2020/04/22/%E7%BA%A2%E9%BB%91%E6%A0%91/2.gif" alt></p>
-<p>接着上述情况：</p>
-<p><img src="/2020/04/22/%E7%BA%A2%E9%BB%91%E6%A0%91/7.png" alt></p>
-<h3 id="实际应用"><a href="#实际应用" class="headerlink" title="实际应用"></a>实际应用</h3><p>它是内存查找高效的树（底层系统做内存运算）。</p>
-<p>但不适合大数据量，也不适合磁盘存储，其树的深度会很大，会造成IO浪费以及读取资源浪费。</p>
 
 
-                <hr>
 
-                
-
-                <ul class="pager">
-                    
-                        <li class="previous">
-                            <a href="/2020/04/23/MySQL的高可扩展/" data-toggle="tooltip" data-placement="top" title="MySQL的高可扩展">&larr; Previous Post</a>
-                        </li>
-                    
-                    
-                        <li class="next">
-                            <a href="/2020/04/21/Redis基础知识/" data-toggle="tooltip" data-placement="top" title="Redis基础知识">Next Post &rarr;</a>
-                        </li>
-                    
-                </ul>
-
-                
-
-                
-                <!-- disqus 评论框 start -->
-                <div class="comment">
-                    <div id="disqus_thread" class="disqus-thread"></div>
-                </div>
-                <!-- disqus 评论框 end -->
+                <!-- 如果开启评论功能 -->
                 
 
             </div>
-    <!-- Side Catalog Container -->
-        
-
     <!-- Sidebar Container -->
-
             <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
-
+                col-lg-3 col-lg-offset-0
+                col-md-3 col-md-offset-0
+                col-sm-12
+                col-xs-12
+                sidebar-container
+            ">
                 <!-- Featured Tags -->
                 
                 <section>
                     <!-- no hr -->
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
-                       
-                          <a class="tag" href="/tags/#数据结构" title="数据结构">数据结构</a>
+                        
+                            
+                            <a href="/tags/#设计模式" title="设计模式" rel="4">设计模式</a>
+                            
+                        
+                            
+                            <a href="/tags/#数据结构" title="数据结构" rel="17">数据结构</a>
+                            
+                        
+                            
+                            <a href="/tags/#图论" title="图论" rel="2">图论</a>
+                            
+                        
+                            
+                            <a href="/tags/#读书笔记" title="读书笔记" rel="4">读书笔记</a>
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#算法" title="算法" rel="9">算法</a>
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#字符串" title="字符串" rel="4">字符串</a>
+                            
+                        
+                            
+                            <a href="/tags/#PHP" title="PHP" rel="3">PHP</a>
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#MySQL" title="MySQL" rel="6">MySQL</a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#数论" title="数论" rel="12">数论</a>
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#STL" title="STL" rel="7">STL</a>
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#博客" title="博客" rel="2">博客</a>
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#Linux" title="Linux" rel="3">Linux</a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#树" title="树" rel="2">树</a>
+                            
                         
                     </div>
                 </section>
                 
 
+                <!-- Short About -->
+                <section class="visible-md visible-lg">
+                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
+                    <div class="short-about">
+
+                        
+                            <img src="/img/avatar.jpeg" />
+                        
+
+                        
+                            <p>我要成为魔法师!</p>
+                        
+
+                        <!-- SNS Link -->
+                        <ul class="list-inline">
+                            
+                            
+                            
+
+                            
+
+                            
+
+                            
+                                <li>
+                                    <a target="_blank"  href="https://github.com/pistachioL">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                            
+                            
+                            
+                            
+                        </ul>
+                    </div>
+                </section>
+                
                 <!-- Friends Blog -->
                 
                 <hr>
@@ -294,66 +487,9 @@
                 </ul>
                 
             </div>
-
-        </div>
+        
     </div>
-</article>
-
-
-
-
-<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES * * */
-    var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2020/04/22/%E7%BA%A2%E9%BB%91%E6%A0%91/";
-    var disqus_url = "https://pistachiol.github.io/2020/04/22/%E7%BA%A2%E9%BB%91%E6%A0%91/";
-
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<!-- disqus 公共JS代码 end -->
-
-
-
-
-<!-- async load function -->
-<script>
-    function async(u, c) {
-      var d = document, t = 'script',
-          o = d.createElement(t),
-          s = d.getElementsByTagName(t)[0];
-      o.src = u;
-      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-      s.parentNode.insertBefore(o, s);
-    }
-</script>
-<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
-<script>
-    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
-        anchors.options = {
-          visible: 'always',
-          placement: 'right',
-          icon: '#'
-        };
-        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
-    })
-</script>
-<style>
-    /* place left on bigger screen */
-    @media all and (min-width: 800px) {
-        .anchorjs-link{
-            position: absolute;
-            left: -0.75em;
-            font-size: 1.1em;
-            margin-top : -0.1em;
-        }
-    }
-</style>
-
+</div>
 
 
     <!-- Footer -->

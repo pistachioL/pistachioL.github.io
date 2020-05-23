@@ -200,7 +200,8 @@
                 <h3 id="1-换源"><a href="#1-换源" class="headerlink" title="1. 换源"></a>1. 换源</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
 
 <p><img src="/2020/01/31/%E5%AE%89%E8%A3%85deepin%E5%90%8E%E8%A6%81%E5%81%9A%E7%9A%84%E4%BA%8B%E6%83%85/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/1.png" alt></p>
-<h3 id="2-命令行主题配置"><a href="#2-命令行主题配置" class="headerlink" title="2. 命令行主题配置"></a>2. 命令行主题配置</h3><h4 id="下载oh-my-zsh"><a href="#下载oh-my-zsh" class="headerlink" title="下载oh-my-zsh"></a>下载oh-my-zsh</h4><p><strong>通过curl</strong></p>
+<h3 id="2-命令行主题配置"><a href="#2-命令行主题配置" class="headerlink" title="2. 命令行主题配置"></a>2. 命令行主题配置</h3><p>下载oh-my-zsh</p>
+<p><strong>通过curl</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"</span><br></pre></td></tr></table></figure>
 
 <p><strong>通过wget</strong></p>
@@ -209,6 +210,9 @@
 
 
 <h4 id="安装主题"><a href="#安装主题" class="headerlink" title="安装主题"></a>安装主题</h4><p>修改.zshrc</p>
+<blockquote>
+<p>修改环境变量文件在 ~/.zshrc</p>
+</blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.zshrc</span><br></pre></td></tr></table></figure>
 
 <p>将 ZSH_THEME 改成如下</p>
@@ -237,7 +241,10 @@
 
 
 
-<h5 id="V2ray图形化的安装"><a href="#V2ray图形化的安装" class="headerlink" title="V2ray图形化的安装"></a>V2ray图形化的安装</h5><h5 id="由于本机python2-3共存，默认是2-要使用python3来安装（本机是3-5-3）"><a href="#由于本机python2-3共存，默认是2-要使用python3来安装（本机是3-5-3）" class="headerlink" title="由于本机python2,3共存，默认是2.*,要使用python3来安装（本机是3.5.3）"></a>由于本机python2,3共存，默认是2.*,要使用python3来安装（本机是3.5.3）</h5><p>1.克隆github上的v2项目 <a href="https://github.com/jiangxufeng/v2rayL.git" target="_blank" rel="noopener">https://github.com/jiangxufeng/v2rayL.git</a></p>
+<h5 id="V2ray图形化的安装"><a href="#V2ray图形化的安装" class="headerlink" title="V2ray图形化的安装"></a>V2ray图形化的安装</h5><blockquote>
+<p>由于本机python2,3共存，默认是2.*,要使用python3来安装（本机是3.5.3）</p>
+</blockquote>
+<p>1.克隆github上的v2项目 <a href="https://github.com/jiangxufeng/v2rayL.git" target="_blank" rel="noopener">https://github.com/jiangxufeng/v2rayL.git</a></p>
 <p>2.进入项目文件夹，然后运行 <code>pip install -r requirements.txt</code>安装相关依赖。（可通过python3下载pip3<code>sudo apt install python3-pip</code>）</p>
 <p>3.进入v2rayL-GUI文件夹，运行<code>pyinstaller -F v2rayLui.py -p config.py -p sub2conf_api.py -p v2rayL_api.py -p v2rayL_threads.py -p utils.py -i images/logo.ico -n v2rayLui</code></p>
 <p>（pyinstaller可通过pip3下载<code>pip3 install pyinstaller -i https://pypi.doubanio.com/simple</code>）</p>

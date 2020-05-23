@@ -190,6 +190,188 @@
 
 <div class="post-preview">
 
+    <a href="/2020/05/23/前序与中序遍历构造二叉树/">
+        <h2 class="post-title">
+            前序与中序遍历构造二叉树
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            通过刷题学习，现在对二叉树递归遍历有新的认识。
+前序遍历：根节点，左子树，右子树
+中序遍历：左子树，根节点，右子树
+由此可见，前序遍历的第一个节点就是中序遍历的根节点
+
+此处设左子树的右边界为x，由于左子树的前序和中序遍历结点个数相同，即x -(pl+1)=(inroot-1) - il,故推出
+x = inroot - il + pl，求出左子树右边界的下标。
+求出边界值之后，找出根节点便......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-05-23
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/05/19/树的序列化与反序列化/">
+        <h2 class="post-title">
+            树的序列化与反序列化
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+序列化是将数据结构或对象转换为一系列位的过程，以便它可以存储在文件或内存缓冲区中，或通过网络连接链路传输，以便稍后在同一个或另一个计算机环境中重建。
+
+树的序列化就是把树转化成字符串存储，反序列化就是把树从字符串转回树形
+
+序列化的过程就是，先把根结点存入队列，（若不为空）则把其转成字符串存入字符流中（其实就是拼接字符串），再把它的左右子树加入到队列，作为根节点继续递归构造。如果结点为空，......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-05-19
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/05/19/C++字符串转数字/">
+        <h2 class="post-title">
+            C++字符串转数字
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            通过几种方法，把数字字符串转成int输出
+stoi(string s)
+stoi()会做范围检查，默认范围是在int的范围内的，如果超出范围的话则会runtime error！
+
+123456789101112#include &lt;iostream&gt;//#include &lt;cstring&gt;using namespace std;int main()&#123;	stri......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-05-19
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/05/18/MySQL主从复制/">
+        <h2 class="post-title">
+            MySQL主从复制
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            在从服务器可以执行查询工作(即我们常说的读功能)，降低主服务器压力;②在从主服务器进行备份，避免备份期间影响主服务器服务;③当主服务器出现问题时，可以切换到从服务器。
+主从复制是一个成熟的架构，在从服务器可以执行查询工作(即我们常说的读功能)，降低主服务器压力;在从主服务器进行备份，避免备份期间影响主服务器服务;当主服务器出现问题时，可以切换到从服务器。
+主从复制原理
+MySQL复制过程:
+......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-05-18
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/05/17/拓扑排序/">
+        <h2 class="post-title">
+            拓扑排序
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            拓扑排序是用于处理一连串的事情，这些事情之间有顺序或依赖关系，在做一件事情之前必须做另一件先（如课程表）
+
+拓扑序：如从图中v到w有一条有向路径，则v一定排在w之前。满足此条件的顶点序列就是一个拓扑序。
+拓扑排序：获得一个拓扑序的过程就是拓扑排序。
+AOV如果是合理的(不带环)拓扑序，则必定是有向无环图 (Directed Acyclic Graph,DAG)
+图的出度和入度体现了顶点的先后......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-05-17
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/05/16/B树/">
+        <h2 class="post-title">
+            B树
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            B-Tree（B树）B树属于多叉树又名平衡多路查找树（查找路径不只两个），数据库索引技术里大量使用者B树和B+树的数据结构
+
+如果数据库索引用红黑树的话，会导致读取磁盘次数过多，并且读取出来的数据也会浪费很多。例如一个结点能存一页，一页有16K数据
+由于 B+ 树分支比二叉树更多，所以相同数量的内容，B+ 树的深度更浅，深度代表什么？代表磁盘 io 次数
+
+B+树...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-05-16
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/05/16/哈希表/">
+        <h2 class="post-title">
+            哈希表
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            一、简介哈希表在待查关键字和它的存储位置之间，通过哈希函数，建立一个确定的对应关系。从而不必在关键字值之间的比较。
+
+由图可以得出存储地址和关键字值的对应关系是：存储地址 = 关键字值 - 32001，这个就是哈希函数。
+但是，并不能保证每次都能构造出理想的哈希函数，因此要构建哈希表。哈希表中的存储地址就是哈希地址。
+
+根据设定的哈希函数和处理冲突的方法，将查找表中各元素存储在一段有限的连续......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-05-16
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2020/05/14/Linux权限/">
         <h2 class="post-title">
             Linux权限
@@ -277,204 +459,6 @@ session1 加了读锁，当前session1不能读其他未加锁的表，而且不
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2020/05/13/MySQL存储引擎/">
-        <h2 class="post-title">
-            MySQL存储引擎
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            常见类型InnoDB/MyISAM/Memory /Achive/Blackhole/CSV
-MySQL5.5之后默认的引擎是InnoDB，有自动提交功能。若想关闭可使用set autocommit = 0;则需要手动commit事务。
-InnoDB与MyISAM的比较
-
-
-对比项
-MyISAM
-InnoDB
-
-
-
-主外键
-不支持
-支持
-
-
-事务
-不支持
-支持
-
-
-行表锁
-表锁（操作一条记录......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-05-13
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/05/13/MySQL事务隔离级别/">
-        <h2 class="post-title">
-            MySQL事务隔离级别
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            事务事务是由一组SQL语句组成的一个执行单元，该执行单元要么全部执行或全部不执行
-并发当要同时执行多个事务时，这些事务访问数据库中相同的数据时，如果没有相应的事务隔离级别，就会引发各种并发问题：
-
-曾经被问过一个问题：如果有人同时查看预约系统的数据，有没有相应的措施？其实是在考数据库的并发问题啊
-
-
-脏读（未提交读）如2个事务T1、T2，如果T1读取了已被T2更新过但没有提交的字段之后，若T......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-05-13
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/05/12/斐波那契数列/">
-        <h2 class="post-title">
-            斐波那契数列
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            　
-斐波那契一个重要性质:斐波那契数列的相邻每个数的最大公约数gcd(n-2,n-1)是相同的。
-...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-05-12
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/05/09/Trie树/">
-        <h2 class="post-title">
-            Trie树
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            Trie树Trie树，又称字典树、前缀树，是一种树形结构，它是一种专门处理字符串匹配的数据结构，用来解决在一组字符串集合中快速查找某个字符串的问题。
-Trie树的特点
-
-根节点不包含字符，根节点外的每一个结点表示一个字母
-从根节点到某一个结点连起来的路径，成为有一个字符串
-每个节点的子节点所包含的字符不相同
-
-插入https://juejin.im/post/5c2c096251882579......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-05-09
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/05/02/树状数组/">
-        <h2 class="post-title">
-            树状数组
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-对于长度为n的数组进行修改和查询
-
-如果对1~m个数进行求前缀和，复杂度为O(n)。如果n很大效率会非常低。而树状数组只用O(logn)
-
-A是原数组，C是新开辟的数组，C[i]的意思是求前lowbit(i)个元素的前缀和，同时也是下标i管辖的元素个数2^k，k是i二进制末尾0的个数
-例如C[8] lowbit(8) = 1000 &amp; 1000 = 1
-​             ......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-05-02
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/04/26/合并k个链表/">
-        <h2 class="post-title">
-            合并k个链表
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            　　在之前的文章中分析过合并两个有序的链表，今天遇到一道题就是合并多个链表，则有分治法和优先队列的解法。
-分治法
-分治法的思想是，把一个复杂问题分解成两个或者更多相同或相似的子问题，再把子问题分成更小的子问题，直到最后的子问题可以简单地直接求解，最后把子问题的解合并，就得到原问题的解啦。（昨天百度一面的时候问过这个问题）
-
-[  1-&gt;4-&gt;5,  1-&gt;3-&gt;4, ......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-04-26
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/04/24/PHP垃圾回收机制/">
-        <h2 class="post-title">
-            PHP垃圾回收机制
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            PHP5.3以前 引用计数机制PHP5.3之前使用过内存回收算法Reference Counting 引用计数。
-其思想是，为内存对象分配一个计数器，当内存对象建立时计数器初始化为1。（如$a = &quot;hello world&quot;）
-以后每一个新变量引用该变量，(如赋值$a = $b)，计数器加1；当减少引用次内存对象(unset($a))，计数器减1。
-把一个变量赋值给另一变......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-04-24
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -514,9 +498,11 @@ A是原数组，C是新开辟的数组，C[i]的意思是求前lowbit(i)个元�
                             
                         
                             
-                            <a href="/tags/#数据结构" title="数据结构" rel="13">数据结构</a>
+                            <a href="/tags/#数据结构" title="数据结构" rel="17">数据结构</a>
                             
                         
+                            
+                            <a href="/tags/#图论" title="图论" rel="2">图论</a>
                             
                         
                             
@@ -542,7 +528,7 @@ A是原数组，C是新开辟的数组，C[i]的意思是求前lowbit(i)个元�
                             
                         
                             
-                            <a href="/tags/#MySQL" title="MySQL" rel="5">MySQL</a>
+                            <a href="/tags/#MySQL" title="MySQL" rel="6">MySQL</a>
                             
                         
                             
@@ -575,6 +561,12 @@ A是原数组，C是新开辟的数组，C[i]的意思是求前lowbit(i)个元�
                         
                             
                         
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#树" title="树" rel="2">树</a>
                             
                         
                     </div>

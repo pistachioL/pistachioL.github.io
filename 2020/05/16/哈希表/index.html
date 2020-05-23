@@ -13,11 +13,11 @@
 
     <title>
         
-          红黑树 - Pistachio的楼阁 | Pistachio&#39;s Blog
+          哈希表 - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2020/04/22/红黑树/">
+    <link rel="canonical" href="https://pistachiol.github.io/2020/05/16/哈希表/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -174,11 +174,11 @@
                           <a class="tag" href="/tags/#数据结构" title="数据结构">数据结构</a>
                         
                     </div>
-                    <h1>红黑树</h1>
+                    <h1>哈希表</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
-                        2020-04-22
+                        2020-05-16
                     </span>
                 </div>
             </div>
@@ -197,36 +197,63 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p><strong>红黑树（Red Black Tree）</strong>是对二叉搜索树的改进，解决二叉搜索树多次插入新节点导致的不平衡问题。对于搜索、插入和删除较多操作的情况下，通常使用红黑树。</p>
-<p>红黑树的底层结构是<strong>二叉查找树</strong>。</p>
-<p>其产生过程：链表-&gt;二叉树-&gt;二叉查找树-&gt;自平衡的二叉查找树</p>
-<p><img src="/2020/04/22/%E7%BA%A2%E9%BB%91%E6%A0%91/1.png" alt></p>
-<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><p>以下特性保证了红黑树的平衡特性，确保没有一条路径比其它路径长出两倍</p>
+                <h3 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h3><p>哈希表在待查关键字和它的存储位置之间，通过哈希函数，建立一个确定的对应关系。从而不必在关键字值之间的比较。</p>
+<p><img src="/2020/05/16/%E5%93%88%E5%B8%8C%E8%A1%A8/1.png" alt></p>
+<p>由图可以得出<strong>存储地址</strong>和<strong>关键字值</strong>的对应关系是：存储地址 = 关键字值 - 32001，这个就是哈希函数。</p>
+<p>但是，并不能保证每次都能构造出理想的哈希函数，因此要构建<strong>哈希表</strong>。哈希表中的存储地址就是哈希地址。</p>
+<blockquote>
+<p>根据<strong>设定的哈希函数</strong>和<strong>处理冲突的方法</strong>，将查找表中各元素存储在一段有限的连续空间中，就得到哈希表</p>
+</blockquote>
+<h3 id="二、构造哈希函数的方法"><a href="#二、构造哈希函数的方法" class="headerlink" title="二、构造哈希函数的方法"></a>二、构造哈希函数的方法</h3><p>其实关键是找到<strong>哈希地址</strong>的各种方法，目的为了使冲突变少.</p>
+<p>可以根据关键字的长度、哈希表的大小、计算哈希值的时间、关键字的分布情况、查找记录的频率，去选择哪种不同的哈希函数方法。</p>
+<h4 id="1-直接定址法"><a href="#1-直接定址法" class="headerlink" title="1. 直接定址法"></a>1. 直接定址法</h4><p>根据<strong>关键字</strong>和<strong>存储地址</strong>的关系构建哈希函数</p>
+<p><img src="/2020/05/16/%E5%93%88%E5%B8%8C%E8%A1%A8/2.png" alt></p>
+<h4 id="2-数字分析法"><a href="#2-数字分析法" class="headerlink" title="2. 数字分析法"></a>2. 数字分析法</h4><p>通常用于处理关键字位数比较大的情况（手机号码、身份证号码）。事先知道<strong>关键字的分布</strong>并且知道关键字的若干位<strong>分布比较均匀</strong>，就可考虑用这个方法。</p>
+<p>例如身份证，截取后面不同的几位存储(例如5位)，<code>H(key) = key % 100000</code></p>
+<h4 id="3-平方取中法"><a href="#3-平方取中法" class="headerlink" title="3. 平方取中法"></a>3. 平方取中法</h4><p>关键字较短，且不知道关键字的分布的情况</p>
+<p>对关键字取平方，然后去中间的几位作为哈希地址。</p>
+<p>如key = 1234，　key^2 = 1522756，则哈希地址可以是227</p>
+<h4 id="4-折叠法"><a href="#4-折叠法" class="headerlink" title="4. 折叠法"></a>4. 折叠法</h4><p>适用于不知道关键字的分布，且关键字位数较多的情况</p>
 <ul>
-<li>是自平衡的二叉查找树</li>
-<li>结点是红色或黑色</li>
-<li>根节点（没有入度或者没有父节点）是黑色的</li>
-<li>每个叶子节点都是黑色的空结点（NIL结点）</li>
-<li>每个红色节点的两个子节点都是黑色。(从每个叶子到根的所有路径上不能有两个连续的红色节点)</li>
-<li>从任一节点到其每个叶子的所有路径都包含相同数目的黑色节点</li>
+<li><p>移位叠加：由地位到高位分割，再加起来求和，舍去进位</p>
+<p>例如图书的ISBN 0-442-20586-4 -&gt; 0442205864  -&gt;   04 | 4220 | 5864　-&gt; 5864 + 4220 + 04 = 10088　-&gt;舍去进位1 -&gt; 0088 = 88</p>
+</li>
+<li><p>简界叠加: 方法同上，只是把分割的部分，从一端到另一端来回折叠相加，224 + 4685 + 4 = 4909 = 909</p>
+</li>
 </ul>
-<h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><p>旋转和变色规则：<strong>所有插入的点默认是红色</strong></p>
-<h5 id="1-变色"><a href="#1-变色" class="headerlink" title="1) 变色"></a>1) 变色</h5><p>红变黑，黑变红。</p>
-<p>什么时候变颜色呢？举个栗子插入6：</p>
-<p><img src="/2020/04/22/%E7%BA%A2%E9%BB%91%E6%A0%91/4.png" alt></p>
-<p>由于二叉查找树的性质，结点6要插在这里。这时，6的父结点也是红色，其叔叔结点也是红色，则把父节点和叔叔结点变黑，并把爷爷结点变红。</p>
-<h5 id="2-左旋"><a href="#2-左旋" class="headerlink" title="2) 左旋"></a>2) 左旋</h5><p>左旋的情况：父结点是红色，叔叔结点是黑色，并且当前结点在右子树上。</p>
-<p>左旋的过程：</p>
-<p><img src="/2020/04/22/%E7%BA%A2%E9%BB%91%E6%A0%91/3.gif" alt></p>
-<p>接着上面的情况，变完色之后：</p>
-<p><img src="/2020/04/22/%E7%BA%A2%E9%BB%91%E6%A0%91/5.png" alt>)——&gt;<img src="/2020/04/22/%E7%BA%A2%E9%BB%91%E6%A0%91/6.png" alt></p>
-<h5 id="3-右旋"><a href="#3-右旋" class="headerlink" title="3) 右旋"></a>3) 右旋</h5><p>右旋的情况：父结点是红色，叔叔结点是黑色，并且当前结点在左子树上。</p>
-<p>要把父结点变为黑色，把爷爷结点变为红色，再进行右旋。</p>
-<p><img src="/2020/04/22/%E7%BA%A2%E9%BB%91%E6%A0%91/2.gif" alt></p>
-<p>接着上述情况：</p>
-<p><img src="/2020/04/22/%E7%BA%A2%E9%BB%91%E6%A0%91/7.png" alt></p>
-<h3 id="实际应用"><a href="#实际应用" class="headerlink" title="实际应用"></a>实际应用</h3><p>它是内存查找高效的树（底层系统做内存运算）。</p>
-<p>但不适合大数据量，也不适合磁盘存储，其树的深度会很大，会造成IO浪费以及读取资源浪费。</p>
+<h4 id="5-除留余数法（常用）"><a href="#5-除留余数法（常用）" class="headerlink" title="5.　除留余数法（常用）"></a>5.　除留余数法（常用）</h4><p><img src="/2020/05/16/%E5%93%88%E5%B8%8C%E8%A1%A8/3.png" alt></p>
+<p>对p必须为质数，如果不是质数，则哈希值会落到p倍数的地址上，增加了哈希冲突的可能。</p>
+<h4 id="6-随机数法"><a href="#6-随机数法" class="headerlink" title="6. 随机数法"></a>6. 随机数法</h4><p>取关键字的随机函数作为哈希地址。</p>
+<p><code>H(key) = random(key)</code></p>
+<h3 id="三、处理哈希冲突的方法"><a href="#三、处理哈希冲突的方法" class="headerlink" title="三、处理哈希冲突的方法"></a>三、处理哈希冲突的方法</h3><p> 哈希冲突是待插入哈希表的元素，按照给定的哈希函数求得的哈希地址已被占用，则按照一定的规则求下一个哈希地址，循环往复，直到找到可用的地址保存该元素</p>
+<h4 id="1-线性探测再散列"><a href="#1-线性探测再散列" class="headerlink" title="1.线性探测再散列"></a>1.线性探测再散列</h4><p>d = 1,2,3,4,5,6</p>
+<p><img src="/2020/05/16/%E5%93%88%E5%B8%8C%E8%A1%A8/4.png" alt></p>
+<h4 id="2-二次探测再散列"><a href="#2-二次探测再散列" class="headerlink" title="2. 二次探测再散列"></a>2. 二次探测再散列</h4><p>方法同上，只是d = 1^2, -1^2, 2^2, 2^-2 ……k^2,-k^2</p>
+<p>二次探测的次数比一次的多，因此较高效</p>
+<p><img src="/2020/05/16/%E5%93%88%E5%B8%8C%E8%A1%A8/5.png" alt></p>
+<h4 id="3-链地址法"><a href="#3-链地址法" class="headerlink" title="3. 链地址法"></a>3. 链地址法</h4><p>按照给定的哈希函数求得哈希地址相同的关键字，存储在同一线性表上，且链表按关键字有序</p>
+<p>例如key = (67,84,18,26,34,28)</p>
+<p><img src="/2020/05/16/%E5%93%88%E5%B8%8C%E8%A1%A8/6.png" alt></p>
+<h4 id="4-公共溢出区法"><a href="#4-公共溢出区法" class="headerlink" title="4. 公共溢出区法"></a>4. 公共溢出区法</h4><p>把冲突的关键字放到公共溢出的区域</p>
+<p><img src="/2020/05/16/%E5%93%88%E5%B8%8C%E8%A1%A8/7.png" alt></p>
+<p>7,8,9规定为溢出区</p>
+<h3 id="四、在哈希表上查找元素"><a href="#四、在哈希表上查找元素" class="headerlink" title="四、在哈希表上查找元素"></a>四、在哈希表上查找元素</h3><p>虽然通过哈希表能建立关键字值和存储位置上的映射，但由于冲突的存在，查找时还是需要进行关键字之间的比较，因此要把<strong>平均查找长度</strong>（ALS） 和　<strong>查找不成功时的比较次数</strong>作为衡量查找效率的依据。</p>
+<p>根据待查关键字元素，按照给定的哈希函数，找出对应的哈希地址。</p>
+<ul>
+<li><p>若该地址上没有元素，则查找失败</p>
+</li>
+<li><p>若有元素，则进行关键字值之间的比较</p>
+<ul>
+<li>若相等，则查找成功</li>
+<li>不相等，则按照处理冲突的方法求下一个可能存储的地址</li>
+</ul>
+<p><img src="/2020/05/16/%E5%93%88%E5%B8%8C%E8%A1%A8/8.png" alt></p>
+</li>
+</ul>
+<p>key = 67,　67 % 7 = 4  查找次数1</p>
+<p>key = 18     18 % 7 = 4　有冲突　　(4+1) % 7 =  5 找到　查找次数为2</p>
+<p>哈希通常不会用作数据库索引，因为哈希表不能范围查找和部分索引查找。一旦传入复合索引hash(user_id+name)就不可以了</p>
+<p>但是，如果sql语句的查找条件不会变，或者没有范围查找或部分索引查找，可以用hash作为索引的数据结构，并且复杂度是O(1)</p>
 
 
                 <hr>
@@ -236,12 +263,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2020/04/23/MySQL的高可扩展/" data-toggle="tooltip" data-placement="top" title="MySQL的高可扩展">&larr; Previous Post</a>
+                            <a href="/2020/05/16/B树/" data-toggle="tooltip" data-placement="top" title="B树">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2020/04/21/Redis基础知识/" data-toggle="tooltip" data-placement="top" title="Redis基础知识">Next Post &rarr;</a>
+                            <a href="/2020/05/14/Linux权限/" data-toggle="tooltip" data-placement="top" title="Linux权限">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -306,8 +333,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2020/04/22/%E7%BA%A2%E9%BB%91%E6%A0%91/";
-    var disqus_url = "https://pistachiol.github.io/2020/04/22/%E7%BA%A2%E9%BB%91%E6%A0%91/";
+    var disqus_identifier = "https://pistachiol.github.io/2020/05/16/%E5%93%88%E5%B8%8C%E8%A1%A8/";
+    var disqus_url = "https://pistachiol.github.io/2020/05/16/%E5%93%88%E5%B8%8C%E8%A1%A8/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

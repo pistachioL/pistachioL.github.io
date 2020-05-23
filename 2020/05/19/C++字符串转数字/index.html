@@ -13,11 +13,11 @@
 
     <title>
         
-          红黑树 - Pistachio的楼阁 | Pistachio&#39;s Blog
+          C++字符串转数字 - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2020/04/22/红黑树/">
+    <link rel="canonical" href="https://pistachiol.github.io/2020/05/19/C++字符串转数字/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -171,14 +171,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#数据结构" title="数据结构">数据结构</a>
+                          <a class="tag" href="/tags/#C++" title="C++">C++</a>
                         
                     </div>
-                    <h1>红黑树</h1>
+                    <h1>C++字符串转数字</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
-                        2020-04-22
+                        2020-05-19
                     </span>
                 </div>
             </div>
@@ -197,36 +197,29 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p><strong>红黑树（Red Black Tree）</strong>是对二叉搜索树的改进，解决二叉搜索树多次插入新节点导致的不平衡问题。对于搜索、插入和删除较多操作的情况下，通常使用红黑树。</p>
-<p>红黑树的底层结构是<strong>二叉查找树</strong>。</p>
-<p>其产生过程：链表-&gt;二叉树-&gt;二叉查找树-&gt;自平衡的二叉查找树</p>
-<p><img src="/2020/04/22/%E7%BA%A2%E9%BB%91%E6%A0%91/1.png" alt></p>
-<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><p>以下特性保证了红黑树的平衡特性，确保没有一条路径比其它路径长出两倍</p>
-<ul>
-<li>是自平衡的二叉查找树</li>
-<li>结点是红色或黑色</li>
-<li>根节点（没有入度或者没有父节点）是黑色的</li>
-<li>每个叶子节点都是黑色的空结点（NIL结点）</li>
-<li>每个红色节点的两个子节点都是黑色。(从每个叶子到根的所有路径上不能有两个连续的红色节点)</li>
-<li>从任一节点到其每个叶子的所有路径都包含相同数目的黑色节点</li>
-</ul>
-<h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><p>旋转和变色规则：<strong>所有插入的点默认是红色</strong></p>
-<h5 id="1-变色"><a href="#1-变色" class="headerlink" title="1) 变色"></a>1) 变色</h5><p>红变黑，黑变红。</p>
-<p>什么时候变颜色呢？举个栗子插入6：</p>
-<p><img src="/2020/04/22/%E7%BA%A2%E9%BB%91%E6%A0%91/4.png" alt></p>
-<p>由于二叉查找树的性质，结点6要插在这里。这时，6的父结点也是红色，其叔叔结点也是红色，则把父节点和叔叔结点变黑，并把爷爷结点变红。</p>
-<h5 id="2-左旋"><a href="#2-左旋" class="headerlink" title="2) 左旋"></a>2) 左旋</h5><p>左旋的情况：父结点是红色，叔叔结点是黑色，并且当前结点在右子树上。</p>
-<p>左旋的过程：</p>
-<p><img src="/2020/04/22/%E7%BA%A2%E9%BB%91%E6%A0%91/3.gif" alt></p>
-<p>接着上面的情况，变完色之后：</p>
-<p><img src="/2020/04/22/%E7%BA%A2%E9%BB%91%E6%A0%91/5.png" alt>)——&gt;<img src="/2020/04/22/%E7%BA%A2%E9%BB%91%E6%A0%91/6.png" alt></p>
-<h5 id="3-右旋"><a href="#3-右旋" class="headerlink" title="3) 右旋"></a>3) 右旋</h5><p>右旋的情况：父结点是红色，叔叔结点是黑色，并且当前结点在左子树上。</p>
-<p>要把父结点变为黑色，把爷爷结点变为红色，再进行右旋。</p>
-<p><img src="/2020/04/22/%E7%BA%A2%E9%BB%91%E6%A0%91/2.gif" alt></p>
-<p>接着上述情况：</p>
-<p><img src="/2020/04/22/%E7%BA%A2%E9%BB%91%E6%A0%91/7.png" alt></p>
-<h3 id="实际应用"><a href="#实际应用" class="headerlink" title="实际应用"></a>实际应用</h3><p>它是内存查找高效的树（底层系统做内存运算）。</p>
-<p>但不适合大数据量，也不适合磁盘存储，其树的深度会很大，会造成IO浪费以及读取资源浪费。</p>
+                <p>通过几种方法，把数字字符串转成int输出</p>
+<h3 id="stoi-string-s"><a href="#stoi-string-s" class="headerlink" title="stoi(string s)"></a>stoi(string s)</h3><blockquote>
+<p>stoi()会做范围检查，默认范围是在int的范围内的，如果超出范围的话则会runtime error！</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="comment">//#include &lt;cstring&gt;</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">string</span> s1 = <span class="string">"2147482"</span>, s2 = <span class="string">"-214748"</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; stoi(s1) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; stoi(s2) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//2147482</span></span><br><span class="line"><span class="comment">//-214748</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="atoi-const-char"><a href="#atoi-const-char" class="headerlink" title="atoi( const char* )"></a>atoi( const char* )</h3><blockquote>
+<p> 而atoi()不会做范围检查，如果超出范围的话，超出上界，则输出上界，超出下界，则输出下界；</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="comment">//#include &lt;cstring&gt;</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">string</span> s1 = <span class="string">"2147482"</span>, s2 = <span class="string">"-214748"</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; atoi(s1.c_str()) &lt;&lt; <span class="built_in">endl</span>;  <span class="comment">//通过c_str()把string转成char*</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; atoi(s2.c_str()) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//2147482</span></span><br><span class="line"><span class="comment">//-214748</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="stringstream"><a href="#stringstream" class="headerlink" title="stringstream"></a>stringstream</h3><p><sstream>定义了三个类：istringstream、ostringstream 和 stringstream，分别用来进行流的输入、输出和输入输出操作。利用stringstream流的特性，可以把字符串转成数字，数字转成字符串。</sstream></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">字符串转数字</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">string</span> s1 = <span class="string">"2147482"</span>;</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="built_in">stringstream</span> sstream;</span><br><span class="line">	sstream &lt;&lt; s1;  <span class="comment">//把字符串放入流</span></span><br><span class="line">	sstream &gt;&gt; n; <span class="comment">// 把流的字符串写入int</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; n &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//输出　2147482</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>能以空格为划分每个字符</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">string</span> s = <span class="string">"1 23 # 4"</span>;</span><br><span class="line">    <span class="built_in">stringstream</span> ss;</span><br><span class="line">    ss&lt;&lt;s;</span><br><span class="line">    <span class="keyword">while</span>(ss&gt;&gt;s)&#123;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;s&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">1</span></span><br><span class="line"><span class="comment">23</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">4</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
 
 
                 <hr>
@@ -236,12 +229,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2020/04/23/MySQL的高可扩展/" data-toggle="tooltip" data-placement="top" title="MySQL的高可扩展">&larr; Previous Post</a>
+                            <a href="/2020/05/19/树的序列化与反序列化/" data-toggle="tooltip" data-placement="top" title="树的序列化与反序列化">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2020/04/21/Redis基础知识/" data-toggle="tooltip" data-placement="top" title="Redis基础知识">Next Post &rarr;</a>
+                            <a href="/2020/05/18/MySQL主从复制/" data-toggle="tooltip" data-placement="top" title="MySQL主从复制">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -274,7 +267,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#数据结构" title="数据结构">数据结构</a>
+                          <a class="tag" href="/tags/#C++" title="C++">C++</a>
                         
                     </div>
                 </section>
@@ -306,8 +299,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2020/04/22/%E7%BA%A2%E9%BB%91%E6%A0%91/";
-    var disqus_url = "https://pistachiol.github.io/2020/04/22/%E7%BA%A2%E9%BB%91%E6%A0%91/";
+    var disqus_identifier = "https://pistachiol.github.io/2020/05/19/C++%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%95%B0%E5%AD%97/";
+    var disqus_url = "https://pistachiol.github.io/2020/05/19/C++%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%95%B0%E5%AD%97/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

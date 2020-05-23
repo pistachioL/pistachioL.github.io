@@ -13,11 +13,11 @@
 
     <title>
         
-          红黑树 - Pistachio的楼阁 | Pistachio&#39;s Blog
+          树的序列化与反序列化 - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2020/04/22/红黑树/">
+    <link rel="canonical" href="https://pistachiol.github.io/2020/05/19/树的序列化与反序列化/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -173,12 +173,14 @@
                         
                           <a class="tag" href="/tags/#数据结构" title="数据结构">数据结构</a>
                         
+                          <a class="tag" href="/tags/#树" title="树">树</a>
+                        
                     </div>
-                    <h1>红黑树</h1>
+                    <h1>树的序列化与反序列化</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
-                        2020-04-22
+                        2020-05-19
                     </span>
                 </div>
             </div>
@@ -197,36 +199,18 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p><strong>红黑树（Red Black Tree）</strong>是对二叉搜索树的改进，解决二叉搜索树多次插入新节点导致的不平衡问题。对于搜索、插入和删除较多操作的情况下，通常使用红黑树。</p>
-<p>红黑树的底层结构是<strong>二叉查找树</strong>。</p>
-<p>其产生过程：链表-&gt;二叉树-&gt;二叉查找树-&gt;自平衡的二叉查找树</p>
-<p><img src="/2020/04/22/%E7%BA%A2%E9%BB%91%E6%A0%91/1.png" alt></p>
-<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><p>以下特性保证了红黑树的平衡特性，确保没有一条路径比其它路径长出两倍</p>
+                <blockquote>
+<p>序列化是将数据结构或对象转换为一系列位的过程，以便它可以存储在文件或内存缓冲区中，或通过网络连接链路传输，以便稍后在同一个或另一个计算机环境中重建。</p>
+</blockquote>
+<p>树的序列化就是把树转化成字符串存储，反序列化就是把树从字符串转回树形</p>
 <ul>
-<li>是自平衡的二叉查找树</li>
-<li>结点是红色或黑色</li>
-<li>根节点（没有入度或者没有父节点）是黑色的</li>
-<li>每个叶子节点都是黑色的空结点（NIL结点）</li>
-<li>每个红色节点的两个子节点都是黑色。(从每个叶子到根的所有路径上不能有两个连续的红色节点)</li>
-<li>从任一节点到其每个叶子的所有路径都包含相同数目的黑色节点</li>
+<li><p>序列化的过程就是，先把根结点存入队列，（若不为空）则把其转成字符串存入字符流中（其实就是拼接字符串），再把它的左右子树加入到队列，作为根节点继续递归构造。如果结点为空，则在字符串拼接”#”作为标记。最后返回字符串流转成的字符串即可。</p>
+</li>
+<li><p>反序列化的过程和序列化相反，但也是借助队列，通过<strong>层序遍历</strong>构造树。读入字符串的每一个字符，判断是否为“#”(为空结点)，若不是，则加入队列作为根节点继续构造。</p>
+</li>
 </ul>
-<h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><p>旋转和变色规则：<strong>所有插入的点默认是红色</strong></p>
-<h5 id="1-变色"><a href="#1-变色" class="headerlink" title="1) 变色"></a>1) 变色</h5><p>红变黑，黑变红。</p>
-<p>什么时候变颜色呢？举个栗子插入6：</p>
-<p><img src="/2020/04/22/%E7%BA%A2%E9%BB%91%E6%A0%91/4.png" alt></p>
-<p>由于二叉查找树的性质，结点6要插在这里。这时，6的父结点也是红色，其叔叔结点也是红色，则把父节点和叔叔结点变黑，并把爷爷结点变红。</p>
-<h5 id="2-左旋"><a href="#2-左旋" class="headerlink" title="2) 左旋"></a>2) 左旋</h5><p>左旋的情况：父结点是红色，叔叔结点是黑色，并且当前结点在右子树上。</p>
-<p>左旋的过程：</p>
-<p><img src="/2020/04/22/%E7%BA%A2%E9%BB%91%E6%A0%91/3.gif" alt></p>
-<p>接着上面的情况，变完色之后：</p>
-<p><img src="/2020/04/22/%E7%BA%A2%E9%BB%91%E6%A0%91/5.png" alt>)——&gt;<img src="/2020/04/22/%E7%BA%A2%E9%BB%91%E6%A0%91/6.png" alt></p>
-<h5 id="3-右旋"><a href="#3-右旋" class="headerlink" title="3) 右旋"></a>3) 右旋</h5><p>右旋的情况：父结点是红色，叔叔结点是黑色，并且当前结点在左子树上。</p>
-<p>要把父结点变为黑色，把爷爷结点变为红色，再进行右旋。</p>
-<p><img src="/2020/04/22/%E7%BA%A2%E9%BB%91%E6%A0%91/2.gif" alt></p>
-<p>接着上述情况：</p>
-<p><img src="/2020/04/22/%E7%BA%A2%E9%BB%91%E6%A0%91/7.png" alt></p>
-<h3 id="实际应用"><a href="#实际应用" class="headerlink" title="实际应用"></a>实际应用</h3><p>它是内存查找高效的树（底层系统做内存运算）。</p>
-<p>但不适合大数据量，也不适合磁盘存储，其树的深度会很大，会造成IO浪费以及读取资源浪费。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Codec</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">string</span> s = <span class="string">""</span>;</span><br><span class="line">    <span class="comment">// Encodes a tree to a single string.n</span></span><br><span class="line">        <span class="keyword">if</span> (!root) <span class="keyword">return</span> <span class="built_in">string</span>();</span><br><span class="line">        <span class="built_in">stringstream</span> ss;</span><br><span class="line">        <span class="built_in">queue</span>&lt;TreeNode*&gt; q;</span><br><span class="line">        q.push(root);</span><br><span class="line">        <span class="keyword">while</span> (!q.empty())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">auto</span> t = q.front(); </span><br><span class="line">            q.pop();</span><br><span class="line">            <span class="keyword">if</span> (!t) ss &lt;&lt; <span class="string">"# "</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                ss &lt;&lt; to_string(t -&gt; val) &lt;&lt; <span class="string">" "</span> ;</span><br><span class="line">                q.push(t -&gt; left);</span><br><span class="line">                q.push(t -&gt; right);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ss.str();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Decodes your encoded data to tree.</span></span><br><span class="line">        <span class="function">TreeNode* <span class="title">deserialize</span><span class="params">(<span class="built_in">string</span> data)</span> </span>&#123;</span><br><span class="line">         <span class="keyword">if</span> (data.empty()) <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        <span class="function"><span class="built_in">stringstream</span> <span class="title">ss</span><span class="params">(data)</span></span>;<span class="comment">//将字符串data复制到ss中</span></span><br><span class="line">        <span class="built_in">string</span> t;</span><br><span class="line">        ss &gt;&gt; t;<span class="comment">//相当于把ss的每个字符一个个输入t中</span></span><br><span class="line">        <span class="built_in">queue</span>&lt;TreeNode*&gt; q;</span><br><span class="line">        <span class="keyword">auto</span> root = <span class="keyword">new</span> TreeNode(stoi(t));</span><br><span class="line">        q.push(root);</span><br><span class="line">        <span class="keyword">while</span> (q.<span class="built_in">size</span>())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">auto</span> p = q.front(); q.pop();</span><br><span class="line">            <span class="comment">//判断左子树</span></span><br><span class="line">            ss &gt;&gt; t;　<span class="comment">//读入字符串中除空格的每个字符</span></span><br><span class="line">            <span class="keyword">if</span> (t == <span class="string">"#"</span>) p -&gt;left = <span class="literal">NULL</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                p -&gt; left = <span class="keyword">new</span> TreeNode(stoi(t));</span><br><span class="line">                q.push(p -&gt; left);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//判断右子树</span></span><br><span class="line">            ss &gt;&gt; t;</span><br><span class="line">            <span class="keyword">if</span> (t == <span class="string">"#"</span>) p -&gt; right = <span class="literal">NULL</span>;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                p -&gt; right = <span class="keyword">new</span> TreeNode(stoi(t));</span><br><span class="line">                q.push(p -&gt; right);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 
 
                 <hr>
@@ -236,12 +220,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2020/04/23/MySQL的高可扩展/" data-toggle="tooltip" data-placement="top" title="MySQL的高可扩展">&larr; Previous Post</a>
+                            <a href="/2020/05/23/前序与中序遍历构造二叉树/" data-toggle="tooltip" data-placement="top" title="前序与中序遍历构造二叉树">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2020/04/21/Redis基础知识/" data-toggle="tooltip" data-placement="top" title="Redis基础知识">Next Post &rarr;</a>
+                            <a href="/2020/05/19/C++字符串转数字/" data-toggle="tooltip" data-placement="top" title="C++字符串转数字">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -276,6 +260,8 @@
                        
                           <a class="tag" href="/tags/#数据结构" title="数据结构">数据结构</a>
                         
+                          <a class="tag" href="/tags/#树" title="树">树</a>
+                        
                     </div>
                 </section>
                 
@@ -306,8 +292,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2020/04/22/%E7%BA%A2%E9%BB%91%E6%A0%91/";
-    var disqus_url = "https://pistachiol.github.io/2020/04/22/%E7%BA%A2%E9%BB%91%E6%A0%91/";
+    var disqus_identifier = "https://pistachiol.github.io/2020/05/19/%E6%A0%91%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/";
+    var disqus_url = "https://pistachiol.github.io/2020/05/19/%E6%A0%91%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
