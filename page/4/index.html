@@ -190,6 +190,28 @@
 
 <div class="post-preview">
 
+    <a href="/2020/03/26/Prototype/">
+        <h2 class="post-title">
+            原型模式
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            深克隆实现深克隆有两种方式
+1.种是采用序列化的方式实现2.采用依次克隆各个可变的引用类型域 覆盖Object中的clone方法， 实现深拷贝...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-03-26
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2020/03/25/PHP面向对象/">
         <h2 class="post-title">
             PHP面向对象
@@ -221,9 +243,10 @@
             
         </h3>
         <div class="post-content-preview">
-            LeetCode　接雨水
-
-123456789101112131415161718192021int trap(vector&lt;int&gt;&amp; height) &#123;        int n = height.size();        if(n &lt; 3)&#123;            return 0;        &#125;        int a......
+            单调栈简介单调栈分为单调递增栈和单调递减栈，顾名思义就是栈内元素大小保持递增或递减。
+操作规则（以单调递增栈为例）如果新进来的元素比栈顶元素大，则进栈
+如果新进的元素比栈顶元素小，就把栈内元素出栈，直到找到第一个比新进元素要小的元素为止。
+代码模板123456789int MonotoneStack(vector&lt;int&gt;&amp; height)&#123;    stack&......
         </div>
     </a>
     <p class="post-meta">
@@ -422,33 +445,6 @@ BFS方式实现（队列）
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2020/03/18/FastSlowPoint/">
-        <h2 class="post-title">
-            快慢指针
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            快指针走两步，慢指针走一步，当它们相等时就是走了一个循环，为一个周期。
-LeetCode 快乐数
-
-对于一个正整数，将这个数字替换为每个位置上的数字平方和，循环多次，如果能变为１则是快乐数，否则不是。
-
-这道题用递归做的话，若正整数很大，递归层次深一点，就会导致调用栈爆了。
-12345678910111213141516171819int getNext(int n)&#123;      ......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-03-18
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -525,6 +521,8 @@ LeetCode 快乐数
                             <a href="/tags/#MySQL" title="MySQL" rel="6">MySQL</a>
                             
                         
+                            
+                            <a href="/tags/#Nginx" title="Nginx" rel="2">Nginx</a>
                             
                         
                             

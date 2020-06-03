@@ -190,6 +190,37 @@
 
 <div class="post-preview">
 
+    <a href="/2019/09/13/线段树/">
+        <h2 class="post-title">
+            线段树
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            1.定义
+线段树（segment tree） 是用来存放给定区间内对应信息的一种数据结构。线段树是二叉树，一个区间每次被折半往下分，所以往下查找，（二叉树的二分查找）最多lon2n次就能查找到。
+
+有两种操作：
+​    1）求某段区间的和
+​    2）修改某个区间的值
+2.过程1）建立二叉树
+​    
+2）剪枝部分  e.g.求区间[2,5]的和
+
+可以直接返回 return0，即不用......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-09-13
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2019/09/12/linux常用命令-/">
         <h2 class="post-title">
             linux常用命令
@@ -413,33 +444,6 @@ map的底层实现时红黑树，查询的时间复杂度时log(n)
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2019/08/14/优先队列/">
-        <h2 class="post-title">
-            优先队列
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            优先队列一. 定义优先队列不再遵循先入先出的原则，而是分为两种情况：
-
-最大优先队列，无论入队顺序，当前最大的元素优先出队。
-最小优先队列，无论入队顺序，当前最小的元素优先出队。
-
-因此可以用最大堆来实现最大优先队列，每一次入队操作就是堆的插入操作，每一次出队操作就是删除堆顶节点。优先队列的入队和出队的时间复杂度和二叉堆结点上浮下沉的一样，都是O(logn)，n为队列元素个数
-priorit......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-08-14
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -516,6 +520,8 @@ priorit......
                             <a href="/tags/#MySQL" title="MySQL" rel="6">MySQL</a>
                             
                         
+                            
+                            <a href="/tags/#Nginx" title="Nginx" rel="2">Nginx</a>
                             
                         
                             
