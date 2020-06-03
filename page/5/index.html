@@ -190,6 +190,34 @@
 
 <div class="post-preview">
 
+    <a href="/2020/03/19/Palindrome/">
+        <h2 class="post-title">
+            回文串
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            LeetCode 最长回文串
+
+在给定包含大小写的字符串中，找出这些字母构成的最长回文串，构造时注意区分大小写
+
+这道题目不同在于可以通过构造找出最长回文串，于是可以通过找规律求得。
+首先把每个字母出现的个数统计出来，放进vector中（方便处理）。
+查看vector中每个字母出现的次数，如果字母出现的个数时偶数，一定可以构成回文串，则可以把这些个数直接加起来；
+如果字母出现的个数是奇数，则......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-03-19
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2020/03/18/FastSlowPoint/">
         <h2 class="post-title">
             快慢指针
@@ -437,32 +465,6 @@ Leetcode 主要元素
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2020/02/19/KMP/">
-        <h2 class="post-title">
-            KMP
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            1.求前缀表next[]为什么要求前缀表？
-如果用暴力的双指针，在失配的时候又从模式串的开头重新匹配，增加了回溯的次数，效率低，复杂度为O(m*n)。
-前面已经匹配上的不用再搜索，通过next[]数组，在失去匹配的地方找到该元素的前后缀个数n，移动到模式串的下标n。复杂度时O(m+n)。
-通俗来说，next数组存放每个元素之前的字符串，最长公共前后缀的个数。
-
-如何求next[]呢？Text......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-02-19
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -564,7 +566,7 @@ Leetcode 主要元素
                             
                         
                             
-                            <a href="/tags/#Linux" title="Linux" rel="3">Linux</a>
+                            <a href="/tags/#Linux" title="Linux" rel="4">Linux</a>
                             
                         
                             

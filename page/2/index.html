@@ -190,6 +190,33 @@
 
 <div class="post-preview">
 
+    <a href="/2020/05/14/MySQL锁/">
+        <h2 class="post-title">
+            MySQL锁
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            隔离性的底层实现其中事务的隔离性底层实现的原理是锁
+锁的分类按照数据操作的类型划分
+读锁（共享锁）：同一份数据，多个读操作可以同时进行，互不影响
+写锁（排它锁）：当前写操作还没完成，会阻断其他写锁和读锁
+
+
+session1 加了读锁，当前session1不能读其他未加锁的表，而且不能插入或更新锁定的表。session2可以读或操作未加锁的表，但如果对加读锁的表进行操作，会一直等待获得锁（阻......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-05-14
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2020/05/13/MySQL索引/">
         <h2 class="post-title">
             MySQL索引
@@ -446,31 +473,6 @@ CgiCgi是Common Gateway Interface的缩写。过去服务器只能处理静态�
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2020/04/24/序列和/">
-        <h2 class="post-title">
-            序列和
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-给出一个正整数N和长度L，找出一段长度大于等于L的连续非负整数，他们的和恰好为N。答案可能有多个，我我们需要找出长度最小的那个。 例如 N = 18 L = 2： 5 + 6 + 7 = 18 3 + 4 + 5 + 6 = 18 都是满足要求的，但是我们输出更短的 5 6 7
-
-Sn = (a1 + an) * n / 2 = N
-​          [a1+a1+(n-1)*d] *......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-04-24
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -572,7 +574,7 @@ Sn = (a1 + an) * n / 2 = N
                             
                         
                             
-                            <a href="/tags/#Linux" title="Linux" rel="3">Linux</a>
+                            <a href="/tags/#Linux" title="Linux" rel="4">Linux</a>
                             
                         
                             
