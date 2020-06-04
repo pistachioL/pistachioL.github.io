@@ -190,6 +190,58 @@
 
 <div class="post-preview">
 
+    <a href="/2020/05/16/哈希表/">
+        <h2 class="post-title">
+            哈希表
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            一、简介哈希表在待查关键字和它的存储位置之间，通过哈希函数，建立一个确定的对应关系。从而不必在关键字值之间的比较。
+
+由图可以得出存储地址和关键字值的对应关系是：存储地址 = 关键字值 - 32001，这个就是哈希函数。
+但是，并不能保证每次都能构造出理想的哈希函数，因此要构建哈希表。哈希表中的存储地址就是哈希地址。
+
+根据设定的哈希函数和处理冲突的方法，将查找表中各元素存储在一段有限的连续......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-05-16
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/05/14/Linux权限/">
+        <h2 class="post-title">
+            Linux权限
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            Linux权限
+ Linux下权限的粒度有：拥有者、群组、其他组。每个文件都可以针对三个粒度，设置不同的rwx(读写执行)权限
+
+文件权限chmod数字权限的使用4 2 1分别表示读，写，执行，文件权限的组合由它们组合表示
+文件拥有者权限chownhttps://blog.csdn.net/u013197629/article/details/73608613
+...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-05-14
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2020/05/14/MySQL锁/">
         <h2 class="post-title">
             MySQL锁
@@ -425,54 +477,6 @@ A是原数组，C是新开辟的数组，C[i]的意思是求前lowbit(i)个元�
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2020/04/24/PHP垃圾回收机制/">
-        <h2 class="post-title">
-            PHP垃圾回收机制
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            PHP5.3以前 引用计数机制PHP5.3之前使用过内存回收算法Reference Counting 引用计数。
-其思想是，为内存对象分配一个计数器，当内存对象建立时计数器初始化为1。（如$a = &quot;hello world&quot;）
-以后每一个新变量引用该变量，(如赋值$a = $b)，计数器加1；当减少引用次内存对象(unset($a))，计数器减1。
-把一个变量赋值给另一变......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-04-24
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/04/24/Nginx和Php-fpm的运行原理/">
-        <h2 class="post-title">
-            Nginx解析PHP的原理
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            Nginx是一个高性能的服务器，能处理HTTP请求，并能做反向代理。
-Nginx本身不会对PHP进行解析，而是通过进程管理器php-fpm对其进行解析。
-Nginx通过反向代理的功能将动态请求转向php-fpm。
-CgiCgi是Common Gateway Interface的缩写。过去服务器只能处理静态语言，无法对动态语言（PHP）进行处理。Cgi协议是用于解决语言解释器（PHP、Pyth......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-04-24
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -524,6 +528,8 @@ CgiCgi是Common Gateway Interface的缩写。过去服务器只能处理静态�
                             
                         
                             
+                        
+                            
                             <a href="/tags/#读书笔记" title="读书笔记" rel="4">读书笔记</a>
                             
                         
@@ -534,15 +540,21 @@ CgiCgi是Common Gateway Interface的缩写。过去服务器只能处理静态�
                             
                         
                             
+                            <a href="/tags/#HTTP" title="HTTP" rel="2">HTTP</a>
+                            
                         
                             
                             <a href="/tags/#字符串" title="字符串" rel="4">字符串</a>
                             
                         
                             
-                            <a href="/tags/#PHP" title="PHP" rel="3">PHP</a>
+                            <a href="/tags/#PHP" title="PHP" rel="4">PHP</a>
                             
                         
+                            
+                        
+                            
+                            <a href="/tags/#Linux" title="Linux" rel="4">Linux</a>
                             
                         
                             
@@ -574,19 +586,13 @@ CgiCgi是Common Gateway Interface的缩写。过去服务器只能处理静态�
                             
                         
                             
-                            <a href="/tags/#Linux" title="Linux" rel="4">Linux</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
                             <a href="/tags/#树" title="树" rel="2">树</a>
+                            
+                        
+                            
+                        
+                            
+                        
                             
                         
                     </div>

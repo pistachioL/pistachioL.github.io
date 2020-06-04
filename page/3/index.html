@@ -190,6 +190,54 @@
 
 <div class="post-preview">
 
+    <a href="/2020/04/24/PHP垃圾回收机制/">
+        <h2 class="post-title">
+            PHP垃圾回收机制
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            PHP5.3以前 引用计数机制PHP5.3之前使用过内存回收算法Reference Counting 引用计数。
+其思想是，为内存对象分配一个计数器，当内存对象建立时计数器初始化为1。（如$a = &quot;hello world&quot;）
+以后每一个新变量引用该变量，(如赋值$a = $b)，计数器加1；当减少引用次内存对象(unset($a))，计数器减1。
+把一个变量赋值给另一变......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-04-24
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/04/24/Nginx和Php-fpm的运行原理/">
+        <h2 class="post-title">
+            Nginx解析PHP的原理
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            Nginx是一个高性能的服务器，能处理HTTP请求，并能做反向代理。
+Nginx本身不会对PHP进行解析，而是通过进程管理器php-fpm对其进行解析。
+Nginx通过反向代理的功能将动态请求转向php-fpm。
+CgiCgi是Common Gateway Interface的缩写。过去服务器只能处理静态语言，无法对动态语言（PHP）进行处理。Cgi协议是用于解决语言解释器（PHP、Pyth......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-04-24
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2020/04/24/序列和/">
         <h2 class="post-title">
             序列和
@@ -419,61 +467,6 @@ MySQL提供了一个 EXPLAIN 命令, 它可以对 SELECT 语句进行......
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2020/04/02/AdapterPattern/">
-        <h2 class="post-title">
-            适配器模式
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            实例：有一个220v电压，需要适配器转成5V电压才能给手机充电。
-类适配器
-被适配器类:Voltage220V 适配类:Voltage5V 
-通过适配器类VoltageAdapter继承Voltage220V（拿到220V电压），并且实现了Voltage5V的接口（并转乘5V）
-手机类依赖Voltage5V，实质上是依赖VoltageAdapter
-对象适配器由于Java单继承原因
-对类适配......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-04-02
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/03/31/排序算法/">
-        <h2 class="post-title">
-            排序算法
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            冒泡排序基本思想：*两两数字比较 *，比较在每一趟遍历中，看当前数字会不会比下一个大，如果比下一个大则交换。每一趟交换中能找到最大的数，放在末尾。
-最好情况：顺序 只需遍历一遍 T = O(N)
-最坏情况：逆序 全部都得排序　T = O(N^2)
-如数组：５，３，７，１０，６，１８，４
-第一趟：能把最大值放到最后
-【３，５】，７，６，１０，４，１８　
-３，【５，７】，１０，６，１８，４　
-３......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-03-31
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -525,6 +518,8 @@ MySQL提供了一个 EXPLAIN 命令, 它可以对 SELECT 语句进行......
                             
                         
                             
+                        
+                            
                             <a href="/tags/#读书笔记" title="读书笔记" rel="4">读书笔记</a>
                             
                         
@@ -535,15 +530,21 @@ MySQL提供了一个 EXPLAIN 命令, 它可以对 SELECT 语句进行......
                             
                         
                             
+                            <a href="/tags/#HTTP" title="HTTP" rel="2">HTTP</a>
+                            
                         
                             
                             <a href="/tags/#字符串" title="字符串" rel="4">字符串</a>
                             
                         
                             
-                            <a href="/tags/#PHP" title="PHP" rel="3">PHP</a>
+                            <a href="/tags/#PHP" title="PHP" rel="4">PHP</a>
                             
                         
+                            
+                        
+                            
+                            <a href="/tags/#Linux" title="Linux" rel="4">Linux</a>
                             
                         
                             
@@ -575,19 +576,13 @@ MySQL提供了一个 EXPLAIN 命令, 它可以对 SELECT 语句进行......
                             
                         
                             
-                            <a href="/tags/#Linux" title="Linux" rel="4">Linux</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
                             <a href="/tags/#树" title="树" rel="2">树</a>
+                            
+                        
+                            
+                        
+                            
+                        
                             
                         
                     </div>

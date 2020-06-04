@@ -13,11 +13,11 @@
 
     <title>
         
-          UNIX下的IO模型 - Pistachio的楼阁 | Pistachio&#39;s Blog
+          PHP几个判断变量为空的函数 - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2020/06/03/UNIX下IO模型/">
+    <link rel="canonical" href="https://pistachiol.github.io/2020/06/04/PHP几个判断变量为空的函数/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -171,14 +171,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                          <a class="tag" href="/tags/#PHP" title="PHP">PHP</a>
                         
                     </div>
-                    <h1>UNIX下的IO模型</h1>
+                    <h1>PHP几个判断变量为空的函数</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
-                        2020-06-03
+                        2020-06-04
                     </span>
                 </div>
             </div>
@@ -197,93 +197,30 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="Unix的IO读写过程"><a href="#Unix的IO读写过程" class="headerlink" title="Unix的IO读写过程"></a>Unix的IO读写过程</h3><ol>
-<li><p>等待数据准备</p>
-</li>
-<li><p>把数据从系统<strong>内核</strong>拷贝到用户<strong>进程</strong>中</p>
-</li>
-</ol>
-<h3 id="Unix下网络的IO模型（五种）"><a href="#Unix下网络的IO模型（五种）" class="headerlink" title="Unix下网络的IO模型（五种）"></a>Unix下网络的IO模型（五种）</h3><p><strong>同步IO</strong></p>
+                <h1 id="isset-、is-null-、empty"><a href="#isset-、is-null-、empty" class="headerlink" title="isset()、is_null()、empty()"></a>isset()、is_null()、empty()</h1><p>isset()判断变量一个变量是否设置，变量存在返回true，不存在则返回false</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$a = <span class="number">0</span>;</span><br><span class="line">var_dump(<span class="keyword">isset</span>($a))</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"><span class="comment">//bool(true)</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>is_null()查看变量是否为空。以下三种情况返回true:</p>
 <ul>
-<li>阻塞式IO (Blocking IO)<ul>
-<li>同步阻塞</li>
-</ul>
+<li><p>如果一个变量没有赋值</p>
 </li>
-<li>非阻塞式IO (NonBlocking IO)<ul>
-<li>同步非阻塞（就是IO复用 select poll）</li>
-</ul>
+<li><p>变量赋值为NULL</p>
 </li>
-<li>IO多路复用 (IO multiplexing)</li>
-<li>信号驱动型IO (Signal Driven IO) 比较少用</li>
-</ul>
-<p><strong>异步IO</strong></p>
-<ul>
-<li><p>异步IO (Asychronous IO)</p>
-<ul>
-<li>异步阻塞</li>
-<li>异步非阻塞（高性能）</li>
-</ul>
+<li><p>变量还没定义，或者变量被销毁 unset()   </p>
 </li>
 </ul>
-<h3 id="同步阻塞IO"><a href="#同步阻塞IO" class="headerlink" title="同步阻塞IO"></a>同步阻塞IO</h3><blockquote>
-<p>在餐厅点了餐之后，只能在餐厅等，什么事情都做不了。直到菜上了，吃完饭，才可以去逛街shopping（阻塞）</p>
-</blockquote>
-<p>原理</p>
-<p>当用户进程执行一个系统调用recv()/recvform()，操作系统要把数据拷贝到操作系统内核的缓存区（缓存IO），这个过程中用户进程会被阻塞，处于一个等待的状态。直到数据准备好，就会把数据从缓存区拷贝到用户内存，然后内核返回结果后，用户进程才接触阻塞状态，重新运行。</p>
-<h3 id="同步非阻塞IO（轮询polling）"><a href="#同步非阻塞IO（轮询polling）" class="headerlink" title="同步非阻塞IO（轮询polling）"></a>同步非阻塞IO（轮询polling）</h3><blockquote>
-<p>在等餐过程中，不愿把时间浪费在等待上，而是在等待的期间逛了商场，又回来问服务员菜好了没。如果没有又继续逛，期间又回来问……就这样循环多次的询问</p>
-</blockquote>
-<p>原理</p>
-<p>非同步阻塞就是一种轮询的模式，当用户进程调用recvform() (或者说是read操作)，如果内核还没有准备好，不会立刻阻塞用户进程，而是返回一个错误。用户进程立即收到结果是错误时，就可以发送下一次的操作。</p>
-<p>一旦内核准备好数据，并且接收到用户进程的轮询（system call），就立刻把数据拷贝到用户内存中，返回成功的提示。</p>
-<p>缺点:</p>
-<p>轮询会消耗CPU的大量时间</p>
-<h3 id="IO多路复用之select、poll、epoll"><a href="#IO多路复用之select、poll、epoll" class="headerlink" title="IO多路复用之select、poll、epoll"></a>IO多路复用之select、poll、epoll</h3><blockquote>
-<p>点了菜之后，可以通过小程序看到点餐进度，就可以在等待上菜的时候去逛街，不需要询问服务员菜好了没</p>
-</blockquote>
-<p>IO多路复用是通过一种机制，使得一个用户进程可以监听多个<strong>文件描述符</strong>(file descriptor，简写fd)，当某个fd就绪（读就绪或写就绪），就能通知程序进行相应的读写操作。<code>但select、pselect、poll、epoll本质都是都是同步IO</code>，因为他们都需要在读写事件就绪后自己负责进行读写，也就是说这个读写过程是<strong>阻塞</strong>(要等待)的，而异步I/O则无需自己负责进行读写，异步I/O的实现会负责把数据从内核拷贝到用户空间。</p>
-<h4 id="select"><a href="#select" class="headerlink" title="select"></a>select</h4><ul>
-<li><p>select是POSIX所规定</p>
-</li>
-<li><p>select函数的调用相当于内核级别的，可以等待多个socket，实现监听多个IO端口</p>
-</li>
-<li><p>select函数监听的fd有三种，分别是<strong>writefds,readfds,exceptfds</strong></p>
-</li>
-<li><p>良好的跨平台支持，几乎支持所有平台</p>
-</li>
-</ul>
-<p>原理</p>
-<p>当用户进程调用了select函数后会<strong>阻塞</strong>(IO执行的第一个阶段发生阻塞)，当其中一个socket的数据（fd）准备（有数据可读、可写或者有异常）好，或者超时，函数立即返回数据（进行可读、可写等）。当select函数返回后，可以通过遍历fdset寻找就绪的fd。找到fd之后，用户进程就可调用recvform()，把数据报从内核拷贝到用户进程缓冲区，此时进行进程的IO<strong>阻塞</strong>（此次阻塞发生在IO执行的第二个阶段）。扫描的时间复杂度时O(n)</p>
-<p>缺点</p>
-<ul>
-<li>在单线程下能监视（打开）fd的数量有限制，在32位的Linux下<strong>FD_SETSIZE</strong>是1024。（虽然可以通过修改宏定义，甚至重新编译内核的方式提升这一限制，但是会造成效率降低）</li>
-<li>select对socket的扫描采用轮询方式，效率低</li>
-<li>需要维护一个用来存放大量fd的数据结构，这会使得用户空间和内核空间在传递该结构时的复制开销大</li>
-</ul>
-<h4 id="poll"><a href="#poll" class="headerlink" title="poll"></a>poll</h4><p>但相比起select，<code>epoll没有最大连接数的限制</code>，因为它是基于<code>链表</code>来存储的。</p>
-<p>原理</p>
-<p>poll和select没有本质的区别，当用户进程调用了poll之后，poll会将用户传递进来的数组拷贝到内核空间，然后查询每个fd的设备状态。如果设备就绪则在<strong>设备等待序列</strong>加入一项，又继续进行遍历。如果没有就绪的设备，则挂起当前线程，知道设备就绪或者主动超时。被唤醒后又继续遍历fd。在这个过程中经历了多次无谓的遍历，扫描的时间复杂度时O(n)</p>
-<p>缺点</p>
-<ul>
-<li>大量的fd的数组被整体复制于用户态和内核地址空间之间</li>
-<li><code>poll还有一个特点是“水平触发”</code>，如果报告了fd后，没有被处理，那么下次poll时会再次报告该fd。</li>
-</ul>
-<h4 id="epoll"><a href="#epoll" class="headerlink" title="epoll"></a>epoll</h4><p>epoll是在2.6内核中提出的，epoll相当于是select和poll的增强版，Linux 内部使用的就是 epoll</p>
-<blockquote>
-<p>epoll提供了三个函数，分别是epoll_create()创建epoll事件,epoll_ctl()注册要监听的事件类型和epoll_wait()等待事件的产生</p>
-</blockquote>
-<p>原理</p>
-<p>epoll采取“事件”就绪的通知方式，避免线性扫描。通过epoll_ctl()注册fd，<code>一旦该fd就绪，内核就会采用类似callback的回调机制来激活该fd</code>，epoll_wait()便可以收到通知。epoll只通知进程哪些fd刚刚变为就绪态，并且只会通知一次,并把fd添加到就绪链表</p>
-<p>epoll的优点</p>
-<ul>
-<li>没有最大fd连接数限制    </li>
-<li>epoll不采用轮询的方式，epoll只管“活跃”的连接，而与连接总数无关</li>
-<li>epoll把所有事件挂载在红黑树上，搜索效率高</li>
-<li>利用<code>mmap()</code>文件映射内存，加速用户空间和内核空间的消息传递，减少复制开销</li>
-</ul>
-<p>参考</p>
-<p><a href="https://www.jianshu.com/p/486b0965c296" target="_blank" rel="noopener">聊聊Linux 五种IO模型</a></p>
-<p><a href="https://www.jianshu.com/p/dfd940e7fca2" target="_blank" rel="noopener">聊聊IO多路复用之select、poll、epoll详解</a></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$a = <span class="number">0</span>;</span><br><span class="line">var_dump(is_null($a))</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"><span class="comment">//bool(false)</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>empty()也是用来变量处理函数，但如果变量为0、NULL、’ ‘ 、false等等，empty()把它等同于为空，返回true;</p>
+<p>因此，<code>如果变量非空或非0，empty()就返回false</code></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$a = <span class="number">0</span>;</span><br><span class="line">var_dump(<span class="keyword">empty</span>($a));</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"><span class="comment">//bool(true)</span></span><br></pre></td></tr></table></figure>
+
 
 
                 <hr>
@@ -293,12 +230,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2020/06/04/PHP几个判断变量为空的函数/" data-toggle="tooltip" data-placement="top" title="PHP几个判断变量为空的函数">&larr; Previous Post</a>
+                            <a href="/2020/06/04/对RESTful-API的理解/" data-toggle="tooltip" data-placement="top" title="对RESTful_API的理解">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2020/06/01/配置nginx/" data-toggle="tooltip" data-placement="top" title="配置nginx">Next Post &rarr;</a>
+                            <a href="/2020/06/03/UNIX下IO模型/" data-toggle="tooltip" data-placement="top" title="UNIX下的IO模型">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -331,7 +268,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                          <a class="tag" href="/tags/#PHP" title="PHP">PHP</a>
                         
                     </div>
                 </section>
@@ -363,8 +300,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2020/06/03/UNIX%E4%B8%8BIO%E6%A8%A1%E5%9E%8B/";
-    var disqus_url = "https://pistachiol.github.io/2020/06/03/UNIX%E4%B8%8BIO%E6%A8%A1%E5%9E%8B/";
+    var disqus_identifier = "https://pistachiol.github.io/2020/06/04/PHP%E5%87%A0%E4%B8%AA%E5%88%A4%E6%96%AD%E5%8F%98%E9%87%8F%E4%B8%BA%E7%A9%BA%E7%9A%84%E5%87%BD%E6%95%B0/";
+    var disqus_url = "https://pistachiol.github.io/2020/06/04/PHP%E5%87%A0%E4%B8%AA%E5%88%A4%E6%96%AD%E5%8F%98%E9%87%8F%E4%B8%BA%E7%A9%BA%E7%9A%84%E5%87%BD%E6%95%B0/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
