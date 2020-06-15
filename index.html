@@ -199,8 +199,13 @@
         </h3>
         <div class="post-content-preview">
             前言之前开发了办公室预约系统，功能上基本实现了，现在需要提升性能问题，比如考虑并发情况，在多个人同时预约的时候，怎样解决并发问题呢？其实本质是要对事务上锁。
-1. 使用MySQL提供的悲观锁MySQL的InooDB支持行级锁，当锁住某行数据时，其他进程不能对这行数据进行操作
-2.消息队列(FIFO)缓存请求把用户的请求放到消息队列中，用户把需求放在队列中，而系统通过队列处理需求，这样可以拦截......
+1. 在MySQL方面提升MySQL的性能分析
+
+MySQL Query Optimizer(自带的优化器)
+MySQL常见的瓶颈
+CPU饱和：通常发生在数据装入内存或者从磁盘中读数据
+磁盘IO饱和：载入的数据远大于内存的容量
+服务器性......
         </div>
     </a>
     <p class="post-meta">
@@ -508,9 +513,9 @@ MySQL复制过程:
                             
                         
                             
-                            <a href="/tags/#读书笔记" title="读书笔记" rel="5">读书笔记</a>
-                            
                         
+                            
+                            <a href="/tags/#HTTP" title="HTTP" rel="2">HTTP</a>
                             
                         
                             
@@ -518,7 +523,7 @@ MySQL复制过程:
                             
                         
                             
-                            <a href="/tags/#HTTP" title="HTTP" rel="2">HTTP</a>
+                            <a href="/tags/#读书笔记" title="读书笔记" rel="5">读书笔记</a>
                             
                         
                             
@@ -550,9 +555,9 @@ MySQL复制过程:
                             
                         
                             
-                        
-                            
                             <a href="/tags/#STL" title="STL" rel="7">STL</a>
+                            
+                        
                             
                         
                             
@@ -562,9 +567,9 @@ MySQL复制过程:
                             
                         
                             
-                        
-                            
                             <a href="/tags/#树" title="树" rel="2">树</a>
+                            
+                        
                             
                         
                             

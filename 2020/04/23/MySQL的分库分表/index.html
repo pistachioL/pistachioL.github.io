@@ -13,11 +13,11 @@
 
     <title>
         
-          MySQL的高可扩展 - Pistachio的楼阁 | Pistachio&#39;s Blog
+          MySQL的分库分表 - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2020/04/23/MySQL的高可扩展/">
+    <link rel="canonical" href="https://pistachiol.github.io/2020/04/23/MySQL的分库分表/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -174,7 +174,7 @@
                           <a class="tag" href="/tags/#MySQL" title="MySQL">MySQL</a>
                         
                     </div>
-                    <h1>MySQL的高可扩展</h1>
+                    <h1>MySQL的分库分表</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
@@ -197,31 +197,86 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="MySQL的性能分析"><a href="#MySQL的性能分析" class="headerlink" title="MySQL的性能分析"></a>MySQL的性能分析</h3><ul>
-<li><p>MySQL Query Optimizer(自带的优化器)</p>
-</li>
-<li><p>MySQL常见的瓶颈</p>
+                <p>对于MySQL的性能优化，可能会想到索引优化。但是如果在数据量很大的情况（100w以上），而且写操作比较多的情况下，优化索引性能提升不明显。传统的分库分表是通过应用层逻辑实现的</p>
+<h1 id="分库分表"><a href="#分库分表" class="headerlink" title="分库分表"></a>分库分表</h1><p>把单一的数据库拆分成若干的数据库，将原来数据大表分成若干数据表，使得单一数据库、单一数据表的数量变小（数据量也随着拆分而变少），从而解决数据库由于数据量过大而导致性能降低的问题。</p>
+<h3 id="分库分表的方式"><a href="#分库分表的方式" class="headerlink" title="分库分表的方式"></a>分库分表的方式</h3><h4 id="1-垂直分表"><a href="#1-垂直分表" class="headerlink" title="1) 垂直分表"></a>1) 垂直分表</h4><p><strong>（按照数据表结构划分）</strong></p>
+<p>为了解决<code>单一表</code>数据量过大的问题，把一张宽表按照字段<strong>使用频率</strong>的高低、是否大字段的原则分为2张或多张表，即常用的（放在前端用于浏览的数据）放一张表，不常用的（详情的数据）放另一张表。</p>
+<p>性能提升：</p>
 <ul>
-<li>CPU饱和：通常发生在数据装入内存或者从磁盘中读数据</li>
-<li>磁盘IO饱和：载入的数据远大于内存的容量</li>
-<li>服务器性能饱和：可以通过<strong>top/free/vmstat/iostat</strong>查看系统性能状态</li>
+<li>避免IO争夺并减少锁表的几率（浏览信息和查看详情互不干扰）</li>
+<li>充分发挥热门数据的操作效率，操作效率高的数据不会被低效率的数据拖累</li>
 </ul>
-</li>
-<li><p>Explain查询</p>
+<p>存在缺点:</p>
 <ul>
-<li>MySQL提供了一个 EXPLAIN 命令, 它可以对 <code>SELECT</code> 语句进行分析, 并输出 <code>SELECT</code> 执行的详细信息, 以供开发人员针对性优化</li>
+<li>大字段的IO查找效率低</li>
 </ul>
+<blockquote>
+<p>1.由于本身数据量大，需要更长时间读取；</p>
+<p>2.跨页问题。页是数据库的存储单位，很多的查找是以页为单位，单页内数据行越多数据库整体性能更好；而大字段占用空间大，单页内存储的行数少，因此IO效率低；</p>
+<p>3.字段长度短的数据性能会高写。数据库以行为单位把数据加载到内存中，数据表中字段长度较短，且访问频率高的数据，内存能加载更多数据，因此命中率更高，而且减少了磁盘IO，从而提升了数据库性能。</p>
+</blockquote>
+<h5 id="垂直分表规则"><a href="#垂直分表规则" class="headerlink" title="垂直分表规则"></a>垂直分表规则</h5><ul>
+<li>把不常用的列放在一张表中</li>
+<li>把大的字段（text,blob）拆分出来放在附表</li>
+<li>把经常用于组合查询的字段放在一个表</li>
+</ul>
+<h4 id="2-垂直分库（常用于分布式系统开发）"><a href="#2-垂直分库（常用于分布式系统开发）" class="headerlink" title="2) 垂直分库（常用于分布式系统开发）"></a>2) 垂直分库（常用于分布式系统开发）</h4><p><strong>（按照数据表结构划分）</strong></p>
+<p>虽然垂直分表能有一定的性能提升，但还是处于同一个数据库中，就是说还是在同一个服务器中，每个表会竞争同一个物理机的CPU、磁盘、内存、网络IO等资源。</p>
+<p>因此，<strong>垂直分库</strong>根据业务的耦合松紧，将表进行分类，并把表放在不同数据库，并且把数据库部署在不同的服务器上（专库专用），从而让多个服务器共同分摊压力。</p>
+<p>性能提升：</p>
+<ul>
+<li>解决业务上的耦合，业务清晰。（店铺数据库，商品数据库）</li>
+<li>能对不同业务进行分级管理、维护、监控、扩展等</li>
+<li>在高并发场景下，能在一定程度上提升IO、数据库连接数、降低单机硬件资源的瓶颈</li>
+</ul>
+<p>存在缺点:</p>
+<ul>
+<li>还是没有解决单表数据量过大的问题</li>
+<li>要解决跨库带来的复杂问题</li>
+</ul>
+<h4 id="3-水平分库"><a href="#3-水平分库" class="headerlink" title="3) 水平分库"></a>3) 水平分库</h4><p><strong>（按照数据行划分）</strong></p>
+<p>经过垂直分库后，数据库性能确实有提升。但是随着业务的增长，难以再细粒度地进行垂直划分，单个数据库存储的数量也超出了预估。</p>
+<p>可尝试采用<strong>水平分库</strong>，把同一个表的<strong>数据行</strong>按照一定的规则拆到不同的数据库中(user_DB1 user_DB2)，数据表结构不变，然后每个数据库部署到不同服务器。</p>
+<p>这种规则可以有很多，例如根据id的奇偶性，<code>DB [id%2+1]</code>分在不同的数据库  DB1 DB2</p>
+<blockquote>
+<p>对比：垂直分库是把不同的表拆到不同数据库，是根据不同业务对数据进行拆分</p>
+</blockquote>
+<p>性能提升：</p>
+<ul>
+<li>解决了单库大数据问题，以及高并发的性能瓶颈</li>
+<li>提高了系统的稳定性（IO冲突少，锁减少）和可用性（某个库出现问题，不影响全部，还有部分可用）</li>
+</ul>
+<p>存在缺点：</p>
+<p>同一个表被分在不同数据库中，需要额外进行数据操作的路由工作，因此大大提升了系统的复杂度，运维成本增加</p>
+<h4 id="4-水平分表"><a href="#4-水平分表" class="headerlink" title="4) 水平分表"></a>4) 水平分表</h4><p><strong>（按照数据行划分）</strong></p>
+<p>以上三种方法都为了减少单表的数据量，但如果单表的数据量还是很大，继续进行水平分库的话，数据库实例就会很多，因此可以把思路放在表上。</p>
+<p><strong>水平分表</strong>是在同一个数据库内，把同一个表的数据按照一定规则拆到多个表中（对数据行的拆分，不影响表结构）</p>
+<p>思路和水平分库相似，只是划分对象是数据表。对每个垂直划分出来的表A（商品信息）B（店铺信息），根据每个表的id奇偶性，分在不同的表，如表<code>A[id%2+1]</code> （A1表存id为偶数，A2表存id为奇数）</p>
+<p>性能提升：</p>
+<ul>
+<li>优化单一表数据量过大而引发的性能问题，分出来的小表只包含一部分数据，从而使得单表数据量变小，提升检索性能</li>
+<li>避免争夺IO，并减少锁表几率</li>
+</ul>
+<h3 id="分库分表存在的问题"><a href="#分库分表存在的问题" class="headerlink" title="分库分表存在的问题"></a>分库分表存在的问题</h3><ul>
+<li><p>事务一致性问题: 不同服务器的数据库实例完成一个事务会出现分布式事务问题</p>
+<p>   跨界点关联查询问题: 数据不在同一个数据库，则不能通过一个sql语句进行关联查询。需要对每个数据进行查询，再拼接一起    </p>
+</li>
+<li><p>公共表: 不同数据库可能依赖一张公共表，但没必要对这张公共表拆分。因此需要在不同数据库中分别建立对应的公共表</p>
+</li>
+<li><p>主键避重: 表中数据存在不同数据库中，某个分区的id无法保证全局唯一，自增长也没有用。因此应该建立全局主键</p>
 </li>
 </ul>
-<p>###　分区表</p>
-<h5 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h5><p>对用户来说，分区表是独立的逻辑表，但是MySQL底层将其分成多个物理子表，每一个分区表都是独立的表文件，这些对于用户来说是透明的。</p>
+<h3 id="MySQL分区表"><a href="#MySQL分区表" class="headerlink" title="MySQL分区表"></a>MySQL分区表</h3><p><strong>工作原理</strong></p>
+<p>对用户来说，分区表是独立的逻辑表，但是MySQL底层将其分成多个物理子表，每一个分区表都是独立的表文件，这些对于用户来说是透明的。</p>
 <p>创建表时使用partition by子句定义每个分区存放的数据，执行查询时，优化器会根据分区定义过滤没有我们所需数据的分区，使得查询时只查询数据所在分区即可。</p>
-<p><img src="/2020/04/23/MySQL%E7%9A%84%E9%AB%98%E5%8F%AF%E6%89%A9%E5%B1%95/1.png" alt></p>
-<h3 id="分库分表"><a href="#分库分表" class="headerlink" title="分库分表"></a>分库分表</h3><h5 id="工作原理-1"><a href="#工作原理-1" class="headerlink" title="工作原理"></a>工作原理</h5><p>通过Hash算法或工具实现一张数据表水平或垂直进行物理切分</p>
-<h5 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h5><ul>
-<li>单表记录条数上百万到千万级别时</li>
-<li>解决表锁问题</li>
+<p><strong>分区类型</strong></p>
+<ul>
+<li>key 奇偶性</li>
+<li>范围分区</li>
+<li>哈希分区</li>
+<li>List分区</li>
 </ul>
+<p><a href="https://juejin.im/post/5ae1476ef265da0b8d419ef2#heading-1" target="_blank" rel="noopener">一致性哈希</a></p>
 
 
                 <hr>
@@ -301,8 +356,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2020/04/23/MySQL%E7%9A%84%E9%AB%98%E5%8F%AF%E6%89%A9%E5%B1%95/";
-    var disqus_url = "https://pistachiol.github.io/2020/04/23/MySQL%E7%9A%84%E9%AB%98%E5%8F%AF%E6%89%A9%E5%B1%95/";
+    var disqus_identifier = "https://pistachiol.github.io/2020/04/23/MySQL%E7%9A%84%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/";
+    var disqus_url = "https://pistachiol.github.io/2020/04/23/MySQL%E7%9A%84%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

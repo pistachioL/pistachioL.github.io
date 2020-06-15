@@ -340,27 +340,17 @@ POST比GET安全，因为数据在地址栏上不可见。通过GET提交数据�
 
 <div class="post-preview">
 
-    <a href="/2020/04/23/MySQL的高可扩展/">
+    <a href="/2020/04/23/MySQL的分库分表/">
         <h2 class="post-title">
-            MySQL的高可扩展
+            MySQL的分库分表
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            MySQL的性能分析
-MySQL Query Optimizer(自带的优化器)
-
-MySQL常见的瓶颈
-
-CPU饱和：通常发生在数据装入内存或者从磁盘中读数据
-磁盘IO饱和：载入的数据远大于内存的容量
-服务器性能饱和：可以通过top/free/vmstat/iostat查看系统性能状态
-
-
-Explain查询
-
-MySQL提供了一个 EXPLAIN 命令, 它可以对 SELECT 语句进行......
+            对于MySQL的性能优化，可能会想到索引优化。但是如果在数据量很大的情况（100w以上），而且写操作比较多的情况下，优化索引性能提升不明显。传统的分库分表是通过应用层逻辑实现的
+分库分表把单一的数据库拆分成若干的数据库，将原来数据大表分成若干数据表，使得单一数据库、单一数据表的数量变小（数据量也随着拆分而变少），从而解决数据库由于数据量过大而导致性能降低的问题。
+分库分表的方式1) 垂直分表......
         </div>
     </a>
     <p class="post-meta">
@@ -514,9 +504,9 @@ MySQL提供了一个 EXPLAIN 命令, 它可以对 SELECT 语句进行......
                             
                         
                             
-                            <a href="/tags/#读书笔记" title="读书笔记" rel="5">读书笔记</a>
-                            
                         
+                            
+                            <a href="/tags/#HTTP" title="HTTP" rel="2">HTTP</a>
                             
                         
                             
@@ -524,7 +514,7 @@ MySQL提供了一个 EXPLAIN 命令, 它可以对 SELECT 语句进行......
                             
                         
                             
-                            <a href="/tags/#HTTP" title="HTTP" rel="2">HTTP</a>
+                            <a href="/tags/#读书笔记" title="读书笔记" rel="5">读书笔记</a>
                             
                         
                             
@@ -556,9 +546,9 @@ MySQL提供了一个 EXPLAIN 命令, 它可以对 SELECT 语句进行......
                             
                         
                             
-                        
-                            
                             <a href="/tags/#STL" title="STL" rel="7">STL</a>
+                            
+                        
                             
                         
                             
@@ -568,9 +558,9 @@ MySQL提供了一个 EXPLAIN 命令, 它可以对 SELECT 语句进行......
                             
                         
                             
-                        
-                            
                             <a href="/tags/#树" title="树" rel="2">树</a>
+                            
+                        
                             
                         
                             
