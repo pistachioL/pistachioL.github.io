@@ -190,6 +190,58 @@
 
 <div class="post-preview">
 
+    <a href="/2020/05/17/拓扑排序/">
+        <h2 class="post-title">
+            拓扑排序
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            拓扑排序是用于处理一连串的事情，这些事情之间有顺序或依赖关系，在做一件事情之前必须做另一件先（如课程表）
+
+拓扑序：如从图中v到w有一条有向路径，则v一定排在w之前。满足此条件的顶点序列就是一个拓扑序。
+拓扑排序：获得一个拓扑序的过程就是拓扑排序。
+AOV如果是合理的(不带环)拓扑序，则必定是有向无环图 (Directed Acyclic Graph,DAG)
+图的出度和入度体现了顶点的先后......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-05-17
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/05/16/B树/">
+        <h2 class="post-title">
+            B树
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            B-Tree（B树）B树属于多叉树又名平衡多路查找树（查找路径不只两个），数据库索引技术里大量使用者B树和B+树的数据结构
+
+如果数据库索引用红黑树的话，会导致读取磁盘次数过多，并且读取出来的数据也会浪费很多。例如一个结点能存一页，一页有16K数据
+由于 B+ 树分支比二叉树更多，所以相同数量的内容，B+ 树的深度更浅，深度代表什么？代表磁盘 io 次数
+
+m阶B树有如下特点（阶表示一个节点......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-05-16
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2020/05/16/哈希表/">
         <h2 class="post-title">
             哈希表
@@ -227,9 +279,11 @@
             Linux权限
  Linux下权限的粒度有：拥有者、群组、其他组。每个文件都可以针对三个粒度，设置不同的rwx(读写执行)权限
 
-文件权限chmod数字权限的使用4 2 1分别表示读，写，执行，文件权限的组合由它们组合表示
-文件拥有者权限chownhttps://blog.csdn.net/u013197629/article/details/73608613
-...
+文件权限chmod数字权限的使用用于改变文件权限
+u-g-o 用户(所有者)-组内-其他用户(组外)
+4 2 1分别表示读，写，执行，文件权限的组合由它们组合表示
+文件拥有者权限chown将文件拥有者改为指定的用户或组
+https://blog.csdn.net/......
         </div>
     </a>
     <p class="post-meta">
@@ -283,16 +337,12 @@ session1 加了读锁，当前session1不能读其他未加锁的表，而且不
 也可理解为“排好序的快速查找的数据结构”
 
 索引本身很大，不可能全部存储在内存，因此索引往往会以索引文件的形式存储在磁盘中。
-优势与劣势
-优势    
+索引分类
+单值索引：一个索引只能包含一个列，一个表中可有多个单值索引
+复合索引：一个索引可以包含多个列(在并发下偏向于创建复合索引)
+唯一索引：索引列的值必须唯一，但可以为空
 
-提高数据检索效率，降低数据库IO的成本
-降低数据排序成本，降低CPU的消耗
-
-
-劣势
-
-索引列会占用磁盘空间。索引实际上也是一张表，该表保存了主键和索引字段，并......
+1)   ......
         </div>
     </a>
     <p class="post-meta">
@@ -424,59 +474,6 @@ Trie树的特点
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2020/05/02/树状数组/">
-        <h2 class="post-title">
-            树状数组
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-对于长度为n的数组进行修改和查询
-
-如果对1~m个数进行求前缀和，复杂度为O(n)。如果n很大效率会非常低。而树状数组只用O(logn)
-
-A是原数组，C是新开辟的数组，C[i]的意思是求前lowbit(i)个元素的前缀和，同时也是下标i管辖的元素个数2^k，k是i二进制末尾0的个数
-例如C[8] lowbit(8) = 1000 &amp; 1000 = 1
-​             ......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-05-02
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/04/26/合并k个链表/">
-        <h2 class="post-title">
-            合并k个链表
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            　　在之前的文章中分析过合并两个有序的链表，今天遇到一道题就是合并多个链表，则有分治法和优先队列的解法。
-分治法
-分治法的思想是，把一个复杂问题分解成两个或者更多相同或相似的子问题，再把子问题分成更小的子问题，直到最后的子问题可以简单地直接求解，最后把子问题的解合并，就得到原问题的解啦。（昨天百度一面的时候问过这个问题）
-
-[  1-&gt;4-&gt;5,  1-&gt;3-&gt;4, ......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-04-26
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -528,9 +525,11 @@ A是原数组，C是新开辟的数组，C[i]的意思是求前lowbit(i)个元�
                             
                         
                             
+                            <a href="/tags/#C++" title="C++" rel="2">C++</a>
+                            
                         
                             
-                            <a href="/tags/#读书笔记" title="读书笔记" rel="4">读书笔记</a>
+                            <a href="/tags/#读书笔记" title="读书笔记" rel="5">读书笔记</a>
                             
                         
                             

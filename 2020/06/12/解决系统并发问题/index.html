@@ -13,11 +13,11 @@
 
     <title>
         
-          Redis基础知识 - Pistachio的楼阁 | Pistachio&#39;s Blog
+          解决系统并发问题 - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2020/04/21/Redis基础知识/">
+    <link rel="canonical" href="https://pistachiol.github.io/2020/06/12/解决系统并发问题/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -171,14 +171,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#Redis" title="Redis">Redis</a>
+                          <a class="tag" href="/tags/#读书笔记" title="读书笔记">读书笔记</a>
                         
                     </div>
-                    <h1>Redis基础知识</h1>
+                    <h1>解决系统并发问题</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
-                        2020-04-21
+                        2020-06-12
                     </span>
                 </div>
             </div>
@@ -197,72 +197,12 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Redis是一种高性能的NoSQL(not only sql)非关系型数据库，key-value存储</p>
-<h3 id="启动、状态、结束"><a href="#启动、状态、结束" class="headerlink" title="启动、状态、结束"></a>启动、状态、结束</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl status redis<span class="literal">-server</span></span><br><span class="line">systemctl status redis<span class="literal">-server</span></span><br><span class="line">systemctl stop redis<span class="literal">-server</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>默认端口时6379</p>
-</li>
-<li><p>有16个数据库，每一个从下标0开始</p>
-</li>
-<li><p>统一管理密码，16个库同样密码</p>
-</li>
-</ul>
-<h3 id="连接服务"><a href="#连接服务" class="headerlink" title="连接服务"></a>连接服务</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis<span class="literal">-cli</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DBSIZE //当前数据库key的个数</span><br><span class="line">keys *   //查看所有的key</span><br><span class="line">SELECT 7  //选择数据库,默认是0号数据库</span><br><span class="line">FLUSHALL 　//清空所有数据库</span><br><span class="line">FLUSHDB //清空当前数据库</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h3><h4 id="1-String类型"><a href="#1-String类型" class="headerlink" title="1) String类型"></a>1) String类型</h4><p>key | value(int/string/float)</p>
-<p><code>set</code> <code>get</code> </p>
-<p><code>incr</code>自增</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">set string1 liao</span><br><span class="line">get string1</span><br><span class="line">set num <span class="number">1</span>   //num为key <span class="number">1</span>为val</span><br><span class="line">incr num</span><br><span class="line">get num</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="2-List类型"><a href="#2-List类型" class="headerlink" title="2)  List类型"></a>2)  List类型</h4><p><code>lpush</code>  从左边插入元素</p>
-<p><code>rpop</code>从右边取出元素</p>
-<p><code>llen</code> 容器中元素的个数</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lpush list1 <span class="number">13</span></span><br><span class="line">lpush list1 <span class="number">12</span></span><br><span class="line">rpop list1</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="3-Set类型"><a href="#3-Set类型" class="headerlink" title="3) Set类型"></a>3) Set类型</h4><p><code>sadd</code>增加元素</p>
-<p><code>scard</code>查看容器元素个数</p>
-<p><code>srem</code>删除容器元素</p>
-<p><code>sismember</code>查看是否有某个元素</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sadd set1 12</span><br><span class="line">sadd set1 13</span><br><span class="line">sadd set1 14</span><br><span class="line">scard set1</span><br><span class="line">srem set1 13</span><br><span class="line">sismember set1 13</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="4-Hash类型（散列类型）"><a href="#4-Hash类型（散列类型）" class="headerlink" title="4) Hash类型（散列类型）"></a>4) Hash类型（散列类型）</h4><p>key-&gt;val 一个键只能对应一个值</p>
-<p> <code>hset</code>插入</p>
-<p> <code>hget</code>通过key取出值</p>
-<p> <code>hmget</code>取出多个</p>
-<p> <code>hlen</code>容器中多少个元素</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hset hash1 key1 12</span><br><span class="line">hset hash1 key2 13</span><br><span class="line">hset hash1 key2 14 //修改key2 的值为14</span><br><span class="line">hget hash1 key1</span><br><span class="line">hmget hash1 key1 key2</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="5-Zset-Sort-Set-类型"><a href="#5-Zset-Sort-Set-类型" class="headerlink" title="5) Zset (Sort Set)类型"></a>5) Zset (Sort Set)类型</h4><p>score和value是一个整体</p>
-<p><img src="/2020/04/21/Redis%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/1.png" alt></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">zadd zset1 10.1 val1 </span><br><span class="line">zadd zset1 11.2 val2 </span><br><span class="line">zadd zset1 9.2</span><br><span class="line"></span><br><span class="line">zcard zset1  //查看容器元素个数</span><br><span class="line"></span><br><span class="line">zrange zset1 0 2 withscores //把0-2范围内的值从小到大列出</span><br><span class="line"></span><br><span class="line">zrank zset1 val2 //查看val2的排行</span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="rehash"><a href="#rehash" class="headerlink" title="rehash"></a>rehash</h5><h3 id="Redis是单线程的"><a href="#Redis是单线程的" class="headerlink" title="Redis是单线程的"></a>Redis是单线程的</h3><p>Redis利用队列技术将并发访问变为串行访问，消除了传统数据库串行控制的开销</p>
-<h3 id="使用Redis的优势"><a href="#使用Redis的优势" class="headerlink" title="使用Redis的优势"></a>使用Redis的优势</h3><p>   1.查询速度快，因为数据存在内存中，类似于HashMap，HashMap的优势就是查找和操作的时间复杂度都是O(1)</p>
-<ol start="2">
-<li><p>支持丰富数据类型，支持string，list，set，sorted set，hash</p>
-<p>3.支持事务</p>
-</li>
-<li><p>丰富的特性：可用于缓存，消息，按key设置过期时间，过期后将会自动删除</p>
-</li>
-</ol>
-<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><p>负载均衡情况下，session共享会话</p>
+                <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>之前开发了办公室预约系统，功能上基本实现了，现在需要提升性能问题，比如考虑并发情况，在多个人<strong>同时</strong>预约的时候，怎样解决并发问题呢？其实本质是要对事务<strong>上锁</strong>。</p>
+<h3 id="1-使用MySQL提供的悲观锁"><a href="#1-使用MySQL提供的悲观锁" class="headerlink" title="1. 使用MySQL提供的悲观锁"></a>1. 使用MySQL提供的悲观锁</h3><p>MySQL的InooDB支持行级锁，当锁住某行数据时，其他进程不能对这行数据进行操作</p>
+<h3 id="2-消息队列-FIFO-缓存请求"><a href="#2-消息队列-FIFO-缓存请求" class="headerlink" title="2.消息队列(FIFO)缓存请求"></a>2.消息队列(FIFO)缓存请求</h3><p>把用户的请求放到消息队列中，用户把需求放在队列中，而系统通过队列处理需求，这样可以拦截大量的请求</p>
+<h3 id="3-Redis的WATCH监控"><a href="#3-Redis的WATCH监控" class="headerlink" title="3. Redis的WATCH监控"></a>3. Redis的WATCH监控</h3><p>redis在监控的事务，如果在事务执行期间被其他事务改动，则其它事务会被打断</p>
+<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>以上是点滴思考和总结，将用在系统优化中，未完待续…</p>
+<p><a href="https://juejin.im/post/5cb025fb5188251b0351ef48#heading-1" target="_blank" rel="noopener">什么是消息队列</a></p>
 
 
                 <hr>
@@ -271,13 +211,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2020/04/22/红黑树/" data-toggle="tooltip" data-placement="top" title="红黑树">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2020/04/18/操作系统的内存管理/" data-toggle="tooltip" data-placement="top" title="操作系统的内存管理">Next Post &rarr;</a>
+                            <a href="/2020/06/09/C-常用函数/" data-toggle="tooltip" data-placement="top" title="C++常用函数">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -310,7 +246,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#Redis" title="Redis">Redis</a>
+                          <a class="tag" href="/tags/#读书笔记" title="读书笔记">读书笔记</a>
                         
                     </div>
                 </section>
@@ -342,8 +278,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2020/04/21/Redis%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/";
-    var disqus_url = "https://pistachiol.github.io/2020/04/21/Redis%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/";
+    var disqus_identifier = "https://pistachiol.github.io/2020/06/12/%E8%A7%A3%E5%86%B3%E7%B3%BB%E7%BB%9F%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98/";
+    var disqus_url = "https://pistachiol.github.io/2020/06/12/%E8%A7%A3%E5%86%B3%E7%B3%BB%E7%BB%9F%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

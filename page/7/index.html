@@ -190,6 +190,55 @@
 
 <div class="post-preview">
 
+    <a href="/2019/12/11/LinuxShell命令模拟器/">
+        <h2 class="post-title">
+            LinuxShell命令模拟器
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            LinuxShell命令模拟器一.原理分析0.终端执行步骤​    1）读取用户从键盘输入的命令，终端会分析是否是内部命令。如果是，则把命令分解为系统调用，并传给linux内核。如果不是，若不是再检查是否是一个应用程序，模拟shell的命令解析器正是这样。上述两种情况也不是的话，则报出错误信息。
+​    2）分析命令，以命令名为文件名，将其他参数改造为系统调用execve()内核级系统调用......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-12-11
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/12/11/PTA/">
+        <h2 class="post-title">
+            PTA技巧
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            L1-043 阅览室
+
+这道题要求一天内所有书的借阅次数和阅读时长，如果有些书只有借没有还，或者只有还没有借，则忽略不处理。
+借书的时候书本不能被借阅，因此首先想到用结构体把书的属性写在一起。
+
+巧妙之处是，通过结构体数组访问不同id的书的属性，且能通过标记思想限制一本书在一段时间内只能被一位读者借阅。
+最后求平均阅读时间（阅读时间/阅读次数）可能会是浮点数，其中阅读时长和阅读次数都是整数，......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-12-11
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2019/12/09/欧几里得的应用/">
         <h2 class="post-title">
             欧几里得的应用
@@ -404,63 +453,6 @@ Cookie-Session认证机制
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2019/10/12/欧几里得/">
-        <h2 class="post-title">
-            欧几里得
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            求最大公约数（最大公因子　GCD）
-质因数分解法
-
-例如：求24和60的最大公约数，先分解质因数，得24=2×2×2×3，60=2×2×3×5，24与60的全部公有的质因数是2、2、3，它们的积是2×2×3=12，所以，（24，60）=12。
-
-
-
-
-辗转相除法
-gcd(a,b) = gcd(b,a mod b)
-
-
-1234int gcd(int a,int b)&#123;	return......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-10-12
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/09/28/同余定理/">
-        <h2 class="post-title">
-            同余定理
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            定理同余,顾名思义是相同的余数,如果a mod m == b mod m,则说m为同余的模.
-也可这样理解:m|(a-b),即(a-b)是m的整数倍.
-给定一个正整数m，如果两个整数a和b满足（a-b）能够被m整除，即（a-b）/m得到一个整数，那么就称整数a与b对模m同余，记作a≡b(mod m)。
-...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-09-28
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -512,9 +504,11 @@ gcd(a,b) = gcd(b,a mod b)
                             
                         
                             
+                            <a href="/tags/#C++" title="C++" rel="2">C++</a>
+                            
                         
                             
-                            <a href="/tags/#读书笔记" title="读书笔记" rel="4">读书笔记</a>
+                            <a href="/tags/#读书笔记" title="读书笔记" rel="5">读书笔记</a>
                             
                         
                             
