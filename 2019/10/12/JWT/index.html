@@ -56,7 +56,7 @@
 
     <!-- ga & ba script hoook -->
     <script></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
 <!-- hack iOS CSS :active style -->
@@ -103,14 +103,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -226,7 +226,7 @@
 <li>信息基于 base64 编码转换为 ASCII 码，字节占用很小，便于传输。</li>
 <li>基于 Token 的鉴权机制保持了 HTTP 协议的无状态型，每次操作都会生成新的JWT，不需要在服务器端存储用户的记录，因此也没必要保存JWT，真正实现无状态，从而实现更简单的水平扩展。</li>
 </ul>
-<p><img src="/2019/10/12/JWT/JWT/3.png" alt></p>
+<p><img src="/2019/10/12/JWT/JWT/3.png"></p>
 <ol>
 <li>客户端使用用户名和密码进行登录；</li>
 <li>服务器端接收到请求后，取验证用户名和密码；</li>
@@ -236,28 +236,28 @@
 <li>服务器端接收到请求，去验证客户端携带的Token，如果验证成功，则返回客户端请求的数据。</li>
 </ol>
 <h3 id="Token的创建过程"><a href="#Token的创建过程" class="headerlink" title="Token的创建过程"></a>Token的创建过程</h3><blockquote>
-<p>​    JWT的Token由三部分组成：Header+Payload+Signature    </p>
+<p>​	JWT的Token由三部分组成：Header+Payload+Signature	</p>
 </blockquote>
-<p><img src="/2019/10/12/JWT/JWT/1.png" alt></p>
+<p><img src="/2019/10/12/JWT/JWT/1.png"></p>
 <h5 id="1）Header-创建头部"><a href="#1）Header-创建头部" class="headerlink" title="1）Header 创建头部"></a>1）Header 创建头部</h5><p>Header 部分是一个 JSON 对象，描述 JWT 的元数据。</p>
 <p>{<br>  “alg”: “HS256”,<br> “typ”: “JWT”<br> }</p>
 <p>alg属性表示签名的算法（algorithm），默认是 HMAC SHA256（这个算法的密钥只有认证服务器和应用服务器知道），用什么 hash 算法来生成 JWT 签名模块（下文描述）。</p>
 <p>typ属性表示这个令牌（token）的类型（type），JWT 令牌统一写为JWT。</p>
-<p><img src="/2019/10/12/JWT/JWT/2.png" alt></p>
+<p><img src="/2019/10/12/JWT/JWT/2.png"></p>
 <h5 id="2）Payload-创建负载"><a href="#2）Payload-创建负载" class="headerlink" title="2）Payload 创建负载"></a>2）Payload 创建负载</h5><p>Payload 部分也是一个 JSON 对象，用来存放实际需要传递的数据。官方给出了json数据的字段。</p>
 <p>{</p>
-<p>​    “iss (issuer)”：签发人<br>​    exp (expiration time)：过期时间<br>​    sub (subject)：主题<br>​    aud (audience)：受众<br>​    nbf (Not Before)：生效时间<br>​    iat (Issued At)：签发时间<br>​    jti (JWT ID)：编号</p>
+<p>​	“iss (issuer)”：签发人<br>​	exp (expiration time)：过期时间<br>​	sub (subject)：主题<br>​	aud (audience)：受众<br>​	nbf (Not Before)：生效时间<br>​	iat (Issued At)：签发时间<br>​	jti (JWT ID)：编号</p>
 <p> }</p>
 <p>当然，我们也可以自定义。</p>
 <p>{<br>  “exp”: “1234567890”,<br>  “username”: “test”</p>
 <p>}</p>
-<p><img src="/2019/10/12/JWT/JWT/3.png" alt></p>
+<p><img src="/2019/10/12/JWT/JWT/3.png"></p>
 <p>注意一点，<strong>payload 是一定不能够携带敏感数据如密码等信息的</strong></p>
 <h5 id="3）Signature-签名"><a href="#3）Signature-签名" class="headerlink" title="3）Signature 签名"></a>3）Signature 签名</h5><p>签名的目的主要是为了验证我是 “我“，把前两部分（Header、Payload）和用户的密钥进行哈希，防止数据篡改。换言之，即使Header或Payload被篡改，但篡改者不知到密钥是什么，无法生成签名，形成Token，服务器端无法通过验证。</p>
 <p>生成签名的步骤：</p>
 <p>​        ①Base64URL对生成的 header 和 payload 进行 base64url编码，然后把编码生成的字符串中间通过句号（.）连接起来。</p>
-<p>​        ②把密钥<strong><em>secret</em></strong>和data进行hash算法加密，生成签名，再进行base64编码，生成签名。(此处的secret是指用户的密钥，通过HA256或者其他方法进行加密)</p>
-<p><code>H</code>MACSHA256 (<code>base64UrlEncode(header) + &quot;.&quot; + base64UrlEncode(payload),  secret )</code></p>
+<p>​        ②把密钥<em><strong>secret</strong></em>和data进行hash算法加密，生成签名，再进行base64编码，生成签名。(此处的secret是指用户的密钥，通过HA256或者其他方法进行加密)</p>
+<p><code>H</code>MACSHA256 (<code>   base64UrlEncode(header) + &quot;.&quot; + base64UrlEncode(payload),  secret )</code></p>
 <p>延伸：</p>
 <p><strong>加密认证</strong></p>
 <p>JWT的签名除了通过密钥（secret）的<strong>HMAC加密</strong>算法，还支持公钥或私钥的<strong>RSA</strong> or <strong>ECDSA</strong>算法。</p>
@@ -267,9 +267,9 @@
 <li><strong>非对称加密：</strong>指的是加、解密使用不同的密钥，一把作为公开的公钥，另一把作为私钥。公钥加密的信息，只有私钥才能解密。反之，私钥加密的信息，只有公钥才能解密。 最常用的非对称加密算法：RSA</li>
 </ol>
 <h5 id="4）三个模块合并成Token"><a href="#4）三个模块合并成Token" class="headerlink" title="4）三个模块合并成Token"></a>4）三个模块合并成Token</h5><p>产生签名之后，把Header、Payload、Signature 三个部分用 “ . ” 拼成一个字符串。</p>
-<p><img src="/2019/10/12/JWT/JWT/4.png" alt></p>
+<p><img src="/2019/10/12/JWT/JWT/4.png"></p>
 <p>自此，用户得到了服务器返回的Token（凭证）。用户下次登录的时候，在过期时间之内或者注销会话之内，可以凭这这个Token免密登录。</p>
-<h5 id="5-校验JWT"><a href="#5-校验JWT" class="headerlink" title="5.校验JWT"></a>5.校验JWT</h5><p>​        由于应用知道密钥，当用户向应用发起携带 JWT 的 API 请求时，应用可以执行签名算法。然后应用可以校验用户 hash 操作生成的签名是否和 JWT 中的签名匹配（即它匹配认证服务器创建的 JWT 签名），若匹配一致，则认证通过，返回请求的数据。</p>
+<h5 id="5-校验JWT"><a href="#5-校验JWT" class="headerlink" title="5.校验JWT"></a>5.校验JWT</h5><p>​		由于应用知道密钥，当用户向应用发起携带 JWT 的 API 请求时，应用可以执行签名算法。然后应用可以校验用户 hash 操作生成的签名是否和 JWT 中的签名匹配（即它匹配认证服务器创建的 JWT 签名），若匹配一致，则认证通过，返回请求的数据。</p>
 <!--签发JWT的时候需要密钥-->
 <!--验证的时候需要公钥：验证使用 RS256 算法签发的 JWT，需要在文件系统上读取公钥文件里的内容。然后用 jwt 的 verify 方法去做验证。-->
 
@@ -298,8 +298,8 @@
 <li><p>生成签名字段时，支持使用密钥字符串签名（安全性较低），也支持使用 RSA、ECDSA 私钥签名。</p>
 </li>
 </ul>
-<p>​        </p>
-<p><a href="https://juejin.im/entry/5bb211b7e51d450e5c478e0b" target="_blank" rel="noopener">https://juejin.im/entry/5bb211b7e51d450e5c478e0b</a></p>
+<p>​		</p>
+<p><a target="_blank" rel="noopener" href="https://juejin.im/entry/5bb211b7e51d450e5c478e0b">https://juejin.im/entry/5bb211b7e51d450e5c478e0b</a></p>
 
 
                 <hr>
@@ -309,7 +309,7 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2019/11/22/深夜奇想/" data-toggle="tooltip" data-placement="top" title="深夜奇想">&larr; Previous Post</a>
+                            <a href="/2019/11/22/深夜奇想/" data-toggle="tooltip" data-placement="top" title="">&larr; Previous Post</a>
                         </li>
                     
                     
@@ -459,13 +459,13 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Pistachio&#39;s Blog 2020 
+                    Copyright &copy; Pistachio&#39;s Blog 2022 
                     <br>
-                    Theme by <a href="http://huangxuan.me" target="_blank" rel="noopener">Hux</a> 
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">
                         <i class="fa fa-heart"></i>
                     </span> 
-                    Ported by <a href="http://blog.kaijun.rocks" target="_blank" rel="noopener">Kaijun</a> | 
+                    Ported by <a target="_blank" rel="noopener" href="http://blog.kaijun.rocks">Kaijun</a> | 
                     <iframe
                         style="margin-left: 2px; margin-bottom:-5px;"
                         frameborder="0" scrolling="0" width="91px" height="20px"

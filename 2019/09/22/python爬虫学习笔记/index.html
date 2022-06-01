@@ -56,7 +56,7 @@
 
     <!-- ga & ba script hoook -->
     <script></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
 <!-- hack iOS CSS :active style -->
@@ -103,14 +103,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -197,12 +197,13 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="安装requests库"><a href="#安装requests库" class="headerlink" title="安装requests库"></a>安装requests库</h3><figure class="highlight plain"><figcaption><span>install requests```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#96;&#96;&#96;python</span><br><span class="line">import requests</span><br><span class="line">r &#x3D; requests.get(&quot;https:&#x2F;&#x2F;www.baidu.com&quot;)</span><br><span class="line">r.status_code   #返回状态码</span><br><span class="line">r.encoding(&quot;utf-8&quot;)</span><br><span class="line">r.text  #打印出首页内容</span><br></pre></td></tr></table></figure>
+                <h3 id="安装requests库"><a href="#安装requests库" class="headerlink" title="安装requests库"></a>安装requests库</h3><p><code>pip install requests</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r = requests.get(<span class="string">&quot;https://www.baidu.com&quot;</span>)</span><br><span class="line">r.status_code   <span class="comment">#返回状态码</span></span><br><span class="line">r.encoding(<span class="string">&quot;utf-8&quot;</span>)</span><br><span class="line">r.text  <span class="comment">#打印出首页内容</span></span><br></pre></td></tr></table></figure>
 
 
 
-<p><img src="/2019/09/22/python%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/python%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/1.png" alt></p>
-<h3 id="百度360关键词提交"><a href="#百度360关键词提交" class="headerlink" title="百度360关键词提交"></a>百度360关键词提交</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">kv = &#123;<span class="string">'wd'</span>:<span class="string">'Python'</span>&#125;  <span class="comment">#根据python关键字查询</span></span><br><span class="line">r = requests.get(<span class="string">"https://www.baidu.com"</span>,params = kv)</span><br><span class="line">r.status_code</span><br><span class="line"></span><br><span class="line">r.request.url  <span class="comment">#发给百度的url信息</span></span><br><span class="line"><span class="comment">#返回：'https://www.baidu.com/?wd=Python'</span></span><br><span class="line">len(r.text)</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/09/22/python%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/python%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/1.png"></p>
+<h3 id="百度360关键词提交"><a href="#百度360关键词提交" class="headerlink" title="百度360关键词提交"></a>百度360关键词提交</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">kv = &#123;<span class="string">&#x27;wd&#x27;</span>:<span class="string">&#x27;Python&#x27;</span>&#125;  <span class="comment">#根据python关键字查询</span></span><br><span class="line">r = requests.get(<span class="string">&quot;https://www.baidu.com&quot;</span>,params = kv)</span><br><span class="line">r.status_code</span><br><span class="line"></span><br><span class="line">r.request.url  <span class="comment">#发给百度的url信息</span></span><br><span class="line"><span class="comment">#返回：&#x27;https://www.baidu.com/?wd=Python&#x27;</span></span><br><span class="line"><span class="built_in">len</span>(r.text)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
 
@@ -210,9 +211,9 @@
 
 
 
-<h3 id="安装BeautifulSoup库"><a href="#安装BeautifulSoup库" class="headerlink" title="安装BeautifulSoup库"></a>安装BeautifulSoup库</h3><p> <code>pip install beautifulsoup</code></p>
-<p>​    </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r = requests.get(<span class="string">"https://2.taobao.com/"</span>)</span><br><span class="line">demo = r.text</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"></span><br><span class="line">soup = BeautifulSoup(demo,<span class="string">'html.parser'</span>) <span class="comment">#html解释器</span></span><br><span class="line">print(soup.prettify())  <span class="comment">#打印出HTML的源代码</span></span><br></pre></td></tr></table></figure>
+<h3 id="安装BeautifulSoup库"><a href="#安装BeautifulSoup库" class="headerlink" title="安装BeautifulSoup库"></a>安装BeautifulSoup库</h3><p> <code> pip install beautifulsoup</code></p>
+<p>​	</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r = requests.get(<span class="string">&quot;https://2.taobao.com/&quot;</span>)</span><br><span class="line">demo = r.text</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"></span><br><span class="line">soup = BeautifulSoup(demo,<span class="string">&#x27;html.parser&#x27;</span>) <span class="comment">#html解释器</span></span><br><span class="line"><span class="built_in">print</span>(soup.prettify())  <span class="comment">#打印出HTML的源代码</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
 
@@ -222,15 +223,15 @@
 <p>soup.select(‘.class’)</p>
 <p>soup.select(‘#id’)</p>
 <p>soup.select(‘.class a’)  某一类下的某个标签中的内容，采用空格隔开</p>
-<h3 id="正则匹配"><a href="#正则匹配" class="headerlink" title="正则匹配"></a>正则匹配</h3><p><img src="/2019/09/22/python%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/python%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/3.png" alt></p>
+<h3 id="正则匹配"><a href="#正则匹配" class="headerlink" title="正则匹配"></a>正则匹配</h3><p><img src="/2019/09/22/python%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/python%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/3.png"></p>
 <p>将正则表达式的字符串形式编译成正则表达式对象</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">regex = re.compile(pattern,flags)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">regex = re.<span class="built_in">compile</span>(pattern,flags)</span><br></pre></td></tr></table></figure>
 
 <p><strong>查找所有a标签，且属性值href中需要保护关键字“”</strong></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> x <span class="keyword">in</span> soup.find_all(<span class="string">'a'</span>,href = re.compile(<span class="string">'lacie'</span>)):</span><br><span class="line">    print(x)</span><br><span class="line"></span><br><span class="line">&lt;a class="sister" href="http://example.com/lacie" id="link2"&gt;Lacie&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> x <span class="keyword">in</span> soup.find_all(<span class="string">&#x27;a&#x27;</span>,href = re.<span class="built_in">compile</span>(<span class="string">&#x27;lacie&#x27;</span>)):</span><br><span class="line">    <span class="built_in">print</span>(x)</span><br><span class="line"></span><br><span class="line">&lt;a <span class="keyword">class</span>=<span class="string">&quot;sister&quot;</span> href=<span class="string">&quot;http://example.com/lacie&quot;</span> <span class="built_in">id</span>=<span class="string">&quot;link2&quot;</span>&gt;Lacie&lt;/a&gt;</span><br></pre></td></tr></table></figure>
 
-<h3 id="HTML标签树"><a href="#HTML标签树" class="headerlink" title="HTML标签树"></a>HTML标签树</h3><p><img src="/2019/09/22/python%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/python%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/2.png" alt></p>
-<h3 id="查询嵌套标签"><a href="#查询嵌套标签" class="headerlink" title="查询嵌套标签"></a>查询嵌套标签</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">data = requests.get(url)</span><br><span class="line">data.encoding = <span class="string">'utf-8'</span></span><br><span class="line">soup = BeautifulSoup(data.text,<span class="string">"lxml"</span>)</span><br><span class="line">print(soup)</span><br><span class="line">title = soup.find_all(<span class="string">"ul"</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> title:</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> i.find_all(<span class="string">'li'</span>):</span><br><span class="line">        <span class="keyword">for</span> l <span class="keyword">in</span> j.find_all(<span class="string">'a'</span>,href=re.compile(<span class="string">'doc-iicezuev'</span>)):</span><br><span class="line">            print(l)</span><br></pre></td></tr></table></figure>
+<h3 id="HTML标签树"><a href="#HTML标签树" class="headerlink" title="HTML标签树"></a>HTML标签树</h3><p><img src="/2019/09/22/python%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/python%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/2.png"></p>
+<h3 id="查询嵌套标签"><a href="#查询嵌套标签" class="headerlink" title="查询嵌套标签"></a>查询嵌套标签</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">data = requests.get(url)</span><br><span class="line">data.encoding = <span class="string">&#x27;utf-8&#x27;</span></span><br><span class="line">soup = BeautifulSoup(data.text,<span class="string">&quot;lxml&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(soup)</span><br><span class="line">title = soup.find_all(<span class="string">&quot;ul&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> title:</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> i.find_all(<span class="string">&#x27;li&#x27;</span>):</span><br><span class="line">        <span class="keyword">for</span> l <span class="keyword">in</span> j.find_all(<span class="string">&#x27;a&#x27;</span>,href=re.<span class="built_in">compile</span>(<span class="string">&#x27;doc-iicezuev&#x27;</span>)):</span><br><span class="line">            <span class="built_in">print</span>(l)</span><br></pre></td></tr></table></figure>
 
                 <hr>
 
@@ -389,13 +390,13 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Pistachio&#39;s Blog 2020 
+                    Copyright &copy; Pistachio&#39;s Blog 2022 
                     <br>
-                    Theme by <a href="http://huangxuan.me" target="_blank" rel="noopener">Hux</a> 
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">
                         <i class="fa fa-heart"></i>
                     </span> 
-                    Ported by <a href="http://blog.kaijun.rocks" target="_blank" rel="noopener">Kaijun</a> | 
+                    Ported by <a target="_blank" rel="noopener" href="http://blog.kaijun.rocks">Kaijun</a> | 
                     <iframe
                         style="margin-left: 2px; margin-bottom:-5px;"
                         frameborder="0" scrolling="0" width="91px" height="20px"

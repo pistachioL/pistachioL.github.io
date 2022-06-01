@@ -56,7 +56,7 @@
 
     <!-- ga & ba script hoook -->
     <script></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
 <!-- hack iOS CSS :active style -->
@@ -103,14 +103,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -161,7 +161,7 @@
                 <div class="site-heading">
                     <h1>Pistachio&#39;s Blog</h1>
                     <!--<hr class="small">-->
-                    <span class="subheading">To Be A Lean Developer!</span>
+                    <span class="subheading">Later equals never.</span>
                 </div>
             </div>
         </div>
@@ -187,6 +187,35 @@
             
                 <!-- Main Content -->
 
+
+<div class="post-preview">
+
+    <a href="/2020/04/21/Redis基础知识/">
+        <h2 class="post-title">
+            Redis基础知识
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            简介Redis是一种高性能的NoSQL(not only sql)非关系型数据库，key-value存储
+启动、状态、结束123systemctl status redis-serversystemctl status redis-serversystemctl stop redis-server
+
+
+默认端口时6379
+
+有16个数据库，每一个从下标0开始
+
+统一管理密码，16个库同样密码......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-04-21
+    </p>
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -310,14 +339,13 @@
             
         </h3>
         <div class="post-content-preview">
-            冒泡排序基本思想：*两两数字比较 *，比较在每一趟遍历中，看当前数字会不会比下一个大，如果比下一个大则交换。每一趟交换中能找到最大的数，放在末尾。
-最好情况：顺序 只需遍历一遍 T = O(N)
-最坏情况：逆序 全部都得排序　T = O(N^2)
+            冒泡排序基本思想：**两两数字比较 **，比较在每一趟遍历中，看当前数字会不会比下一个大，如果比下一个大则交换。每一趟交换中能找到最大的数，放在末尾。
+最好情况：顺序 只需遍历一遍 T &#x3D; O(N)
+最坏情况：逆序 全部都得排序　T &#x3D; O(N^2)
 如数组：５，３，７，１０，６，１８，４
 第一趟：能把最大值放到最后
 【３，５】，７，６，１０，４，１８　
-３，【５，７】，１０，６，１８，４　
-３......
+３，【５，７】，......
         </div>
     </a>
     <p class="post-meta">
@@ -387,7 +415,7 @@
         <div class="post-content-preview">
             构造方法只要类被实例化之后，构造方法会被执行，就是在对象执行方法之前。
 构造方法必须为public，否则无法被实例化
-12345678910111213&lt;?phpclass Number&#123;    public function __construct()&#123;        echo "1输出";   		echo "2输出";    &#125;public func......
+12345678910111213&lt;?phpclass Number&#123;    public function __construct()&#123;        echo &quot;1输出&quot;;   		echo &quot;2输出&quot;; ......
         </div>
     </a>
     <p class="post-meta">
@@ -412,31 +440,6 @@
 操作规则（以单调递增栈为例）如果新进来的元素比栈顶元素大，则进栈
 如果新进的元素比栈顶元素小，就把栈内元素出栈，直到找到第一个比新进元素要小的元素为止。
 代码模板123456789int MonotoneStack(vector&lt;int&gt;&amp; height)&#123;    stack&......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-03-24
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/03/24/DP/">
-        <h2 class="post-title">
-            动态规划
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            动态规划用于解决重叠子问题(overlap sub-problem)，已经计算过的不再重复计算，而是从内存中重新调出来使用。
-LeetCode　按摩师（同打家劫舍系列）
-
-给定预约时长，找到最优的预约集合(时长最长)，且不能接收相邻的预约
-输入： [2,1,4,5,3,1,1,3]输出： 12解释： 选择 1 号预约、 3 号预约、 5 号预约和 8 号预约，总时长 = 2 + 4 + 3 ......
         </div>
     </a>
     <p class="post-meta">
@@ -490,11 +493,7 @@ LeetCode　按摩师（同打家劫舍系列）
                             
                         
                             
-                            <a href="/tags/#数据结构" title="数据结构" rel="17">数据结构</a>
-                            
-                        
-                            
-                            <a href="/tags/#图论" title="图论" rel="2">图论</a>
+                            <a href="/tags/#数据结构" title="数据结构" rel="16">数据结构</a>
                             
                         
                             
@@ -502,17 +501,13 @@ LeetCode　按摩师（同打家劫舍系列）
                             
                         
                             
-                            <a href="/tags/#读书笔记" title="读书笔记" rel="5">读书笔记</a>
-                            
-                        
-                            
                             <a href="/tags/#算法" title="算法" rel="9">算法</a>
                             
                         
                             
-                        
+                            <a href="/tags/#读书笔记" title="读书笔记" rel="5">读书笔记</a>
                             
-                            <a href="/tags/#HTTP" title="HTTP" rel="2">HTTP</a>
+                        
                             
                         
                             
@@ -520,13 +515,17 @@ LeetCode　按摩师（同打家劫舍系列）
                             
                         
                             
-                            <a href="/tags/#PHP" title="PHP" rel="4">PHP</a>
+                            <a href="/tags/#HTTP" title="HTTP" rel="2">HTTP</a>
                             
                         
                             
                         
                             
                             <a href="/tags/#Linux" title="Linux" rel="4">Linux</a>
+                            
+                        
+                            
+                            <a href="/tags/#PHP" title="PHP" rel="4">PHP</a>
                             
                         
                             
@@ -540,15 +539,19 @@ LeetCode　按摩师（同打家劫舍系列）
                             
                         
                             
-                            <a href="/tags/#数论" title="数论" rel="12">数论</a>
-                            
-                        
-                            
                             <a href="/tags/#Redis" title="Redis" rel="2">Redis</a>
                             
                         
                             
+                            <a href="/tags/#数论" title="数论" rel="12">数论</a>
+                            
+                        
+                            
                             <a href="/tags/#STL" title="STL" rel="7">STL</a>
+                            
+                        
+                            
+                        
                             
                         
                             
@@ -558,9 +561,9 @@ LeetCode　按摩师（同打家劫舍系列）
                             
                         
                             
-                        
-                            
                             <a href="/tags/#树" title="树" rel="2">树</a>
+                            
+                        
                             
                         
                             
@@ -662,13 +665,13 @@ LeetCode　按摩师（同打家劫舍系列）
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Pistachio&#39;s Blog 2020 
+                    Copyright &copy; Pistachio&#39;s Blog 2022 
                     <br>
-                    Theme by <a href="http://huangxuan.me" target="_blank" rel="noopener">Hux</a> 
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">
                         <i class="fa fa-heart"></i>
                     </span> 
-                    Ported by <a href="http://blog.kaijun.rocks" target="_blank" rel="noopener">Kaijun</a> | 
+                    Ported by <a target="_blank" rel="noopener" href="http://blog.kaijun.rocks">Kaijun</a> | 
                     <iframe
                         style="margin-left: 2px; margin-bottom:-5px;"
                         frameborder="0" scrolling="0" width="91px" height="20px"

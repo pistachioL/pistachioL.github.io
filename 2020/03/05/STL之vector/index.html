@@ -56,7 +56,7 @@
 
     <!-- ga & ba script hoook -->
     <script></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
 <!-- hack iOS CSS :active style -->
@@ -103,14 +103,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -202,18 +202,18 @@
 <li>但由于其内存空间是连续的，在进行插入或删除操作时，会造成内存块拷贝，时间复杂度为O(n)；另外，在数组内存空间不够时，也会重新申请一块内存空间进行内存拷贝。</li>
 </ul>
 <p>（与list数据结构相反，用于不同的场景）</p>
-<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p>vector<int> vec(int size); //创建一个大小size()的容器`　</int></p>
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p>vector<int> vec(int size); &#x2F;&#x2F;创建一个大小size()的容器&#96;　</int></p>
 <p><code>vector&lt;int&gt; vec(int size, int val);  //创建一个大小为size，且值均为val的容器</code> </p>
-<p><code>vector&lt;vector&lt;int&gt;&gt; vec(int row, vector&lt;int&gt;(int size, int val)) //行数，一维数组的初始化</code> </p>
+<p><code>vector&lt;vector&lt;int&gt;&gt; vec(int row, vector&lt;int&gt;(int size, int val)) //行数，一维数组的初始化  </code> </p>
 <h3 id="vector的二维数组"><a href="#vector的二维数组" class="headerlink" title="vector的二维数组"></a>vector的二维数组</h3><p>二维数组可表示成<code>vecotr&lt;vector&lt;int&gt;&gt;vec</code></p>
-<h5 id="行列的表示"><a href="#行列的表示" class="headerlink" title="行列的表示"></a>行列的表示</h5><p>​    行表示：<code>vec.size()</code></p>
-<p>​    列表示：<code>vec[0].size()</code></p>
-<h5 id="初始化-1"><a href="#初始化-1" class="headerlink" title="初始化"></a>初始化</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">memset</span>(vec,<span class="number">-1</span>,<span class="keyword">sizeof</span>(vec));  <span class="comment">//把二维数组初始化为-1</span></span><br></pre></td></tr></table></figure>
+<h5 id="行列的表示"><a href="#行列的表示" class="headerlink" title="行列的表示"></a>行列的表示</h5><p>​	行表示：<code>vec.size()</code></p>
+<p>​	列表示：<code>vec[0].size()</code></p>
+<h5 id="初始化-1"><a href="#初始化-1" class="headerlink" title="初始化"></a>初始化</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">memset</span>(vec,<span class="number">-1</span>,<span class="built_in">sizeof</span>(vec));  <span class="comment">//把二维数组初始化为-1</span></span><br></pre></td></tr></table></figure>
 
 <p><em>曾做过DFS遍历二叉树的题目，有一处利用vector二维数组很巧妙</em></p>
 <p><code>vec[level].push_back(root-&gt;val)</code>  在第n层插入对应根的值</p>
-<h3 id="常用的操作"><a href="#常用的操作" class="headerlink" title="常用的操作"></a>常用的操作</h3><p><code>reverse(vec.begin(),vec.end())</code>　//翻转数组</p>
-<p><code>sort(vec.begin(),vec.end())</code>　//升序排序数组</p>
+<h3 id="常用的操作"><a href="#常用的操作" class="headerlink" title="常用的操作"></a>常用的操作</h3><p><code>reverse(vec.begin(),vec.end())</code>　&#x2F;&#x2F;翻转数组</p>
+<p><code>sort(vec.begin(),vec.end())</code>　&#x2F;&#x2F;升序排序数组</p>
 
 
                 <hr>
@@ -373,13 +373,13 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Pistachio&#39;s Blog 2020 
+                    Copyright &copy; Pistachio&#39;s Blog 2022 
                     <br>
-                    Theme by <a href="http://huangxuan.me" target="_blank" rel="noopener">Hux</a> 
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">
                         <i class="fa fa-heart"></i>
                     </span> 
-                    Ported by <a href="http://blog.kaijun.rocks" target="_blank" rel="noopener">Kaijun</a> | 
+                    Ported by <a target="_blank" rel="noopener" href="http://blog.kaijun.rocks">Kaijun</a> | 
                     <iframe
                         style="margin-left: 2px; margin-bottom:-5px;"
                         frameborder="0" scrolling="0" width="91px" height="20px"

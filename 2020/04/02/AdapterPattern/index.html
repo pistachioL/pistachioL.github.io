@@ -56,7 +56,7 @@
 
     <!-- ga & ba script hoook -->
     <script></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
 <!-- hack iOS CSS :active style -->
@@ -103,14 +103,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -198,15 +198,15 @@
                 post-container">
 
                 <p>实例：有一个220v电压，需要适配器转成5V电压才能给手机充电。</p>
-<h3 id="类适配器"><a href="#类适配器" class="headerlink" title="类适配器"></a>类适配器</h3><p><img src="/2020/04/02/AdapterPattern/1.png" alt></p>
+<h3 id="类适配器"><a href="#类适配器" class="headerlink" title="类适配器"></a>类适配器</h3><p><img src="/2020/04/02/AdapterPattern/1.png"></p>
 <p>被适配器类:Voltage220V 适配类:Voltage5V </p>
 <p>通过适配器类VoltageAdapter继承Voltage220V（拿到220V电压），并且实现了Voltage5V的接口（并转乘5V）</p>
 <p>手机类依赖Voltage5V，实质上是依赖VoltageAdapter</p>
 <h3 id="对象适配器"><a href="#对象适配器" class="headerlink" title="对象适配器"></a>对象适配器</h3><p>由于Java单继承原因</p>
 <p>对类适配器模式进行改进，不需要继承原先的类，而是直接持有被适配对象</p>
 <p>通过合成复用原则，由继承关系转变为聚合关系</p>
-<p><img src="/2020/04/02/AdapterPattern/2.png" alt></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">VoltageAapter</span> <span class="keyword">implements</span> <span class="title">Voltage</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Voltage220 voltage220;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/04/02/AdapterPattern/2.png"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">VoltageAapter</span> <span class="keyword">implements</span> <span class="title class_">Voltage</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Voltage220 voltage220;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -370,13 +370,13 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Pistachio&#39;s Blog 2020 
+                    Copyright &copy; Pistachio&#39;s Blog 2022 
                     <br>
-                    Theme by <a href="http://huangxuan.me" target="_blank" rel="noopener">Hux</a> 
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">
                         <i class="fa fa-heart"></i>
                     </span> 
-                    Ported by <a href="http://blog.kaijun.rocks" target="_blank" rel="noopener">Kaijun</a> | 
+                    Ported by <a target="_blank" rel="noopener" href="http://blog.kaijun.rocks">Kaijun</a> | 
                     <iframe
                         style="margin-left: 2px; margin-bottom:-5px;"
                         frameborder="0" scrolling="0" width="91px" height="20px"

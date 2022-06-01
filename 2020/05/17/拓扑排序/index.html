@@ -56,7 +56,7 @@
 
     <!-- ga & ba script hoook -->
     <script></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
 <!-- hack iOS CSS :active style -->
@@ -103,14 +103,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -198,19 +198,19 @@
                 post-container">
 
                 <p>拓扑排序是用于处理一连串的事情，这些事情之间有顺序或依赖关系，在做一件事情之前必须做另一件先（如课程表）</p>
-<p><img src="/2020/05/17/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/1.png" alt></p>
+<p><img src="/2020/05/17/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/1.png"></p>
 <p>拓扑序：如从图中v到w有一条有向路径，则v一定排在w之前。满足此条件的顶点序列就是一个拓扑序。</p>
 <p>拓扑排序：获得一个拓扑序的过程就是拓扑排序。</p>
 <p>AOV如果是合理的(不带环)拓扑序，则必定是<strong>有向无环图</strong> (Directed Acyclic Graph,DAG)</p>
 <p>图的出度和入度体现了顶点的先后关系，入度为0表示说明它是起点，在最前面。出度为0说明它排在最后面。</p>
 <p><strong>LeetCode　课程表</strong></p>
-<p><img src="/2020/05/17/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/2.png" alt></p>
+<p><img src="/2020/05/17/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/2.png"></p>
 <p>样例2的拓扑图如下：</p>
 <p><img src="/2020/05/17/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/3.png" alt="1589688597734"></p>
-<p>edge[0] = {1,2} indeg[1]++ indeg[2]++</p>
-<p>edge[1] ={3}  indeg[3]++</p>
-<p>edge[2] = {3} indeg[3]++</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">findOrder</span><span class="params">(<span class="keyword">int</span> numCourses, <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; prerequisites)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;edges;　<span class="comment">//存储有向无环图</span></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;indeg; <span class="comment">//存储入度</span></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;result;　<span class="comment">//存储结果</span></span><br><span class="line">        edges.resize(numCourses);</span><br><span class="line">        indeg.resize(numCourses);</span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;info : prerequisites)&#123;</span><br><span class="line">            edges[info[<span class="number">1</span>]].push_back(info[<span class="number">0</span>]); <span class="comment">//存储有向无环图[1,0]要学1得先学0</span></span><br><span class="line">            ++indeg[info[<span class="number">0</span>]];<span class="comment">//入度增加</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt;q;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numCourses; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(indeg[i] == <span class="number">0</span>)&#123; <span class="comment">//这个点入度为0，就是排在前面，则放入队列</span></span><br><span class="line">                q.push(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(!q.empty())&#123;</span><br><span class="line">            <span class="keyword">int</span> u = q.front();</span><br><span class="line">            q.pop();</span><br><span class="line">            result.push_back(u);</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> v : edges[u])&#123;  <span class="comment">//v可以代表某个edge集合中的顶点</span></span><br><span class="line">                --indeg[v]; <span class="comment">//集合中某个顶点的度-１</span></span><br><span class="line">                <span class="keyword">if</span>(indeg[v] == <span class="number">0</span>)&#123; <span class="comment">//度为0，表示在最前面，则入队处理</span></span><br><span class="line">                    q.push(v);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(result.<span class="built_in">size</span>() != numCourses) <span class="comment">//出现环</span></span><br><span class="line">            <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>edge[0] &#x3D; {1,2} indeg[1]++ indeg[2]++</p>
+<p>edge[1] &#x3D;{3}  indeg[3]++</p>
+<p>edge[2] &#x3D; {3} indeg[3]++</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">findOrder</span><span class="params">(<span class="type">int</span> numCourses, vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; prerequisites)</span> </span>&#123;</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;edges;　<span class="comment">//存储有向无环图</span></span><br><span class="line">        vector&lt;<span class="type">int</span>&gt;indeg; <span class="comment">//存储入度</span></span><br><span class="line">        vector&lt;<span class="type">int</span>&gt;result;　<span class="comment">//存储结果</span></span><br><span class="line">        edges.<span class="built_in">resize</span>(numCourses);</span><br><span class="line">        indeg.<span class="built_in">resize</span>(numCourses);</span><br><span class="line">        <span class="keyword">for</span>(vector&lt;<span class="type">int</span>&gt;info : prerequisites)&#123;</span><br><span class="line">            edges[info[<span class="number">1</span>]].<span class="built_in">push_back</span>(info[<span class="number">0</span>]); <span class="comment">//存储有向无环图[1,0]要学1得先学0</span></span><br><span class="line">            ++indeg[info[<span class="number">0</span>]];<span class="comment">//入度增加</span></span><br><span class="line">        &#125;</span><br><span class="line">        queue&lt;<span class="type">int</span>&gt;q;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; numCourses; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(indeg[i] == <span class="number">0</span>)&#123; <span class="comment">//这个点入度为0，就是排在前面，则放入队列</span></span><br><span class="line">                q.<span class="built_in">push</span>(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(!q.<span class="built_in">empty</span>())&#123;</span><br><span class="line">            <span class="type">int</span> u = q.<span class="built_in">front</span>();</span><br><span class="line">            q.<span class="built_in">pop</span>();</span><br><span class="line">            result.<span class="built_in">push_back</span>(u);</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> v : edges[u])&#123;  <span class="comment">//v可以代表某个edge集合中的顶点</span></span><br><span class="line">                --indeg[v]; <span class="comment">//集合中某个顶点的度-１</span></span><br><span class="line">                <span class="keyword">if</span>(indeg[v] == <span class="number">0</span>)&#123; <span class="comment">//度为0，表示在最前面，则入队处理</span></span><br><span class="line">                    q.<span class="built_in">push</span>(v);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(result.<span class="built_in">size</span>() != numCourses) <span class="comment">//出现环</span></span><br><span class="line">            <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -371,13 +371,13 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Pistachio&#39;s Blog 2020 
+                    Copyright &copy; Pistachio&#39;s Blog 2022 
                     <br>
-                    Theme by <a href="http://huangxuan.me" target="_blank" rel="noopener">Hux</a> 
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">
                         <i class="fa fa-heart"></i>
                     </span> 
-                    Ported by <a href="http://blog.kaijun.rocks" target="_blank" rel="noopener">Kaijun</a> | 
+                    Ported by <a target="_blank" rel="noopener" href="http://blog.kaijun.rocks">Kaijun</a> | 
                     <iframe
                         style="margin-left: 2px; margin-bottom:-5px;"
                         frameborder="0" scrolling="0" width="91px" height="20px"

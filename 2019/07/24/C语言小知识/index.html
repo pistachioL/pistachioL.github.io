@@ -56,7 +56,7 @@
 
     <!-- ga & ba script hoook -->
     <script></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
 <!-- hack iOS CSS :active style -->
@@ -103,14 +103,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -199,33 +199,32 @@
 
                 <p>1）字符变数字：str[i]-‘0’</p>
 <h5 id="2）char-strncpy-char-dest-const-char-src-size-t-n"><a href="#2）char-strncpy-char-dest-const-char-src-size-t-n" class="headerlink" title="2）char *strncpy(char *dest,const char *src,size_t n)"></a>2）char *strncpy(char *dest,const char *src,size_t n)</h5><p>把str所指向的字符串复制最多n个字符到dest</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="keyword">char</span> src[<span class="number">40</span>];</span><br><span class="line">   <span class="keyword">char</span> dest[<span class="number">12</span>];</span><br><span class="line">  </span><br><span class="line">   <span class="built_in">memset</span>(dest, <span class="string">'\0'</span>, <span class="keyword">sizeof</span>(dest));</span><br><span class="line">   <span class="built_in">strcpy</span>(src, <span class="string">"This is runoob.com"</span>);</span><br><span class="line">   <span class="built_in">strncpy</span>(dest, src, <span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"最终的目标字符串： %s\n"</span>, dest);</span><br><span class="line">   </span><br><span class="line">   <span class="keyword">return</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//最终的目标字符串： This is ru</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="type">char</span> src[<span class="number">40</span>];</span><br><span class="line">   <span class="type">char</span> dest[<span class="number">12</span>];</span><br><span class="line">  </span><br><span class="line">   <span class="built_in">memset</span>(dest, <span class="string">&#x27;\0&#x27;</span>, <span class="built_in">sizeof</span>(dest));</span><br><span class="line">   <span class="built_in">strcpy</span>(src, <span class="string">&quot;This is runoob.com&quot;</span>);</span><br><span class="line">   <span class="built_in">strncpy</span>(dest, src, <span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;最终的目标字符串： %s\n&quot;</span>, dest);</span><br><span class="line">   </span><br><span class="line">   <span class="keyword">return</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//最终的目标字符串： This is ru</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <h3 id="用0x3f3f3f3f设定int的最大值"><a href="#用0x3f3f3f3f设定int的最大值" class="headerlink" title="用0x3f3f3f3f设定int的最大值"></a>用0x3f3f3f3f设定int的最大值</h3><p>在许多算法中都要用到一个常量来表示最大值，例如：寻找一个最小数。</p>
 <ul>
 <li>不会数据溢出</li>
 <li>我们想将一个数组的数据全部置为无穷大的时候（经常用到），使用的 memset的第二个参数value是8-bit的，可使用memset来将数组所有值最大化。</li>
 </ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF = <span class="number">0x3f3f3f3f</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> INF = <span class="number">0x3f3f3f3f</span>;</span><br></pre></td></tr></table></figure>
 
-<p><a href="https://www.kawabangga.com/posts/1153" target="_blank" rel="noopener">参考</a></p>
-<h4 id="printf-“-08d-n”-num-第一个0表示用0填充，第二个8是设置输出宽度（学号8个字符）"><a href="#printf-“-08d-n”-num-第一个0表示用0填充，第二个8是设置输出宽度（学号8个字符）" class="headerlink" title="printf(“%08d\n”, num);  第一个0表示用0填充，第二个8是设置输出宽度（学号8个字符）"></a>printf(“%08d\n”, num);  第一个0表示用0填充，第二个8是设置输出宽度（学号8个字符）</h4><h3 id="表示最大-最小整数"><a href="#表示最大-最小整数" class="headerlink" title="表示最大/最小整数"></a>表示最大/最小整数</h3><p>头文件 <code>#include &lt;climits&gt;</code></p>
+<p><a target="_blank" rel="noopener" href="https://www.kawabangga.com/posts/1153">参考</a></p>
+<h4 id="printf-“-08d-n”-num-第一个0表示用0填充，第二个8是设置输出宽度（学号8个字符）"><a href="#printf-“-08d-n”-num-第一个0表示用0填充，第二个8是设置输出宽度（学号8个字符）" class="headerlink" title="printf(“%08d\n”, num);  第一个0表示用0填充，第二个8是设置输出宽度（学号8个字符）"></a>printf(“%08d\n”, num);  第一个0表示用0填充，第二个8是设置输出宽度（学号8个字符）</h4><h3 id="表示最大-x2F-最小整数"><a href="#表示最大-x2F-最小整数" class="headerlink" title="表示最大&#x2F;最小整数"></a>表示最大&#x2F;最小整数</h3><p>头文件 <code>#include &lt;climits&gt;</code></p>
 <p><code>INT_MAX</code>  +2147483647   (2^31 - 1)    </p>
 <p><code>INt_MIN</code>  -2147483648  （-2^31）</p>
 <p>int占4字节32位</p>
 <p>long long 占8字节64位</p>
 <h3 id="pair-lt-int-int-gt-是一种类型"><a href="#pair-lt-int-int-gt-是一种类型" class="headerlink" title="pair&lt;int, int&gt; 是一种类型"></a>pair&lt;int, int&gt; 是一种类型</h3><p><code>pair&lt;int, int&gt;x</code></p>
 <p>通过<code>x.first x.second来引用其元素</code></p>
-<p>###　字符数组　字符指针</p>
-<p><em>今天百度面试被问道这题</em></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> *str = <span class="string">"abcff"</span>;  <span class="comment">//字符指针</span></span><br><span class="line"><span class="keyword">char</span> str1[] = &#123;<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>&#125;; <span class="comment">//字符数组</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="built_in">strlen</span>(str) &lt;&lt;<span class="built_in">endl</span>;  <span class="comment">// 5</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="built_in">strlen</span>(str1) &lt;&lt;<span class="built_in">endl</span>;  <span class="comment">// 9</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="keyword">sizeof</span>(str)/<span class="keyword">sizeof</span>(<span class="keyword">char</span>) &lt;&lt; <span class="built_in">endl</span>;　<span class="comment">//8　在64位系统中，8代表的是指针的大小，指针占8字节。</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="keyword">sizeof</span>(str1)/<span class="keyword">sizeof</span>(<span class="keyword">char</span>) &lt;&lt; <span class="built_in">endl</span>; <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<h3 id="字符数组-字符指针"><a href="#字符数组-字符指针" class="headerlink" title="字符数组　字符指针"></a>字符数组　字符指针</h3><p><em>今天百度面试被问道这题</em></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *str = <span class="string">&quot;abcff&quot;</span>;  <span class="comment">//字符指针</span></span><br><span class="line"><span class="type">char</span> str1[] = &#123;<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>&#125;; <span class="comment">//字符数组</span></span><br><span class="line">cout &lt;&lt; <span class="built_in">strlen</span>(str) &lt;&lt;endl;  <span class="comment">// 5</span></span><br><span class="line">cout &lt;&lt; <span class="built_in">strlen</span>(str1) &lt;&lt;endl;  <span class="comment">// 9</span></span><br><span class="line">cout &lt;&lt; <span class="built_in">sizeof</span>(str)/<span class="built_in">sizeof</span>(<span class="type">char</span>) &lt;&lt; endl;　<span class="comment">//8　在64位系统中，8代表的是指针的大小，指针占8字节。</span></span><br><span class="line">cout &lt;&lt; <span class="built_in">sizeof</span>(str1)/<span class="built_in">sizeof</span>(<span class="type">char</span>) &lt;&lt; endl; <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
 
 <p>char*类型，<code>sizeof()</code>计算出指针的大小，32位系统占4字节，64位系统占8字节，与char *的字符串长度无关系；而可以计算出字符数组char a[]中元素个数，而非指针大小。</p>
 <blockquote>
 <p>但是如果将其用于参数传递的话，子函数中获取的将不再是字符串数组类型，而是指针，这个要特别注意。</p>
 </blockquote>
 <p><code>strlen()</code>可以计算字符指针字符串的真实值大小，判断方法是找’\0’，根据’\0’来计算长度。</p>
-<p><a href="https://blog.csdn.net/xc889078/article/details/8910812" target="_blank" rel="noopener">https://blog.csdn.net/xc889078/article/details/8910812</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xc889078/article/details/8910812">https://blog.csdn.net/xc889078/article/details/8910812</a></p>
 
 
                 <hr>
@@ -385,13 +384,13 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Pistachio&#39;s Blog 2020 
+                    Copyright &copy; Pistachio&#39;s Blog 2022 
                     <br>
-                    Theme by <a href="http://huangxuan.me" target="_blank" rel="noopener">Hux</a> 
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">
                         <i class="fa fa-heart"></i>
                     </span> 
-                    Ported by <a href="http://blog.kaijun.rocks" target="_blank" rel="noopener">Kaijun</a> | 
+                    Ported by <a target="_blank" rel="noopener" href="http://blog.kaijun.rocks">Kaijun</a> | 
                     <iframe
                         style="margin-left: 2px; margin-bottom:-5px;"
                         frameborder="0" scrolling="0" width="91px" height="20px"

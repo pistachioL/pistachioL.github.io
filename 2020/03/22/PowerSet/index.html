@@ -56,7 +56,7 @@
 
     <!-- ga & ba script hoook -->
     <script></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
 <!-- hack iOS CSS :active style -->
@@ -103,14 +103,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -201,7 +201,7 @@
 <p>幂集，也是原集合的所有子集</p>
 </blockquote>
 <p>位运算求幂集</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; <span class="title">subsets</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">       <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;ans;</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (<span class="number">1</span>&lt;&lt;nums.<span class="built_in">size</span>()); i++)&#123;</span><br><span class="line">           <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;vec;</span><br><span class="line">           <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; nums.<span class="built_in">size</span>(); j++)&#123;</span><br><span class="line">               <span class="keyword">if</span>(i &amp; (<span class="number">1</span> &lt;&lt; j))</span><br><span class="line">               &#123;</span><br><span class="line">                   vec.push_back(nums[j]);</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">           ans.push_back(vec);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> ans;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">subsets</span>(vector&lt;<span class="type">int</span>&gt;&amp; nums) &#123;</span><br><span class="line">       vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;ans;</span><br><span class="line">       <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; (<span class="number">1</span>&lt;&lt;nums.<span class="built_in">size</span>()); i++)&#123;</span><br><span class="line">           vector&lt;<span class="type">int</span>&gt;vec;</span><br><span class="line">           <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt; nums.<span class="built_in">size</span>(); j++)&#123;</span><br><span class="line">               <span class="keyword">if</span>(i &amp; (<span class="number">1</span> &lt;&lt; j))</span><br><span class="line">               &#123;</span><br><span class="line">                   vec.<span class="built_in">push_back</span>(nums[j]);</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">           ans.<span class="built_in">push_back</span>(vec);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> ans;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -362,13 +362,13 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Pistachio&#39;s Blog 2020 
+                    Copyright &copy; Pistachio&#39;s Blog 2022 
                     <br>
-                    Theme by <a href="http://huangxuan.me" target="_blank" rel="noopener">Hux</a> 
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">
                         <i class="fa fa-heart"></i>
                     </span> 
-                    Ported by <a href="http://blog.kaijun.rocks" target="_blank" rel="noopener">Kaijun</a> | 
+                    Ported by <a target="_blank" rel="noopener" href="http://blog.kaijun.rocks">Kaijun</a> | 
                     <iframe
                         style="margin-left: 2px; margin-bottom:-5px;"
                         frameborder="0" scrolling="0" width="91px" height="20px"

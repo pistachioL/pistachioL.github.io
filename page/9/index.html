@@ -56,7 +56,7 @@
 
     <!-- ga & ba script hoook -->
     <script></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
 <!-- hack iOS CSS :active style -->
@@ -103,14 +103,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -161,7 +161,7 @@
                 <div class="site-heading">
                     <h1>Pistachio&#39;s Blog</h1>
                     <!--<hr class="small">-->
-                    <span class="subheading">To Be A Lean Developer!</span>
+                    <span class="subheading">Later equals never.</span>
                 </div>
             </div>
         </div>
@@ -205,32 +205,6 @@
     <p class="post-meta">
         Posted by Liao on
         2019-09-02
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/08/31/BFS/">
-        <h2 class="post-title">
-            BFS
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            1. 定义​    树的BFS：从根节点开始，从左到右，从上到下进行的层次遍历；
-
-​    图的BFS：从根节点出发，找与该结点相邻的所有结点，如此类推，一层层遍历。
-
-​       图没有根结点，就得找一个点作为根节点。例如是A，则找与A相连距离1条边的结点，有B、C；再找与A距离2条边的结点有D、E；最后与A距离为3的结点有F。故BFS的遍历顺序为：ABCDEF
-注意，取的点不同，有......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-08-31
     </p>
 
 </div>
@@ -326,14 +300,14 @@ map的底层实现时红黑树，查询的时间复杂度时log(n)
             
         </h3>
         <div class="post-content-preview">
-            一 定义​        set A;
-二 用法​        A.insert(item);
-​        A.earse(item);   //删除元素item
-​        A.clear();   //清空set
-​        A.empty();
-​        A.size()
-​        A.find(k);
-​        A.lower_bound(......
+            一 定义​		set A;
+二 用法​		A.insert(item);
+​		A.earse(item);   &#x2F;&#x2F;删除元素item
+​		A.clear();   &#x2F;&#x2F;清空set
+​		A.empty();
+​		A.size()
+​		A.find(k);
+​		A.lower_bound(k)   &#x2F;&#x2F;返回第一个大于k的元素......
         </div>
     </a>
     <p class="post-meta">
@@ -383,7 +357,7 @@ priorit......
         <div class="post-content-preview">
             1）字符变数字：str[i]-‘0’
 2）char *strncpy(char *dest,const char *src,size_t n)把str所指向的字符串复制最多n个字符到dest
-123456789101112131415161718#include &lt;stdio.h&gt;#include &lt;string.h&gt;int main()&#123;   char s......
+12345678910111213141516171819#include &lt;stdio.h&gt;#include &lt;string.h&gt;int main()&#123;   char......
         </div>
     </a>
     <p class="post-meta">
@@ -437,8 +411,37 @@ git add .
 git commit -m &quot;xxxx&quot;
 git push origin master -f
 删除远程关联
-git remote rm origin
-创建新分支git bran......
+ git remote rm origin
+创建新分支git bra......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-07-12
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/07/12/树/">
+        <h2 class="post-title">
+            树
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            2019蓝桥杯校内选拔一题
+一棵包含有2019个结点的树，最多包含多少个叶结点？
+
+解法1：
+首先他问“最多”，当然便是完全二叉树（满二叉树）了。
+记i为树的层数，由完全二叉树的性质可得，结点总数为$$2^i-1$$，叶子结点总数为$$2^(i-1)$$，列出等式即可计算出。
+解法2：
+二叉树的性质：叶子结点 &#x3D; 度为2的结点数 + 1
+当二叉树叶子结点最多时，即度为2的结点数最多......
         </div>
     </a>
     <p class="post-meta">
@@ -492,11 +495,7 @@ git remote rm origin
                             
                         
                             
-                            <a href="/tags/#数据结构" title="数据结构" rel="17">数据结构</a>
-                            
-                        
-                            
-                            <a href="/tags/#图论" title="图论" rel="2">图论</a>
+                            <a href="/tags/#数据结构" title="数据结构" rel="16">数据结构</a>
                             
                         
                             
@@ -504,17 +503,13 @@ git remote rm origin
                             
                         
                             
-                            <a href="/tags/#读书笔记" title="读书笔记" rel="5">读书笔记</a>
-                            
-                        
-                            
                             <a href="/tags/#算法" title="算法" rel="9">算法</a>
                             
                         
                             
-                        
+                            <a href="/tags/#读书笔记" title="读书笔记" rel="5">读书笔记</a>
                             
-                            <a href="/tags/#HTTP" title="HTTP" rel="2">HTTP</a>
+                        
                             
                         
                             
@@ -522,13 +517,17 @@ git remote rm origin
                             
                         
                             
-                            <a href="/tags/#PHP" title="PHP" rel="4">PHP</a>
+                            <a href="/tags/#HTTP" title="HTTP" rel="2">HTTP</a>
                             
                         
                             
                         
                             
                             <a href="/tags/#Linux" title="Linux" rel="4">Linux</a>
+                            
+                        
+                            
+                            <a href="/tags/#PHP" title="PHP" rel="4">PHP</a>
                             
                         
                             
@@ -542,15 +541,19 @@ git remote rm origin
                             
                         
                             
-                            <a href="/tags/#数论" title="数论" rel="12">数论</a>
-                            
-                        
-                            
                             <a href="/tags/#Redis" title="Redis" rel="2">Redis</a>
                             
                         
                             
+                            <a href="/tags/#数论" title="数论" rel="12">数论</a>
+                            
+                        
+                            
                             <a href="/tags/#STL" title="STL" rel="7">STL</a>
+                            
+                        
+                            
+                        
                             
                         
                             
@@ -560,9 +563,9 @@ git remote rm origin
                             
                         
                             
-                        
-                            
                             <a href="/tags/#树" title="树" rel="2">树</a>
+                            
+                        
                             
                         
                             
@@ -664,13 +667,13 @@ git remote rm origin
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Pistachio&#39;s Blog 2020 
+                    Copyright &copy; Pistachio&#39;s Blog 2022 
                     <br>
-                    Theme by <a href="http://huangxuan.me" target="_blank" rel="noopener">Hux</a> 
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">
                         <i class="fa fa-heart"></i>
                     </span> 
-                    Ported by <a href="http://blog.kaijun.rocks" target="_blank" rel="noopener">Kaijun</a> | 
+                    Ported by <a target="_blank" rel="noopener" href="http://blog.kaijun.rocks">Kaijun</a> | 
                     <iframe
                         style="margin-left: 2px; margin-bottom:-5px;"
                         frameborder="0" scrolling="0" width="91px" height="20px"

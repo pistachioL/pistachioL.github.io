@@ -56,7 +56,7 @@
 
     <!-- ga & ba script hoook -->
     <script></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
 <!-- hack iOS CSS :active style -->
@@ -103,14 +103,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -229,7 +229,7 @@
 <p>在餐厅点了餐之后，只能在餐厅等，什么事情都做不了。直到菜上了，吃完饭，才可以去逛街shopping（阻塞）</p>
 </blockquote>
 <p>原理</p>
-<p>当用户进程执行一个系统调用recv()/recvform()，操作系统要把数据拷贝到操作系统内核的缓存区（缓存IO），这个过程中用户进程会被阻塞，处于一个等待的状态。直到数据准备好，就会把数据从缓存区拷贝到用户内存，然后内核返回结果后，用户进程才接触阻塞状态，重新运行。</p>
+<p>当用户进程执行一个系统调用recv()&#x2F;recvform()，操作系统要把数据拷贝到操作系统内核的缓存区（缓存IO），这个过程中用户进程会被阻塞，处于一个等待的状态。直到数据准备好，就会把数据从缓存区拷贝到用户内存，然后内核返回结果后，用户进程才接触阻塞状态，重新运行。</p>
 <h3 id="同步非阻塞IO（轮询polling）"><a href="#同步非阻塞IO（轮询polling）" class="headerlink" title="同步非阻塞IO（轮询polling）"></a>同步非阻塞IO（轮询polling）</h3><blockquote>
 <p>在等餐过程中，不愿把时间浪费在等待上，而是在等待的期间逛了商场，又回来问服务员菜好了没。如果没有又继续逛，期间又回来问……就这样循环多次的询问</p>
 </blockquote>
@@ -241,7 +241,7 @@
 <h3 id="IO多路复用之select、poll、epoll"><a href="#IO多路复用之select、poll、epoll" class="headerlink" title="IO多路复用之select、poll、epoll"></a>IO多路复用之select、poll、epoll</h3><blockquote>
 <p>点了菜之后，可以通过小程序看到点餐进度，就可以在等待上菜的时候去逛街，不需要询问服务员菜好了没</p>
 </blockquote>
-<p>IO多路复用是通过一种机制，使得一个用户进程可以监听多个<strong>文件描述符</strong>(file descriptor，简写fd)，当某个fd就绪（读就绪或写就绪），就能通知程序进行相应的读写操作。<code>但select、pselect、poll、epoll本质都是都是同步IO</code>，因为他们都需要在读写事件就绪后自己负责进行读写，也就是说这个读写过程是<strong>阻塞</strong>(要等待)的，而异步I/O则无需自己负责进行读写，异步I/O的实现会负责把数据从内核拷贝到用户空间。</p>
+<p>IO多路复用是通过一种机制，使得一个用户进程可以监听多个<strong>文件描述符</strong>(file descriptor，简写fd)，当某个fd就绪（读就绪或写就绪），就能通知程序进行相应的读写操作。<code>但select、pselect、poll、epoll本质都是都是同步IO</code>，因为他们都需要在读写事件就绪后自己负责进行读写，也就是说这个读写过程是<strong>阻塞</strong>(要等待)的，而异步I&#x2F;O则无需自己负责进行读写，异步I&#x2F;O的实现会负责把数据从内核拷贝到用户空间。</p>
 <h4 id="select"><a href="#select" class="headerlink" title="select"></a>select</h4><ul>
 <li><p>select是POSIX所规定</p>
 </li>
@@ -276,14 +276,14 @@
 <p>epoll采取“事件”就绪的通知方式，避免线性扫描。通过epoll_ctl()注册fd，<code>一旦该fd就绪，内核就会采用类似callback的回调机制来激活该fd</code>，epoll_wait()便可以收到通知。epoll只通知进程哪些fd刚刚变为就绪态，并且只会通知一次,并把fd添加到就绪链表</p>
 <p>epoll的优点</p>
 <ul>
-<li>没有最大fd连接数限制    </li>
+<li>没有最大fd连接数限制	</li>
 <li>epoll不采用轮询的方式，epoll只管“活跃”的连接，而与连接总数无关</li>
 <li>epoll把所有事件挂载在红黑树上，搜索效率高</li>
 <li>利用<code>mmap()</code>文件映射内存，加速用户空间和内核空间的消息传递，减少复制开销</li>
 </ul>
 <p>参考</p>
-<p><a href="https://www.jianshu.com/p/486b0965c296" target="_blank" rel="noopener">聊聊Linux 五种IO模型</a></p>
-<p><a href="https://www.jianshu.com/p/dfd940e7fca2" target="_blank" rel="noopener">聊聊IO多路复用之select、poll、epoll详解</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/486b0965c296">聊聊Linux 五种IO模型</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/dfd940e7fca2">聊聊IO多路复用之select、poll、epoll详解</a></p>
 
 
                 <hr>
@@ -443,13 +443,13 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Pistachio&#39;s Blog 2020 
+                    Copyright &copy; Pistachio&#39;s Blog 2022 
                     <br>
-                    Theme by <a href="http://huangxuan.me" target="_blank" rel="noopener">Hux</a> 
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">
                         <i class="fa fa-heart"></i>
                     </span> 
-                    Ported by <a href="http://blog.kaijun.rocks" target="_blank" rel="noopener">Kaijun</a> | 
+                    Ported by <a target="_blank" rel="noopener" href="http://blog.kaijun.rocks">Kaijun</a> | 
                     <iframe
                         style="margin-left: 2px; margin-bottom:-5px;"
                         frameborder="0" scrolling="0" width="91px" height="20px"

@@ -56,7 +56,7 @@
 
     <!-- ga & ba script hoook -->
     <script></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
 <!-- hack iOS CSS :active style -->
@@ -103,14 +103,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -161,7 +161,7 @@
                 <div class="site-heading">
                     <h1>Pistachio&#39;s Blog</h1>
                     <!--<hr class="small">-->
-                    <span class="subheading">To Be A Lean Developer!</span>
+                    <span class="subheading">Later equals never.</span>
                 </div>
             </div>
         </div>
@@ -190,6 +190,41 @@
 
 <div class="post-preview">
 
+    <a href="/2020/02/02/搭建Jekyll博客/">
+        <h2 class="post-title">
+            Jekyll搭建博客
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            1.先安装rvm  通过rvm安装ruby环境1curl -sSL https://get.rvm.io | bash -s stable
+
+查看是否安装成功
+1rvm -v 
+
+
+
+2.换国内源查看现在的源
+1gem sources -l
+
+删除之前的源
+1gem sources --remove
+
+增加国内源
+1gem sources -a https://gems.ruby-china......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-02-02
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2020/01/31/安装deepin后要做的事情/">
         <h2 class="post-title">
             安装deepin后要做的事情
@@ -203,10 +238,10 @@
 
 2. 命令行主题配置下载oh-my-zsh
 通过curl
-1sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+1sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;
 
 通过wget
-1sh -c "$(wget -O- https://ra......
+1sh -c &quot;$(wget......
         </div>
     </a>
     <p class="post-meta">
@@ -227,8 +262,8 @@
             
         </h3>
         <div class="post-content-preview">
-            LinuxShell命令模拟器一.原理分析0.终端执行步骤​    1）读取用户从键盘输入的命令，终端会分析是否是内部命令。如果是，则把命令分解为系统调用，并传给linux内核。如果不是，若不是再检查是否是一个应用程序，模拟shell的命令解析器正是这样。上述两种情况也不是的话，则报出错误信息。
-​    2）分析命令，以命令名为文件名，将其他参数改造为系统调用execve()内核级系统调用......
+            LinuxShell命令模拟器一.原理分析0.终端执行步骤​	1）读取用户从键盘输入的命令，终端会分析是否是内部命令。如果是，则把命令分解为系统调用，并传给linux内核。如果不是，若不是再检查是否是一个应用程序，模拟shell的命令解析器正是这样。上述两种情况也不是的话，则报出错误信息。
+​	2）分析命令，以命令名为文件名，将其他参数改造为系统调用execve()内核级系统调用所要求的形式......
         </div>
     </a>
     <p class="post-meta">
@@ -255,7 +290,7 @@
 借书的时候书本不能被借阅，因此首先想到用结构体把书的属性写在一起。
 
 巧妙之处是，通过结构体数组访问不同id的书的属性，且能通过标记思想限制一本书在一段时间内只能被一位读者借阅。
-最后求平均阅读时间（阅读时间/阅读次数）可能会是浮点数，其中阅读时长和阅读次数都是整数，......
+最后求平均阅读时间（阅读时间&#x2F;阅读次数）可能会是浮点数，其中阅读时长和阅读次数......
         </div>
     </a>
     <p class="post-meta">
@@ -305,7 +340,7 @@
         </h3>
         <div class="post-content-preview">
             一. 求因子的个数题意大概是，输入一个数，输出这个数因子的个数。
-1234567891011121314151617181920212223242526#include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;cmath&gt;using namespace std;int mai......
+12345678910111213141516171819202122232425262728#include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;cmath&gt;using namespace std;int......
         </div>
     </a>
     <p class="post-meta">
@@ -328,15 +363,13 @@
         <div class="post-content-preview">
             栈的基本操作:
 stack  s;
-s.push(item)  //入栈
+s.push(item)  &#x2F;&#x2F;入栈
 s.top() 返回栈顶元素
 s.pop()删除栈顶元素
-s.size() //返回栈中元素个数
+s.size() &#x2F;&#x2F;返回栈中元素个数
 s.empty()检查栈是否为空，为空返回true，否则返回false
 新生赛题目
-输入一个字符串，通过处理能使字符串中两个相邻且相同的字符互相消除，得到新的字符串，然后继续对新字符串消除，知道没有相同的字符。
-
-inpu......
+输入一个字符串，通过处理能使字符串中两个相邻且相同的字符互相消除，得到新的字符串，然后继续对新字符......
         </div>
     </a>
     <p class="post-meta">
@@ -378,7 +411,7 @@ inpu......
 
     <a href="/2019/11/22/深夜奇想/">
         <h2 class="post-title">
-            深夜奇想
+            Untitled
         </h2>
         <h3 class="post-subtitle">
              "Hello 2020,Bye 2019!"
@@ -391,7 +424,7 @@ inpu......
 
 ---
 
-大一的我（懵懂、进取的小萌新）​        刚刚进入大学，便认识到一个非常好玩而且十分特别的互联网组织——星空学生创新中心，一个以互联网为主的校级组织。当时二话不说赶紧......
+大一的我（懵懂、进取的小萌新）​		刚刚进入大学，便认识到一个非常好玩而且十分特别的互联网组织——星空学生创新中心，一个以互联网为主的校级组织。当时二话不说赶紧拿了报名表就......
         </div>
     </a>
     <p class="post-meta">
@@ -421,32 +454,6 @@ JWT本质是Token，用于验证身份的凭证。这个凭证能允许我们使
 Cookie-Session认证机制
 ​    客户端（用户）通过用户名和密码进行身份认证，但是下回发请求的时候又得验证以下。
 ​    解决的办法是，用户成功登录之后，会在服务器端产生一条记录（Session），说明这用户是谁，......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-10-12
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/10/12/WaitNotify通知机制/">
-        <h2 class="post-title">
-            Wait&Notify的通知机制
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            Wait&amp;Notify的通知机制
-​        wait表示线程的等待，调用该方法会导致线程阻塞，直至另一线程调用notify或notifyAll方法才可另其继续执行。经典的生产者、消费者模式即是使用wait/notify机制得以完成。
-
-
-1.当线程A（消费者）调用wait()时，A会把锁释放出来，使自己进入等待状态，同时加入“锁对象”的等待队列。
-2.线程B获取锁后，调用no......
         </div>
     </a>
     <p class="post-meta">
@@ -500,11 +507,7 @@ Cookie-Session认证机制
                             
                         
                             
-                            <a href="/tags/#数据结构" title="数据结构" rel="17">数据结构</a>
-                            
-                        
-                            
-                            <a href="/tags/#图论" title="图论" rel="2">图论</a>
+                            <a href="/tags/#数据结构" title="数据结构" rel="16">数据结构</a>
                             
                         
                             
@@ -512,17 +515,13 @@ Cookie-Session认证机制
                             
                         
                             
-                            <a href="/tags/#读书笔记" title="读书笔记" rel="5">读书笔记</a>
-                            
-                        
-                            
                             <a href="/tags/#算法" title="算法" rel="9">算法</a>
                             
                         
                             
-                        
+                            <a href="/tags/#读书笔记" title="读书笔记" rel="5">读书笔记</a>
                             
-                            <a href="/tags/#HTTP" title="HTTP" rel="2">HTTP</a>
+                        
                             
                         
                             
@@ -530,13 +529,17 @@ Cookie-Session认证机制
                             
                         
                             
-                            <a href="/tags/#PHP" title="PHP" rel="4">PHP</a>
+                            <a href="/tags/#HTTP" title="HTTP" rel="2">HTTP</a>
                             
                         
                             
                         
                             
                             <a href="/tags/#Linux" title="Linux" rel="4">Linux</a>
+                            
+                        
+                            
+                            <a href="/tags/#PHP" title="PHP" rel="4">PHP</a>
                             
                         
                             
@@ -550,15 +553,19 @@ Cookie-Session认证机制
                             
                         
                             
-                            <a href="/tags/#数论" title="数论" rel="12">数论</a>
-                            
-                        
-                            
                             <a href="/tags/#Redis" title="Redis" rel="2">Redis</a>
                             
                         
                             
+                            <a href="/tags/#数论" title="数论" rel="12">数论</a>
+                            
+                        
+                            
                             <a href="/tags/#STL" title="STL" rel="7">STL</a>
+                            
+                        
+                            
+                        
                             
                         
                             
@@ -568,9 +575,9 @@ Cookie-Session认证机制
                             
                         
                             
-                        
-                            
                             <a href="/tags/#树" title="树" rel="2">树</a>
+                            
+                        
                             
                         
                             
@@ -672,13 +679,13 @@ Cookie-Session认证机制
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Pistachio&#39;s Blog 2020 
+                    Copyright &copy; Pistachio&#39;s Blog 2022 
                     <br>
-                    Theme by <a href="http://huangxuan.me" target="_blank" rel="noopener">Hux</a> 
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">
                         <i class="fa fa-heart"></i>
                     </span> 
-                    Ported by <a href="http://blog.kaijun.rocks" target="_blank" rel="noopener">Kaijun</a> | 
+                    Ported by <a target="_blank" rel="noopener" href="http://blog.kaijun.rocks">Kaijun</a> | 
                     <iframe
                         style="margin-left: 2px; margin-bottom:-5px;"
                         frameborder="0" scrolling="0" width="91px" height="20px"

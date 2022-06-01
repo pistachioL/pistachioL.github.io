@@ -56,7 +56,7 @@
 
     <!-- ga & ba script hoook -->
     <script></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
 <!-- hack iOS CSS :active style -->
@@ -103,14 +103,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -199,43 +199,43 @@
 
                 <h3 id="1-换源"><a href="#1-换源" class="headerlink" title="1. 换源"></a>1. 换源</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
 
-<p><img src="/2020/01/31/%E5%AE%89%E8%A3%85deepin%E5%90%8E%E8%A6%81%E5%81%9A%E7%9A%84%E4%BA%8B%E6%83%85/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/1.png" alt></p>
+<p><img src="/2020/01/31/%E5%AE%89%E8%A3%85deepin%E5%90%8E%E8%A6%81%E5%81%9A%E7%9A%84%E4%BA%8B%E6%83%85/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/1.png"></p>
 <h3 id="2-命令行主题配置"><a href="#2-命令行主题配置" class="headerlink" title="2. 命令行主题配置"></a>2. 命令行主题配置</h3><p>下载oh-my-zsh</p>
 <p><strong>通过curl</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;</span><br></pre></td></tr></table></figure>
 
 <p><strong>通过wget</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh -c &quot;$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;</span><br></pre></td></tr></table></figure>
 
 
 
 <h4 id="安装主题"><a href="#安装主题" class="headerlink" title="安装主题"></a>安装主题</h4><p>修改.zshrc</p>
 <blockquote>
-<p>修改环境变量文件在 ~/.zshrc</p>
+<p>修改环境变量文件在 ~&#x2F;.zshrc</p>
 </blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.zshrc</span><br></pre></td></tr></table></figure>
 
 <p>将 ZSH_THEME 改成如下</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ZSH_THEME="agnoster"</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ZSH_THEME=&quot;agnoster&quot;</span><br></pre></td></tr></table></figure>
 
 <p>安装Menlo-for-Powerline字体，否则乱码</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/abertsch/Menlo-for-Powerline.git</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/abertsch/Menlo-for-Powerline.git  </span><br></pre></td></tr></table></figure>
 
 
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd Menlo-for-Powerline</span><br></pre></td></tr></table></figure>
 
 <p>把.ttf文件放到字体文件夹下</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mv "Menlo for Powerline.ttf" /usr/share/fonts/</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mv &quot;Menlo for Powerline.ttf&quot; /usr/share/fonts/ </span><br></pre></td></tr></table></figure>
 
 <p>把字体文件拷贝到字体目录后，fc-cache命令能扫描字体目录并生成字体信息的缓存，然后应用程序就可以立即使用这些新安装的字体</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo fc-cache -vf /usr/share/fonts/</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo fc-cache -vf /usr/share/fonts/  </span><br></pre></td></tr></table></figure>
 
 
 
 <h4 id="安装自动补全插件"><a href="#安装自动补全插件" class="headerlink" title="安装自动补全插件"></a>安装自动补全插件</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions</span><br></pre></td></tr></table></figure>
 
-<p>再在~/.zshrc文件中添加plugins = （zsh-autosuggestions)</p>
-<h3 id="3-科学上网"><a href="#3-科学上网" class="headerlink" title="3.科学上网"></a>3.科学上网</h3><h5 id="git使用全局代理"><a href="#git使用全局代理" class="headerlink" title="git使用全局代理"></a>git使用全局代理</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy 'http://127.0.0.1:端口号'</span><br></pre></td></tr></table></figure>
+<p>再在~&#x2F;.zshrc文件中添加plugins &#x3D; （zsh-autosuggestions)</p>
+<h3 id="3-科学上网"><a href="#3-科学上网" class="headerlink" title="3.科学上网"></a>3.科学上网</h3><h5 id="git使用全局代理"><a href="#git使用全局代理" class="headerlink" title="git使用全局代理"></a>git使用全局代理</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy &#x27;http://127.0.0.1:端口号&#x27;</span><br></pre></td></tr></table></figure>
 
 <h5 id="pip安装库时，可通过指定的源安装-防止被墙"><a href="#pip安装库时，可通过指定的源安装-防止被墙" class="headerlink" title="pip安装库时，可通过指定的源安装 防止被墙"></a>pip安装库时，可通过指定的源安装 防止被墙</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pyinstaller -i https://pypi.doubanio.com/simple</span><br></pre></td></tr></table></figure>
 
@@ -244,15 +244,15 @@
 <h5 id="V2ray图形化的安装"><a href="#V2ray图形化的安装" class="headerlink" title="V2ray图形化的安装"></a>V2ray图形化的安装</h5><blockquote>
 <p>由于本机python2,3共存，默认是2.*,要使用python3来安装（本机是3.5.3）</p>
 </blockquote>
-<p>1.克隆github上的v2项目 <a href="https://github.com/jiangxufeng/v2rayL.git" target="_blank" rel="noopener">https://github.com/jiangxufeng/v2rayL.git</a></p>
-<p>2.进入项目文件夹，然后运行 <code>pip install -r requirements.txt</code>安装相关依赖。（可通过python3下载pip3<code>sudo apt install python3-pip</code>）</p>
+<p>1.克隆github上的v2项目 <a target="_blank" rel="noopener" href="https://github.com/jiangxufeng/v2rayL.git">https://github.com/jiangxufeng/v2rayL.git</a></p>
+<p>2.进入项目文件夹，然后运行 <code>pip install -r requirements.txt</code>安装相关依赖。（可通过python3下载pip3<code> sudo apt install python3-pip</code>）</p>
 <p>3.进入v2rayL-GUI文件夹，运行<code>pyinstaller -F v2rayLui.py -p config.py -p sub2conf_api.py -p v2rayL_api.py -p v2rayL_threads.py -p utils.py -i images/logo.ico -n v2rayLui</code></p>
 <p>（pyinstaller可通过pip3下载<code>pip3 install pyinstaller -i https://pypi.doubanio.com/simple</code>）</p>
-<p>4.打包后运行<code>mv dist/v2rayLui /usr/bin/v2rayL/v2rayLui</code> 替换安装时下载的程序</p>
+<p>4.打包后运行<code>mv dist/v2rayLui /usr/bin/v2rayL/v2rayLui</code> 替换安装时下载的程序</p>
 <p>5.在v2rayL-GUI文件夹中运行<code>sudo python3 v2rayLui.py</code>即可打开v2。</p>
 <p>6.当然记得在浏览器安装上插件啦。</p>
 <h3 id="小tips"><a href="#小tips" class="headerlink" title="小tips"></a>小tips</h3><p><code>shift+ space</code> 进行全角半角切换</p>
-<p>参考 <a href="https://github.com/jiangxufeng/v2rayL/issues/45" target="_blank" rel="noopener"></a></p>
+<p>参考 <a target="_blank" rel="noopener" href="https://github.com/jiangxufeng/v2rayL/issues/45"></a></p>
 
 
                 <hr>
@@ -412,13 +412,13 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Pistachio&#39;s Blog 2020 
+                    Copyright &copy; Pistachio&#39;s Blog 2022 
                     <br>
-                    Theme by <a href="http://huangxuan.me" target="_blank" rel="noopener">Hux</a> 
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">
                         <i class="fa fa-heart"></i>
                     </span> 
-                    Ported by <a href="http://blog.kaijun.rocks" target="_blank" rel="noopener">Kaijun</a> | 
+                    Ported by <a target="_blank" rel="noopener" href="http://blog.kaijun.rocks">Kaijun</a> | 
                     <iframe
                         style="margin-left: 2px; margin-bottom:-5px;"
                         frameborder="0" scrolling="0" width="91px" height="20px"

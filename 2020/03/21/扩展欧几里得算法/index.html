@@ -56,7 +56,7 @@
 
     <!-- ga & ba script hoook -->
     <script></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
 <!-- hack iOS CSS :active style -->
@@ -103,14 +103,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -208,12 +208,12 @@
 <li>从一个水壶向另外一个水壶倒水，直到装满或者倒空</li>
 </ul>
 </blockquote>
-<p>样例：　x=3,  y=5,  z=4  true,</p>
-<p>​        因为<code>4 % gcd(3,5) == 4 % 1 == 0</code></p>
+<p>样例：　x&#x3D;3,  y&#x3D;5,  z&#x3D;4  true,</p>
+<p>​		因为<code>4 % gcd(3,5) == 4 % 1 == 0</code></p>
 <p>问题可以转化为<code>a*x + b*y = z</code></p>
 <p>思路：若a,b的最大公约数为gcd(a,b)，则z会是gcd(a,b)的整数倍！</p>
 <p>恰好利用欧几里得的扩展定理</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> b == <span class="number">0</span> ? a : gcd(b,a%b);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">bool</span> <span class="title">canMeasureWater</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> z)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> (z == <span class="number">0</span> || (x+y &gt;= z &amp;&amp; z % gcd(x,y) == <span class="number">0</span>));</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">gcd</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> b == <span class="number">0</span> ? a : <span class="built_in">gcd</span>(b,a%b);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="type">bool</span> <span class="title">canMeasureWater</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y, <span class="type">int</span> z)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> (z == <span class="number">0</span> || (x+y &gt;= z &amp;&amp; z % <span class="built_in">gcd</span>(x,y) == <span class="number">0</span>));</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -374,13 +374,13 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Pistachio&#39;s Blog 2020 
+                    Copyright &copy; Pistachio&#39;s Blog 2022 
                     <br>
-                    Theme by <a href="http://huangxuan.me" target="_blank" rel="noopener">Hux</a> 
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">
                         <i class="fa fa-heart"></i>
                     </span> 
-                    Ported by <a href="http://blog.kaijun.rocks" target="_blank" rel="noopener">Kaijun</a> | 
+                    Ported by <a target="_blank" rel="noopener" href="http://blog.kaijun.rocks">Kaijun</a> | 
                     <iframe
                         style="margin-left: 2px; margin-bottom:-5px;"
                         frameborder="0" scrolling="0" width="91px" height="20px"

@@ -56,7 +56,7 @@
 
     <!-- ga & ba script hoook -->
     <script></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
 <!-- hack iOS CSS :active style -->
@@ -103,14 +103,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -161,7 +161,7 @@
                 <div class="site-heading">
                     <h1>Pistachio&#39;s Blog</h1>
                     <!--<hr class="small">-->
-                    <span class="subheading">To Be A Lean Developer!</span>
+                    <span class="subheading">Later equals never.</span>
                 </div>
             </div>
         </div>
@@ -187,6 +187,32 @@
             
                 <!-- Main Content -->
 
+
+<div class="post-preview">
+
+    <a href="/2019/10/12/WaitNotify通知机制/">
+        <h2 class="post-title">
+            Wait&Notify的通知机制
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            Wait&amp;Notify的通知机制
+​		wait表示线程的等待，调用该方法会导致线程阻塞，直至另一线程调用notify或notifyAll方法才可另其继续执行。经典的生产者、消费者模式即是使用wait&#x2F;notify机制得以完成。
+
+
+1.当线程A（消费者）调用wait()时，A会把锁释放出来，使自己进入等待状态，同时加入“锁对象”的等待队列。
+2.线程B获取锁后，调用not......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-10-12
+    </p>
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -226,16 +252,14 @@
             求最大公约数（最大公因子　GCD）
 质因数分解法
 
-例如：求24和60的最大公约数，先分解质因数，得24=2×2×2×3，60=2×2×3×5，24与60的全部公有的质因数是2、2、3，它们的积是2×2×3=12，所以，（24，60）=12。
-
-
+例如：求24和60的最大公约数，先分解质因数，得24&#x3D;2×2×2×3，60&#x3D;2×2×3×5，24与60的全部公有的质因数是2、2、3，它们的积是2×2×3&#x3D;12，所以，（24，60）&#x3D;12。
 
 
 辗转相除法
-gcd(a,b) = gcd(b,a mod b)
+gcd(a,b) &#x3D; gcd(b,a mod b)
 
 
-1234int gcd(int a,int b)&#123;	return......
+1234int gcd(in......
         </div>
     </a>
     <p class="post-meta">
@@ -256,9 +280,9 @@ gcd(a,b) = gcd(b,a mod b)
             
         </h3>
         <div class="post-content-preview">
-            定理同余,顾名思义是相同的余数,如果a mod m == b mod m,则说m为同余的模.
+            定理同余,顾名思义是相同的余数,如果a mod m &#x3D;&#x3D; b mod m,则说m为同余的模.
 也可这样理解:m|(a-b),即(a-b)是m的整数倍.
-给定一个正整数m，如果两个整数a和b满足（a-b）能够被m整除，即（a-b）/m得到一个整数，那么就称整数a与b对模m同余，记作a≡b(mod m)。
+给定一个正整数m，如果两个整数a和b满足（a-b）能够被m整除，即（a-b）&#x2F;m得到一个整数，那么就称整数a与b对模m同余，记作a≡b(mod m)。
 ...
         </div>
     </a>
@@ -330,7 +354,13 @@ http://www.rkpass.cn/tk_jiexi.jsp?product_id=201905281544305456038&amp;tixing=xu
             
         </h3>
         <div class="post-content-preview">
-            安装requests库install requests```1234567&#96;&#96;&#96;pythonimport requestsr &#x3D; requests.get(&quot;https:&#x2F;&#x2F;www.baidu.com&quot;)r.status_code   #返回状态码r.encoding(&quot;utf-8&quot;)r.text ......
+            安装requests库pip install requests
+12345import requestsr = requests.get(&quot;https://www.baidu.com&quot;)r.status_code   #返回状态码r.encoding(&quot;utf-8&quot;)r.text  #打印出首页内容
+
+
+
+
+百度360关键词提交12345678910i......
         </div>
     </a>
     <p class="post-meta">
@@ -355,13 +385,13 @@ http://www.rkpass.cn/tk_jiexi.jsp?product_id=201905281544305456038&amp;tixing=xu
 线段树（segment tree） 是用来存放给定区间内对应信息的一种数据结构。线段树是二叉树，一个区间每次被折半往下分，所以往下查找，（二叉树的二分查找）最多lon2n次就能查找到。
 
 有两种操作：
-​    1）求某段区间的和
-​    2）修改某个区间的值
+​	1）求某段区间的和
+​	2）修改某个区间的值
 2.过程1）建立二叉树
-​    
+​	
 2）剪枝部分  e.g.求区间[2,5]的和
 
-可以直接返回 return0，即不用......
+可以直接返回 return0，即不用对其以下的结点进行......
         </div>
     </a>
     <p class="post-meta">
@@ -399,27 +429,6 @@ tar -xjvf f......
 
 <div class="post-preview">
 
-    <a href="/2019/09/04/Bellma-Ford/">
-        <h2 class="post-title">
-            Bellma Ford
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            1.定义Bellman-Ford 算法是一种用于计算带权有向图中单(一个)源(顶点)最短路径的问题（单源指的是只有一个起点）：给定一个起点，求它到所有结点的最短路径。Bellman-Ford 算法能适应一般的情况（即存在负权边的情况），V*E&lt;10^7。​        Bellman-Ford 算法采用动态规划进行设计，时间复杂度 O(V*E)，其中 V 为顶点数量，E 为边的数量。......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-09-04
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
     <a href="/2019/09/03/欧拉降幂公式/">
         <h2 class="post-title">
             欧拉函数
@@ -428,9 +437,9 @@ tar -xjvf f......
             
         </h3>
         <div class="post-content-preview">
-            1. 欧拉函数​    对正整数n，欧拉函数是小于n的正整数中与n互质的数的数目。例如φ(8)=4，因为1,3,5,7均和8互质。
+            1. 欧拉函数​	对正整数n，欧拉函数是小于n的正整数中与n互质的数的数目。例如φ(8)&#x3D;4，因为1,3,5,7均和8互质。
 对φ(N)的值,我们可以通俗地理解为小于N且与N互质的数的个数(包含1) 
-欧拉函数公式$$φ(x) = x \times (1-\frac{1}{p_1}) \times (1-\frac{1}{p_2}) \times …..\times (1-\frac{......
+欧拉函数公式$$φ(x) &#x3D; x \times (1-\frac{1}{p_1}) \times (1-\frac{1}{p_2}) \times …..\times (1......
         </div>
     </a>
     <p class="post-meta">
@@ -484,11 +493,7 @@ tar -xjvf f......
                             
                         
                             
-                            <a href="/tags/#数据结构" title="数据结构" rel="17">数据结构</a>
-                            
-                        
-                            
-                            <a href="/tags/#图论" title="图论" rel="2">图论</a>
+                            <a href="/tags/#数据结构" title="数据结构" rel="16">数据结构</a>
                             
                         
                             
@@ -496,17 +501,13 @@ tar -xjvf f......
                             
                         
                             
-                            <a href="/tags/#读书笔记" title="读书笔记" rel="5">读书笔记</a>
-                            
-                        
-                            
                             <a href="/tags/#算法" title="算法" rel="9">算法</a>
                             
                         
                             
-                        
+                            <a href="/tags/#读书笔记" title="读书笔记" rel="5">读书笔记</a>
                             
-                            <a href="/tags/#HTTP" title="HTTP" rel="2">HTTP</a>
+                        
                             
                         
                             
@@ -514,13 +515,17 @@ tar -xjvf f......
                             
                         
                             
-                            <a href="/tags/#PHP" title="PHP" rel="4">PHP</a>
+                            <a href="/tags/#HTTP" title="HTTP" rel="2">HTTP</a>
                             
                         
                             
                         
                             
                             <a href="/tags/#Linux" title="Linux" rel="4">Linux</a>
+                            
+                        
+                            
+                            <a href="/tags/#PHP" title="PHP" rel="4">PHP</a>
                             
                         
                             
@@ -534,15 +539,19 @@ tar -xjvf f......
                             
                         
                             
-                            <a href="/tags/#数论" title="数论" rel="12">数论</a>
-                            
-                        
-                            
                             <a href="/tags/#Redis" title="Redis" rel="2">Redis</a>
                             
                         
                             
+                            <a href="/tags/#数论" title="数论" rel="12">数论</a>
+                            
+                        
+                            
                             <a href="/tags/#STL" title="STL" rel="7">STL</a>
+                            
+                        
+                            
+                        
                             
                         
                             
@@ -552,9 +561,9 @@ tar -xjvf f......
                             
                         
                             
-                        
-                            
                             <a href="/tags/#树" title="树" rel="2">树</a>
+                            
+                        
                             
                         
                             
@@ -656,13 +665,13 @@ tar -xjvf f......
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Pistachio&#39;s Blog 2020 
+                    Copyright &copy; Pistachio&#39;s Blog 2022 
                     <br>
-                    Theme by <a href="http://huangxuan.me" target="_blank" rel="noopener">Hux</a> 
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">
                         <i class="fa fa-heart"></i>
                     </span> 
-                    Ported by <a href="http://blog.kaijun.rocks" target="_blank" rel="noopener">Kaijun</a> | 
+                    Ported by <a target="_blank" rel="noopener" href="http://blog.kaijun.rocks">Kaijun</a> | 
                     <iframe
                         style="margin-left: 2px; margin-bottom:-5px;"
                         frameborder="0" scrolling="0" width="91px" height="20px"

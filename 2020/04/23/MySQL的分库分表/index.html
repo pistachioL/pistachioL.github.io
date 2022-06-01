@@ -56,7 +56,7 @@
 
     <!-- ga & ba script hoook -->
     <script></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
 <!-- hack iOS CSS :active style -->
@@ -103,14 +103,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -237,7 +237,7 @@
 <h4 id="3-水平分库"><a href="#3-水平分库" class="headerlink" title="3) 水平分库"></a>3) 水平分库</h4><p><strong>（按照数据行划分）</strong></p>
 <p>经过垂直分库后，数据库性能确实有提升。但是随着业务的增长，难以再细粒度地进行垂直划分，单个数据库存储的数量也超出了预估。</p>
 <p>可尝试采用<strong>水平分库</strong>，把同一个表的<strong>数据行</strong>按照一定的规则拆到不同的数据库中(user_DB1 user_DB2)，数据表结构不变，然后每个数据库部署到不同服务器。</p>
-<p>这种规则可以有很多，例如根据id的奇偶性，<code>DB [id%2+1]</code>分在不同的数据库  DB1 DB2</p>
+<p>这种规则可以有很多，例如根据id的奇偶性，<code>DB [id%2+1] </code>分在不同的数据库  DB1 DB2</p>
 <blockquote>
 <p>对比：垂直分库是把不同的表拆到不同数据库，是根据不同业务对数据进行拆分</p>
 </blockquote>
@@ -259,7 +259,7 @@
 </ul>
 <h3 id="分库分表存在的问题"><a href="#分库分表存在的问题" class="headerlink" title="分库分表存在的问题"></a>分库分表存在的问题</h3><ul>
 <li><p>事务一致性问题: 不同服务器的数据库实例完成一个事务会出现分布式事务问题</p>
-<p>   跨界点关联查询问题: 数据不在同一个数据库，则不能通过一个sql语句进行关联查询。需要对每个数据进行查询，再拼接一起    </p>
+<p>   跨界点关联查询问题: 数据不在同一个数据库，则不能通过一个sql语句进行关联查询。需要对每个数据进行查询，再拼接一起	</p>
 </li>
 <li><p>公共表: 不同数据库可能依赖一张公共表，但没必要对这张公共表拆分。因此需要在不同数据库中分别建立对应的公共表</p>
 </li>
@@ -276,7 +276,7 @@
 <li>哈希分区</li>
 <li>List分区</li>
 </ul>
-<p><a href="https://juejin.im/post/5ae1476ef265da0b8d419ef2#heading-1" target="_blank" rel="noopener">一致性哈希</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.im/post/5ae1476ef265da0b8d419ef2#heading-1">一致性哈希</a></p>
 
 
                 <hr>
@@ -436,13 +436,13 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Pistachio&#39;s Blog 2020 
+                    Copyright &copy; Pistachio&#39;s Blog 2022 
                     <br>
-                    Theme by <a href="http://huangxuan.me" target="_blank" rel="noopener">Hux</a> 
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">
                         <i class="fa fa-heart"></i>
                     </span> 
-                    Ported by <a href="http://blog.kaijun.rocks" target="_blank" rel="noopener">Kaijun</a> | 
+                    Ported by <a target="_blank" rel="noopener" href="http://blog.kaijun.rocks">Kaijun</a> | 
                     <iframe
                         style="margin-left: 2px; margin-bottom:-5px;"
                         frameborder="0" scrolling="0" width="91px" height="20px"

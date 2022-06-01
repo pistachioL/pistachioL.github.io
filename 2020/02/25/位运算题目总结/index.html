@@ -56,7 +56,7 @@
 
     <!-- ga & ba script hoook -->
     <script></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
 <!-- hack iOS CSS :active style -->
@@ -103,14 +103,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -200,7 +200,7 @@
                 <p><strong>LeetCode 求二进制数中1的个数</strong></p>
 <p>这是一种更高效的思路，把整数减1，再与原来的数做与运算，会把原来的二进制数最右边的1去掉。计算有多少次去掉1的操作，即可知道1的个数。</p>
 <p><code>n = n &amp; (n-1)</code> </p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">hammingWeight</span><span class="params">(<span class="keyword">uint32_t</span> n)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">while</span>(n)</span><br><span class="line">       &#123;</span><br><span class="line">           cnt++;</span><br><span class="line">           n = n &amp; (n<span class="number">-1</span>);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> cnt;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">hammingWeight</span><span class="params">(<span class="type">uint32_t</span> n)</span> </span>&#123;</span><br><span class="line">       <span class="type">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">while</span>(n)</span><br><span class="line">       &#123;</span><br><span class="line">           cnt++;</span><br><span class="line">           n = n &amp; (n<span class="number">-1</span>);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> cnt;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -209,7 +209,7 @@
 <p>输入一个数，判断是不是2的幂次方</p>
 </blockquote>
 <p>2的幂次方，只要满足<code>n&gt;0 &amp;&amp; (n &amp; (n-1)) == 0</code>即可。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isPowerOfTwo</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span>(n &gt; <span class="number">0</span> &amp;&amp; (n &amp; (n<span class="number">-1</span>)) == <span class="number">0</span>)</span><br><span class="line">           <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">       <span class="keyword">else</span></span><br><span class="line">           <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">isPowerOfTwo</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span>(n &gt; <span class="number">0</span> &amp;&amp; (n &amp; (n<span class="number">-1</span>)) == <span class="number">0</span>)</span><br><span class="line">           <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">       <span class="keyword">else</span></span><br><span class="line">           <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -217,9 +217,9 @@
 <blockquote>
 <p>汉明距离是指两个数字对应二进制位不同的位置的数目。如1   (0 0 0 1)　4   (0 1 0 0)，第1,3位不同</p>
 </blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">hammingDistance</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> n = x ^ y;</span><br><span class="line">        <span class="keyword">while</span>(n)&#123;</span><br><span class="line">            n = n &amp; (n<span class="number">-1</span>);</span><br><span class="line">            res++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">hammingDistance</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> n = x ^ y;</span><br><span class="line">        <span class="keyword">while</span>(n)&#123;</span><br><span class="line">            n = n &amp; (n<span class="number">-1</span>);</span><br><span class="line">            res++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
-<p>2020/05/12美团笔试</p>
+<p>2020&#x2F;05&#x2F;12美团笔试</p>
 <p><strong>最大的汉明距离</strong></p>
 <p>当时没有考虑清楚，每个数之间的汉明距离都要算一遍，而简单地一次遍历相邻数字的汉明距离，所以只通过了18%，现在复盘刷到类似的题目时突然想起来了……</p>
 
@@ -381,13 +381,13 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Pistachio&#39;s Blog 2020 
+                    Copyright &copy; Pistachio&#39;s Blog 2022 
                     <br>
-                    Theme by <a href="http://huangxuan.me" target="_blank" rel="noopener">Hux</a> 
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">
                         <i class="fa fa-heart"></i>
                     </span> 
-                    Ported by <a href="http://blog.kaijun.rocks" target="_blank" rel="noopener">Kaijun</a> | 
+                    Ported by <a target="_blank" rel="noopener" href="http://blog.kaijun.rocks">Kaijun</a> | 
                     <iframe
                         style="margin-left: 2px; margin-bottom:-5px;"
                         frameborder="0" scrolling="0" width="91px" height="20px"

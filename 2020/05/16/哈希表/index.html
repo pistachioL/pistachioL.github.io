@@ -56,7 +56,7 @@
 
     <!-- ga & ba script hoook -->
     <script></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 6.2.0"></head>
 
 
 <!-- hack iOS CSS :active style -->
@@ -103,14 +103,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -198,8 +198,8 @@
                 post-container">
 
                 <h3 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h3><p>哈希表在待查关键字和它的存储位置之间，通过哈希函数，建立一个确定的对应关系。从而不必在关键字值之间的比较。</p>
-<p><img src="/2020/05/16/%E5%93%88%E5%B8%8C%E8%A1%A8/1.png" alt></p>
-<p>由图可以得出<strong>存储地址</strong>和<strong>关键字值</strong>的对应关系是：存储地址 = 关键字值 - 32001，这个就是哈希函数。</p>
+<p><img src="/2020/05/16/%E5%93%88%E5%B8%8C%E8%A1%A8/1.png"></p>
+<p>由图可以得出<strong>存储地址</strong>和<strong>关键字值</strong>的对应关系是：存储地址 &#x3D; 关键字值 - 32001，这个就是哈希函数。</p>
 <p>但是，并不能保证每次都能构造出理想的哈希函数，因此要构建<strong>哈希表</strong>。哈希表中的存储地址就是哈希地址。</p>
 <blockquote>
 <p>根据<strong>设定的哈希函数</strong>和<strong>处理冲突的方法</strong>，将查找表中各元素存储在一段有限的连续空间中，就得到哈希表</p>
@@ -207,35 +207,35 @@
 <h3 id="二、构造哈希函数的方法"><a href="#二、构造哈希函数的方法" class="headerlink" title="二、构造哈希函数的方法"></a>二、构造哈希函数的方法</h3><p>其实关键是找到<strong>哈希地址</strong>的各种方法，目的为了使冲突变少.</p>
 <p>可以根据关键字的长度、哈希表的大小、计算哈希值的时间、关键字的分布情况、查找记录的频率，去选择哪种不同的哈希函数方法。</p>
 <h4 id="1-直接定址法"><a href="#1-直接定址法" class="headerlink" title="1. 直接定址法"></a>1. 直接定址法</h4><p>根据<strong>关键字</strong>和<strong>存储地址</strong>的关系构建哈希函数</p>
-<p><img src="/2020/05/16/%E5%93%88%E5%B8%8C%E8%A1%A8/2.png" alt></p>
+<p><img src="/2020/05/16/%E5%93%88%E5%B8%8C%E8%A1%A8/2.png"></p>
 <h4 id="2-数字分析法"><a href="#2-数字分析法" class="headerlink" title="2. 数字分析法"></a>2. 数字分析法</h4><p>通常用于处理关键字位数比较大的情况（手机号码、身份证号码）。事先知道<strong>关键字的分布</strong>并且知道关键字的若干位<strong>分布比较均匀</strong>，就可考虑用这个方法。</p>
 <p>例如身份证，截取后面不同的几位存储(例如5位)，<code>H(key) = key % 100000</code></p>
 <h4 id="3-平方取中法"><a href="#3-平方取中法" class="headerlink" title="3. 平方取中法"></a>3. 平方取中法</h4><p>关键字较短，且不知道关键字的分布的情况</p>
 <p>对关键字取平方，然后去中间的几位作为哈希地址。</p>
-<p>如key = 1234，　key^2 = 1522756，则哈希地址可以是227</p>
+<p>如key &#x3D; 1234，　key^2 &#x3D; 1522756，则哈希地址可以是227</p>
 <h4 id="4-折叠法"><a href="#4-折叠法" class="headerlink" title="4. 折叠法"></a>4. 折叠法</h4><p>适用于不知道关键字的分布，且关键字位数较多的情况</p>
 <ul>
 <li><p>移位叠加：由地位到高位分割，再加起来求和，舍去进位</p>
-<p>例如图书的ISBN 0-442-20586-4 -&gt; 0442205864  -&gt;   04 | 4220 | 5864　-&gt; 5864 + 4220 + 04 = 10088　-&gt;舍去进位1 -&gt; 0088 = 88</p>
+<p>例如图书的ISBN 0-442-20586-4 -&gt; 0442205864  -&gt;   04 | 4220 | 5864　-&gt; 5864 + 4220 + 04 &#x3D; 10088　-&gt;舍去进位1 -&gt; 0088 &#x3D; 88</p>
 </li>
-<li><p>简界叠加: 方法同上，只是把分割的部分，从一端到另一端来回折叠相加，224 + 4685 + 4 = 4909 = 909</p>
+<li><p>简界叠加: 方法同上，只是把分割的部分，从一端到另一端来回折叠相加，224 + 4685 + 4 &#x3D; 4909 &#x3D; 909</p>
 </li>
 </ul>
-<h4 id="5-除留余数法（常用）"><a href="#5-除留余数法（常用）" class="headerlink" title="5.　除留余数法（常用）"></a>5.　除留余数法（常用）</h4><p><img src="/2020/05/16/%E5%93%88%E5%B8%8C%E8%A1%A8/3.png" alt></p>
+<h4 id="5-除留余数法（常用）"><a href="#5-除留余数法（常用）" class="headerlink" title="5.　除留余数法（常用）"></a>5.　除留余数法（常用）</h4><p><img src="/2020/05/16/%E5%93%88%E5%B8%8C%E8%A1%A8/3.png"></p>
 <p>对p必须为质数，如果不是质数，则哈希值会落到p倍数的地址上，增加了哈希冲突的可能。</p>
 <h4 id="6-随机数法"><a href="#6-随机数法" class="headerlink" title="6. 随机数法"></a>6. 随机数法</h4><p>取关键字的随机函数作为哈希地址。</p>
 <p><code>H(key) = random(key)</code></p>
 <h3 id="三、处理哈希冲突的方法"><a href="#三、处理哈希冲突的方法" class="headerlink" title="三、处理哈希冲突的方法"></a>三、处理哈希冲突的方法</h3><p> 哈希冲突是待插入哈希表的元素，按照给定的哈希函数求得的哈希地址已被占用，则按照一定的规则求下一个哈希地址，循环往复，直到找到可用的地址保存该元素</p>
-<h4 id="1-线性探测再散列"><a href="#1-线性探测再散列" class="headerlink" title="1.线性探测再散列"></a>1.线性探测再散列</h4><p>d = 1,2,3,4,5,6</p>
-<p><img src="/2020/05/16/%E5%93%88%E5%B8%8C%E8%A1%A8/4.png" alt></p>
-<h4 id="2-二次探测再散列"><a href="#2-二次探测再散列" class="headerlink" title="2. 二次探测再散列"></a>2. 二次探测再散列</h4><p>方法同上，只是d = 1^2, -1^2, 2^2, 2^-2 ……k^2,-k^2</p>
+<h4 id="1-线性探测再散列"><a href="#1-线性探测再散列" class="headerlink" title="1.线性探测再散列"></a>1.线性探测再散列</h4><p>d &#x3D; 1,2,3,4,5,6</p>
+<p><img src="/2020/05/16/%E5%93%88%E5%B8%8C%E8%A1%A8/4.png"></p>
+<h4 id="2-二次探测再散列"><a href="#2-二次探测再散列" class="headerlink" title="2. 二次探测再散列"></a>2. 二次探测再散列</h4><p>方法同上，只是d &#x3D; 1^2, -1^2, 2^2, 2^-2 ……k^2,-k^2</p>
 <p>二次探测的次数比一次的多，因此较高效</p>
-<p><img src="/2020/05/16/%E5%93%88%E5%B8%8C%E8%A1%A8/5.png" alt></p>
+<p><img src="/2020/05/16/%E5%93%88%E5%B8%8C%E8%A1%A8/5.png"></p>
 <h4 id="3-链地址法"><a href="#3-链地址法" class="headerlink" title="3. 链地址法"></a>3. 链地址法</h4><p>按照给定的哈希函数求得哈希地址相同的关键字，存储在同一线性表上，且链表按关键字有序</p>
-<p>例如key = (67,84,18,26,34,28)</p>
-<p><img src="/2020/05/16/%E5%93%88%E5%B8%8C%E8%A1%A8/6.png" alt></p>
+<p>例如key &#x3D; (67,84,18,26,34,28)</p>
+<p><img src="/2020/05/16/%E5%93%88%E5%B8%8C%E8%A1%A8/6.png"></p>
 <h4 id="4-公共溢出区法"><a href="#4-公共溢出区法" class="headerlink" title="4. 公共溢出区法"></a>4. 公共溢出区法</h4><p>把冲突的关键字放到公共溢出的区域</p>
-<p><img src="/2020/05/16/%E5%93%88%E5%B8%8C%E8%A1%A8/7.png" alt></p>
+<p><img src="/2020/05/16/%E5%93%88%E5%B8%8C%E8%A1%A8/7.png"></p>
 <p>7,8,9规定为溢出区</p>
 <h3 id="四、在哈希表上查找元素"><a href="#四、在哈希表上查找元素" class="headerlink" title="四、在哈希表上查找元素"></a>四、在哈希表上查找元素</h3><p>虽然通过哈希表能建立关键字值和存储位置上的映射，但由于冲突的存在，查找时还是需要进行关键字之间的比较，因此要把<strong>平均查找长度</strong>（ALS） 和　<strong>查找不成功时的比较次数</strong>作为衡量查找效率的依据。</p>
 <p>根据待查关键字元素，按照给定的哈希函数，找出对应的哈希地址。</p>
@@ -247,11 +247,11 @@
 <li>若相等，则查找成功</li>
 <li>不相等，则按照处理冲突的方法求下一个可能存储的地址</li>
 </ul>
-<p><img src="/2020/05/16/%E5%93%88%E5%B8%8C%E8%A1%A8/8.png" alt></p>
+<p><img src="/2020/05/16/%E5%93%88%E5%B8%8C%E8%A1%A8/8.png"></p>
 </li>
 </ul>
-<p>key = 67,　67 % 7 = 4  查找次数1</p>
-<p>key = 18     18 % 7 = 4　有冲突　　(4+1) % 7 =  5 找到　查找次数为2</p>
+<p>key &#x3D; 67,　67 % 7 &#x3D; 4  查找次数1</p>
+<p>key &#x3D; 18     18 % 7 &#x3D; 4　有冲突　　(4+1) % 7 &#x3D;  5 找到　查找次数为2</p>
 <p>哈希通常不会用作数据库索引，因为哈希表不能范围查找和部分索引查找。一旦传入复合索引hash(user_id+name)就不可以了</p>
 <p>但是，如果sql语句的查找条件不会变，或者没有范围查找或部分索引查找，可以用hash作为索引的数据结构，并且复杂度是O(1)</p>
 
@@ -413,13 +413,13 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Pistachio&#39;s Blog 2020 
+                    Copyright &copy; Pistachio&#39;s Blog 2022 
                     <br>
-                    Theme by <a href="http://huangxuan.me" target="_blank" rel="noopener">Hux</a> 
+                    Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">
                         <i class="fa fa-heart"></i>
                     </span> 
-                    Ported by <a href="http://blog.kaijun.rocks" target="_blank" rel="noopener">Kaijun</a> | 
+                    Ported by <a target="_blank" rel="noopener" href="http://blog.kaijun.rocks">Kaijun</a> | 
                     <iframe
                         style="margin-left: 2px; margin-bottom:-5px;"
                         frameborder="0" scrolling="0" width="91px" height="20px"
