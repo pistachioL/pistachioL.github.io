@@ -190,6 +190,29 @@
 
 <div class="post-preview">
 
+    <a href="/2020/04/23/MySQL的分库分表/">
+        <h2 class="post-title">
+            MySQL的分库分表
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            对于MySQL的性能优化，可能会想到索引优化。但是如果在数据量很大的情况（100w以上），而且写操作比较多的情况下，优化索引性能提升不明显。传统的分库分表是通过应用层逻辑实现的
+分库分表把单一的数据库拆分成若干的数据库，将原来数据大表分成若干数据表，使得单一数据库、单一数据表的数量变小（数据量也随着拆分而变少），从而解决数据库由于数据量过大而导致性能降低的问题。
+分库分表的方式1) 垂直分表......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-04-23
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2020/04/22/红黑树/">
         <h2 class="post-title">
             红黑树
@@ -432,29 +455,6 @@
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2020/03/25/PHP面向对象/">
-        <h2 class="post-title">
-            PHP面向对象
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            构造方法只要类被实例化之后，构造方法会被执行，就是在对象执行方法之前。
-构造方法必须为public，否则无法被实例化
-12345678910111213&lt;?phpclass Number&#123;    public function __construct()&#123;        echo &quot;1输出&quot;;   		echo &quot;2输出&quot;; ......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-03-25
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -577,6 +577,8 @@
                         
                             
                         
+                            
+                            <a href="/tags/#Go学习" title="Go学习" rel="2">Go学习</a>
                             
                         
                     </div>

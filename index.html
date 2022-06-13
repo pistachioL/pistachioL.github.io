@@ -236,6 +236,33 @@
 
 <div class="post-preview">
 
+    <a href="/2022/04/20/channel/">
+        <h2 class="post-title">
+            go channel
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            定义Channel 是 goroutine 之间的通信方式，Go语言的并发模型是CSP（Communicating Sequential Processes），提倡通信来共享内存，而不是共享内存来通信。
+gorotine由 runtime来管理
+创建创建有缓冲的缓存
+1ch := make(chan int, 2)   //创建channel,buffer是2
+
+无缓冲的channel
+1c......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2022-04-20
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2020/07/30/Redis持久化机制/">
         <h2 class="post-title">
             Redis持久化机制
@@ -428,34 +455,6 @@ https://www.jianshu.com/p/15fa13a1d6f4
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2020/05/23/前序与中序遍历构造二叉树/">
-        <h2 class="post-title">
-            前序与中序遍历构造二叉树
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            通过刷题学习，现在对二叉树递归遍历有新的认识。
-前序遍历：根节点，左子树，右子树
-中序遍历：左子树，根节点，右子树
-由此可见，前序遍历的第一个节点就是中序遍历的根节点
-
-此处设左子树的右边界为x，由于左子树的前序和中序遍历结点个数相同，即x -(pl+1)&#x3D;(inroot-1) - il,故推出
-x = inroot - il + pl，求出左子树右边界的下标。
-求出边界值之后，找......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-05-23
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -574,6 +573,8 @@ x = inroot - il + pl，求出左子树右边界的下标。
                         
                             
                         
+                            
+                            <a href="/tags/#Go学习" title="Go学习" rel="2">Go学习</a>
                             
                         
                     </div>

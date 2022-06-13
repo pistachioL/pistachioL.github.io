@@ -13,11 +13,11 @@
 
     <title>
         
-          我的2022 - Pistachio的楼阁 | Pistachio&#39;s Blog
+          go channel - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2022/06/01/hello/">
+    <link rel="canonical" href="https://pistachiol.github.io/2022/04/20/channel/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -171,14 +171,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#作为日记加密" title="作为日记加密">作为日记加密</a>
+                          <a class="tag" href="/tags/#Go学习" title="Go学习">Go学习</a>
                         
                     </div>
-                    <h1>我的2022</h1>
+                    <h1>go channel</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
-                        2022-06-01
+                        2022-04-20
                     </span>
                 </div>
             </div>
@@ -197,18 +197,25 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="d7bc8b5523099b25db33598eba1c89498d9be784d76b93ab18c20960c95475b2">786788bab830c39ff9970ffaa14eb725cb521ef86890e83d2a0ba944b75ef0e459506521645a63e470494483d2174bca91f86cb9978ca7e67d0babcaf39389458d266ebb5992d6d7370383629424126d11c53c466f8015016dcbfd6dbdd7b1c9ca680275a84f2eebf1a64227365dd164</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-shrink">
-      <input class="hbe hbe-input-field hbe-input-field-shrink" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-shrink" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-shrink">您好, 这里需要密码.</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
+                <h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>Channel 是 goroutine 之间的通信方式，Go语言的并发模型是CSP（Communicating Sequential Processes），提倡通信来共享内存，而不是共享内存来通信。</p>
+<p>gorotine由 runtime来管理</p>
+<h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><p>创建有缓冲的缓存</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ch := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="type">int</span>, <span class="number">2</span>)   <span class="comment">//创建channel,buffer是2</span></span><br></pre></td></tr></table></figure>
+
+<p>无缓冲的channel</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ch := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="type">int</span>)   <span class="comment">//创建channel</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="发送-amp-接受数据"><a href="#发送-amp-接受数据" class="headerlink" title="发送&amp;接受数据"></a>发送&amp;接受数据</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ch &lt;- v <span class="regexp">//</span>v发送到ch</span><br><span class="line">v := &lt;-ch <span class="regexp">//</span>从ch接收，并且给v赋值</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="底层数据结构"><a href="#底层数据结构" class="headerlink" title="底层数据结构"></a>底层数据结构</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> hchan <span class="keyword">struct</span> &#123;</span><br><span class="line">   qcount   <span class="type">uint</span>           <span class="comment">// total data in the queue</span></span><br><span class="line">   dataqsiz <span class="type">uint</span>           <span class="comment">// size of the circular queue</span></span><br><span class="line">   buf      unsafe.Pointer <span class="comment">// points to an array of dataqsiz elements</span></span><br><span class="line">   elemsize <span class="type">uint16</span></span><br><span class="line">   closed   <span class="type">uint32</span></span><br><span class="line">   elemtype *_type <span class="comment">// element type</span></span><br><span class="line">   sendx    <span class="type">uint</span>   <span class="comment">// send index 是缓冲区的下标</span></span><br><span class="line">   recvx    <span class="type">uint</span>   <span class="comment">// receive index 是缓冲区的下标</span></span><br><span class="line">   recvq    waitq  <span class="comment">// list of recv waiters</span></span><br><span class="line">   sendq    waitq  <span class="comment">// list of send waiters 发送等待队列</span></span><br><span class="line">   <span class="comment">// lock protects all fields in hchan, as well as several</span></span><br><span class="line">   <span class="comment">// fields in sudogs blocked on this channel.</span></span><br><span class="line">   <span class="comment">//</span></span><br><span class="line">   <span class="comment">// Do not change another G&#x27;s status while holding this lock</span></span><br><span class="line">   <span class="comment">// (in particular, do not ready a G), as this can deadlock</span></span><br><span class="line">   <span class="comment">// with stack shrinking.</span></span><br><span class="line">   lock mutex</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
 
                 <hr>
 
@@ -217,12 +224,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2022/06/02/go常用命令/" data-toggle="tooltip" data-placement="top" title="go常用命令">&larr; Previous Post</a>
+                            <a href="/2022/06/01/hello/" data-toggle="tooltip" data-placement="top" title="我的2022">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2022/04/20/channel/" data-toggle="tooltip" data-placement="top" title="go channel">Next Post &rarr;</a>
+                            <a href="/2020/07/30/Redis持久化机制/" data-toggle="tooltip" data-placement="top" title="Redis持久化机制">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -255,7 +262,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#作为日记加密" title="作为日记加密">作为日记加密</a>
+                          <a class="tag" href="/tags/#Go学习" title="Go学习">Go学习</a>
                         
                     </div>
                 </section>
@@ -287,8 +294,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2022/06/01/hello/";
-    var disqus_url = "https://pistachiol.github.io/2022/06/01/hello/";
+    var disqus_identifier = "https://pistachiol.github.io/2022/04/20/channel/";
+    var disqus_url = "https://pistachiol.github.io/2022/04/20/channel/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
