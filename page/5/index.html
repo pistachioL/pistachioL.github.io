@@ -190,6 +190,118 @@
 
 <div class="post-preview">
 
+    <a href="/2020/04/18/操作系统的内存管理/">
+        <h2 class="post-title">
+            操作系统的内存管理
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            操作系统加载进内存之后，要对内存进行管理
+计算机基本硬件结构
+操作系统管理内存的不同方法
+程序重定位
+分段
+分页
+虚拟内存（硬盘）
+按需分页虚拟内存
+
+...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-04-18
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/04/14/decoratorPattern/">
+        <h2 class="post-title">
+            装饰者模式
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            原理动态地把职责添加到对象上，若想添加功能，装饰着类提供了比继承更有弹性的方案。
+把被装饰着放到装饰者中管理，例如调料是装饰者，单品咖啡是被装饰者，则把单品咖啡放到调料中管理。
+
+例子：很多中单品咖啡，很多种调料的不同组合
+
+这种模式的好处是，当再需要增加一个单品咖啡时，只需要继承Coffee，即可计算出不同调料（装饰者）组合的价钱。
+
+...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-04-14
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/04/08/CompositePattern/">
+        <h2 class="post-title">
+            组合模式
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            模式简介
+组合模式适用于树形结构的模型，表示部分与整体的层次关系，例如文件夹中有文件夹或文件；大学中有不同学院，学院中有不同专业……，故属于结构型模式。
+该模式创建对象组的树形结构，将对象组合成树状结构，以表示部分与整体的层次。
+组合模式能让客户以一致的方式处理个别对象和组合对象。
+
+原理结构图
+１）Component:（部件）这是在组合对象中声明的接口或者抽象类，实现所有类中共有的接口的默......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-04-08
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/04/02/AdapterPattern/">
+        <h2 class="post-title">
+            适配器模式
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            实例：有一个220v电压，需要适配器转成5V电压才能给手机充电。
+类适配器
+被适配器类:Voltage220V 适配类:Voltage5V 
+通过适配器类VoltageAdapter继承Voltage220V（拿到220V电压），并且实现了Voltage5V的接口（并转乘5V）
+手机类依赖Voltage5V，实质上是依赖VoltageAdapter
+对象适配器由于Java单继承原因
+对类适配......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-04-02
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2020/03/31/排序算法/">
         <h2 class="post-title">
             排序算法
@@ -198,11 +310,11 @@
             
         </h3>
         <div class="post-content-preview">
-            一、冒泡排序基本思想：两两数字比较，比较在每一趟遍历中，看当前数字会不会比下一个大，如果比下一个大则交换。每一趟交换中能找到最大的数，放在末尾。
+            一、冒泡排序（稳定  O(N)～ O(N^2^)）基本思想：两两数字比较，比较在每一趟遍历中，看当前数字会不会比下一个大，如果比下一个大则交换。每一趟交换中能找到最大的数，放在末尾。
 最好情况：顺序 只需遍历一遍 T &#x3D; O(N)
-最坏情况：逆序 全部都得排序　T &#x3D; ON^2)
+最坏情况：逆序 全部都得排序　T &#x3D; O(N^2^)
 如数组：５，３，７，１０，６，１８，４
-123456789101112131415161718192021222324252627......
+123456789101112131415161......
         </div>
     </a>
     <p class="post-meta">
@@ -332,108 +444,6 @@ LeetCode　按摩师（同打家劫舍系列）
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2020/03/22/Prime/">
-        <h2 class="post-title">
-            Prime
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            试除法求素数（通常会超时）
-1234567891011121314151617bool isPrime(int n)&#123;       for(int i = 2; i &lt;= sqrt(n); i++)&#123;           if(n%i==0)               return false;       &#125;       return true;   ......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-03-22
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/03/22/PowerSet/">
-        <h2 class="post-title">
-            幂集
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-幂集，也是原集合的所有子集
-
-位运算求幂集
-1234567891011121314vector&lt;vector&lt;int&gt;&gt; subsets(vector&lt;int&gt;&amp; nums) &#123;       vector&lt;vector&lt;int&gt;&gt;ans;       for(int i = 0; i &lt; (1&lt;&lt......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-03-22
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/03/21/BinaryTree/">
-        <h2 class="post-title">
-            二叉树
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            无论是LeetCode的题目还是竞赛题，很多都有关对二叉树的操作，因此有必要对做过的题目进行一番总结。
-二叉树的层次遍历
-BFS方式实现（队列）
-要注意队列的结点类型！
-123456789101112131415161718192021222324vector&lt;vector&lt;int&gt;&gt; levelOrder(TreeNode* root) &#123;        ......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-03-21
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/03/21/STL之hash-map/">
-        <h2 class="post-title">
-            STL之unordered_map
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            定义​	该容器提供了Key-Value的存储和查找功能
-
-无序性：unordered_map中的元素根据哈希值存储到桶中，以允许通过键直接快速访问每个元素
-
-唯一性：unordered_map中每个元素的值是唯一的
-
-关联性：unorederd_map 是一个关联容器，其中的元素根据键来引用，而不是根据索引来引用。
-插入值
-
-12345678910111213141516171819#inc......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-03-21
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -557,7 +567,9 @@ BFS方式实现（队列）
                             
                         
                             
-                            <a href="/tags/#Go学习" title="Go学习" rel="3">Go学习</a>
+                            <a href="/tags/#Go学习" title="Go学习" rel="7">Go学习</a>
+                            
+                        
                             
                         
                     </div>

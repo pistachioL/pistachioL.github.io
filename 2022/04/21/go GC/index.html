@@ -13,11 +13,11 @@
 
     <title>
         
-          JWT - Pistachio的楼阁 | Pistachio&#39;s Blog
+          go GC - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2019/10/12/JWT/">
+    <link rel="canonical" href="https://pistachiol.github.io/2022/04/21/go GC/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -171,14 +171,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#读书笔记" title="读书笔记">读书笔记</a>
+                          <a class="tag" href="/tags/#Go学习" title="Go学习">Go学习</a>
                         
                     </div>
-                    <h1>JWT</h1>
-                    <h2 class="subheading">基于Token的身份认证</h2>
+                    <h1>go GC</h1>
+                    <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
-                        2019-10-12
+                        2022-04-21
                     </span>
                 </div>
             </div>
@@ -197,110 +197,36 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="JWT是什么"><a href="#JWT是什么" class="headerlink" title="JWT是什么"></a>JWT是什么</h3><ul>
-<li><p>JWT本质是Token，用于验证身份的凭证。这个凭证能允许我们使用JWT在用户和服务器之间传递安全可靠的信息。</p>
-</li>
-<li><p>是经过base64编码字符串。</p>
-</li>
+                <h3 id="一、背景知识"><a href="#一、背景知识" class="headerlink" title="一、背景知识"></a>一、背景知识</h3><ul>
+<li>bbs数据段：全局变量、静态数据</li>
+<li>函数栈帧（栈）：函数的局部变量、参数、返回值。栈是系统自动分配空间的，例如定义一个var a string；系统会自动在栈上为其开辟空间。</li>
+<li>堆：函数内部动态分配的内存，由程序员申请分配和释放。在编译阶段不能确定数据对象的大小、或者对象的生命周期超出了当前所在函数，则不适合分配在栈上，要分配在堆。</li>
 </ul>
-<h3 id="Cookie-Session认证机制"><a href="#Cookie-Session认证机制" class="headerlink" title="Cookie-Session认证机制"></a>Cookie-Session认证机制</h3><blockquote>
-<p>​    客户端（用户）通过用户名和密码进行身份认证，但是下回发请求的时候又得验证以下。</p>
-<p>​    解决的办法是，用户成功登录之后，会在服务器端产生一条记录（<strong>Session</strong>），说明这用户是谁，然后把session_id传给客户端，并存入用户的<strong>Cookie</strong>。下次用户向服务器发送请求时，只需携带着包含用户信息的Cookie，看能否在服务器中找到记录，若可以则通过了身份认证，则把用户请求的数据返回到客户端。</p>
-</blockquote>
-<p>上面提到的Session，会存储在服务器磁盘、内存或者数据库中，我们需要期清理过期的Session。</p>
-<h5 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h5><ul>
-<li>可以主动清除session</li>
-<li>session保存在服务器端，相对较为安全</li>
-<li>结合cookie使用，较为灵活，兼容性较好</li>
-</ul>
-<h5 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h5><ul>
-<li><p>服务器压力大：每个用户在认证后，Session 信息都会保存在服务器的内存中，开销大。</p>
-</li>
-<li><p>难以扩展：对于基于 Session 的分布式系统、集群，要实现负载均衡，需要做多机共享session机制，实现方法可将session存储到数据库中或者redis中，加大了对数据库额外的开销和维护。</p>
-</li>
-<li><p>会有跨域问题</p>
-</li>
-</ul>
-<h3 id="JWT身份认证"><a href="#JWT身份认证" class="headerlink" title="JWT身份认证"></a>JWT身份认证</h3><h5 id="为什么要使用Token？"><a href="#为什么要使用Token？" class="headerlink" title="为什么要使用Token？"></a>为什么要使用Token？</h5><ul>
-<li>JWT本质是用于验证身份的凭证，这个凭证能允许我们使用JWT在用户和服务器之间传递安全可靠的信息。</li>
-<li>信息基于 base64 编码转换为 ASCII 码，字节占用很小，便于传输。</li>
-<li>基于 Token 的鉴权机制保持了 HTTP 协议的无状态型，每次操作都会生成新的JWT，不需要在服务器端存储用户的记录，因此也没必要保存JWT，真正实现无状态，从而实现更简单的水平扩展。</li>
-</ul>
-<p><img src="/2019/10/12/JWT/JWT/3.png"></p>
-<ol>
-<li>客户端使用用户名和密码进行登录；</li>
-<li>服务器端接收到请求后，取验证用户名和密码；</li>
-<li>验证成功后，服务器会签发一个Token，再把Token签发到客户端；</li>
-<li>客户端接收到Token之后，会存储到Cookie或者Local Storage；</li>
-<li>客户端每次向服务器发出请求时，都要携带服务器端签发的Token；</li>
-<li>服务器端接收到请求，去验证客户端携带的Token，如果验证成功，则返回客户端请求的数据。</li>
-</ol>
-<h3 id="Token的创建过程"><a href="#Token的创建过程" class="headerlink" title="Token的创建过程"></a>Token的创建过程</h3><blockquote>
-<p>​	JWT的Token由三部分组成：Header+Payload+Signature	</p>
-</blockquote>
-<p><img src="/2019/10/12/JWT/JWT/1.png"></p>
-<h5 id="1）Header-创建头部"><a href="#1）Header-创建头部" class="headerlink" title="1）Header 创建头部"></a>1）Header 创建头部</h5><p>Header 部分是一个 JSON 对象，描述 JWT 的元数据。</p>
-<p>{<br>  “alg”: “HS256”,<br> “typ”: “JWT”<br> }</p>
-<p>alg属性表示签名的算法（algorithm），默认是 HMAC SHA256（这个算法的密钥只有认证服务器和应用服务器知道），用什么 hash 算法来生成 JWT 签名模块（下文描述）。</p>
-<p>typ属性表示这个令牌（token）的类型（type），JWT 令牌统一写为JWT。</p>
-<p><img src="/2019/10/12/JWT/JWT/2.png"></p>
-<h5 id="2）Payload-创建负载"><a href="#2）Payload-创建负载" class="headerlink" title="2）Payload 创建负载"></a>2）Payload 创建负载</h5><p>Payload 部分也是一个 JSON 对象，用来存放实际需要传递的数据。官方给出了json数据的字段。</p>
-<p>{</p>
-<p>​	“iss (issuer)”：签发人<br>​	exp (expiration time)：过期时间<br>​	sub (subject)：主题<br>​	aud (audience)：受众<br>​	nbf (Not Before)：生效时间<br>​	iat (Issued At)：签发时间<br>​	jti (JWT ID)：编号</p>
-<p> }</p>
-<p>当然，我们也可以自定义。</p>
-<p>{<br>  “exp”: “1234567890”,<br>  “username”: “test”</p>
-<p>}</p>
-<p><img src="/2019/10/12/JWT/JWT/3.png"></p>
-<p>注意一点，<strong>payload 是一定不能够携带敏感数据如密码等信息的</strong></p>
-<h5 id="3）Signature-签名"><a href="#3）Signature-签名" class="headerlink" title="3）Signature 签名"></a>3）Signature 签名</h5><p>签名的目的主要是为了验证我是 “我“，把前两部分（Header、Payload）和用户的密钥进行哈希，防止数据篡改。换言之，即使Header或Payload被篡改，但篡改者不知到密钥是什么，无法生成签名，形成Token，服务器端无法通过验证。</p>
-<p>生成签名的步骤：</p>
-<p>​        ①Base64URL对生成的 header 和 payload 进行 base64url编码，然后把编码生成的字符串中间通过句号（.）连接起来。</p>
-<p>​        ②把密钥<em><strong>secret</strong></em>和data进行hash算法加密，生成签名，再进行base64编码，生成签名。(此处的secret是指用户的密钥，通过HA256或者其他方法进行加密)</p>
-<p><code>H</code>MACSHA256 (<code>   base64UrlEncode(header) + &quot;.&quot; + base64UrlEncode(payload),  secret )</code></p>
-<p>延伸：</p>
-<p><strong>加密认证</strong></p>
-<p>JWT的签名除了通过密钥（secret）的<strong>HMAC加密</strong>算法，还支持公钥或私钥的<strong>RSA</strong> or <strong>ECDSA</strong>算法。</p>
-<p><strong>加密方法</strong></p>
-<ol>
-<li><strong>对称加密：</strong>指的就是加、解密使用的同是一串密钥，所以被称做对称加密。对称加密只有一个密钥作为私钥。<br>常见的对称加密算法：DES，AES等。</li>
-<li><strong>非对称加密：</strong>指的是加、解密使用不同的密钥，一把作为公开的公钥，另一把作为私钥。公钥加密的信息，只有私钥才能解密。反之，私钥加密的信息，只有公钥才能解密。 最常用的非对称加密算法：RSA</li>
-</ol>
-<h5 id="4）三个模块合并成Token"><a href="#4）三个模块合并成Token" class="headerlink" title="4）三个模块合并成Token"></a>4）三个模块合并成Token</h5><p>产生签名之后，把Header、Payload、Signature 三个部分用 “ . ” 拼成一个字符串。</p>
-<p><img src="/2019/10/12/JWT/JWT/4.png"></p>
-<p>自此，用户得到了服务器返回的Token（凭证）。用户下次登录的时候，在过期时间之内或者注销会话之内，可以凭这这个Token免密登录。</p>
-<h5 id="5-校验JWT"><a href="#5-校验JWT" class="headerlink" title="5.校验JWT"></a>5.校验JWT</h5><p>​		由于应用知道密钥，当用户向应用发起携带 JWT 的 API 请求时，应用可以执行签名算法。然后应用可以校验用户 hash 操作生成的签名是否和 JWT 中的签名匹配（即它匹配认证服务器创建的 JWT 签名），若匹配一致，则认证通过，返回请求的数据。</p>
-<!--签发JWT的时候需要密钥-->
-<!--验证的时候需要公钥：验证使用 RS256 算法签发的 JWT，需要在文件系统上读取公钥文件里的内容。然后用 jwt 的 verify 方法去做验证。-->
+<p>分配在堆上的数据需要程序主动释放才可以重新使用，否则会成为垃圾，而垃圾越积越多会消耗系统内存。</p>
+<p><strong>手动垃圾回收</strong>：c、c++等语言需要程序手动释放不再需要的、分配在堆上的数据。一旦释放得早，后续对该数据的访问会出错，因为被释放的内存可能已经被清空，或者重新分配，甚至已经还给OS，这就是<code>悬挂指针</code>问题；但若忘记释放，就会一直占用内存，出现<code>内存泄露</code>。</p>
+<p><strong>自动垃圾回收</strong>：由运行时识别不再有用的数据，并释放它们占用的内存。</p>
+<h3 id="二、种类"><a href="#二、种类" class="headerlink" title="二、种类"></a>二、种类</h3><h5 id="2-1-三色抽象法"><a href="#2-1-三色抽象法" class="headerlink" title="2.1 三色抽象法"></a>2.1 三色抽象法</h5><p>三色抽象法是基于**标记-清扫算法 (Mark - Sweep) **的思想：程序中用得到的数据是从<code>栈</code>、<code>数据段</code>追踪得到的数据，可以以它们为根结点进行追踪，能追中到的数据进行标记，追踪不到的对象就是垃圾，进行回收。</p>
+<img src="/2022/04/21/go%20GC/1.png" style="width:350px">
 
 
 
+<p>而三色抽象能够清晰地表现追踪式回收过程中对象的变化过程：</p>
+<p>1、垃圾回收开始前，所有数据都为<code>白色</code>；</p>
+<p>2、把root结点标记为<code>灰色</code> （灰色代表基于当前结点展开的追踪还没完成）</p>
+<img src="/2022/04/21/go%20GC/2.png" style="width:350px">
 
+<p>3、当基于某个节点的追踪完成后，便把该节点标记为黑色，表示它为<code>存活数据</code>，而且无需基于它进行追踪；</p>
+<p>4、基于黑色结点追踪到的数据标为灰色，表示还需要基于它们展开追踪</p>
+<img src="/2022/04/21/go%20GC/3.png" style="width:350px">
 
-<h3 id="JWT适用场景"><a href="#JWT适用场景" class="headerlink" title="JWT适用场景"></a>JWT适用场景</h3><ul>
-<li><p>做简单的 Restful API 认证，从RESTful API查询使用JSON数据。RESTful API的原则之一是它应该是无状态的，这意味着当发出请求时，总会返回带有参数的响应，不会产生附加影响。</p>
-</li>
-<li><p>每次请求刷新 jwt。</p>
-</li>
-</ul>
-<h3 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h3><p>  JWT 本质上是通过时间换空间，服务器不存储用户状态信息，但是每个用户请求都会消耗 CPU 时间来验证 Token。</p>
-<blockquote>
-<p>XSS攻击是恶意网页程序（通常是JavaScript）对网站进行攻击。攻击成功后，攻击者可能得到包括但不限于更高的权限（如执行一些操作）、私密网页内容、会话和cookie等各种内容。</p>
-</blockquote>
-<p>服务器返回的Token是存储在客户端的Cookie或者Local Storage中，故容易发生XSS攻击。</p>
-<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ul>
-<li><p>为了防止中间人窃取Token，从而发生CSRF 攻击，使用https对请求进行加密传输。</p>
-</li>
-<li><p>JWT的信息是不加密存储的，不可存敏感信息。</p>
-</li>
-<li><p>设置一个表较短的过期时间。JWT是安全，但也不是绝对的，比如针对同一个接口，JWT字符串被截取后，且在有效期内，在不篡改JWT字符串的情况下，也是可以模拟请求进行访问的。颁发一个有效期极短的JWT，即使暴露了危险也很小。</p>
-</li>
-<li><p>生成签名字段时，支持使用密钥字符串签名（安全性较低），也支持使用 RSA、ECDSA 私钥签名。</p>
-</li>
-</ul>
-<p>​		</p>
-<p><a target="_blank" rel="noopener" href="https://juejin.im/entry/5bb211b7e51d450e5c478e0b">https://juejin.im/entry/5bb211b7e51d450e5c478e0b</a></p>
+<p>5、当没有灰色结点时，标记任务结束，有用数据均为黑色，垃圾数据为白色。接着回收白色对象的内存即可</p>
+<img src="/2022/04/21/go%20GC/4.png" style="width:350px">
 
+<p>缺点：</p>
+<p>容易造成内存碎片化</p>
+<h5 id="引用计数"><a href="#引用计数" class="headerlink" title="引用计数"></a>引用计数</h5><p>程序运行时会对对象进行计数，当技术为0时表示这个对象不再有用，可以回收它占用的内存。</p>
+<p>高频率更新引用次数会造成不小的系统开销，而且容易造成<code>循环引用</code>。</p>
+<h5 id="2-5-分代回收"><a href="#2-5-分代回收" class="headerlink" title="2.5 分代回收"></a>2.5 分代回收</h5>
 
                 <hr>
 
@@ -309,12 +235,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2019/11/05/Docker/" data-toggle="tooltip" data-placement="top" title="go Map">&larr; Previous Post</a>
+                            <a href="/2022/04/29/GMP/" data-toggle="tooltip" data-placement="top" title="go GMP模型">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2019/10/12/WaitNotify通知机制/" data-toggle="tooltip" data-placement="top" title="Wait&Notify的通知机制">Next Post &rarr;</a>
+                            <a href="/2022/04/20/channel/" data-toggle="tooltip" data-placement="top" title="go channel">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -347,7 +273,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#读书笔记" title="读书笔记">读书笔记</a>
+                          <a class="tag" href="/tags/#Go学习" title="Go学习">Go学习</a>
                         
                     </div>
                 </section>
@@ -379,8 +305,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2019/10/12/JWT/";
-    var disqus_url = "https://pistachiol.github.io/2019/10/12/JWT/";
+    var disqus_identifier = "https://pistachiol.github.io/2022/04/21/go%20GC/";
+    var disqus_url = "https://pistachiol.github.io/2022/04/21/go%20GC/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
