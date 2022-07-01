@@ -13,11 +13,11 @@
 
     <title>
         
-          Redis基础知识 - Pistachio的楼阁 | Pistachio&#39;s Blog
+          下一个排列的实现 - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2020/04/21/Redis基础知识/">
+    <link rel="canonical" href="https://pistachiol.github.io/2022/07/01/下一个排列/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -171,14 +171,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#Redis" title="Redis">Redis</a>
+                          <a class="tag" href="/tags/#算法" title="算法">算法</a>
                         
                     </div>
-                    <h1>Redis基础知识</h1>
+                    <h1>下一个排列的实现</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
-                        2020-04-21
+                        2022-07-01
                     </span>
                 </div>
             </div>
@@ -197,79 +197,13 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h3><p>Redis是一种高性能的NoSQL(not only sql)非关系型数据库，key-value存储</p>
-<h3 id="二、启动、状态、结束"><a href="#二、启动、状态、结束" class="headerlink" title="二、启动、状态、结束"></a>二、启动、状态、结束</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl status redis<span class="literal">-server</span></span><br><span class="line">systemctl status redis<span class="literal">-server</span></span><br><span class="line">systemctl stop redis<span class="literal">-server</span></span><br></pre></td></tr></table></figure>
+                <blockquote>
+<p>整数数组的下一个排列，是指下一个字典序更大的排列，如123下一个排列是132</p>
+</blockquote>
+<p>以下算法思想是c++ next_permutation的实现</p>
+<p>以【1,2,3,8,5,7,6,4】的下一个排列为例</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">nextPermutation</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> i = n - <span class="number">2</span>, j = n - <span class="number">1</span>, k = n - <span class="number">1</span>;</span><br><span class="line">    </span><br><span class="line">        <span class="comment">//1、从后往前找第一对相邻升序对，是5和7</span></span><br><span class="line">        <span class="keyword">while</span>(i &gt;= <span class="number">0</span> &amp;&amp; nums[i] &gt;= nums[j]) &#123;</span><br><span class="line">            i--;</span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//2、从后往前找nums[k] &gt; nums[i] 是6，便交换得：【1,2,3,8,6,7,5,4】</span></span><br><span class="line">        <span class="keyword">if</span> (i &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">while</span>(nums[i] &gt;= nums[k]) &#123;</span><br><span class="line">                k--;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//3、交换</span></span><br><span class="line">            <span class="built_in">swap</span>(nums[i], nums[k]);</span><br><span class="line">        &#125;</span><br><span class="line">      </span><br><span class="line">        <span class="comment">//4、nums[j]-nums[k]升序 【1,2,3,8,6,4,5,7】</span></span><br><span class="line">        <span class="type">int</span> l = j, r = n - <span class="number">1</span>; </span><br><span class="line">        <span class="keyword">while</span>(l &lt; r) &#123;</span><br><span class="line">            <span class="built_in">swap</span>(nums[l], nums[r]);</span><br><span class="line">            l++;</span><br><span class="line">            r--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li><p>默认端口时6379</p>
-</li>
-<li><p>有16个数据库，每一个从下标0开始</p>
-</li>
-<li><p>统一管理密码，16个库同样密码</p>
-</li>
-</ul>
-<p>连接服务</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis<span class="literal">-cli</span> </span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="四、基本命令"><a href="#四、基本命令" class="headerlink" title="四、基本命令"></a>四、基本命令</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DBSIZE //当前数据库key的个数</span><br><span class="line">keys *   //查看所有的key</span><br><span class="line">SELECT 7  //选择数据库,默认是0号数据库</span><br><span class="line">FLUSHALL 　//清空所有数据库</span><br><span class="line">FLUSHDB //清空当前数据库</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="五、基本类型"><a href="#五、基本类型" class="headerlink" title="五、基本类型"></a>五、基本类型</h3><h4 id="1-String类型"><a href="#1-String类型" class="headerlink" title="1) String类型"></a>1) String类型</h4><p>key | value(int&#x2F;string&#x2F;float)</p>
-<p><code>set</code> <code>get</code> </p>
-<p><code>incr</code>自增</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> string1 liao</span><br><span class="line">get string1</span><br><span class="line"><span class="built_in">set</span> num <span class="number">1</span>   //num为key <span class="number">1</span>为val</span><br><span class="line">incr num</span><br><span class="line">get num</span><br></pre></td></tr></table></figure>
-
-<p>底层数据结构是简单动态字符串(SDS)</p>
-<h4 id="2-Hash类型（散列类型）"><a href="#2-Hash类型（散列类型）" class="headerlink" title="2) Hash类型（散列类型）"></a>2) Hash类型（散列类型）</h4><p>key-&gt;val 一个键只能对应一个值</p>
-<p> <code>hset </code>插入</p>
-<p> <code>hget</code>通过key取出值</p>
-<p> <code>hmget</code>取出多个</p>
-<p> <code>hlen</code>容器中多少个元素</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hset hash1 key1 12</span><br><span class="line">hset hash1 key2 13</span><br><span class="line">hset hash1 key2 14 //修改key2 的值为14</span><br><span class="line">hget hash1 key1</span><br><span class="line">hmget hash1 key1 key2</span><br></pre></td></tr></table></figure>
-
-<p>Hash类型的键是由以下两种数据结构作为底层实现：</p>
-<p>1、字典；        					      																																												2、压缩列表；压缩列表比字典更节省内存，因此在创建新hash键时，默认时用压缩列表作为底层实现。</p>
-<h4 id="3-List类型"><a href="#3-List类型" class="headerlink" title="3)  List类型"></a>3)  List类型</h4><p><code>lpush</code>  从左边插入元素</p>
-<p><code>rpop</code>从右边取出元素</p>
-<p><code>llen</code> 容器中元素的个数</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lpush list1 <span class="number">13</span></span><br><span class="line">lpush list1 <span class="number">12</span></span><br><span class="line">rpop list1</span><br></pre></td></tr></table></figure>
-
-<p>底层数据结构是</p>
-<p>1、链表</p>
-<p>2、压缩列表</p>
-<h4 id="4-Set类型"><a href="#4-Set类型" class="headerlink" title="4) Set类型"></a>4) Set类型</h4><p><code>sadd</code>增加元素</p>
-<p><code>scard</code>查看容器元素个数</p>
-<p><code>srem</code>删除容器元素</p>
-<p><code>sismember</code>查看是否有某个元素</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sadd set1 12</span><br><span class="line">sadd set1 13</span><br><span class="line">sadd set1 14</span><br><span class="line">scard set1</span><br><span class="line">srem set1 13</span><br><span class="line">sismember set1 13</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h4 id="5-Zset-Sort-Set-类型"><a href="#5-Zset-Sort-Set-类型" class="headerlink" title="5) Zset (Sort Set)类型"></a>5) Zset (Sort Set)类型</h4><p>score和value是一个整体</p>
-<p><img src="/2020/04/21/Redis%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/1.png"></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">zadd zset1 10.1 val1 </span><br><span class="line">zadd zset1 11.2 val2 </span><br><span class="line">zadd zset1 9.2</span><br><span class="line"></span><br><span class="line">zcard zset1  //查看容器元素个数</span><br><span class="line"></span><br><span class="line">zrange zset1 0 2 withscores //把0-2范围内的值从小到大列出</span><br><span class="line"></span><br><span class="line">zrank zset1 val2 //查看val2的排行</span><br></pre></td></tr></table></figure>
-
-<p>底层数据结构</p>
-<p>1、压缩列表</p>
-<p>2、跳表</p>
-<h3 id="六、使用Redis的优势"><a href="#六、使用Redis的优势" class="headerlink" title="六、使用Redis的优势"></a>六、使用Redis的优势</h3><p>  1.查询速度快，因为数据存在内存中，类似于HashMap，HashMap的优势就是查找和操作的时间复杂度都是O(1)</p>
-<ol start="2">
-<li><p>支持丰富数据类型，支持string，list，set，sorted set，hash</p>
-</li>
-<li><p>丰富的特性：可用于缓存，消息，按key设置过期时间，过期后将会自动删除</p>
-</li>
-<li><p>单线程，Redis利用队列技术将并发访问变为串行访问，消除了传统数据库串行控制的开销</p>
-</li>
-<li><p>支持事务</p>
-</li>
-</ol>
-<h3 id="七、应用场景"><a href="#七、应用场景" class="headerlink" title="七、应用场景"></a>七、应用场景</h3><p>1、负载均衡情况下，session共享会话</p>
-<p>2、缓存</p>
 
 
                 <hr>
@@ -278,13 +212,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2020/04/22/红黑树/" data-toggle="tooltip" data-placement="top" title="红黑树">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2020/04/18/操作系统的内存管理/" data-toggle="tooltip" data-placement="top" title="操作系统的内存管理">Next Post &rarr;</a>
+                            <a href="/2022/06/22/Map/" data-toggle="tooltip" data-placement="top" title="go Map">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -317,7 +247,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#Redis" title="Redis">Redis</a>
+                          <a class="tag" href="/tags/#算法" title="算法">算法</a>
                         
                     </div>
                 </section>
@@ -349,8 +279,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2020/04/21/Redis%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/";
-    var disqus_url = "https://pistachiol.github.io/2020/04/21/Redis%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/";
+    var disqus_identifier = "https://pistachiol.github.io/2022/07/01/%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%8E%92%E5%88%97/";
+    var disqus_url = "https://pistachiol.github.io/2022/07/01/%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%8E%92%E5%88%97/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

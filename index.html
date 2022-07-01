@@ -190,23 +190,25 @@
 
 <div class="post-preview">
 
-    <a href="/2022/06/22/waitGroup/">
+    <a href="/2022/07/01/下一个排列/">
         <h2 class="post-title">
-            go WaitGroup
+            下一个排列的实现
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            一、定义Go语言标准库提供了WaitGroup原语，可以用来等待一批Goroutine结束，或者说让主协程等待子协程结束再操作。
-二、使用例子主协程是main，如果不加WaitGroup，则运行完就会先退出，没法打印字符串。
-加上WaitGroup，让主协程等待5个子协程都执行完毕后，主协程再继续执行
-123456789101112131415161718package mainimport......
+            
+整数数组的下一个排列，是指下一个字典序更大的排列，如123下一个排列是132
+
+以下算法思想是c++ next_permutation的实现
+以【1,2,3,8,5,7,6,4】的下一个排列为例
+1234567891011121314151617181920212223242526272829class Solution &#123;public:    void nextPermutat......
         </div>
     </a>
     <p class="post-meta">
         Posted by Liao on
-        2022-06-22
+        2022-07-01
     </p>
 
 </div>
@@ -227,6 +229,32 @@
 map类型的变量本质上是一个指针，指向hmap结构体
 /runtime/map.go
 12345678910111213141516type hmap struct &#123;	// Note: the format of the hmap is also encoded in cmd/compile/int......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2022-06-22
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2022/06/22/Sync包/">
+        <h2 class="post-title">
+            sync
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            sync包提供协程同步原语的方法
+一、WaitGroup1.1Go语言标准库提供了WaitGroup原语，可以用来等待一批Goroutine结束，或者说让主协程等待子协程结束再操作。
+1.2使用例子
+主协程是main，如果不加WaitGroup，则运行完就会先退出，没法打印字符串。
+加上WaitGroup，让主协程等待5个子协程都执行完毕后，主协程再继续执行
+1234567891011121......
         </div>
     </a>
     <p class="post-meta">
@@ -409,31 +437,6 @@ bbs数据段：全局变量、静态数据
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2022/04/20/channel/">
-        <h2 class="post-title">
-            go channel
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            一、定义Channel 是 goroutine 之间的通信方式，Go语言的并发模型是CSP（Communicating Sequential Processes），提倡通信来共享内存，而不是共享内存来通信。
-gorotine由 runtime来管理
-二、创建创建有缓冲的缓存
-1ch := make(chan int, 2)   //创建channel,类型为char, buffer大小是2
-......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2022-04-20
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -481,7 +484,7 @@ gorotine由 runtime来管理
                             
                         
                             
-                            <a href="/tags/#算法" title="算法" rel="11">算法</a>
+                            <a href="/tags/#算法" title="算法" rel="12">算法</a>
                             
                         
                             
