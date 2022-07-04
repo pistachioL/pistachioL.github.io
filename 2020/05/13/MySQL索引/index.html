@@ -237,7 +237,7 @@
 </li>
 <li><p>按需取数据，尽量使用覆盖索引，只访问索引的查询，(索引列和查询列一致)，减少select *</p>
 </li>
-<li><p>MySQL在使用**不等于（!&#x3D; &#x2F; &lt;&gt;）&#x2F; is null &#x2F; is not null **时会导致索引失效（无法使用索引），导致全表扫描</p>
+<li><p>MySQL在使用<strong>不等于（!&#x3D; &#x2F; &lt;&gt;）&#x2F; is null &#x2F; is not null</strong>时会导致索引失效（无法使用索引），导致全表扫描</p>
 </li>
 <li><p>like以通配符(‘%abc’)开头导致MySQL索引失效，变成全表扫描。like%写在右比较好</p>
 </li>
