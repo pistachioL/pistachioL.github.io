@@ -190,6 +190,69 @@
 
 <div class="post-preview">
 
+    <a href="/2020/05/13/MySQL存储引擎/">
+        <h2 class="post-title">
+            MySQL存储引擎
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            常见类型InnoDB&#x2F;MyISAM&#x2F;Memory &#x2F;Achive&#x2F;Blackhole&#x2F;CSV
+MySQL5.5之后默认的引擎是InnoDB，有自动提交功能。若想关闭可使用set autocommit = 0;则需要手动commit事务。
+InnoDB与MyISAM的比较
+
+
+对比项
+MyISAM
+InnoDB
+
+
+
+主外键
+不支持
+支持
+
+
+......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-05-13
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/05/13/MySQL事务隔离级别/">
+        <h2 class="post-title">
+            MySQL事务
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            事务事务是由一组SQL语句组成的一个执行单元，该执行单元要么全部执行或全部不执行
+事务四大特质（ACID）
+原子性(Atomicity)：指事务包含的所有操作要么全部成功，要么全部失败回滚。事务是最小单位，不可再分。
+
+回滚通过undo log实现，回滚行记录到某个特定版本
+undo log 记录的是逻辑操作日志（如对某行数据进行insert操作，那么undo log会记录一条与之相反的de......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-05-13
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2020/05/12/斐波那契数列/">
         <h2 class="post-title">
             斐波那契数列
@@ -388,58 +451,6 @@ POST比GET安全，因为数据在地址栏上不可见。通过GET提交数据�
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2020/04/23/MySQL的分库分表/">
-        <h2 class="post-title">
-            MySQL的分库分表
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            对于MySQL的性能优化，可能会想到索引优化。但是如果在数据量很大的情况（100w以上），而且写操作比较多的情况下，优化索引性能提升不明显。传统的分库分表是通过应用层逻辑实现的
-分库分表把单一的数据库拆分成若干的数据库，将原来数据大表分成若干数据表，使得单一数据库、单一数据表的数量变小（数据量也随着拆分而变少），从而解决数据库由于数据量过大而导致性能降低的问题。
-分库分表的方式1) 垂直分表......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-04-23
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/04/22/红黑树/">
-        <h2 class="post-title">
-            红黑树
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            红黑树（Red Black Tree）是对二叉搜索树的改进，解决二叉搜索树多次插入新节点导致的不平衡问题。对于搜索、插入和删除较多操作的情况下，通常使用红黑树。
-红黑树的底层结构是二叉查找树。
-其产生过程：链表-&gt;二叉树-&gt;二叉查找树-&gt;自平衡的二叉查找树
-
-特性以下特性保证了红黑树的平衡特性，确保没有一条路径比其它路径长出两倍
-
-是自平衡的二叉查找树
-结点是红色或黑色
-根......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-04-22
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -519,7 +530,7 @@ POST比GET安全，因为数据在地址栏上不可见。通过GET提交数据�
                             
                         
                             
-                            <a href="/tags/#MySQL" title="MySQL" rel="6">MySQL</a>
+                            <a href="/tags/#MySQL" title="MySQL" rel="7">MySQL</a>
                             
                         
                             
@@ -564,6 +575,8 @@ POST比GET安全，因为数据在地址栏上不可见。通过GET提交数据�
                         
                             
                             <a href="/tags/#Go学习" title="Go学习" rel="7">Go学习</a>
+                            
+                        
                             
                         
                             

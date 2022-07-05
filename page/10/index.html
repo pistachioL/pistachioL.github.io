@@ -190,6 +190,62 @@
 
 <div class="post-preview">
 
+    <a href="/2019/09/13/线段树/">
+        <h2 class="post-title">
+            线段树
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            1.定义
+线段树（segment tree） 是用来存放给定区间内对应信息的一种数据结构。线段树是二叉树，一个区间每次被折半往下分，所以往下查找，（二叉树的二分查找）最多lon2n次就能查找到。
+
+有两种操作：
+​	1）求某段区间的和
+​	2）修改某个区间的值
+2.过程1）建立二叉树
+​	
+2）剪枝部分  e.g.求区间[2,5]的和
+
+可以直接返回 return0，即不用对其以下的结点进行......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-09-13
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/09/12/linux常用命令-/">
+        <h2 class="post-title">
+            linux常用命令
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            SCP上传下载1.从服务器拉取文件夹到本地scp -r root@xx.xxx.x.xx:文件所在路径 /home/Document
+2.从本地上传文件到服务器scp -r /home/Document root@xx.xxx.x.xx:/home/default
+3.rsync文件压缩tar -xvf file.tar
+tar -xzvf  file.tar.gz 
+tar -xjvf f......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-09-12
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2019/09/03/欧拉降幂公式/">
         <h2 class="post-title">
             欧拉函数
@@ -391,61 +447,6 @@ priorit......
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2019/07/24/队列基本用法/">
-        <h2 class="post-title">
-            队列基本用法
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            牛客上做的一个题目：https://ac.nowcoder.com/acm/contest/258/A 
-以样例为例：
-123456输入3 71 2 1 5 4 4 1输出 5
-
-容量为3，文章长度为7，第二行为文章内容。依题意，检索到相同的就为同一个单词，当单词数量大于容量的时候，软件会清空最早存入内存的单词，腾出单元，存放新单词。因此符合队列先进先出的特点。
-
-1234567891011......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-07-24
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/07/12/git常用操作/">
-        <h2 class="post-title">
-            git的常用操作
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            git常用操作github上传laravel项目git init
-git remote add origin git@github.com:pistachioL/xxx.git
-git add .
-git commit -m &quot;xxxx&quot;
-git push origin master -f
-删除远程关联
- git remote rm origin
-创建新分支git bra......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-07-12
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -525,7 +526,7 @@ git push origin master -f
                             
                         
                             
-                            <a href="/tags/#MySQL" title="MySQL" rel="6">MySQL</a>
+                            <a href="/tags/#MySQL" title="MySQL" rel="7">MySQL</a>
                             
                         
                             
@@ -570,6 +571,8 @@ git push origin master -f
                         
                             
                             <a href="/tags/#Go学习" title="Go学习" rel="7">Go学习</a>
+                            
+                        
                             
                         
                             

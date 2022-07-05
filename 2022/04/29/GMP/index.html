@@ -197,18 +197,64 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="一、定义"><a href="#一、定义" class="headerlink" title="一、定义"></a>一、定义</h3><p>GMP是go调度器的原理</p>
+                <h3 id="一、GM模型"><a href="#一、GM模型" class="headerlink" title="一、GM模型"></a>一、GM模型</h3><p>go1.1版本之前是用GM模型的：</p>
+<img src="/2022/04/29/GMP/2.png" style="width:450px">
+
+<p>缺点：</p>
+<ul>
+<li>全局队列的锁竞争问题。M从全局队列获取G时，都要获取队列的锁，导致激烈的锁竞争，性能下降</li>
+<li>M的使用效率不能最大化，增加空转时间（没有work-stealing 和 hand-off机制）</li>
+<li>M转移G增加额外开销。例如M1在运行G1时，创建了G2。为了继续执行G1，需要把G2交给其它的M处理，或者放在全局队列中，不能保证是由M1处理，造成很差的局部性</li>
+</ul>
+<h3 id="二、GMP模型"><a href="#二、GMP模型" class="headerlink" title="二、GMP模型"></a>二、GMP模型</h3><h4 id="2-1-GMP模型"><a href="#2-1-GMP模型" class="headerlink" title="2.1 GMP模型"></a>2.1 GMP模型</h4><p>GMP是go调度器的原理</p>
 <img src="/2022/04/29/GMP/1.png" style="width:450px">
 
 <p>有四个重要的结构，G、M、P、sched</p>
-<p>G（Goroutine）：存储了Goroutine的执行栈信息、Goroutine状态、Goroutine的任务函数等。</p>
-<p>P（Processor）：将可运行的goroutine分配到工作线程上。如果p队列goroutine为空，则会尝试从全局队列或者别的本地队列偷G过来。P的数量默认是本机CPU核数，但可以通过环境变量<code>$GOMAXPROCS</code> 或者 <code>rumtime.GOMAXPROCS()</code>来设置</p>
-<p>M（Machine）：Go对OS thread 的封装，是运行Goroutine的实体。在CUP上运行代码必须要有线程，通过clone()创建。M绑定有效的P之后，会进入一个调度循环，即从P的本地队列及全局队列中获取G。M数量默认限制为10000，可以通过debug.SetMaxThreads()方法进行设置，</p>
-<p>Sched：调度器结构，它维护you</p>
+<p>**G(Goroutine)**：存储了Goroutine的执行栈信息、Goroutine状态、Goroutine的任务函数等。</p>
+<p>**P(Processor)**：将可运行的goroutine分配到工作线程上。如果p队列goroutine为空，则会尝试从全局队列或者别的本地队列偷G过来。P的数量默认是本机CPU核数，但可以通过环境变量<code>$GOMAXPROCS</code> 或者 <code>rumtime.GOMAXPROCS()</code>来设置</p>
+<p>**M(Machine)**：</p>
+<ul>
+<li>Go对OS thread 的封装，可以看作内核级线程，是运行Goroutine的实体。</li>
+<li>在CUP上运行代码必须要有线程，通过clone()创建。</li>
+<li>M绑定有效的P之后，会进入一个调度循环，即从P的本地队列及全局队列中获取G。M数量默认限制为10000，可以通过debug.SetMaxThreads()方法进行设置。</li>
+<li>一个 M 阻塞了，会创建新的 M。</li>
+</ul>
+<p><strong>Sched</strong>：调度器结构，它维护</p>
 <p>操作系统把内核级线程调度到cpu上执行</p>
-<h3 id="Go的调度"><a href="#Go的调度" class="headerlink" title="Go的调度"></a>Go的调度</h3><h5 id="work-strealing机制"><a href="#work-strealing机制" class="headerlink" title="work strealing机制"></a>work strealing机制</h5><p>M首先从本地队列获取G，若p为空，则去全局队列找G；若全局队列也为空，则从另一个本地队列偷取一半数量的G</p>
-<p>防止M空闲，若M空闲，只能自旋</p>
-<h5 id="hand-off机制"><a href="#hand-off机制" class="headerlink" title="hand off机制"></a>hand off机制</h5><p><a target="_blank" rel="noopener" href="https://learnku.com/articles/41728">https://learnku.com/articles/41728</a></p>
+<h4 id="2-2-GMP调度流程"><a href="#2-2-GMP调度流程" class="headerlink" title="2.2 GMP调度流程"></a>2.2 GMP调度流程</h4><img src="/2022/04/29/GMP/3.png" style="width:750px">
+
+<ol>
+<li><code>go func</code>创建协程goroutine，放在局部队列中，若满则放在全局队列</li>
+<li>M相当于是消费者，首先从本地队列获取G，如果取不到则取全局队列获取，再取不到则从别的P中“偷取”一半G （work stealing机制）</li>
+<li>M拿到G之后执行调度；否则会被阻塞，M会处于自旋的状态（不断获取G）<ol>
+<li>M执行G过程中如果发生**系统调用systemCall()**而阻塞，会阻塞M和G，则会释放P，让另一个M执行（hand off机制）。如果没有空闲的M，则会新建一个M，接管当前正在阻塞G所属的P，接着执行P中剩余的G； 系统调用结束后，M会尝试获取空闲的P（优先获取之前绑定的P），若获取不到空闲P，则这个空闲的M会休眠，加入到休眠队列中，</li>
+<li>M执行G过程中如果发生<strong>网络IO操作</strong>而阻塞（异步），则会阻塞G，但不会阻塞M。M继续寻找P中其它可执行的G继续执行，而被阻塞的G会被网络轮询器（network poller）接手。当G被恢复之后，把这个G放回本地队列中，重新进入可执行状态。</li>
+</ol>
+</li>
+<li>M执行完G之后会清理现场，重新进入调度循环</li>
+</ol>
+<h4 id="2-3-Goroutine的调度策略"><a href="#2-3-Goroutine的调度策略" class="headerlink" title="2.3 Goroutine的调度策略"></a>2.3 Goroutine的调度策略</h4><h5 id="2-2-1-work-strealing机制"><a href="#2-2-1-work-strealing机制" class="headerlink" title="2.2.1 work strealing机制"></a>2.2.1 work strealing机制</h5><p>​		M首先从本地队列获取G，若p为空，则去全局队列找G；若全局队列也为空，则从另一个本地队列偷取一半数量的G，以防止M空闲。若M空闲，只能自旋。</p>
+<h5 id="2-2-2-hand-off机制"><a href="#2-2-2-hand-off机制" class="headerlink" title="2.2.2 hand off机制"></a>2.2.2 hand off机制</h5><p>​	   M执行G过程中如果发生系统调用systemCall()而阻塞，会阻塞M和G，P和M解绑，改P让另一个M执行。</p>
+<h4 id="2-4-Goroutine的调度时机"><a href="#2-4-Goroutine的调度时机" class="headerlink" title="2.4 Goroutine的调度时机"></a>2.4 Goroutine的调度时机</h4><ul>
+<li>抢占式调度<ul>
+<li>sysmon检测到goroutine执行过久（如sleep，死循环）</li>
+</ul>
+</li>
+<li>主动调度<ul>
+<li>go关键字 go func() 新起一个协程，触发调度循环</li>
+<li>主动调用<code>runtime.GoSched()</code></li>
+<li>垃圾回收，stop the world之后，会重新选择G开始执行</li>
+</ul>
+</li>
+<li>被动调度<ul>
+<li>系统调用阻塞（异步）</li>
+<li>网络IO调用阻塞（异步）</li>
+<li>atomic&#x2F;mutext&#x2F;channel等阻塞（异步），阻塞G，G移动到channel的等待队列中，M执行P剩余的G</li>
+</ul>
+</li>
+</ul>
+<p>参考</p>
+<p><a target="_blank" rel="noopener" href="https://learnku.com/articles/41728">https://learnku.com/articles/41728</a></p>
 
 
                 <hr>

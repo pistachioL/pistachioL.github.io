@@ -197,7 +197,7 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p>sync包提供协程同步原语的方法</p>
+                <p>sync包提供线程同步原语的方法</p>
 <h3 id="一、WaitGroup"><a href="#一、WaitGroup" class="headerlink" title="一、WaitGroup"></a>一、WaitGroup</h3><p>1.1Go语言标准库提供了WaitGroup原语，可以用来等待一批Goroutine结束，或者说让主协程等待子协程结束再操作。</p>
 <p>1.2使用例子</p>
 <p>主协程是main，如果不加WaitGroup，则运行完就会先退出，没法打印字符串。</p>
@@ -211,7 +211,12 @@
 
 
 
-<h3 id="四、Once"><a href="#四、Once" class="headerlink" title="四、Once"></a>四、Once</h3><h3 id="五、pool"><a href="#五、pool" class="headerlink" title="五、pool"></a>五、pool</h3>
+<h3 id="四、Once"><a href="#四、Once" class="headerlink" title="四、Once"></a>四、Once</h3><p>场景：实现单例模式</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;sync&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> mydb <span class="keyword">struct</span> &#123;</span><br><span class="line">	name <span class="type">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//需要声明在外面</span></span><br><span class="line"><span class="keyword">var</span> (</span><br><span class="line">	once     sync.Once</span><br><span class="line">	instance *mydb</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *mydb)</span></span> getinstance() *mydb &#123;</span><br><span class="line">	once.Do(<span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		instance = &amp;mydb&#123; <span class="comment">// 实例化，返回mydb结构体的引用</span></span><br><span class="line">			name: <span class="string">&quot;mysql&quot;</span>,</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;)</span><br><span class="line">	<span class="keyword">return</span> instance</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> s *mydb</span><br><span class="line">	ans1 := s.getinstance()</span><br><span class="line">	ans2 := s.getinstance()</span><br><span class="line"></span><br><span class="line">	fmt.Printf(<span class="string">&quot;s1: %p\n&quot;</span>, ans1) <span class="comment">//s1: 0x1400008e210</span></span><br><span class="line">	fmt.Printf(<span class="string">&quot;s2: %p\n&quot;</span>, ans2) <span class="comment">//s2: 0x1400008e210</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="五、pool"><a href="#五、pool" class="headerlink" title="五、pool"></a>五、pool</h3>
 
                 <hr>
 

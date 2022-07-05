@@ -218,12 +218,6 @@
 <p><strong>2、溢出桶太多</strong></p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">tooManyOverflowBuckets</span><span class="params">(noverflow <span class="type">uint16</span>, B <span class="type">uint8</span>)</span></span> <span class="type">bool</span> &#123;</span><br><span class="line">	<span class="comment">// If the threshold is too low, we do extraneous work.</span></span><br><span class="line">	<span class="comment">// If the threshold is too high, maps that grow and shrink can hold on to lots of unused memory.</span></span><br><span class="line">	<span class="comment">// &quot;too many&quot; means (approximately) as many overflow buckets as regular buckets.</span></span><br><span class="line">	<span class="comment">// See incrnoverflow for more details.</span></span><br><span class="line">	<span class="keyword">if</span> B &gt; <span class="number">15</span> &#123;</span><br><span class="line">		B = <span class="number">15</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// The compiler doesn&#x27;t see here that B &lt; 16; mask B to generate shorter shift code.</span></span><br><span class="line">	<span class="keyword">return</span> noverflow &gt;= <span class="type">uint16</span>(<span class="number">1</span>)&lt;&lt;(B&amp;<span class="number">15</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
-
-
-
-
-
 <p><a target="_blank" rel="noopener" href="https://go.dev/tour/moretypes/19">https://go.dev/tour/moretypes/19</a></p>
 
 

@@ -190,6 +190,56 @@
 
 <div class="post-preview">
 
+    <a href="/2022/07/04/RPC/">
+        <h2 class="post-title">
+            RPC
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            ...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2022-07-04
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2022/07/04/MySQL日志/">
+        <h2 class="post-title">
+            MySQL日志
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            一、Redo Log为了保证内存中和磁盘中数据的一致性，需要用Redo log
+操作原理：
+Innodb采用WAL技术(write-ahead logging)，思想是先写日志再写磁盘，只有日志写成功，才算事务提交成功。
+
+
+优点：
+
+redo log降低了刷盘频率。由于修改某个表的某个字段时，数据从磁盘读加载内存是以页为单位的，若每时每刻从内存刷磁盘的话，性能大大降低
+redo log占用......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2022-07-04
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2022/07/01/下一个排列/">
         <h2 class="post-title">
             下一个排列的实现
@@ -249,7 +299,7 @@ map类型的变量本质上是一个指针，指向hmap结构体
             
         </h3>
         <div class="post-content-preview">
-            sync包提供协程同步原语的方法
+            sync包提供线程同步原语的方法
 一、WaitGroup1.1Go语言标准库提供了WaitGroup原语，可以用来等待一批Goroutine结束，或者说让主协程等待子协程结束再操作。
 1.2使用例子
 主协程是main，如果不加WaitGroup，则运行完就会先退出，没法打印字符串。
@@ -385,58 +435,6 @@ LeetCode题目总结和为s的连续正数序列
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2022/04/29/GMP/">
-        <h2 class="post-title">
-            go GMP模型
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            一、定义GMP是go调度器的原理
-
-
-有四个重要的结构，G、M、P、sched
-G（Goroutine）：存储了Goroutine的执行栈信息、Goroutine状态、Goroutine的任务函数等。
-P（Processor）：将可运行的goroutine分配到工作线程上。如果p队列goroutine为空，则会尝试从全局队列或者别的本地队列偷G过来。P的数量默认是本机CPU核数，但可以通过环......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2022-04-29
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2022/04/21/go GC/">
-        <h2 class="post-title">
-            go GC
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            一、背景知识
-bbs数据段：全局变量、静态数据
-函数栈帧（栈）：函数的局部变量、参数、返回值。栈是系统自动分配空间的，例如定义一个var a string；系统会自动在栈上为其开辟空间。
-堆：函数内部动态分配的内存，由程序员申请分配和释放。在编译阶段不能确定数据对象的大小、或者对象的生命周期超出了当前所在函数，则不适合分配在栈上，要分配在堆。
-
-分配在堆上的数据需要程序主动释放才可以重新使用......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2022-04-21
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -512,7 +510,7 @@ bbs数据段：全局变量、静态数据
                             
                         
                             
-                            <a href="/tags/#MySQL" title="MySQL" rel="6">MySQL</a>
+                            <a href="/tags/#MySQL" title="MySQL" rel="7">MySQL</a>
                             
                         
                             
@@ -557,6 +555,8 @@ bbs数据段：全局变量、静态数据
                         
                             
                             <a href="/tags/#Go学习" title="Go学习" rel="7">Go学习</a>
+                            
+                        
                             
                         
                             

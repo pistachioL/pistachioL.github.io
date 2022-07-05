@@ -190,6 +190,70 @@
 
 <div class="post-preview">
 
+    <a href="/2020/03/06/位运算/">
+        <h2 class="post-title">
+            位运算总结
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            由于计算机存储数据都是以二进制的形式存储，位运算实质时对二进制数进行操作。在做题目的的时候，通过位运算处理数据速度很快，便能使缩短计算时间。
+1. 位运算的种类
+
+
+含义
+运算符
+解释和例子
+
+
+
+左移
+&lt;&lt;
+高位丢弃，低位补0。x&lt;&lt;n  相当于x乘2^n  (0011 &lt;&lt; 1 &#x3D;&#x3D;  0110)
+
+
+右移
+&gt;&gt;
+无符号......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-03-06
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/03/05/STL之vector/">
+        <h2 class="post-title">
+            STL之vector
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+vector封装了数组，拥有连续的内存空间，并且起始地址不变，能够高效地进行存取，时间复杂度为O(1)
+但由于其内存空间是连续的，在进行插入或删除操作时，会造成内存块拷贝，时间复杂度为O(n)；另外，在数组内存空间不够时，也会重新申请一块内存空间进行内存拷贝。
+
+（与list数据结构相反，用于不同的场景）
+一、初始化vector vec(int size); &#x2F;&#x2F;创建一......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-03-05
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2020/03/03/双指针/">
         <h2 class="post-title">
             双指针
@@ -394,57 +458,6 @@ Qu......
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2020/02/11/二分查找/">
-        <h2 class="post-title">
-            二分查找
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            日常刷LeetCode的时候，用暴力解决了一道困难级别的题目，其时间限制是log(m+n)，才发现真正做法是用二分查找，因此补补相关知识。
-题目中有序、时间复杂度要求logn等，可以考虑二分查找。
-1. 基本思想二分查找也称为是折半查找，属于有序查找算法。用给定值k先与中间结点的关键字比较，中间结点把线形表分成两个子表，若相等则查找成功；若不相等，再根据k与该中间结点关键字的比较结果确定下一......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-02-11
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/02/05/链表/">
-        <h2 class="post-title">
-            链表
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            初始化一个结点1234ListNode node = new ListNode();  //初始化一个空结点，无值（不提倡这样写）ListNode node = new ListNode(0); //初始化一个节点值为0的空结点（最常用的规范写法）
-
-
-
-Leetcode 21 合并两个有序链表
-
-输入：1-&gt;2-&gt;4,  1-&gt;3-&gt;4
-输出：1-&gt;1-&gt......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-02-05
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -524,7 +537,7 @@ Leetcode 21 合并两个有序链表
                             
                         
                             
-                            <a href="/tags/#MySQL" title="MySQL" rel="6">MySQL</a>
+                            <a href="/tags/#MySQL" title="MySQL" rel="7">MySQL</a>
                             
                         
                             
@@ -569,6 +582,8 @@ Leetcode 21 合并两个有序链表
                         
                             
                             <a href="/tags/#Go学习" title="Go学习" rel="7">Go学习</a>
+                            
+                        
                             
                         
                             
