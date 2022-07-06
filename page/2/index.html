@@ -190,34 +190,6 @@
 
 <div class="post-preview">
 
-    <a href="/2022/04/29/GMP/">
-        <h2 class="post-title">
-            go GMP模型
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            一、GM模型go1.1版本之前是用GM模型的：
-
-
-缺点：
-
-全局队列的锁竞争问题。M从全局队列获取G时，都要获取队列的锁，导致激烈的锁竞争，性能下降
-M的使用效率不能最大化，增加空转时间（没有work-stealing 和 hand-off机制）
-M转移G增加额外开销。例如M1在运行G1时，创建了G2。为了继续执行G1，需要把G2交给其它的M处理，或者放在全局队列中，不能保证是由M1处理，......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2022-04-29
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
     <a href="/2022/04/21/go GC/">
         <h2 class="post-title">
             go GC
@@ -461,6 +433,34 @@ https://www.jianshu.com/p/15fa13a1d6f4
 </div>
 <hr>
 
+<div class="post-preview">
+
+    <a href="/2020/05/23/前序与中序遍历构造二叉树/">
+        <h2 class="post-title">
+            前序与中序遍历构造二叉树
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            通过刷题学习，现在对二叉树递归遍历有新的认识。
+前序遍历：根节点，左子树，右子树
+中序遍历：左子树，根节点，右子树
+由此可见，前序遍历的第一个节点就是中序遍历的根节点
+
+此处设左子树的右边界为x，由于左子树的前序和中序遍历结点个数相同，即x -(pl+1)&#x3D;(inroot-1) - il,故推出
+x = inroot - il + pl，求出左子树右边界的下标。
+求出边界值之后，找......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-05-23
+    </p>
+
+</div>
+<hr>
+
 
 
 <!-- Pager -->
@@ -585,8 +585,6 @@ https://www.jianshu.com/p/15fa13a1d6f4
                         
                             
                             <a href="/tags/#Go学习" title="Go学习" rel="7">Go学习</a>
-                            
-                        
                             
                         
                             

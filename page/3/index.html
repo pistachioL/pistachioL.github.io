@@ -190,34 +190,6 @@
 
 <div class="post-preview">
 
-    <a href="/2020/05/23/前序与中序遍历构造二叉树/">
-        <h2 class="post-title">
-            前序与中序遍历构造二叉树
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            通过刷题学习，现在对二叉树递归遍历有新的认识。
-前序遍历：根节点，左子树，右子树
-中序遍历：左子树，根节点，右子树
-由此可见，前序遍历的第一个节点就是中序遍历的根节点
-
-此处设左子树的右边界为x，由于左子树的前序和中序遍历结点个数相同，即x -(pl+1)&#x3D;(inroot-1) - il,故推出
-x = inroot - il + pl，求出左子树右边界的下标。
-求出边界值之后，找......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-05-23
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
     <a href="/2020/05/19/树的序列化与反序列化/">
         <h2 class="post-title">
             树的序列化与反序列化
@@ -453,6 +425,43 @@ session1 加了读锁，当前session1不能读其他未加锁的表，而且不
 </div>
 <hr>
 
+<div class="post-preview">
+
+    <a href="/2020/05/13/MySQL存储引擎/">
+        <h2 class="post-title">
+            MySQL存储引擎
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            常见类型InnoDB&#x2F;MyISAM&#x2F;Memory &#x2F;Achive&#x2F;Blackhole&#x2F;CSV
+MySQL5.5之后默认的引擎是InnoDB，有自动提交功能。若想关闭可使用set autocommit = 0;则需要手动commit事务。
+InnoDB与MyISAM的比较
+
+
+对比项
+MyISAM
+InnoDB
+
+
+
+主外键
+不支持
+支持
+
+
+......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-05-13
+    </p>
+
+</div>
+<hr>
+
 
 
 <!-- Pager -->
@@ -577,8 +586,6 @@ session1 加了读锁，当前session1不能读其他未加锁的表，而且不
                         
                             
                             <a href="/tags/#Go学习" title="Go学习" rel="7">Go学习</a>
-                            
-                        
                             
                         
                             

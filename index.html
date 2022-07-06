@@ -190,27 +190,6 @@
 
 <div class="post-preview">
 
-    <a href="/2022/07/04/RPC/">
-        <h2 class="post-title">
-            RPC
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            ...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2022-07-04
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
     <a href="/2022/07/04/MySQL日志/">
         <h2 class="post-title">
             MySQL日志
@@ -435,6 +414,34 @@ LeetCode题目总结和为s的连续正数序列
 </div>
 <hr>
 
+<div class="post-preview">
+
+    <a href="/2022/04/29/GMP/">
+        <h2 class="post-title">
+            go GMP模型
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            一、GM模型go1.1版本之前是用GM模型的：
+
+
+缺点：
+
+全局队列的锁竞争问题。M从全局队列获取G时，都要获取队列的锁，导致激烈的锁竞争，性能下降
+M的使用效率不能最大化，增加空转时间（没有work-stealing 和 hand-off机制）
+M转移G增加额外开销。例如M1在运行G1时，创建了G2。为了继续执行G1，需要把G2交给其它的M处理，或者放在全局队列中，不能保证是由M1处理，......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2022-04-29
+    </p>
+
+</div>
+<hr>
+
 
 
 <!-- Pager -->
@@ -555,8 +562,6 @@ LeetCode题目总结和为s的连续正数序列
                         
                             
                             <a href="/tags/#Go学习" title="Go学习" rel="7">Go学习</a>
-                            
-                        
                             
                         
                             
