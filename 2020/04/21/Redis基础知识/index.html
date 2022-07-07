@@ -232,8 +232,8 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">hset hash1 key1 12</span><br><span class="line">hset hash1 key2 13</span><br><span class="line">hset hash1 key2 14 //修改key2 的值为14</span><br><span class="line">hget hash1 key1</span><br><span class="line">hmget hash1 key1 key2</span><br><span class="line">hgetall hash1</span><br></pre></td></tr></table></figure>
 
 <p>Hash类型的键是由以下两种数据结构作为底层实现：</p>
-<p>1、字典</p>
-<p>2、压缩列表（ziplist）；压缩列表比字典更节省内存，因此在创建新hash键时，默认时用压缩列表作为底层实现。</p>
+<p>1、压缩列表（ziplist）；压缩列表比字典更节省内存，因此在创建新hash键时，默认时用压缩列表作为底层实现</p>
+<p>2、字典（哈希表）</p>
 <p>（当ziplist元素超过512，会变成哈希表，或者单个元素大小超过64byte，会变为哈希表）</p>
 <h4 id="3-3-List类型"><a href="#3-3-List类型" class="headerlink" title="3.3  List类型"></a>3.3  List类型</h4><p><code>lpush</code>  从左边插入元素</p>
 <p><code>rpop</code>从右边取出元素 （取出来之后会从内存中删除）</p>
