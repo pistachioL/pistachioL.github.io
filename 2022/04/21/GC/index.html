@@ -13,11 +13,11 @@
 
     <title>
         
-          MySQL日志 - Pistachio的楼阁 | Pistachio&#39;s Blog
+          go GC - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2022/07/04/MySQL日志/">
+    <link rel="canonical" href="https://pistachiol.github.io/2022/04/21/GC/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -92,6 +92,10 @@
                     
 
                         
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
                     
 
                         
@@ -109,8 +113,11 @@
                     
 
                         
+                    
+
+                        
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/categories/">categories</a>
                         </li>
                         
                     
@@ -171,14 +178,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#MySQL" title="MySQL">MySQL</a>
+                          <a class="tag" href="/tags/#Go学习" title="Go学习">Go学习</a>
                         
                     </div>
-                    <h1>MySQL日志</h1>
+                    <h1>go GC</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
-                        2022-07-04
+                        2022-04-21
                     </span>
                 </div>
             </div>
@@ -197,22 +204,49 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="一、Redo-Log"><a href="#一、Redo-Log" class="headerlink" title="一、Redo Log"></a>一、Redo Log</h3><p>为了保证内存中和磁盘中数据的一致性，需要用Redo log</p>
-<p>操作原理：</p>
-<p>Innodb采用WAL技术(write-ahead logging)，思想是先写日志再写磁盘，只有日志写成功，才算事务提交成功。</p>
-<img src="/2022/07/04/MySQL%E6%97%A5%E5%BF%97/1.png" style="width:500px">
+                <h3 id="一、背景知识"><a href="#一、背景知识" class="headerlink" title="一、背景知识"></a>一、背景知识</h3><ul>
+<li>bbs数据段：全局变量、静态数据</li>
+<li>函数栈帧（栈）：函数的局部变量、参数、返回值。栈是系统自动分配空间的，例如定义一个var a string；系统会自动在栈上为其开辟空间。</li>
+<li>堆：函数内部动态分配的内存，由程序员申请分配和释放。在编译阶段不能确定数据对象的大小、或者对象的生命周期超出了当前所在函数，则不适合分配在栈上，要分配在堆。</li>
+</ul>
+<p>分配在堆上的数据需要程序主动释放才可以重新使用，否则会成为垃圾，而垃圾越积越多会消耗系统内存。</p>
+<p><strong>手动垃圾回收</strong>：c、c++等语言需要程序手动释放不再需要的、分配在堆上的数据。一旦释放得早，后续对该数据的访问会出错，因为被释放的内存可能已经被清空，或者重新分配，甚至已经还给OS，这就是<code>悬挂指针</code>问题；但若忘记释放，就会一直占用内存，出现<code>内存泄露</code>。</p>
+<p><strong>自动垃圾回收</strong>：由运行时识别不再有用的数据，并释放它们占用的内存。</p>
+<h3 id="二、种类"><a href="#二、种类" class="headerlink" title="二、种类"></a>二、种类</h3><h4 id="2-1-三色抽象法"><a href="#2-1-三色抽象法" class="headerlink" title="2.1 三色抽象法"></a>2.1 三色抽象法</h4><p>三色抽象法是基于**标记-清扫算法 (Mark - Sweep) **的思想：程序中用得到的数据是从<code>栈</code>、<code>数据段</code>追踪得到的数据，可以以它们为根结点进行追踪，能追中到的数据进行标记，追踪不到的对象就是垃圾，进行回收。</p>
+<img src="/2022/04/21/GC/jiayunliao/Documents/myBlog/source/_posts/GC/1.png" style="width:350px">
 
-<p>优点：</p>
-<ul>
-<li>redo log降低了刷盘频率。由于修改某个表的某个字段时，数据从磁盘读加载内存是以页为单位的，若每时每刻从内存刷磁盘的话，性能大大降低</li>
-<li>redo log占用空间非常小</li>
-</ul>
-<p>特点：</p>
-<p>-<br>  redo log 日志是顺序写入磁盘，比随机IO要快</p>
-<ul>
-<li>事务执行过程中，redo log不断记录</li>
-</ul>
-<h3 id="二、Undo-Log"><a href="#二、Undo-Log" class="headerlink" title="二、Undo Log"></a>二、Undo Log</h3>
+
+
+<p>而三色抽象能够清晰地表现追踪式回收过程中对象的变化过程：</p>
+<p>1、垃圾回收开始前，所有数据都为<code>白色</code>；</p>
+<p>2、把root结点标记为<code>灰色</code> （灰色代表基于当前结点展开的追踪还没完成）</p>
+<img src="/2022/04/21/GC/jiayunliao/Documents/myBlog/source/_posts/gc/2.png" style="width:350px">
+
+<p>3、当基于某个节点的追踪完成后，便把该节点标记为黑色，表示它为<code>存活数据</code>，而且无需基于它进行追踪；</p>
+<p>4、基于黑色结点追踪到的数据标为灰色，表示还需要基于它们展开追踪</p>
+<img src="/2022/04/21/GC/jiayunliao/Documents/myBlog/source/_posts/gc/3.png" style="width:350px">
+
+<p>5、当没有灰色结点时，标记任务结束，有用数据均为黑色，垃圾数据为白色。接着回收白色对象的内存即可</p>
+<img src="/2022/04/21/GC/jiayunliao/Documents/myBlog/source/_posts/gc/4.png" style="width:350px">
+
+<p>缺点：</p>
+<p>容易造成内存碎片化</p>
+<p>避免存活对象误判为垃圾对象的情况：强弱三色不变式</p>
+<p><strong>强三色不变式</strong>：无论如何，不允许黑色对象到白色对象的引用</p>
+<p><strong>弱三色不变式</strong>：可以出现黑色对象到白色对象的引用，但可以保证通过灰色对象可以抵达白色对象，也可避免错误回收</p>
+<img src="/2022/04/21/GC/5.png" style="width:300px">
+
+
+
+<h4 id="实现强-x2F-弱三色不变式"><a href="#实现强-x2F-弱三色不变式" class="headerlink" title="实现强&#x2F;弱三色不变式"></a>实现强&#x2F;弱三色不变式</h4><p>通过建立读写屏障，实现强&#x2F;弱三色不变式</p>
+<p><strong>写屏障</strong>：</p>
+<p>插入写屏障：（实现强三色不变式）A对象引用B对象时，B对象标记为灰色。 可以把白色指针着为灰色，或者把写入的黑色对象退化为灰色</p>
+<p>删除写屏障：（弱三色不变式 对白色对象路径的破坏行为）例如要删除灰色对象到白色对象的引用，可以把白色对象着为灰色，则是删除写屏障</p>
+<p><strong>读屏障</strong>：</p>
+<p><strong>混合写屏障</strong></p>
+<h5 id="2-4-引用计数"><a href="#2-4-引用计数" class="headerlink" title="2.4 引用计数"></a>2.4 引用计数</h5><p>程序运行时会对对象进行计数，当技术为0时表示这个对象不再有用，可以回收它占用的内存。</p>
+<p>缺点：高频率更新引用次数会造成不小的系统开销，而且容易造成<code>循环引用</code>。</p>
+<h5 id="2-5复制式回收"><a href="#2-5复制式回收" class="headerlink" title="2.5复制式回收"></a>2.5复制式回收</h5><h5 id="2-6-分代回收"><a href="#2-6-分代回收" class="headerlink" title="2.6 分代回收"></a>2.6 分代回收</h5>
 
                 <hr>
 
@@ -220,9 +254,13 @@
 
                 <ul class="pager">
                     
+                        <li class="previous">
+                            <a href="/2022/04/29/GMP/" data-toggle="tooltip" data-placement="top" title="go GMP模型">&larr; Previous Post</a>
+                        </li>
+                    
                     
                         <li class="next">
-                            <a href="/2022/07/01/下一个排列/" data-toggle="tooltip" data-placement="top" title="下一个排列的实现">Next Post &rarr;</a>
+                            <a href="/2022/04/20/channel/" data-toggle="tooltip" data-placement="top" title="go channel">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -255,7 +293,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#MySQL" title="MySQL">MySQL</a>
+                          <a class="tag" href="/tags/#Go学习" title="Go学习">Go学习</a>
                         
                     </div>
                 </section>
@@ -287,8 +325,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2022/07/04/MySQL%E6%97%A5%E5%BF%97/";
-    var disqus_url = "https://pistachiol.github.io/2022/07/04/MySQL%E6%97%A5%E5%BF%97/";
+    var disqus_identifier = "https://pistachiol.github.io/2022/04/21/GC/";
+    var disqus_url = "https://pistachiol.github.io/2022/04/21/GC/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

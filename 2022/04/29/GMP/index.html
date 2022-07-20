@@ -92,6 +92,10 @@
                     
 
                         
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
                     
 
                         
@@ -109,8 +113,11 @@
                     
 
                         
+                    
+
+                        
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/categories/">categories</a>
                         </li>
                         
                     
@@ -233,8 +240,8 @@
 </li>
 <li>M执行完G之后会清理现场，重新进入调度循环</li>
 </ol>
-<h4 id="2-3-Goroutine的调度策略"><a href="#2-3-Goroutine的调度策略" class="headerlink" title="2.3 Goroutine的调度策略"></a>2.3 Goroutine的调度策略</h4><h5 id="2-2-1-work-strealing机制"><a href="#2-2-1-work-strealing机制" class="headerlink" title="2.2.1 work strealing机制"></a>2.2.1 work strealing机制</h5><p>​		M首先从本地队列获取G，若p为空，则去全局队列找G；若全局队列也为空，则从另一个本地队列偷取一半数量的G，以防止M空闲。若M空闲，只能自旋。</p>
-<h5 id="2-2-2-hand-off机制"><a href="#2-2-2-hand-off机制" class="headerlink" title="2.2.2 hand off机制"></a>2.2.2 hand off机制</h5><p>​	   M执行G过程中如果发生系统调用systemCall()而阻塞，会阻塞M和G，P和M解绑，改P让另一个M执行。</p>
+<h4 id="2-3-Goroutine的调度机制"><a href="#2-3-Goroutine的调度机制" class="headerlink" title="2.3 Goroutine的调度机制"></a>2.3 Goroutine的调度机制</h4><h5 id="2-3-1-work-strealing机制"><a href="#2-3-1-work-strealing机制" class="headerlink" title="2.3.1 work strealing机制"></a>2.3.1 work strealing机制</h5><p>​		M首先从本地队列获取G，若p为空，则去全局队列找G；若全局队列也为空，则从另一个本地队列偷取一半数量的G，以防止M空闲。若M空闲，只能自旋。</p>
+<h5 id="2-3-2-hand-off机制"><a href="#2-3-2-hand-off机制" class="headerlink" title="2.3.2 hand off机制"></a>2.3.2 hand off机制</h5><p>​	   M执行G过程中如果发生系统调用systemCall()而阻塞，会阻塞M和G，P和M解绑，改P让另一个M执行。</p>
 <h4 id="2-4-Goroutine的调度时机"><a href="#2-4-Goroutine的调度时机" class="headerlink" title="2.4 Goroutine的调度时机"></a>2.4 Goroutine的调度时机</h4><ul>
 <li>抢占式调度<ul>
 <li>sysmon检测到goroutine执行过久（如sleep，死循环）</li>
@@ -269,7 +276,7 @@
                     
                     
                         <li class="next">
-                            <a href="/2022/04/21/go GC/" data-toggle="tooltip" data-placement="top" title="go GC">Next Post &rarr;</a>
+                            <a href="/2022/04/21/GC/" data-toggle="tooltip" data-placement="top" title="go GC">Next Post &rarr;</a>
                         </li>
                     
                 </ul>

@@ -92,6 +92,10 @@
                     
 
                         
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
                     
 
                         
@@ -109,8 +113,11 @@
                     
 
                         
+                    
+
+                        
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/categories/">categories</a>
                         </li>
                         
                     
@@ -187,32 +194,6 @@
             
                 <!-- Main Content -->
 
-
-<div class="post-preview">
-
-    <a href="/2020/05/19/树的序列化与反序列化/">
-        <h2 class="post-title">
-            树的序列化与反序列化
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-序列化是将数据结构或对象转换为一系列位的过程，以便它可以存储在文件或内存缓冲区中，或通过网络连接链路传输，以便稍后在同一个或另一个计算机环境中重建。
-
-树的序列化就是把树转化成字符串存储，反序列化就是把树从字符串转回树形
-
-序列化的过程就是，先把根结点存入队列，（若不为空）则把其转成字符串存入字符流中（其实就是拼接字符串），再把它的左右子树加入到队列，作为根节点继续递归构造。如果结点为空，......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-05-19
-    </p>
-
-</div>
-<hr>
 
 <div class="post-preview">
 
@@ -462,6 +443,32 @@ InnoDB
 </div>
 <hr>
 
+<div class="post-preview">
+
+    <a href="/2020/05/13/MySQL事务隔离级别/">
+        <h2 class="post-title">
+            MySQL事务
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            事务事务是由一组SQL语句组成的一个执行单元，该执行单元要么全部执行或全部不执行
+事务四大特质（ACID）
+原子性(Atomicity)：指事务包含的所有操作要么全部成功，要么全部失败回滚。事务是最小单位，不可再分。
+
+回滚通过undo log实现，回滚行记录到某个特定版本
+undo log 记录的是逻辑操作日志（如对某行数据进行insert操作，那么undo log会记录一条与之相反的de......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-05-13
+    </p>
+
+</div>
+<hr>
+
 
 
 <!-- Pager -->
@@ -505,15 +512,11 @@ InnoDB
                             
                         
                             
-                            <a href="/tags/#数据结构" title="数据结构" rel="15">数据结构</a>
+                            <a href="/tags/#数据结构" title="数据结构" rel="16">数据结构</a>
                             
                         
                             
                             <a href="/tags/#C++" title="C++" rel="2">C++</a>
-                            
-                        
-                            
-                            <a href="/tags/#算法" title="算法" rel="12">算法</a>
                             
                         
                             
@@ -523,11 +526,21 @@ InnoDB
                             
                         
                             
+                            <a href="/tags/#算法" title="算法" rel="12">算法</a>
+                            
+                        
+                            
+                        
+                            
+                            <a href="/tags/#Go学习" title="Go学习" rel="7">Go学习</a>
+                            
+                        
+                            
                             <a href="/tags/#字符串" title="字符串" rel="4">字符串</a>
                             
                         
                             
-                            <a href="/tags/#HTTP" title="HTTP" rel="2">HTTP</a>
+                            <a href="/tags/#PHP" title="PHP" rel="4">PHP</a>
                             
                         
                             
@@ -537,11 +550,11 @@ InnoDB
                             
                         
                             
-                            <a href="/tags/#PHP" title="PHP" rel="4">PHP</a>
+                            <a href="/tags/#MySQL" title="MySQL" rel="6">MySQL</a>
                             
                         
                             
-                            <a href="/tags/#MySQL" title="MySQL" rel="7">MySQL</a>
+                            <a href="/tags/#HTTP" title="HTTP" rel="2">HTTP</a>
                             
                         
                             
@@ -551,15 +564,21 @@ InnoDB
                             
                         
                             
-                            <a href="/tags/#Redis" title="Redis" rel="2">Redis</a>
-                            
-                        
-                            
                             <a href="/tags/#数论" title="数论" rel="12">数论</a>
                             
                         
                             
+                            <a href="/tags/#Redis" title="Redis" rel="2">Redis</a>
+                            
+                        
+                            
                             <a href="/tags/#STL" title="STL" rel="8">STL</a>
+                            
+                        
+                            
+                            <a href="/tags/#生活" title="生活" rel="2">生活</a>
+                            
+                        
                             
                         
                             
@@ -569,23 +588,11 @@ InnoDB
                             
                         
                             
-                        
-                            
                             <a href="/tags/#树" title="树" rel="2">树</a>
                             
                         
                             
                         
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#生活" title="生活" rel="2">生活</a>
-                            
-                        
-                            
-                            <a href="/tags/#Go学习" title="Go学习" rel="7">Go学习</a>
                             
                         
                             
