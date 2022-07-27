@@ -106,18 +106,18 @@
                     
 
                         
-                        <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
                     
 
                         
                         <li>
                             <a href="/categories/">categories</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -204,15 +204,15 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="隔离性的底层实现"><a href="#隔离性的底层实现" class="headerlink" title="隔离性的底层实现"></a>隔离性的底层实现</h3><p>其中事务的<strong>隔离性</strong>底层实现的原理是<strong>锁</strong></p>
-<h3 id="锁的分类"><a href="#锁的分类" class="headerlink" title="锁的分类"></a>锁的分类</h3><h5 id="按照数据操作的类型划分"><a href="#按照数据操作的类型划分" class="headerlink" title="按照数据操作的类型划分"></a>按照数据操作的类型划分</h5><ul>
+                <h3><span id="隔离性的底层实现">隔离性的底层实现</span></h3><p>其中事务的<strong>隔离性</strong>底层实现的原理是<strong>锁</strong></p>
+<h3><span id="锁的分类">锁的分类</span></h3><h5><span id="按照数据操作的类型划分">按照数据操作的类型划分</span></h5><ul>
 <li>读锁（共享锁）：同一份数据，多个读操作可以同时进行，互不影响</li>
 <li>写锁（排它锁）：当前写操作还没完成，会阻断其他写锁和读锁</li>
 </ul>
 <blockquote>
 <p>session1 加了读锁，当前session1不能读其他未加锁的表，而且不能插入或更新锁定的表。session2可以读或操作未加锁的表，但如果对加读锁的表进行操作，会一直等待获得锁（阻塞），直到上读锁的表释放锁之后，session2获得锁，操作完成。</p>
 </blockquote>
-<h5 id="按照数据操作的粒度划"><a href="#按照数据操作的粒度划" class="headerlink" title="按照数据操作的粒度划"></a>按照数据操作的粒度划</h5><ul>
+<h5><span id="按照数据操作的粒度划">按照数据操作的粒度划</span></h5><ul>
 <li><p>行锁（偏写）</p>
 <ul>
 <li><p>锁定粒度最小，发生冲突率低，并发度也最高</p>
@@ -231,7 +231,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="锁的种类"><a href="#锁的种类" class="headerlink" title="锁的种类"></a>锁的种类</h3><ul>
+<h3><span id="锁的种类">锁的种类</span></h3><ul>
 <li>乐观锁：每次取数据的时候都认为别人不会修改数据，所以不会上锁。但在更新时会判断别人有没有更新(版本号机制)<ul>
 <li>策略：通常在数据表最后加一个字段version。当A，B<strong>同时</strong>修改一条数据的不同字段(电话号码，微信号)，（A比B快修改完提交）修改当A修改完一个事务，版本号+1，然后提交事务。接着B修改完提交的时候，B的版本号还是原来的1，但现在已经变成2了，B提交事务后立即报异常。得去数据库获取最新版本号，才能进行修改，+1后再提交。</li>
 <li>用于多读类型，提高吞吐量</li>

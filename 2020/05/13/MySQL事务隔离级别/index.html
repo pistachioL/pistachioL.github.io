@@ -106,18 +106,18 @@
                     
 
                         
-                        <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
                     
 
                         
                         <li>
                             <a href="/categories/">categories</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -204,8 +204,8 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h3><p>事务是由一组SQL语句组成的一个执行单元，该执行单元要么全部执行或全部不执行</p>
-<h3 id="事务四大特质（ACID）"><a href="#事务四大特质（ACID）" class="headerlink" title="事务四大特质（ACID）"></a>事务四大特质（ACID）</h3><ul>
+                <h3><span id="事务">事务</span></h3><p>事务是由一组SQL语句组成的一个执行单元，该执行单元要么全部执行或全部不执行</p>
+<h3><span id="事务四大特质acid">事务四大特质（ACID）</span></h3><ul>
 <li><p>原子性(Atomicity)：指事务包含的所有操作要么全部成功，要么全部失败回滚。事务是最小单位，不可再分。</p>
 <ul>
 <li>回滚通过undo log实现，回滚行记录到某个特定版本</li>
@@ -229,7 +229,7 @@
 </blockquote>
 </li>
 </ul>
-<h3 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h3><p>当要同时执行多个事务时，这些事务访问数据库中相同的数据时，如果没有相应的事务隔离级别，就会引发各种并发问题：</p>
+<h3><span id="并发">并发</span></h3><p>当要同时执行多个事务时，这些事务访问数据库中相同的数据时，如果没有相应的事务隔离级别，就会引发各种并发问题：</p>
 <blockquote>
 <p>曾经被问过一个问题：如果有人同时查看预约系统的数据，有没有相应的措施？其实是在考数据库的并发问题啊</p>
 </blockquote>
@@ -243,7 +243,7 @@
 <p>如2个事务T1T2，如果T1从数据表读了一个字段，然后T2在表中<strong>插入</strong>新的行，之后如果T1再读取同一个表，就会出现多了几行（重点是插入）</p>
 </li>
 </ul>
-<h3 id="MySQL的事务隔离级别"><a href="#MySQL的事务隔离级别" class="headerlink" title="MySQL的事务隔离级别"></a>MySQL的事务隔离级别</h3><blockquote>
+<h3><span id="mysql的事务隔离级别">MySQL的事务隔离级别</span></h3><blockquote>
 <p>MySQL支持4种事务隔离级别，Oracle支持2种（Read Commit,Serializable）</p>
 </blockquote>
 <ol>

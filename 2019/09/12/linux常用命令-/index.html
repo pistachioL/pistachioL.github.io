@@ -106,18 +106,18 @@
                     
 
                         
-                        <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
                     
 
                         
                         <li>
                             <a href="/categories/">categories</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -204,9 +204,9 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="SCP上传下载"><a href="#SCP上传下载" class="headerlink" title="SCP上传下载"></a>SCP上传下载</h3><h5 id="1-从服务器拉取文件夹到本地"><a href="#1-从服务器拉取文件夹到本地" class="headerlink" title="1.从服务器拉取文件夹到本地"></a>1.从服务器拉取文件夹到本地</h5><p><code>scp -r root@xx.xxx.x.xx:文件所在路径 /home/Document</code></p>
-<h5 id="2-从本地上传文件到服务器"><a href="#2-从本地上传文件到服务器" class="headerlink" title="2.从本地上传文件到服务器"></a>2.从本地上传文件到服务器</h5><p><code>scp -r /home/Document root@xx.xxx.x.xx:/home/default</code></p>
-<h5 id="3-rsync"><a href="#3-rsync" class="headerlink" title="3.rsync"></a>3.rsync</h5><h3 id="文件压缩"><a href="#文件压缩" class="headerlink" title="文件压缩"></a>文件压缩</h3><p>tar -xvf file.tar</p>
+                <h3><span id="scp上传下载">SCP上传下载</span></h3><h5><span id="1从服务器拉取文件夹到本地">1.从服务器拉取文件夹到本地</span></h5><p><code>scp -r root@xx.xxx.x.xx:文件所在路径 /home/Document</code></p>
+<h5><span id="2从本地上传文件到服务器">2.从本地上传文件到服务器</span></h5><p><code>scp -r /home/Document root@xx.xxx.x.xx:/home/default</code></p>
+<h5><span id="3rsync">3.rsync</span></h5><h3><span id="文件压缩">文件压缩</span></h3><p>tar -xvf file.tar</p>
 <p>tar -xzvf  file.tar.gz </p>
 <p>tar -xjvf file.tar.bz2   &#x2F;&#x2F;解压 tar.bz2</p>
 <p>tar –xZvf file.tar.Z   &#x2F;&#x2F;解压tar.Z</p>
@@ -222,13 +222,13 @@
 
 
 
-<h3 id="mysql修改密码"><a href="#mysql修改密码" class="headerlink" title="mysql修改密码"></a>mysql修改密码</h3><p><strong>mysql -uroot -p</strong></p>
+<h3><span id="mysql修改密码">mysql修改密码</span></h3><p><strong>mysql -uroot -p</strong></p>
 <p>Enter password: 【输入原来的密码】<br>mysql&gt;<strong>use mysql;</strong><br>mysql&gt; <strong>update user set authentication_string&#x3D;passworD(“test”) where user&#x3D;’root’;</strong>  </p>
 <p>mysql&gt; <strong>flush privileges;</strong><br>mysql&gt; <strong>exit;</strong>      </p>
-<h3 id="Linux-Mint"><a href="#Linux-Mint" class="headerlink" title="Linux Mint"></a>Linux Mint</h3><p>sudo apt-get install 软件包  #下载软件包</p>
+<h3><span id="linux-mint">Linux Mint</span></h3><p>sudo apt-get install 软件包  #下载软件包</p>
 <p>sudo apt-get update #更新软件包</p>
 <p>dpkg    -i：安装软件包；  &#x2F;&#x2F;软件更新时不能更新到<br>            -r：删除软件包；<br>            -P：删除软件包的同时删除其配置文件；<br>            -L：显示于软件包关联的文件；<br>            -l：显示已安装软件包列表；<br>            –unpack：解开软件包；<br>            -c：显示软件包内文件列表；<br>            –confiugre：配置软件包。</p>
-<h3 id="命令行设置代理"><a href="#命令行设置代理" class="headerlink" title="命令行设置代理"></a>命令行设置代理</h3><p>由于命令行走http代理，则要把socks5转http。</p>
+<h3><span id="命令行设置代理">命令行设置代理</span></h3><p>由于命令行走http代理，则要把socks5转http。</p>
 <p>1.首先安装privacy：sudo apt-get install privoxy</p>
 <p>2.把转发的sorks5和监听的地址写入 	sudo vim &#x2F;etc&#x2F;privoxy&#x2F;config</p>
 <p><code>forward-socks5   /               127.0.0.1:2333 .</code><br><code>listen-address localhost:8118</code></p>
@@ -236,17 +236,17 @@
 <p> http_proxy&#x3D;<a target="_blank" rel="noopener" href="http://127.0.0.1:8118/">http://127.0.0.1:8118</a> https_proxy&#x3D;<a target="_blank" rel="noopener" href="http://127.0.0.1:8118/">http://127.0.0.1:8118</a> curl ip.gs</p>
 <p>命令行使用代理</p>
 <p> http_proxy&#x3D;<a target="_blank" rel="noopener" href="http://127.0.0.1:8118/">http://127.0.0.1:8118</a> https_proxy&#x3D;<a target="_blank" rel="noopener" href="http://127.0.0.1:8118/">http://127.0.0.1:8118</a> git clone <a target="_blank" rel="noopener" href="https://github.com/GreenHatHG/ACMRecentContests_UI">https://github.com/GreenHatHG/ACMRecentContests_UI</a></p>
-<h3 id="查看系统占用"><a href="#查看系统占用" class="headerlink" title="查看系统占用"></a>查看系统占用</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">top </span><br><span class="line">free</span><br><span class="line">htop</span><br><span class="line">vmstat</span><br><span class="line">iostat</span><br></pre></td></tr></table></figure>
+<h3><span id="查看系统占用">查看系统占用</span></h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">top </span><br><span class="line">free</span><br><span class="line">htop</span><br><span class="line">vmstat</span><br><span class="line">iostat</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="选择地查看历史记录"><a href="#选择地查看历史记录" class="headerlink" title="选择地查看历史记录"></a>选择地查看历史记录</h3><p>history | grep htop  #能过滤出所查询的命令在第几行</p>
+<h3><span id="选择地查看历史记录">选择地查看历史记录</span></h3><p>history | grep htop  #能过滤出所查询的命令在第几行</p>
 <p>!260                   		#能把那一行的代码直接写在命令行</p>
-<h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><p>我终端使用的是zsh，因此把变量写在~&#x2F;.zshrc</p>
+<h3><span id="环境变量">环境变量</span></h3><p>我终端使用的是zsh，因此把变量写在~&#x2F;.zshrc</p>
 <p>export MY_PATH &#x3D; “ “</p>
 <p>export PATH&#x3D;$PATH:$MY_PATH</p>
-<h3 id="查看文件类型"><a href="#查看文件类型" class="headerlink" title="查看文件类型"></a>查看文件类型</h3><p>file xx</p>
-<h3 id><a href="#" class="headerlink" title></a></h3>
+<h3><span id="查看文件类型">查看文件类型</span></h3><p>file xx</p>
+<h3><span id></span></h3>
 
                 <hr>
 

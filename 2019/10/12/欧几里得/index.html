@@ -106,18 +106,18 @@
                     
 
                         
-                        <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
                     
 
                         
                         <li>
                             <a href="/categories/">categories</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -204,7 +204,7 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="求最大公约数（最大公因子-GCD）"><a href="#求最大公约数（最大公因子-GCD）" class="headerlink" title="求最大公约数（最大公因子　GCD）"></a>求最大公约数（最大公因子　GCD）</h3><ul>
+                <h3><span id="求最大公约数最大公因子-gcd">求最大公约数（最大公因子　GCD）</span></h3><ul>
 <li><p>质因数分解法</p>
 <blockquote>
 <p>例如：求24和60的最大公约数，先分解质因数，得24&#x3D;2×2×2×3，60&#x3D;2×2×3×5，24与60的全部公有的质因数是2、2、3，它们的积是2×2×3&#x3D;12，所以，（24，60）&#x3D;12。</p>
@@ -227,7 +227,7 @@
 <li><p>C++内置函数法</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">gcd</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> std::__gcd(a,b);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> a=<span class="number">24</span>,b=<span class="number">60</span>;</span><br><span class="line">    <span class="type">int</span> ans = <span class="built_in">gcd</span>(a,b);</span><br><span class="line">    cout &lt;&lt; ans &lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 </ul>
-<h3 id="最小公倍数（LCM）"><a href="#最小公倍数（LCM）" class="headerlink" title="最小公倍数（LCM）"></a>最小公倍数（LCM）</h3><blockquote>
+<h3><span id="最小公倍数lcm">最小公倍数（LCM）</span></h3><blockquote>
 <p>把几个数先分别分解质因数，再把各数中的全部公有的质因数和独有的质因数提取出来连乘，所得的积就是这几个数的最小公倍数</p>
 <p>求6和15的LCM。先分解质因数，得6&#x3D;2×3，15&#x3D;3×5，2×3×5&#x3D;30，30是6和15的公倍数中最小的一个，所以[6，15]&#x3D;30。</p>
 </blockquote>
@@ -235,7 +235,7 @@
 
 
 
-<h3 id="扩展欧几里得算法"><a href="#扩展欧几里得算法" class="headerlink" title="扩展欧几里得算法"></a>扩展欧几里得算法</h3><p>方程符合ax + by &#x3D; n，则gcd(a,b)能整除n,可用扩展欧几里得算法求（x0,y0)</p>
+<h3><span id="扩展欧几里得算法">扩展欧几里得算法</span></h3><p>方程符合ax + by &#x3D; n，则gcd(a,b)能整除n,可用扩展欧几里得算法求（x0,y0)</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">exgcd</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b,<span class="type">int</span> &amp;x,<span class="type">int</span> &amp;y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(b==<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        x = <span class="number">1</span>;</span><br><span class="line">        y = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">exgcd</span>(b,a%b,x,y);</span><br><span class="line">    <span class="type">int</span> tmp = x;</span><br><span class="line">    x = y;</span><br><span class="line">    y = tmp - (a-b)*y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 

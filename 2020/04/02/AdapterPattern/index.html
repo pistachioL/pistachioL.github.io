@@ -106,18 +106,18 @@
                     
 
                         
-                        <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
                     
 
                         
                         <li>
                             <a href="/categories/">categories</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -205,11 +205,11 @@
                 post-container">
 
                 <p>实例：有一个220v电压，需要适配器转成5V电压才能给手机充电。</p>
-<h3 id="类适配器"><a href="#类适配器" class="headerlink" title="类适配器"></a>类适配器</h3><p><img src="/2020/04/02/AdapterPattern/1.png"></p>
+<h3><span id="类适配器">类适配器</span></h3><p><img src="/2020/04/02/AdapterPattern/1.png"></p>
 <p>被适配器类:Voltage220V 适配类:Voltage5V </p>
 <p>通过适配器类VoltageAdapter继承Voltage220V（拿到220V电压），并且实现了Voltage5V的接口（并转乘5V）</p>
 <p>手机类依赖Voltage5V，实质上是依赖VoltageAdapter</p>
-<h3 id="对象适配器"><a href="#对象适配器" class="headerlink" title="对象适配器"></a>对象适配器</h3><p>由于Java单继承原因</p>
+<h3><span id="对象适配器">对象适配器</span></h3><p>由于Java单继承原因</p>
 <p>对类适配器模式进行改进，不需要继承原先的类，而是直接持有被适配对象</p>
 <p>通过合成复用原则，由继承关系转变为聚合关系</p>
 <p><img src="/2020/04/02/AdapterPattern/2.png"></p>
@@ -217,7 +217,7 @@
 
 
 
-<h3 id="接口适配器"><a href="#接口适配器" class="headerlink" title="接口适配器"></a>接口适配器</h3><p>如果不需要试下全部接口中的方法，可先设计一个抽象类实现接口，并为该接口的每个方法提供默认空方法，那么该抽象类的子类就能有选择性地覆盖父类某些方法来实现需求。</p>
+<h3><span id="接口适配器">接口适配器</span></h3><p>如果不需要试下全部接口中的方法，可先设计一个抽象类实现接口，并为该接口的每个方法提供默认空方法，那么该抽象类的子类就能有选择性地覆盖父类某些方法来实现需求。</p>
 
 
                 <hr>

@@ -106,18 +106,18 @@
                     
 
                         
-                        <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
                     
 
                         
                         <li>
                             <a href="/categories/">categories</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -204,9 +204,9 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="一、定义"><a href="#一、定义" class="headerlink" title="一、定义"></a>一、定义</h3><p>Channel 是 goroutine 之间的通信方式，Go语言的并发模型是CSP（Communicating Sequential Processes），提倡通信来共享内存，而不是共享内存来通信。</p>
+                <h3><span id="一-定义">一、定义</span></h3><p>Channel 是 goroutine 之间的通信方式，Go语言的并发模型是CSP（Communicating Sequential Processes），提倡通信来共享内存，而不是共享内存来通信。</p>
 <p>gorotine由 runtime来管理</p>
-<h3 id="二、创建"><a href="#二、创建" class="headerlink" title="二、创建"></a>二、创建</h3><p>创建有缓冲的缓存</p>
+<h3><span id="二-创建">二、创建</span></h3><p>创建有缓冲的缓存</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ch := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="type">int</span>, <span class="number">2</span>)   <span class="comment">//创建channel,类型为char, buffer大小是2</span></span><br></pre></td></tr></table></figure>
 
 <p>无缓冲的channel</p>
@@ -215,7 +215,7 @@
 <blockquote>
 <p>ch是存在于函数栈帧上的指针，指向对上的hchan数据结构 </p>
 </blockquote>
-<h3 id="底层数据结构"><a href="#底层数据结构" class="headerlink" title="底层数据结构"></a>底层数据结构</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> hchan <span class="keyword">struct</span> &#123;</span><br><span class="line">   qcount   <span class="type">uint</span>           <span class="comment">// total data in the queue</span></span><br><span class="line">   dataqsiz <span class="type">uint</span>           <span class="comment">// size of the circular queue</span></span><br><span class="line">   buf      unsafe.Pointer <span class="comment">// points to an array of dataqsiz elements</span></span><br><span class="line">   elemsize <span class="type">uint16</span></span><br><span class="line">   closed   <span class="type">uint32</span></span><br><span class="line">   elemtype *_type <span class="comment">// element type </span></span><br><span class="line">   sendx    <span class="type">uint</span>   <span class="comment">// send index 是缓冲区的下标</span></span><br><span class="line">   recvx    <span class="type">uint</span>   <span class="comment">// receive index 是缓冲区的下标</span></span><br><span class="line">   recvq    waitq  <span class="comment">// list of recv waiters</span></span><br><span class="line">   sendq    waitq  <span class="comment">// list of send waiters 发送等待队列</span></span><br><span class="line">   <span class="comment">// lock protects all fields in hchan, as well as several</span></span><br><span class="line">   <span class="comment">// fields in sudogs blocked on this channel.</span></span><br><span class="line">   <span class="comment">//</span></span><br><span class="line">   <span class="comment">// Do not change another G&#x27;s status while holding this lock</span></span><br><span class="line">   <span class="comment">// (in particular, do not ready a G), as this can deadlock</span></span><br><span class="line">   <span class="comment">// with stack shrinking.</span></span><br><span class="line">   lock mutex </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="底层数据结构">底层数据结构</span></h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> hchan <span class="keyword">struct</span> &#123;</span><br><span class="line">   qcount   <span class="type">uint</span>           <span class="comment">// total data in the queue</span></span><br><span class="line">   dataqsiz <span class="type">uint</span>           <span class="comment">// size of the circular queue</span></span><br><span class="line">   buf      unsafe.Pointer <span class="comment">// points to an array of dataqsiz elements</span></span><br><span class="line">   elemsize <span class="type">uint16</span></span><br><span class="line">   closed   <span class="type">uint32</span></span><br><span class="line">   elemtype *_type <span class="comment">// element type </span></span><br><span class="line">   sendx    <span class="type">uint</span>   <span class="comment">// send index 是缓冲区的下标</span></span><br><span class="line">   recvx    <span class="type">uint</span>   <span class="comment">// receive index 是缓冲区的下标</span></span><br><span class="line">   recvq    waitq  <span class="comment">// list of recv waiters</span></span><br><span class="line">   sendq    waitq  <span class="comment">// list of send waiters 发送等待队列</span></span><br><span class="line">   <span class="comment">// lock protects all fields in hchan, as well as several</span></span><br><span class="line">   <span class="comment">// fields in sudogs blocked on this channel.</span></span><br><span class="line">   <span class="comment">//</span></span><br><span class="line">   <span class="comment">// Do not change another G&#x27;s status while holding this lock</span></span><br><span class="line">   <span class="comment">// (in particular, do not ready a G), as this can deadlock</span></span><br><span class="line">   <span class="comment">// with stack shrinking.</span></span><br><span class="line">   lock mutex </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>lock：是互斥锁。channel需要支持goroutine间的并发访问，所以需要锁来保护整个数据结构</li>
@@ -227,7 +227,7 @@
 <li>recvq&#x2F;sendq：接收和发送的等待队列，是双向队列。当读和写不能立即完成时，需要让当前协程在channel上等待。当条件满足时，要能够立即唤醒等待的协程，因此需要两个等待队列，分别针对读（接收）和写（发送）</li>
 <li>closed：channel能够被关闭，要记录它的状态</li>
 </ul>
-<h3 id="三、发送-amp-接收数据"><a href="#三、发送-amp-接收数据" class="headerlink" title="三、发送&amp;接收数据"></a>三、发送&amp;接收数据</h3><h4 id="3-1-发送-amp-接收数据过程"><a href="#3-1-发送-amp-接收数据过程" class="headerlink" title="3.1 发送&amp;接收数据过程"></a>3.1 发送&amp;接收数据过程</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ch := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="type">int</span>, <span class="number">5</span>)</span><br><span class="line"><span class="comment">//g1发送6个数据到ch中，但buffer大小只有5</span></span><br><span class="line">ch &lt;- <span class="number">1</span></span><br><span class="line">ch &lt;- <span class="number">2</span></span><br><span class="line">ch &lt;- <span class="number">3</span></span><br><span class="line">ch &lt;- <span class="number">4</span></span><br><span class="line">ch &lt;- <span class="number">5</span></span><br><span class="line">ch &lt;- <span class="number">6</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//g2接收数据</span></span><br><span class="line">&lt;-ch </span><br></pre></td></tr></table></figure>
+<h3><span id="三-发送amp接收数据">三、发送&amp;接收数据</span></h3><h4><span id="31-发送amp接收数据过程">3.1 发送&amp;接收数据过程</span></h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ch := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="type">int</span>, <span class="number">5</span>)</span><br><span class="line"><span class="comment">//g1发送6个数据到ch中，但buffer大小只有5</span></span><br><span class="line">ch &lt;- <span class="number">1</span></span><br><span class="line">ch &lt;- <span class="number">2</span></span><br><span class="line">ch &lt;- <span class="number">3</span></span><br><span class="line">ch &lt;- <span class="number">4</span></span><br><span class="line">ch &lt;- <span class="number">5</span></span><br><span class="line">ch &lt;- <span class="number">6</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//g2接收数据</span></span><br><span class="line">&lt;-ch </span><br></pre></td></tr></table></figure>
 
 <p>1、由于没有协程在等待接收数据，故所有数据都写入缓冲区中。sendx从下标为0开始向后移动，移动到下标4时回重新返回下标0的位置，因此channel的缓冲区是<strong>环形缓冲区</strong>。</p>
 <p><img src="/2022/04/20/channel/1.png" style="width:350px"><img src="/2022/04/20/channel/5.png" style="width:350px"></p>
@@ -245,24 +245,24 @@
 
 
 
-<h4 id="3-2-发送数据"><a href="#3-2-发送数据" class="headerlink" title="3.2 发送数据"></a>3.2 发送数据</h4><p>发送数据的写法</p>
+<h4><span id="32-发送数据">3.2 发送数据</span></h4><p>发送数据的写法</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ch &lt;- <span class="number">10</span> <span class="comment">//10发送到ch （协程向ch中发送数据）</span></span><br></pre></td></tr></table></figure>
 
-<h5 id="非阻塞情况"><a href="#非阻塞情况" class="headerlink" title="非阻塞情况"></a>非阻塞情况</h5><p>1、缓冲区（buffer）还有位置</p>
+<h5><span id="非阻塞情况">非阻塞情况</span></h5><p>1、缓冲区（buffer）还有位置</p>
 <p>2、无缓冲区 &amp;&amp; 但有协程在接收队列（recvq）等待接收数据</p>
-<h5 id="阻塞的情况"><a href="#阻塞的情况" class="headerlink" title="阻塞的情况"></a>阻塞的情况</h5><p>1、ch &#x3D;&#x3D; nil</p>
+<h5><span id="阻塞的情况">阻塞的情况</span></h5><p>1、ch &#x3D;&#x3D; nil</p>
 <p>2、无缓冲区 &amp;&amp; 没有协程等着接收数据</p>
 <p>3、有缓冲区但已经满 &amp;&amp; 没有协程等着接收数据</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//避免阻塞的写法</span></span><br><span class="line"><span class="keyword">select</span> &#123;</span><br><span class="line"><span class="keyword">case</span> ch &lt;- <span class="number">10</span>:</span><br><span class="line">  ...</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<h4 id="3-3接收数据"><a href="#3-3接收数据" class="headerlink" title="3.3接收数据"></a>3.3接收数据</h4><p>接收数据的写法：</p>
+<h4><span id="33接收数据">3.3接收数据</span></h4><p>接收数据的写法：</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;-ch <span class="comment">//会将接收到的结果丢弃</span></span><br><span class="line">v := &lt;-ch <span class="comment">//从ch接收，并且给v赋值</span></span><br><span class="line">v,ok := &lt;-ch <span class="comment">//ok为false时表示channel已经关闭，此时v是channel元素类型的零值</span></span><br></pre></td></tr></table></figure>
 
-<h5 id="非阻塞的情况"><a href="#非阻塞的情况" class="headerlink" title="非阻塞的情况"></a>非阻塞的情况</h5><p>1、有缓冲区，且数据未满</p>
+<h5><span id="非阻塞的情况">非阻塞的情况</span></h5><p>1、有缓冲区，且数据未满</p>
 <p>2、满或无缓冲区 &amp;&amp; 但sendq中有协程等着发送数据</p>
-<h5 id="阻塞的情况-1"><a href="#阻塞的情况-1" class="headerlink" title="阻塞的情况"></a>阻塞的情况</h5><p>1、ch &#x3D;&#x3D; nil </p>
+<h5><span id="阻塞的情况">阻塞的情况</span></h5><p>1、ch &#x3D;&#x3D; nil </p>
 <p>2、无缓冲区 &amp;&amp; 无协程在sendq等着发送</p>
 <p>3、有缓冲区但没数据 &amp;&amp; 无协程在sendq等着发送</p>
 <p>避免发送阻塞的写法：</p>
@@ -270,13 +270,13 @@
 
 
 
-<h3 id="四、应用代码"><a href="#四、应用代码" class="headerlink" title="四、应用代码"></a>四、应用代码</h3><p>一道笔试题：</p>
+<h3><span id="四-应用代码">四、应用代码</span></h3><p>一道笔试题：</p>
 <p>通过channel和2个goroutine交替打印出<code>12AB34CD56EF78GH910IJ1112KL1314MN1516OP1718QR1920ST2122UV2324WX2526YZ2728</code></p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> num = <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="type">bool</span>, <span class="number">1</span>)  <span class="comment">//数字channel</span></span><br><span class="line"><span class="keyword">var</span> char = <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="type">bool</span>)    <span class="comment">//字母channel</span></span><br><span class="line"><span class="keyword">var</span> done = <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="type">bool</span>, <span class="number">1</span>) <span class="comment">//是否完成任务的标志</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	num &lt;- <span class="literal">true</span></span><br><span class="line">	<span class="keyword">go</span> solveNum()</span><br><span class="line">	<span class="keyword">go</span> solveChar()</span><br><span class="line">	&lt;-done</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">solveNum</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">1</span>; i &lt;= <span class="number">28</span>; i += <span class="number">2</span> &#123;</span><br><span class="line">		&lt;-num</span><br><span class="line">		fmt.Print(i)</span><br><span class="line">		fmt.Print(i + <span class="number">1</span>)</span><br><span class="line">		<span class="keyword">select</span> &#123;</span><br><span class="line">		<span class="keyword">case</span> char &lt;- <span class="literal">true</span>:</span><br><span class="line">		<span class="keyword">default</span>:</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	done &lt;- <span class="literal">true</span> <span class="comment">//以数字结尾</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">solveChar</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> i := <span class="string">&#x27;A&#x27;</span>; i &lt;= <span class="string">&#x27;Z&#x27;</span>; i += <span class="number">2</span> &#123;</span><br><span class="line">		&lt;-char</span><br><span class="line">		fmt.Print(<span class="type">string</span>(i))</span><br><span class="line">		fmt.Print(<span class="type">string</span>(i + <span class="number">1</span>))</span><br><span class="line">		num &lt;- <span class="literal">true</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="五、参考"><a href="#五、参考" class="headerlink" title="五、参考"></a>五、参考</h3><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1hv411x7we?p=29&amp;vd_source=d85f289ebf4d31920c7178bbb563a0a4">https://www.bilibili.com/video/BV1hv411x7we?p=29&amp;vd_source=d85f289ebf4d31920c7178bbb563a0a4</a></p>
+<h3><span id="五-参考">五、参考</span></h3><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1hv411x7we?p=29&amp;vd_source=d85f289ebf4d31920c7178bbb563a0a4">https://www.bilibili.com/video/BV1hv411x7we?p=29&amp;vd_source=d85f289ebf4d31920c7178bbb563a0a4</a></p>
 
 
                 <hr>

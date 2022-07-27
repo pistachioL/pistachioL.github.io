@@ -106,18 +106,18 @@
                     
 
                         
-                        <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
                     
 
                         
                         <li>
                             <a href="/categories/">categories</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -204,10 +204,10 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="一、定义"><a href="#一、定义" class="headerlink" title="一、定义"></a>一、定义</h3><p>索引是帮助MySQL获取数据的数据结构，也可理解为“<strong>排好序</strong>的快速<strong>查找</strong>的数据结构”</p>
+                <h3><span id="一-定义">一、定义</span></h3><p>索引是帮助MySQL获取数据的数据结构，也可理解为“<strong>排好序</strong>的快速<strong>查找</strong>的数据结构”</p>
 <p><img src="/2020/05/13/MySQL%E7%B4%A2%E5%BC%95/1.png"></p>
 <p>索引本身很大，不可能全部存储在内存，因此索引往往会以索引文件的形式存储在<strong>磁盘</strong>中。</p>
-<h3 id="二、索引分类"><a href="#二、索引分类" class="headerlink" title="二、索引分类"></a>二、索引分类</h3><ul>
+<h3><span id="二-索引分类">二、索引分类</span></h3><ul>
 <li>普通索引：最基本的索引，没任何约束</li>
 <li>唯一索引：索引列的值必须唯一，但可以为空</li>
 <li>主键索引：特殊的唯一索引，不允许为空</li>
@@ -218,24 +218,24 @@
 </ul>
 <p>1）聚簇索引是主键的术语，找到了索引就找到了所需数据。按照数据存放的物理位置为顺序的，其多个连续行的访问速度更快；</p>
 <p>2）非聚簇索引是按照数据存放的逻辑位置为顺序的，其单行访问速度更快；</p>
-<h3 id="三、索引的数据结构"><a href="#三、索引的数据结构" class="headerlink" title="三、索引的数据结构"></a>三、索引的数据结构</h3><ul>
+<h3><span id="三-索引的数据结构">三、索引的数据结构</span></h3><ul>
 <li><strong>B-Tree索引</strong>（MySQL用<strong>B+Tree索引</strong>）</li>
 <li>Hash索引</li>
 <li>full-text全文索引</li>
 <li>R-Tree索引</li>
 </ul>
-<h4 id="B-Tree的检索原理"><a href="#B-Tree的检索原理" class="headerlink" title="B-Tree的检索原理"></a>B-Tree的检索原理</h4><p>B-Tree是多路平衡查找树，简称平衡树。</p>
+<h4><span id="b-tree的检索原理">B-Tree的检索原理</span></h4><p>B-Tree是多路平衡查找树，简称平衡树。</p>
 <p>由于索引是存储在磁盘中，磁盘页就相当于树的节点，所以查询数据时，磁盘<strong>IO的次数</strong>和<strong>树的高度</strong>有关。每次检索的时候为了减少磁盘IO的次数，尽可能把树的高度减少，而宽度增加。这个正是B树的特点。</p>
 <p><img src="/2020/05/13/MySQL%E7%B4%A2%E5%BC%95/2.png"></p>
 <p>分别有根、数据项和叶子结点。其中浅蓝色表示磁盘，深蓝色是数据项，红色表示数据，黄色是指针。</p>
 <p>B-Tree的数据分布在各个节点上，</p>
 <p><strong>非叶子节点不存储真实数据，只存储指引搜索方向的数据项</strong>，17,35并不是真实存在数据表中。</p>
-<h5 id="索引检索原理"><a href="#索引检索原理" class="headerlink" title="索引检索原理"></a>索引检索原理</h5><p>若查找s数据项29，查找过程是：首先把磁盘块1加载到内存，发生1次IO，通过二分搜索确定29在17和35之间，锁定磁盘块的p2指针；通过磁盘1中的p2指针把磁盘块3加载到内存（内存相比磁盘IO的时间非常短，可忽略不计），发生第二次IO。再确定29在26~30之间，通过指针p2把磁盘块8加载到内存，发生第三次IO，再做二分查找，结束查询，共三次IO。</p>
+<h5><span id="索引检索原理">索引检索原理</span></h5><p>若查找s数据项29，查找过程是：首先把磁盘块1加载到内存，发生1次IO，通过二分搜索确定29在17和35之间，锁定磁盘块的p2指针；通过磁盘1中的p2指针把磁盘块3加载到内存（内存相比磁盘IO的时间非常短，可忽略不计），发生第二次IO。再确定29在26~30之间，通过指针p2把磁盘块8加载到内存，发生第三次IO，再做二分查找，结束查询，共三次IO。</p>
 <p>三层的B+Tree可以表示上百万的数据，如果上百万的数据只需三次IO，性能的提升是很大的。若没有索引，每个数据项都发生一次IO，则要上百万的IO，成本很高。</p>
-<h4 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h4><p>![image-20220705004035994](&#x2F;Users&#x2F;jiayunliao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20220705004035994.png)</p>
+<h4><span id="b树">B+树</span></h4><p>![image-20220705004035994](&#x2F;Users&#x2F;jiayunliao&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20220705004035994.png)</p>
 <p>B+树是B-树的改进，</p>
 <p>B+树查询效率更高，B+树通常更矮胖，层数越少，查询所需要的磁盘IO也会更少（一层代表一次IO ）。同样的磁盘IO大小，B+树能存储更多的结点关键字</p>
-<h3 id="四、索引优化"><a href="#四、索引优化" class="headerlink" title="四、索引优化"></a>四、索引优化</h3><ul>
+<h3><span id="四-索引优化">四、索引优化</span></h3><ul>
 <li><p>不再索引列上做任何操作（计算、函数、类型转换），会导致索引失效</p>
 </li>
 <li><p>使用全局匹配</p>
@@ -253,7 +253,7 @@
 <li><p>少用or,用它连接会索引失效</p>
 </li>
 </ul>
-<h3 id="五、优势与劣势"><a href="#五、优势与劣势" class="headerlink" title="五、优势与劣势"></a>五、优势与劣势</h3><ul>
+<h3><span id="五-优势与劣势">五、优势与劣势</span></h3><ul>
 <li>优势	<ul>
 <li>提高数据<strong>检索</strong>效率，降低数据库IO的成本</li>
 <li>降低数据<strong>排序</strong>成本，降低CPU的消耗</li>
@@ -266,13 +266,13 @@
 </ul>
 </li>
 </ul>
-<h3 id="六、场景"><a href="#六、场景" class="headerlink" title="六、场景"></a>六、场景</h3><h5 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h5><ul>
+<h3><span id="六-场景">六、场景</span></h3><h5><span id="使用场景">使用场景</span></h5><ul>
 <li>主键自动建立唯一索引</li>
 <li>频繁作为查询条件的字段应创建索引</li>
 <li>查询中与其他表关联的字段，外键关系建立索引</li>
 <li>排序字段若通过索引访问会大大提高排序速度</li>
 </ul>
-<h5 id="不适用的场景"><a href="#不适用的场景" class="headerlink" title="不适用的场景"></a>不适用的场景</h5><ul>
+<h5><span id="不适用的场景">不适用的场景</span></h5><ul>
 <li><p>表太少的记录</p>
 </li>
 <li><p>经常增删改的表</p>

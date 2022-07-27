@@ -106,18 +106,18 @@
                     
 
                         
-                        <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
                     
 
                         
                         <li>
                             <a href="/categories/">categories</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -205,21 +205,21 @@
                 post-container">
 
                 <p>通过几种方法，把数字字符串转成int输出</p>
-<h3 id="stoi-string-s"><a href="#stoi-string-s" class="headerlink" title="stoi(string s)"></a>stoi(string s)</h3><blockquote>
+<h3><span id="stoistring-s">stoi(string s)</span></h3><blockquote>
 <p>stoi()会做范围检查，默认范围是在int的范围内的，如果超出范围的话则会runtime error！</p>
 </blockquote>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="comment">//#include &lt;cstring&gt;</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	string s1 = <span class="string">&quot;2147482&quot;</span>, s2 = <span class="string">&quot;-214748&quot;</span>;</span><br><span class="line">	cout &lt;&lt; <span class="built_in">stoi</span>(s1) &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="built_in">stoi</span>(s2) &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//2147482</span></span><br><span class="line"><span class="comment">//-214748</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="atoi-const-char"><a href="#atoi-const-char" class="headerlink" title="atoi( const char* )"></a>atoi( const char* )</h3><blockquote>
+<h3><span id="atoi-const-char">atoi( const char* )</span></h3><blockquote>
 <p> 而atoi()不会做范围检查，如果超出范围的话，超出上界，则输出上界，超出下界，则输出下界；</p>
 </blockquote>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="comment">//#include &lt;cstring&gt;</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	string s1 = <span class="string">&quot;2147482&quot;</span>, s2 = <span class="string">&quot;-214748&quot;</span>;</span><br><span class="line">	cout &lt;&lt; <span class="built_in">atoi</span>(s1.<span class="built_in">c_str</span>()) &lt;&lt; endl;  <span class="comment">//通过c_str()把string转成char*</span></span><br><span class="line">	cout &lt;&lt; <span class="built_in">atoi</span>(s2.<span class="built_in">c_str</span>()) &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//2147482</span></span><br><span class="line"><span class="comment">//-214748</span></span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="stringstream"><a href="#stringstream" class="headerlink" title="stringstream"></a>stringstream</h3><p><sstream>定义了三个类：istringstream、ostringstream 和 stringstream，分别用来进行流的输入、输出和输入输出操作。利用stringstream流的特性，可以把字符串转成数字，数字转成字符串。</sstream></p>
+<h3><span id="stringstream">stringstream</span></h3><p><sstream>定义了三个类：istringstream、ostringstream 和 stringstream，分别用来进行流的输入、输出和输入输出操作。利用stringstream流的特性，可以把字符串转成数字，数字转成字符串。</sstream></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">字符串转数字</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	string s1 = <span class="string">&quot;2147482&quot;</span>;</span><br><span class="line">	<span class="type">int</span> n;</span><br><span class="line">	stringstream sstream;</span><br><span class="line">	sstream &lt;&lt; s1;  <span class="comment">//把字符串放入流</span></span><br><span class="line">	sstream &gt;&gt; n; <span class="comment">// 把流的字符串写入int</span></span><br><span class="line">	cout &lt;&lt; n &lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//输出　2147482</span></span><br></pre></td></tr></table></figure>
 
 

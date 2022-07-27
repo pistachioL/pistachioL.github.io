@@ -106,18 +106,18 @@
                     
 
                         
-                        <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
                     
 
                         
                         <li>
                             <a href="/categories/">categories</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -204,12 +204,12 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="一、定义"><a href="#一、定义" class="headerlink" title="一、定义"></a>一、定义</h3><p>slice元素存储在连续的内存中，实质是数组</p>
+                <h3><span id="一-定义">一、定义</span></h3><p>slice元素存储在连续的内存中，实质是数组</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Slice is the runtime representation of a slice.</span></span><br><span class="line"><span class="comment">// It cannot be used safely or portably and its representation may change in a later release.</span></span><br><span class="line"><span class="keyword">type</span> Slice <span class="keyword">struct</span> &#123;</span><br><span class="line">   Data unsafe.Pointer <span class="comment">//元素存储的地方</span></span><br><span class="line">   Len  <span class="type">int</span> <span class="comment">//存储元素的数量</span></span><br><span class="line">   Cap  <span class="type">int</span> <span class="comment">//容量，可以存储多少个元素</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="二、创建切片"><a href="#二、创建切片" class="headerlink" title="二、创建切片"></a>二、创建切片</h3><h4 id="2-1-声明一个slice"><a href="#2-1-声明一个slice" class="headerlink" title="2.1 声明一个slice"></a>2.1 声明一个slice</h4><p>只分配切片的结构，如下图，还没分配底层数组，因此data&#x3D;nil，存储个数为0，容量为0</p>
+<h3><span id="二-创建切片">二、创建切片</span></h3><h4><span id="21-声明一个slice">2.1 声明一个slice</span></h4><p>只分配切片的结构，如下图，还没分配底层数组，因此data&#x3D;nil，存储个数为0，容量为0</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ints []<span class="type">int</span></span><br></pre></td></tr></table></figure>
 
 <img src="/2022/06/16/slice/1.png" style="width:350px">
@@ -217,7 +217,7 @@
 
 
 <p>data是数组的起始地址</p>
-<h4 id="2-2-通过make创建slice"><a href="#2-2-通过make创建slice" class="headerlink" title="2.2 通过make创建slice"></a>2.2 通过make创建slice</h4><p>如果通过<code>make</code>创建slice，不仅会分配这3个slice结构，还会为ints开辟一段容纳5个整形元素的内存，并初始化为整形的默认值0。</p>
+<h4><span id="22-通过make创建slice">2.2 通过make创建slice</span></h4><p>如果通过<code>make</code>创建slice，不仅会分配这3个slice结构，还会为ints开辟一段容纳5个整形元素的内存，并初始化为整形的默认值0。</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ints []<span class="type">int</span> = <span class="built_in">make</span>([]<span class="type">int</span>, <span class="number">2</span>, <span class="number">5</span>) <span class="comment">// 长度是2 容量是5</span></span><br><span class="line">ints = <span class="built_in">append</span>(ints, <span class="number">1</span>) <span class="comment">// 再追加一个元素，前面已经存储2个，因此放在第三位</span></span><br><span class="line">fmt.Println(ints[<span class="number">2</span>]) <span class="comment">//输出1</span></span><br></pre></td></tr></table></figure>
 
 <p>已经存储的元素可以安全读写的（ints[0]、ints[1]、ints[2]），但是超出范围的话就是越界访问，会发生panic。</p>
@@ -229,14 +229,14 @@
 
 
 
-<h4 id="3-3-通过new创建slice"><a href="#3-3-通过new创建slice" class="headerlink" title="3.3 通过new创建slice"></a>3.3 通过new创建slice</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ps := <span class="built_in">new</span>([]<span class="type">string</span>)</span><br><span class="line">*ps = <span class="built_in">append</span>(*ps, <span class="string">&quot;hello&quot;</span>) <span class="comment">//</span></span><br><span class="line">fmt.Println(ps)</span><br></pre></td></tr></table></figure>
+<h4><span id="33-通过new创建slice">3.3 通过new创建slice</span></h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ps := <span class="built_in">new</span>([]<span class="type">string</span>)</span><br><span class="line">*ps = <span class="built_in">append</span>(*ps, <span class="string">&quot;hello&quot;</span>) <span class="comment">//</span></span><br><span class="line">fmt.Println(ps)</span><br></pre></td></tr></table></figure>
 
 <p>1、new一个slice变量，同样会分配 data、len、cap，但是不负责底层数组的分配，因此data&#x3D;nil，len&#x3D;0，cap&#x3D;0，并且不能进行读写。</p>
 <p>2、new的返回是slice结构的起始地址，因此ps是个地址</p>
 <img src="/2022/06/16/slice/3.png" style="width:350px">
 
 <p>3、由于目前还没分配底层数组，因此可以由<code>append</code>来分配底层数组。</p>
-<h3 id="三、切片与底层数组"><a href="#三、切片与底层数组" class="headerlink" title="三、切片与底层数组"></a>三、切片与底层数组</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">arr := [<span class="number">10</span>]<span class="type">int</span>&#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>&#125; <span class="comment">//定义数组，数组长度确定了之后不能改变</span></span><br><span class="line"><span class="keyword">var</span> s1 []<span class="type">int</span> = arr[<span class="number">1</span>:<span class="number">5</span>]</span><br><span class="line"><span class="keyword">var</span> s2 []<span class="type">int</span> = arr[<span class="number">7</span>:]</span><br><span class="line"><span class="keyword">for</span> i := <span class="keyword">range</span> s1 &#123; <span class="comment">//1 2 3 4</span></span><br><span class="line">	fmt.Println(s1[i]) </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> i := <span class="keyword">range</span> s2 &#123; <span class="comment">// 7 8 9</span></span><br><span class="line">	fmt.Println(s2[i])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="三-切片与底层数组">三、切片与底层数组</span></h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">arr := [<span class="number">10</span>]<span class="type">int</span>&#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>&#125; <span class="comment">//定义数组，数组长度确定了之后不能改变</span></span><br><span class="line"><span class="keyword">var</span> s1 []<span class="type">int</span> = arr[<span class="number">1</span>:<span class="number">5</span>]</span><br><span class="line"><span class="keyword">var</span> s2 []<span class="type">int</span> = arr[<span class="number">7</span>:]</span><br><span class="line"><span class="keyword">for</span> i := <span class="keyword">range</span> s1 &#123; <span class="comment">//1 2 3 4</span></span><br><span class="line">	fmt.Println(s1[i]) </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> i := <span class="keyword">range</span> s2 &#123; <span class="comment">// 7 8 9</span></span><br><span class="line">	fmt.Println(s2[i])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>1、可以将不同的slice关联到同一个数组，它们会共用底层数组。len是加入到slice的元素个，而cap会从data开始到底层数组结束的个数</p>
 <img src="/2022/06/16/slice/4.png" style="width:380px">
@@ -253,20 +253,20 @@
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">arr := [<span class="number">10</span>]<span class="type">int</span>&#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>&#125;</span><br><span class="line"><span class="keyword">var</span> s1 []<span class="type">int</span> = arr[<span class="number">7</span>:]</span><br><span class="line">s1 = <span class="built_in">append</span>(s1, <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
 
 <p>arr[7:]的底层数组是 len是3，cap是3，再添加一个元素则需要扩容，原来的底层数组不能使用了，需要开辟新的数组：<strong>原来的元素拷贝过来，再添加新元素</strong>。</p>
-<h3 id="四、切片的扩容规则"><a href="#四、切片的扩容规则" class="headerlink" title="四、切片的扩容规则"></a>四、切片的扩容规则</h3><p><strong>golang1.18 之前</strong>：</p>
+<h3><span id="四-切片的扩容规则">四、切片的扩容规则</span></h3><p><strong>golang1.18 之前</strong>：</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ints := []<span class="type">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>&#125;</span><br><span class="line">ints = <span class="built_in">append</span>(ints, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
 
-<h5 id="4-1-预估容量"><a href="#4-1-预估容量" class="headerlink" title="4.1 预估容量"></a>4.1 预估容量</h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> oldCap * <span class="number">2</span> &lt; <span class="built_in">cap</span> &#123;</span><br><span class="line">  	newCap = <span class="built_in">cap</span></span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> oldLen &lt; <span class="number">1024</span> </span><br><span class="line">  	newCap = oldCap * <span class="number">2</span> <span class="comment">//容量直接翻倍</span></span><br><span class="line">  <span class="keyword">else</span> &#123;</span><br><span class="line">    newCap = oldCap * <span class="number">1.25</span> 	</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5><span id="41-预估容量">4.1 预估容量</span></h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> oldCap * <span class="number">2</span> &lt; <span class="built_in">cap</span> &#123;</span><br><span class="line">  	newCap = <span class="built_in">cap</span></span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> oldLen &lt; <span class="number">1024</span> </span><br><span class="line">  	newCap = oldCap * <span class="number">2</span> <span class="comment">//容量直接翻倍</span></span><br><span class="line">  <span class="keyword">else</span> &#123;</span><br><span class="line">    newCap = oldCap * <span class="number">1.25</span> 	</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>所以例子中 newCap &#x3D; 5</p>
-<h5 id="4-2-newCap个元素需要多大内存"><a href="#4-2-newCap个元素需要多大内存" class="headerlink" title="4.2 newCap个元素需要多大内存"></a>4.2 newCap个元素需要多大内存</h5><p>在编程语言中，申请分配内存并不是直接与操作系统交涉，而是和语言自身实现的内存管理模块有关。内存管理模块会提前向OS申请	一批内存，分成常用的规格管理起来（8、16、32、48、64、96、112字节…）。</p>
+<h5><span id="42-newcap个元素需要多大内存">4.2 newCap个元素需要多大内存</span></h5><p>在编程语言中，申请分配内存并不是直接与操作系统交涉，而是和语言自身实现的内存管理模块有关。内存管理模块会提前向OS申请	一批内存，分成常用的规格管理起来（8、16、32、48、64、96、112字节…）。</p>
 <p>当我们申请内存时，会匹配到足够大 且最接近的规格。</p>
-<h5 id="4-3-匹配到适合的内存规格"><a href="#4-3-匹配到适合的内存规格" class="headerlink" title="4.3 匹配到适合的内存规格"></a>4.3 匹配到适合的内存规格</h5><p>在64位操作系统下，一个字节占用8位，因此需要申请<code> 5 * 8 =40</code> (int 是8，string是16字节) 字节的内存，来存放到扩容后的底层数组，而实际申请时会匹配到48字节，因此48字节的内存能装6个元素。</p>
+<h5><span id="43-匹配到适合的内存规格">4.3 匹配到适合的内存规格</span></h5><p>在64位操作系统下，一个字节占用8位，因此需要申请<code> 5 * 8 =40</code> (int 是8，string是16字节) 字节的内存，来存放到扩容后的底层数组，而实际申请时会匹配到48字节，因此48字节的内存能装6个元素。</p>
 <p>所以扩容后的容量时6。</p>
 <p><strong>golang 1.18以后扩容规则改变了</strong></p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ints := []<span class="type">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>&#125;</span><br><span class="line">ints = <span class="built_in">append</span>(ints, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
 
-<h5 id="4-1-预估容量-1"><a href="#4-1-预估容量-1" class="headerlink" title="4.1 预估容量"></a>4.1 预估容量</h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> oldCap * <span class="number">2</span> &lt; <span class="built_in">cap</span> &#123;</span><br><span class="line">  	newCap = <span class="built_in">cap</span></span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> oldLen &lt; <span class="number">256</span> </span><br><span class="line">  	newCap = oldCap * <span class="number">2</span> <span class="comment">//容量直接翻倍</span></span><br><span class="line">  <span class="keyword">else</span> &#123;</span><br><span class="line">    newCap = oldCap * <span class="number">1.25</span> 	</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5><span id="41-预估容量">4.1 预估容量</span></h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> oldCap * <span class="number">2</span> &lt; <span class="built_in">cap</span> &#123;</span><br><span class="line">  	newCap = <span class="built_in">cap</span></span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> oldLen &lt; <span class="number">256</span> </span><br><span class="line">  	newCap = oldCap * <span class="number">2</span> <span class="comment">//容量直接翻倍</span></span><br><span class="line">  <span class="keyword">else</span> &#123;</span><br><span class="line">    newCap = oldCap * <span class="number">1.25</span> 	</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>所以例子中 newCap &#x3D; 5</p>
 

@@ -106,18 +106,18 @@
                     
 
                         
-                        <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
                     
 
                         
                         <li>
                             <a href="/categories/">categories</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -204,13 +204,13 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h3><p>只要类被实例化之后，构造方法会被执行，就是在对象执行方法之前。</p>
+                <h3><span id="构造方法">构造方法</span></h3><p>只要类被实例化之后，构造方法会被执行，就是在对象执行方法之前。</p>
 <p>构造方法必须为public，否则无法被实例化</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Number</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;1输出&quot;</span>;</span><br><span class="line">   		<span class="keyword">echo</span> <span class="string">&quot;2输出&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">sendNumber</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;输出完成&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$num</span> = <span class="keyword">new</span> <span class="title class_">Number</span>();</span><br><span class="line"><span class="variable">$num</span>-&gt;<span class="title function_ invoke__">sendNumber</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">//1输出 2输出 输出完成</span></span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="析构方法-destruct"><a href="#析构方法-destruct" class="headerlink" title="析构方法 (__destruct())"></a>析构方法 (__destruct())</h3><p>类被销毁的时候调用析构方法</p>
+<h3><span id="析构方法-__destruct">析构方法 (__destruct())</span></h3><p>类被销毁的时候调用析构方法</p>
 <p>就是在对象执行完方法之后。</p>
 <p><code>unset($num)</code>　该函数也是能手动销毁对象</p>
 

@@ -106,18 +106,18 @@
                     
 
                         
-                        <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
                     
 
                         
                         <li>
                             <a href="/categories/">categories</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -204,13 +204,13 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="一-求因子的个数"><a href="#一-求因子的个数" class="headerlink" title="一. 求因子的个数"></a>一. 求因子的个数</h3><p>题意大概是，输入一个数，输出这个数因子的个数。</p>
+                <h3><span id="一-求因子的个数">一. 求因子的个数</span></h3><p>题意大概是，输入一个数，输出这个数因子的个数。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    <span class="type">int</span> cnt = <span class="number">2</span>;  <span class="comment">//一个数本身有两个因子，1和它本身。</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>;i&lt;=<span class="built_in">sqrt</span>(n);i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(n%i==<span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">           <span class="keyword">if</span>(i == <span class="built_in">sqrt</span>(n) &amp;&amp; n%i == i)  <span class="comment">//如果两因子相同，因子数加1；否则加2。</span></span><br><span class="line">                cnt += <span class="number">1</span>;</span><br><span class="line">           <span class="keyword">else</span></span><br><span class="line">                cnt += <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(n == <span class="number">1</span>)</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;1&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        cout &lt;&lt; cnt &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
 
 <p>​	</p>
-<h3 id="二-Easy-Number-Challenge"><a href="#二-Easy-Number-Challenge" class="headerlink" title="二. Easy Number Challenge"></a>二. <a target="_blank" rel="noopener" href="http://codeforces.com/problemset/problem/236/B">Easy Number Challenge</a></h3><p><img src="/2019/12/03/%E6%B1%82%E5%9B%A0%E5%AD%90%E4%B8%AA%E6%95%B0/1.png" alt="1"></p>
+<h3><span id="二-easy-number-challenge">二. </span></h3><p><img src="/2019/12/03/%E6%B1%82%E5%9B%A0%E5%AD%90%E4%B8%AA%E6%95%B0/1.png" alt="1"></p>
 <p>![](求因子个数&#x2F;2019-12-03 11-45-30屏幕截图.png)</p>
 <ul>
 <li>首先预处理数组，预处理出1~1000000的因子数，然后再进行查询，这样能够减少查询时间。</li>
@@ -222,7 +222,7 @@
 
 
 
-<h3 id="三-L1-006-连续因子"><a href="#三-L1-006-连续因子" class="headerlink" title="三. L1-006 连续因子"></a>三. <strong>L1-006</strong> <strong>连续因子</strong></h3><p><img src="/2019/12/03/%E6%B1%82%E5%9B%A0%E5%AD%90%E4%B8%AA%E6%95%B0/3.png" alt="3"></p>
+<h3><span id="三-l1-006-连续因子">三. <strong>L1-006</strong> <strong>连续因子</strong></span></h3><p><img src="/2019/12/03/%E6%B1%82%E5%9B%A0%E5%AD%90%E4%B8%AA%E6%95%B0/3.png" alt="3"></p>
 <ul>
 <li><p>首先求出这个数是否是素数，如果是最长连续因子只有它自己，为1，并且输出它自身即可。</p>
 </li>

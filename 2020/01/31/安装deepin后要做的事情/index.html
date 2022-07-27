@@ -106,18 +106,18 @@
                     
 
                         
-                        <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
                     
 
                         
                         <li>
                             <a href="/categories/">categories</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -204,10 +204,10 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="1-换源"><a href="#1-换源" class="headerlink" title="1. 换源"></a>1. 换源</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
+                <h3><span id="1-换源">1. 换源</span></h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
 
 <p><img src="/2020/01/31/%E5%AE%89%E8%A3%85deepin%E5%90%8E%E8%A6%81%E5%81%9A%E7%9A%84%E4%BA%8B%E6%83%85/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/1.png"></p>
-<h3 id="2-命令行主题配置"><a href="#2-命令行主题配置" class="headerlink" title="2. 命令行主题配置"></a>2. 命令行主题配置</h3><p>下载oh-my-zsh</p>
+<h3><span id="2-命令行主题配置">2. 命令行主题配置</span></h3><p>下载oh-my-zsh</p>
 <p><strong>通过curl</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;</span><br></pre></td></tr></table></figure>
 
@@ -216,7 +216,7 @@
 
 
 
-<h4 id="安装主题"><a href="#安装主题" class="headerlink" title="安装主题"></a>安装主题</h4><p>修改.zshrc</p>
+<h4><span id="安装主题">安装主题</span></h4><p>修改.zshrc</p>
 <blockquote>
 <p>修改环境变量文件在 ~&#x2F;.zshrc</p>
 </blockquote>
@@ -239,16 +239,16 @@
 
 
 
-<h4 id="安装自动补全插件"><a href="#安装自动补全插件" class="headerlink" title="安装自动补全插件"></a>安装自动补全插件</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions</span><br></pre></td></tr></table></figure>
+<h4><span id="安装自动补全插件">安装自动补全插件</span></h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions</span><br></pre></td></tr></table></figure>
 
 <p>再在~&#x2F;.zshrc文件中添加plugins &#x3D; （zsh-autosuggestions)</p>
-<h3 id="3-科学上网"><a href="#3-科学上网" class="headerlink" title="3.科学上网"></a>3.科学上网</h3><h5 id="git使用全局代理"><a href="#git使用全局代理" class="headerlink" title="git使用全局代理"></a>git使用全局代理</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy &#x27;http://127.0.0.1:端口号&#x27;</span><br></pre></td></tr></table></figure>
+<h3><span id="3科学上网">3.科学上网</span></h3><h5><span id="git使用全局代理">git使用全局代理</span></h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy &#x27;http://127.0.0.1:端口号&#x27;</span><br></pre></td></tr></table></figure>
 
-<h5 id="pip安装库时，可通过指定的源安装-防止被墙"><a href="#pip安装库时，可通过指定的源安装-防止被墙" class="headerlink" title="pip安装库时，可通过指定的源安装 防止被墙"></a>pip安装库时，可通过指定的源安装 防止被墙</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pyinstaller -i https://pypi.doubanio.com/simple</span><br></pre></td></tr></table></figure>
+<h5><span id="pip安装库时可通过指定的源安装-防止被墙">pip安装库时，可通过指定的源安装 防止被墙</span></h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pyinstaller -i https://pypi.doubanio.com/simple</span><br></pre></td></tr></table></figure>
 
 
 
-<h5 id="V2ray图形化的安装"><a href="#V2ray图形化的安装" class="headerlink" title="V2ray图形化的安装"></a>V2ray图形化的安装</h5><blockquote>
+<h5><span id="v2ray图形化的安装">V2ray图形化的安装</span></h5><blockquote>
 <p>由于本机python2,3共存，默认是2.*,要使用python3来安装（本机是3.5.3）</p>
 </blockquote>
 <p>1.克隆github上的v2项目 <a target="_blank" rel="noopener" href="https://github.com/jiangxufeng/v2rayL.git">https://github.com/jiangxufeng/v2rayL.git</a></p>
@@ -258,7 +258,7 @@
 <p>4.打包后运行<code>mv dist/v2rayLui /usr/bin/v2rayL/v2rayLui</code> 替换安装时下载的程序</p>
 <p>5.在v2rayL-GUI文件夹中运行<code>sudo python3 v2rayLui.py</code>即可打开v2。</p>
 <p>6.当然记得在浏览器安装上插件啦。</p>
-<h3 id="小tips"><a href="#小tips" class="headerlink" title="小tips"></a>小tips</h3><p><code>shift+ space</code> 进行全角半角切换</p>
+<h3><span id="小tips">小tips</span></h3><p><code>shift+ space</code> 进行全角半角切换</p>
 <p>参考 <a target="_blank" rel="noopener" href="https://github.com/jiangxufeng/v2rayL/issues/45"></a></p>
 
 

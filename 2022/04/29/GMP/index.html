@@ -106,18 +106,18 @@
                     
 
                         
-                        <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
                     
 
                         
                         <li>
                             <a href="/categories/">categories</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -204,7 +204,7 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="一、GM模型"><a href="#一、GM模型" class="headerlink" title="一、GM模型"></a>一、GM模型</h3><p>go1.1版本之前是用GM模型的：</p>
+                <h3><span id="一-gm模型">一、GM模型</span></h3><p>go1.1版本之前是用GM模型的：</p>
 <img src="/2022/04/29/GMP/2.png" style="width:450px">
 
 <p>缺点：</p>
@@ -213,7 +213,7 @@
 <li>M的使用效率不能最大化，增加空转时间（没有work-stealing 和 hand-off机制）</li>
 <li>M转移G增加额外开销。例如M1在运行G1时，创建了G2。为了继续执行G1，需要把G2交给其它的M处理，或者放在全局队列中，不能保证是由M1处理，造成很差的局部性</li>
 </ul>
-<h3 id="二、GMP模型"><a href="#二、GMP模型" class="headerlink" title="二、GMP模型"></a>二、GMP模型</h3><h4 id="2-1-GMP模型"><a href="#2-1-GMP模型" class="headerlink" title="2.1 GMP模型"></a>2.1 GMP模型</h4><p>GMP是go调度器的原理</p>
+<h3><span id="二-gmp模型">二、GMP模型</span></h3><h4><span id="21-gmp模型">2.1 GMP模型</span></h4><p>GMP是go调度器的原理</p>
 <img src="/2022/04/29/GMP/1.png" style="width:450px">
 
 <p>有四个重要的结构，G、M、P、sched</p>
@@ -228,7 +228,7 @@
 </ul>
 <p><strong>Sched</strong>：调度器结构，它维护</p>
 <p>操作系统把内核级线程调度到cpu上执行</p>
-<h4 id="2-2-GMP调度流程"><a href="#2-2-GMP调度流程" class="headerlink" title="2.2 GMP调度流程"></a>2.2 GMP调度流程</h4><img src="/2022/04/29/GMP/3.png" style="width:750px">
+<h4><span id="22-gmp调度流程">2.2 GMP调度流程</span></h4><img src="/2022/04/29/GMP/3.png" style="width:750px">
 
 <ol>
 <li><code>go func</code>创建协程goroutine，放在局部队列中，若满则放在全局队列</li>
@@ -240,9 +240,9 @@
 </li>
 <li>M执行完G之后会清理现场，重新进入调度循环</li>
 </ol>
-<h4 id="2-3-Goroutine的调度机制"><a href="#2-3-Goroutine的调度机制" class="headerlink" title="2.3 Goroutine的调度机制"></a>2.3 Goroutine的调度机制</h4><h5 id="2-3-1-work-strealing机制"><a href="#2-3-1-work-strealing机制" class="headerlink" title="2.3.1 work strealing机制"></a>2.3.1 work strealing机制</h5><p>​		M首先从本地队列获取G，若p为空，则去全局队列找G；若全局队列也为空，则从另一个本地队列偷取一半数量的G，以防止M空闲。若M空闲，只能自旋。</p>
-<h5 id="2-3-2-hand-off机制"><a href="#2-3-2-hand-off机制" class="headerlink" title="2.3.2 hand off机制"></a>2.3.2 hand off机制</h5><p>​	   M执行G过程中如果发生系统调用systemCall()而阻塞，会阻塞M和G，P和M解绑，改P让另一个M执行。</p>
-<h4 id="2-4-Goroutine的调度时机"><a href="#2-4-Goroutine的调度时机" class="headerlink" title="2.4 Goroutine的调度时机"></a>2.4 Goroutine的调度时机</h4><ul>
+<h4><span id="23-goroutine的调度机制">2.3 Goroutine的调度机制</span></h4><h5><span id="231-work-strealing机制">2.3.1 work strealing机制</span></h5><p>​		M首先从本地队列获取G，若p为空，则去全局队列找G；若全局队列也为空，则从另一个本地队列偷取一半数量的G，以防止M空闲。若M空闲，只能自旋。</p>
+<h5><span id="232-hand-off机制">2.3.2 hand off机制</span></h5><p>​	   M执行G过程中如果发生系统调用systemCall()而阻塞，会阻塞M和G，P和M解绑，改P让另一个M执行。</p>
+<h4><span id="24-goroutine的调度时机">2.4 Goroutine的调度时机</span></h4><ul>
 <li>抢占式调度<ul>
 <li>sysmon检测到goroutine执行过久（如sleep，死循环）</li>
 </ul>
@@ -271,7 +271,7 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2022/06/01/hello/" data-toggle="tooltip" data-placement="top" title="我的2022">&larr; Previous Post</a>
+                            <a href="/2022/06/01/2022/" data-toggle="tooltip" data-placement="top" title="我的2022">&larr; Previous Post</a>
                         </li>
                     
                     

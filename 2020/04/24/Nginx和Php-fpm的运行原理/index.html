@@ -106,18 +106,18 @@
                     
 
                         
-                        <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
                     
 
                         
                         <li>
                             <a href="/categories/">categories</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -207,9 +207,9 @@
                 <p>Nginx是一个高性能的服务器，能处理HTTP请求，并能做反向代理。</p>
 <p>Nginx本身不会对PHP进行解析，而是通过进程管理器php-fpm对其进行解析。</p>
 <p>Nginx通过反向代理的功能将动态请求转向php-fpm。</p>
-<h3 id="Cgi"><a href="#Cgi" class="headerlink" title="Cgi"></a>Cgi</h3><p>Cgi是Common Gateway Interface的缩写。过去服务器只能处理静态语言，无法对动态语言（PHP）进行处理。Cgi协议是用于解决语言解释器（PHP、Python等）与服务器的通信，只要写程序的时候按照cgi协议写就行。</p>
-<h3 id="FastCgi"><a href="#FastCgi" class="headerlink" title="FastCgi"></a>FastCgi</h3><p>服务器接收到一个请求时，要fork一个cgi进程，请求结束的时候要杀掉一个进程，十分浪费资源，于是出现了fastcgi对cgi进行改良。fastcgi处理完请求后，不会杀掉进程，而是保留它，使它一次能处理多请求。</p>
-<h3 id="php-fpm"><a href="#php-fpm" class="headerlink" title="php-fpm"></a>php-fpm</h3><p>php-fpm就是php-Fcstcgi Process Manager，是PHP对FastCgi的一个实现，实现对进程的管理。</p>
+<h3><span id="cgi">Cgi</span></h3><p>Cgi是Common Gateway Interface的缩写。过去服务器只能处理静态语言，无法对动态语言（PHP）进行处理。Cgi协议是用于解决语言解释器（PHP、Python等）与服务器的通信，只要写程序的时候按照cgi协议写就行。</p>
+<h3><span id="fastcgi">FastCgi</span></h3><p>服务器接收到一个请求时，要fork一个cgi进程，请求结束的时候要杀掉一个进程，十分浪费资源，于是出现了fastcgi对cgi进行改良。fastcgi处理完请求后，不会杀掉进程，而是保留它，使它一次能处理多请求。</p>
+<h3><span id="php-fpm">php-fpm</span></h3><p>php-fpm就是php-Fcstcgi Process Manager，是PHP对FastCgi的一个实现，实现对进程的管理。</p>
 <p>进程包括master和worker两种进程。master只有一个，用于监听端口(默认是socket)，接收来自服务器的请求；而worker可以有多个进程（按照实际配置），每个进程内部嵌入PHP解释器，是PHP代码真正执行的地方。</p>
 <p>在Linux上，Nginx与php-fpm的通信有<strong>TCP Socket</strong>　和　<strong>Unix Socket</strong>两种方式</p>
 <blockquote>

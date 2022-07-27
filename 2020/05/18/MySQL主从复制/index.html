@@ -106,18 +106,18 @@
                     
 
                         
-                        <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
                     
 
                         
                         <li>
                             <a href="/categories/">categories</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -206,14 +206,14 @@
 
                 <p>在从服务器可以执行查询工作(即我们常说的读功能)，降低主服务器压力;②在从主服务器进行备份，避免备份期间影响主服务器服务;③当主服务器出现问题时，可以切换到从服务器。</p>
 <p>主从复制是一个成熟的架构，在从服务器可以执行查询工作(即我们常说的读功能)，降低主服务器压力;在从主服务器进行备份，避免备份期间影响主服务器服务;当主服务器出现问题时，可以切换到从服务器。</p>
-<h3 id="主从复制原理"><a href="#主从复制原理" class="headerlink" title="主从复制原理"></a>主从复制原理</h3><p><img src="/2020/05/18/MySQL%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/1.png"></p>
+<h3><span id="主从复制原理">主从复制原理</span></h3><p><img src="/2020/05/18/MySQL%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/1.png"></p>
 <p>MySQL复制过程:</p>
 <ul>
 <li>master会将改变记录到<strong>二进制文件</strong>(binary log)中，该记录过程称为<strong>二进制日志事件</strong></li>
 <li>slave会将master的<strong>二进制日志事件</strong>拷贝到它的<strong>中继日志(relay log)</strong></li>
 <li>slave重做中继日志中的事件，将改变应用到自己的数据库中。MySQL的复制是异步且串行化的</li>
 </ul>
-<h3 id="复制的主要原则"><a href="#复制的主要原则" class="headerlink" title="复制的主要原则"></a>复制的主要原则</h3><ul>
+<h3><span id="复制的主要原则">复制的主要原则</span></h3><ul>
 <li>每个slave只有一个master</li>
 <li>每个master可以有多个slave</li>
 <li>每个slave只有唯一一个服务器ID</li>

@@ -106,18 +106,18 @@
                     
 
                         
-                        <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
                     
 
                         
                         <li>
                             <a href="/categories/">categories</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -206,7 +206,7 @@
 
                 <p><a target="_blank" rel="noopener" href="http://acm.hdu.edu.cn/showproblem.php?pid=1238">hdu 1238</a></p>
 <p>找出字符串中，连续子串（逆子串）相等的长度</p>
-<h3 id="简单字符串处理"><a href="#简单字符串处理" class="headerlink" title="简单字符串处理"></a>简单字符串处理</h3><p><img src="/2019/11/27/%E5%AD%97%E7%AC%A6%E4%B8%B2/1.png"></p>
+<h3><span id="简单字符串处理">简单字符串处理</span></h3><p><img src="/2019/11/27/%E5%AD%97%E7%AC%A6%E4%B8%B2/1.png"></p>
 <p>首先要读懂题意，题目给出一串手机号，按格式从大到小输出手机号中含有的数字，存入arr数组，再输出每个手机号的数字在arr数组中的下标。</p>
 <p>处理的几个巧妙之处：</p>
 <ul>
@@ -217,7 +217,7 @@
 
 
 
-<h5 id="LeetCode-拼写单词"><a href="#LeetCode-拼写单词" class="headerlink" title="LeetCode 拼写单词"></a>LeetCode 拼写单词</h5><blockquote>
+<h5><span id="leetcode-拼写单词">LeetCode 拼写单词</span></h5><blockquote>
 <p>给字符串数组words和字符串chars，问通过chars中的字母，能拼写words中每个单词的最大长度 </p>
 <p>输入：words &#x3D; [“cat”,”bt”,”hat”,”tree”], chars &#x3D; “atach”<br>输出：6<br>解释：<br>可以形成字符串 “cat” 和 “hat”，所以答案是 3 + 3 &#x3D; 6。</p>
 </blockquote>
@@ -225,7 +225,7 @@
 
 
 
-<h5 id="LeetCode-二进制求和"><a href="#LeetCode-二进制求和" class="headerlink" title="LeetCode 二进制求和"></a>LeetCode 二进制求和</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">string <span class="title">addBinary</span><span class="params">(string a, string b)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> lena = a.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> lenb = b.<span class="built_in">size</span>();</span><br><span class="line">    <span class="comment">//若两数长度不相等，要补0</span></span><br><span class="line">        <span class="keyword">while</span>(lena &gt; lenb)</span><br><span class="line">        &#123;</span><br><span class="line">            b = <span class="string">&#x27;0&#x27;</span> + b;</span><br><span class="line">            ++lenb;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(lena &lt; lenb)</span><br><span class="line">        &#123;</span><br><span class="line">            a = <span class="string">&#x27;0&#x27;</span> + a;</span><br><span class="line">            ++lena;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = a.<span class="built_in">size</span>() - <span class="number">1</span>; i &gt; <span class="number">0</span>; --i)</span><br><span class="line">        &#123;</span><br><span class="line">            a[i] = a[i] -<span class="string">&#x27;0&#x27;</span> + b[i];</span><br><span class="line">            <span class="keyword">if</span>(a[i] &gt;= <span class="string">&#x27;2&#x27;</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                a[i] = (a[i]-<span class="string">&#x27;0&#x27;</span>) % <span class="number">2</span> +<span class="string">&#x27;0&#x27;</span>;  <span class="comment">//进位</span></span><br><span class="line">                a[i<span class="number">-1</span>] = a[i<span class="number">-1</span>] + <span class="number">1</span>;  <span class="comment">//前一位数目加1</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        a[<span class="number">0</span>] = a[<span class="number">0</span>] - <span class="string">&#x27;0&#x27;</span> + b[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">if</span>(a[<span class="number">0</span>] &gt;= <span class="string">&#x27;2&#x27;</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            a[<span class="number">0</span>] = (a[<span class="number">0</span>]-<span class="string">&#x27;0&#x27;</span>) %<span class="number">2</span> +<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">            a = <span class="string">&#x27;1&#x27;</span> + a;   <span class="comment">//把1拼接到a串前</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h5><span id="leetcode-二进制求和">LeetCode 二进制求和</span></h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">string <span class="title">addBinary</span><span class="params">(string a, string b)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> lena = a.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> lenb = b.<span class="built_in">size</span>();</span><br><span class="line">    <span class="comment">//若两数长度不相等，要补0</span></span><br><span class="line">        <span class="keyword">while</span>(lena &gt; lenb)</span><br><span class="line">        &#123;</span><br><span class="line">            b = <span class="string">&#x27;0&#x27;</span> + b;</span><br><span class="line">            ++lenb;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(lena &lt; lenb)</span><br><span class="line">        &#123;</span><br><span class="line">            a = <span class="string">&#x27;0&#x27;</span> + a;</span><br><span class="line">            ++lena;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = a.<span class="built_in">size</span>() - <span class="number">1</span>; i &gt; <span class="number">0</span>; --i)</span><br><span class="line">        &#123;</span><br><span class="line">            a[i] = a[i] -<span class="string">&#x27;0&#x27;</span> + b[i];</span><br><span class="line">            <span class="keyword">if</span>(a[i] &gt;= <span class="string">&#x27;2&#x27;</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                a[i] = (a[i]-<span class="string">&#x27;0&#x27;</span>) % <span class="number">2</span> +<span class="string">&#x27;0&#x27;</span>;  <span class="comment">//进位</span></span><br><span class="line">                a[i<span class="number">-1</span>] = a[i<span class="number">-1</span>] + <span class="number">1</span>;  <span class="comment">//前一位数目加1</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        a[<span class="number">0</span>] = a[<span class="number">0</span>] - <span class="string">&#x27;0&#x27;</span> + b[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">if</span>(a[<span class="number">0</span>] &gt;= <span class="string">&#x27;2&#x27;</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            a[<span class="number">0</span>] = (a[<span class="number">0</span>]-<span class="string">&#x27;0&#x27;</span>) %<span class="number">2</span> +<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">            a = <span class="string">&#x27;1&#x27;</span> + a;   <span class="comment">//把1拼接到a串前</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 
 

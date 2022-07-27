@@ -106,18 +106,18 @@
                     
 
                         
-                        <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
                     
 
                         
                         <li>
                             <a href="/categories/">categories</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -204,13 +204,13 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="Unix的IO读写过程"><a href="#Unix的IO读写过程" class="headerlink" title="Unix的IO读写过程"></a>Unix的IO读写过程</h3><ol>
+                <h3><span id="unix的io读写过程">Unix的IO读写过程</span></h3><ol>
 <li><p>等待数据准备</p>
 </li>
 <li><p>把数据从系统<strong>内核</strong>拷贝到用户<strong>进程</strong>中</p>
 </li>
 </ol>
-<h3 id="Unix下网络的IO模型（五种）"><a href="#Unix下网络的IO模型（五种）" class="headerlink" title="Unix下网络的IO模型（五种）"></a>Unix下网络的IO模型（五种）</h3><p><strong>同步IO</strong></p>
+<h3><span id="unix下网络的io模型五种">Unix下网络的IO模型（五种）</span></h3><p><strong>同步IO</strong></p>
 <ul>
 <li>阻塞式IO (Blocking IO)<ul>
 <li>同步阻塞</li>
@@ -232,12 +232,12 @@
 </ul>
 </li>
 </ul>
-<h3 id="同步阻塞IO"><a href="#同步阻塞IO" class="headerlink" title="同步阻塞IO"></a>同步阻塞IO</h3><blockquote>
+<h3><span id="同步阻塞io">同步阻塞IO</span></h3><blockquote>
 <p>在餐厅点了餐之后，只能在餐厅等，什么事情都做不了。直到菜上了，吃完饭，才可以去逛街shopping（阻塞）</p>
 </blockquote>
 <p>原理</p>
 <p>当用户进程执行一个系统调用recv()&#x2F;recvform()，操作系统要把数据拷贝到操作系统内核的缓存区（缓存IO），这个过程中用户进程会被阻塞，处于一个等待的状态。直到数据准备好，就会把数据从缓存区拷贝到用户内存，然后内核返回结果后，用户进程才接触阻塞状态，重新运行。</p>
-<h3 id="同步非阻塞IO（轮询polling）"><a href="#同步非阻塞IO（轮询polling）" class="headerlink" title="同步非阻塞IO（轮询polling）"></a>同步非阻塞IO（轮询polling）</h3><blockquote>
+<h3><span id="同步非阻塞io轮询polling">同步非阻塞IO（轮询polling）</span></h3><blockquote>
 <p>在等餐过程中，不愿把时间浪费在等待上，而是在等待的期间逛了商场，又回来问服务员菜好了没。如果没有又继续逛，期间又回来问……就这样循环多次的询问</p>
 </blockquote>
 <p>原理</p>
@@ -245,11 +245,11 @@
 <p>一旦内核准备好数据，并且接收到用户进程的轮询（system call），就立刻把数据拷贝到用户内存中，返回成功的提示。</p>
 <p>缺点:</p>
 <p>轮询会消耗CPU的大量时间</p>
-<h3 id="IO多路复用之select、poll、epoll"><a href="#IO多路复用之select、poll、epoll" class="headerlink" title="IO多路复用之select、poll、epoll"></a>IO多路复用之select、poll、epoll</h3><blockquote>
+<h3><span id="io多路复用之select-poll-epoll">IO多路复用之select、poll、epoll</span></h3><blockquote>
 <p>点了菜之后，可以通过小程序看到点餐进度，就可以在等待上菜的时候去逛街，不需要询问服务员菜好了没</p>
 </blockquote>
 <p>IO多路复用是通过一种机制，使得一个用户进程可以监听多个<strong>文件描述符</strong>(file descriptor，简写fd)，当某个fd就绪（读就绪或写就绪），就能通知程序进行相应的读写操作。<code>但select、pselect、poll、epoll本质都是都是同步IO</code>，因为他们都需要在读写事件就绪后自己负责进行读写，也就是说这个读写过程是<strong>阻塞</strong>(要等待)的，而异步I&#x2F;O则无需自己负责进行读写，异步I&#x2F;O的实现会负责把数据从内核拷贝到用户空间。</p>
-<h4 id="select"><a href="#select" class="headerlink" title="select"></a>select</h4><ul>
+<h4><span id="select">select</span></h4><ul>
 <li><p>select是POSIX所规定</p>
 </li>
 <li><p>select函数的调用相当于内核级别的，可以等待多个socket，实现监听多个IO端口</p>
@@ -267,7 +267,7 @@
 <li>select对socket的扫描采用轮询方式，效率低</li>
 <li>需要维护一个用来存放大量fd的数据结构，这会使得用户空间和内核空间在传递该结构时的复制开销大</li>
 </ul>
-<h4 id="poll"><a href="#poll" class="headerlink" title="poll"></a>poll</h4><p>但相比起select，<code>epoll没有最大连接数的限制</code>，因为它是基于<code>链表</code>来存储的。</p>
+<h4><span id="poll">poll</span></h4><p>但相比起select，<code>epoll没有最大连接数的限制</code>，因为它是基于<code>链表</code>来存储的。</p>
 <p>原理</p>
 <p>poll和select没有本质的区别，当用户进程调用了poll之后，poll会将用户传递进来的数组拷贝到内核空间，然后查询每个fd的设备状态。如果设备就绪则在<strong>设备等待序列</strong>加入一项，又继续进行遍历。如果没有就绪的设备，则挂起当前线程，知道设备就绪或者主动超时。被唤醒后又继续遍历fd。在这个过程中经历了多次无谓的遍历，扫描的时间复杂度时O(n)</p>
 <p>缺点</p>
@@ -275,7 +275,7 @@
 <li>大量的fd的数组被整体复制于用户态和内核地址空间之间</li>
 <li><code>poll还有一个特点是“水平触发”</code>，如果报告了fd后，没有被处理，那么下次poll时会再次报告该fd。</li>
 </ul>
-<h4 id="epoll"><a href="#epoll" class="headerlink" title="epoll"></a>epoll</h4><p>epoll是在2.6内核中提出的，epoll相当于是select和poll的增强版，Linux 内部使用的就是 epoll</p>
+<h4><span id="epoll">epoll</span></h4><p>epoll是在2.6内核中提出的，epoll相当于是select和poll的增强版，Linux 内部使用的就是 epoll</p>
 <blockquote>
 <p>epoll提供了三个函数，分别是epoll_create()创建epoll事件,epoll_ctl()注册要监听的事件类型和epoll_wait()等待事件的产生</p>
 </blockquote>

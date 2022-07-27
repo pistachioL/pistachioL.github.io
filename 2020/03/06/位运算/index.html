@@ -106,18 +106,18 @@
                     
 
                         
-                        <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
                     
 
                         
                         <li>
                             <a href="/categories/">categories</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -205,7 +205,7 @@
                 post-container">
 
                 <p>由于计算机存储数据都是以二进制的形式存储，位运算实质时对二进制数进行操作。在做题目的的时候，通过位运算处理数据速度很快，便能使缩短计算时间。</p>
-<h3 id="1-位运算的种类"><a href="#1-位运算的种类" class="headerlink" title="1. 位运算的种类"></a>1. 位运算的种类</h3><table>
+<h3><span id="1-位运算的种类">1. 位运算的种类</span></h3><table>
 <thead>
 <tr>
 <th>含义</th>
@@ -244,28 +244,28 @@
 <td>0011 ^ 1011 &#x3D;&#x3D; 1000  (两位相同为0，不同为1)</td>
 </tr>
 </tbody></table>
-<h3 id="2-使用技巧"><a href="#2-使用技巧" class="headerlink" title="2. 使用技巧"></a>2. 使用技巧</h3><h5 id="1-判断奇偶"><a href="#1-判断奇偶" class="headerlink" title="1)判断奇偶"></a>1)判断奇偶</h5><p>只需要个位数判断是0还是1</p>
+<h3><span id="2-使用技巧">2. 使用技巧</span></h3><h5><span id="1判断奇偶">1)判断奇偶</span></h5><p>只需要个位数判断是0还是1</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(a &amp; <span class="number">1</span>)&#123;  <span class="comment">//相当于a % 2 == 1</span></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;a是奇数&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;a是偶数&quot;</span> &lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<h5 id="2-交换两数"><a href="#2-交换两数" class="headerlink" title="2)交换两数"></a>2)交换两数</h5><p>不需要引入第三方变量</p>
+<h5><span id="2交换两数">2)交换两数</span></h5><p>不需要引入第三方变量</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">Swap</span><span class="params">(<span class="type">int</span> &amp;a, <span class="type">int</span> &amp;b)</span></span>&#123;</span><br><span class="line">    a ^= b;  <span class="comment">//a = a^b; 复合操作</span></span><br><span class="line">    b ^= a;</span><br><span class="line">    a ^= b;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<h5 id="3-符号变换"><a href="#3-符号变换" class="headerlink" title="3) 符号变换"></a>3) 符号变换</h5><p>负数变正数，正数变负数，只需要取反加一</p>
+<h5><span id="3-符号变换">3) 符号变换</span></h5><p>负数变正数，正数变负数，只需要取反加一</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">signReversal</span><span class="params">(<span class="type">int</span> a)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> ~a + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<h5 id="4-x-amp-x-表示什么"><a href="#4-x-amp-x-表示什么" class="headerlink" title="4) x &amp; (-x)表示什么"></a>4) x &amp; (-x)表示什么</h5><ul>
+<h5><span id="4-x-amp-x表示什么">4) x &amp; (-x)表示什么</span></h5><ul>
 <li>x &#x3D; 0，结果为0</li>
 <li>x 是奇数，结果为1</li>
 <li>x是偶数，结果是2最大次方的因子。（如x&#x3D;28,2^4^&#x3D;16,故为4）</li>
 </ul>
-<h5 id="5-x-amp-x-1-表示什么"><a href="#5-x-amp-x-1-表示什么" class="headerlink" title="5) x&amp;(x-1)表示什么"></a>5) x&amp;(x-1)表示什么</h5><p>每次与运算会把最低位的1去掉，用于统计一个数的二进制1的个数。</p>
-<h5 id="6-c-x3D-1-lt-lt-5"><a href="#6-c-x3D-1-lt-lt-5" class="headerlink" title="6) c ^&#x3D; 1&lt;&lt;5"></a>6) c ^&#x3D; 1&lt;&lt;5</h5><p>ASCII 码中 a为97，A为65，中间差了32，而2^5^&#x3D;32，因此一个字符c <code>异或</code> <code>左移5位</code>可以表示大小写之间的转换。</p>
+<h5><span id="5-xampx-1表示什么">5) x&amp;(x-1)表示什么</span></h5><p>每次与运算会把最低位的1去掉，用于统计一个数的二进制1的个数。</p>
+<h5><span id="6-c-x3d-1ltlt5">6) c ^&#x3D; 1&lt;&lt;5</span></h5><p>ASCII 码中 a为97，A为65，中间差了32，而2^5^&#x3D;32，因此一个字符c <code>异或</code> <code>左移5位</code>可以表示大小写之间的转换。</p>
 
 
                 <hr>

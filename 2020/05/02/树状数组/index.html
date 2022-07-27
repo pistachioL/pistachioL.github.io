@@ -106,18 +106,18 @@
                     
 
                         
-                        <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
                     
 
                         
                         <li>
                             <a href="/categories/">categories</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -231,21 +231,21 @@
 <p>C[7] &#x3D; A[7]</p>
 <p>C[8] &#x3D; <strong>C[4] + C[6] + C[7] + A[8]</strong>  &#x3D;  A[1] + A[2] + A[3] + A[4] + A[5] + A[6] + A[7] + A[8]</p>
 <p>由此可得，求前缀和时能减少一些运算</p>
-<h3 id="lowbit"><a href="#lowbit" class="headerlink" title="lowbit"></a>lowbit</h3><p><code>lowbit()</code>的作用是求二进制数的最低位1的位置在哪。例如<code>lowbit(6)</code>，6的二进制为110，-6为二进制的取反加010，<code>110 &amp; 010 = 010</code>，所以最低位1在第2位。</p>
+<h3><span id="lowbit">lowbit</span></h3><p><code>lowbit()</code>的作用是求二进制数的最低位1的位置在哪。例如<code>lowbit(6)</code>，6的二进制为110，-6为二进制的取反加010，<code>110 &amp; 010 = 010</code>，所以最低位1在第2位。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">lowbit</span><span class="params">(<span class="type">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n &amp; (-n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">getsum</span><span class="params">(<span class="type">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> i;</span><br><span class="line">    <span class="type">int</span> temp=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(i=x;i&gt;=<span class="number">1</span>;i-=<span class="built_in">lowbit</span>(i))</span><br><span class="line">    &#123;</span><br><span class="line">        temp+=c[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="查询">查询</span></h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">getsum</span><span class="params">(<span class="type">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> i;</span><br><span class="line">    <span class="type">int</span> temp=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(i=x;i&gt;=<span class="number">1</span>;i-=<span class="built_in">lowbit</span>(i))</span><br><span class="line">    &#123;</span><br><span class="line">        temp+=c[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h3><p>修改操作和查询相反，</p>
+<h3><span id="修改">修改</span></h3><p>修改操作和查询相反，</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">update</span><span class="params">(<span class="type">int</span> t,<span class="type">int</span> value)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> i;</span><br><span class="line">    <span class="keyword">for</span>(i=t;i&lt;=n;i+=<span class="built_in">lowbit</span>(i))</span><br><span class="line">    &#123;</span><br><span class="line">        c[i]+=value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<h4 id="树状数组＋离散化解决逆序对"><a href="#树状数组＋离散化解决逆序对" class="headerlink" title="树状数组＋离散化解决逆序对"></a>树状数组＋离散化解决逆序对</h4><h5 id="离散化"><a href="#离散化" class="headerlink" title="离散化"></a>离散化</h5><blockquote>
+<h4><span id="树状数组离散化解决逆序对">树状数组＋离散化解决逆序对</span></h4><h5><span id="离散化">离散化</span></h5><blockquote>
 <p>先对输入的数组离散化，使得各个元素比较接近，而不是离散的</p>
 </blockquote>
 <p>例如a[9,1,0,5,4]</p>

@@ -106,18 +106,18 @@
                     
 
                         
-                        <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
                     
 
                         
                         <li>
                             <a href="/categories/">categories</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -204,8 +204,8 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h3><p>Redis是一种高性能的NoSQL(not only sql)非关系型数据库，key-value存储。key可以是任意类型，redis底层会转换为string。而value可以是五种的基本类型。</p>
-<h3 id="二、启动、状态、结束"><a href="#二、启动、状态、结束" class="headerlink" title="二、启动、状态、结束"></a>二、启动、状态、结束</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">start</span> redis<span class="literal">-server</span></span><br><span class="line">systemctl status redis<span class="literal">-server</span></span><br><span class="line">systemctl stop redis<span class="literal">-server</span></span><br></pre></td></tr></table></figure>
+                <h3><span id="一-简介">一、简介</span></h3><p>Redis是一种高性能的NoSQL(not only sql)非关系型数据库，key-value存储。key可以是任意类型，redis底层会转换为string。而value可以是五种的基本类型。</p>
+<h3><span id="二-启动-状态-结束">二、启动、状态、结束</span></h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">start</span> redis<span class="literal">-server</span></span><br><span class="line">systemctl status redis<span class="literal">-server</span></span><br><span class="line">systemctl stop redis<span class="literal">-server</span></span><br></pre></td></tr></table></figure>
 
 <ul>
 <li><p>默认端口时6379</p>
@@ -219,7 +219,7 @@
 
 
 
-<h3 id="三、基本类型"><a href="#三、基本类型" class="headerlink" title="三、基本类型"></a>三、基本类型</h3><h4 id="3-1-String类型"><a href="#3-1-String类型" class="headerlink" title="3.1 String类型"></a>3.1 String类型</h4><p>key | value(int&#x2F;string&#x2F;float)</p>
+<h3><span id="三-基本类型">三、基本类型</span></h3><h4><span id="31-string类型">3.1 String类型</span></h4><p>key | value(int&#x2F;string&#x2F;float)</p>
 <p><code>set key value</code> </p>
 <p> <code>get  key</code></p>
 <p><code>incr key </code>自增</p>
@@ -231,7 +231,7 @@
 <p>1、缓存：查询MySQL前先查询Redis</p>
 <p>2、计数：文章的阅读数、视频播放次数，通过incr命令对应次数会加一。</p>
 <p>3、共享session：在分布式系统中，用Redis集中管理session，Session数据从Redis中获取即可。（session共享会话）</p>
-<h4 id="3-2-Hash类型（散列类型）"><a href="#3-2-Hash类型（散列类型）" class="headerlink" title="3.2 Hash类型（散列类型）"></a>3.2 Hash类型（散列类型）</h4><p>key-&gt;val 一个键只能对应一个值</p>
+<h4><span id="32-hash类型散列类型">3.2 Hash类型（散列类型）</span></h4><p>key-&gt;val 一个键只能对应一个值</p>
 <p> <code>hset </code>插入</p>
 <p> <code>hget</code>通过key取出值</p>
 <p> <code>hmget</code>取出多个</p>
@@ -242,7 +242,7 @@
 <p>1、压缩列表（ziplist）；压缩列表比字典更节省内存，因此在创建新hash键时，默认时用压缩列表作为底层实现</p>
 <p>2、字典（哈希表）</p>
 <p>（当ziplist元素超过512，会变成哈希表，或者单个元素大小超过64byte，会变为哈希表）</p>
-<h4 id="3-3-List类型"><a href="#3-3-List类型" class="headerlink" title="3.3  List类型"></a>3.3  List类型</h4><p><code>lpush</code>  从左边插入元素</p>
+<h4><span id="33-list类型">3.3  List类型</span></h4><p><code>lpush</code>  从左边插入元素</p>
 <p><code>rpop</code>从右边取出元素 （取出来之后会从内存中删除）</p>
 <p><code>llen</code> 容器中元素的个数</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">rpush key value //从右边插入</span><br><span class="line">lpush list1 a b c //从左边插入<span class="number">3</span>个元素</span><br><span class="line">lpop list1 //取三次，分别是c b a</span><br><span class="line"></span><br><span class="line"><span class="built_in">type</span> list1 //查看类型 list</span><br><span class="line">object encoding list1 // quicklist or ziplist</span><br></pre></td></tr></table></figure>
@@ -253,7 +253,7 @@
 <p>使用场景:</p>
 <p>1、消息队列(lpush + rpop &#x2F; rpush + lpop )</p>
 <p>2、栈（lpush+lpop &#x2F; rpush+rpop）</p>
-<h4 id="3-4-Set类型"><a href="#3-4-Set类型" class="headerlink" title="3.4 Set类型"></a>3.4 Set类型</h4><p><code>sadd</code>增加元素</p>
+<h4><span id="34-set类型">3.4 Set类型</span></h4><p><code>sadd</code>增加元素</p>
 <p><code>scard</code>查看容器元素个数</p>
 <p><code>srem</code>删除容器元素</p>
 <p><code>sismember</code>查看是否有某个元素</p>
@@ -269,7 +269,7 @@
 
 
 
-<h4 id="3-5-Zset-Sort-Set-类型"><a href="#3-5-Zset-Sort-Set-类型" class="headerlink" title="3.5 Zset (Sort Set)类型"></a>3.5 Zset (Sort Set)类型</h4><p>score和value是一个整体</p>
+<h4><span id="35-zset-sort-set类型">3.5 Zset (Sort Set)类型</span></h4><p>score和value是一个整体</p>
 <p><img src="/2020/04/21/Redis%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/1.png"></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">zadd zset1 10.1 val1 </span><br><span class="line">zadd zset1 11.2 val2 </span><br><span class="line"></span><br><span class="line">zadd zset1 100 a 200 b 10 c  // key是zset1，value是a分数100，b分数200，c分数10</span><br><span class="line">zrange zset1 0 2 withscores //把0-2范围内的值按分数从小到大列出  </span><br><span class="line">zrevrange zset1 0 2 withscores //把0-2范围内的值按分数从大到小列出  </span><br><span class="line"></span><br><span class="line">zcard zset1  //查看容器元素个数</span><br><span class="line">zrank zset1 val2 //查看val2的排行</span><br></pre></td></tr></table></figure>
 
@@ -278,7 +278,7 @@
 <p>2、跳表</p>
 <p>应用场景：</p>
 <p>1、排行榜</p>
-<h3 id="四、使用Redis的优势"><a href="#四、使用Redis的优势" class="headerlink" title="四、使用Redis的优势"></a>四、使用Redis的优势</h3><p>  1.查询速度快，因为数据存在内存中，类似于HashMap，HashMap的优势就是查找和操作的时间复杂度都是O(1)</p>
+<h3><span id="四-使用redis的优势">四、使用Redis的优势</span></h3><p>  1.查询速度快，因为数据存在内存中，类似于HashMap，HashMap的优势就是查找和操作的时间复杂度都是O(1)</p>
 <ol start="2">
 <li><p>支持丰富数据类型，支持string，list，set，sorted set，hash</p>
 </li>

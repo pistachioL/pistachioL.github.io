@@ -106,18 +106,18 @@
                     
 
                         
-                        <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
                     
 
                         
                         <li>
                             <a href="/categories/">categories</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -204,7 +204,7 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="一、定义"><a href="#一、定义" class="headerlink" title="一、定义"></a>一、定义</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a := <span class="keyword">map</span>[<span class="type">string</span>]<span class="type">string</span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+                <h3><span id="一-定义">一、定义</span></h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a := <span class="keyword">map</span>[<span class="type">string</span>]<span class="type">string</span>&#123;&#125;</span><br></pre></td></tr></table></figure>
 
 <p>map类型的变量本质上是一个指针，指向hmap结构体</p>
 <p><code>/runtime/map.go</code></p>
@@ -217,13 +217,13 @@
 
 
 
-<h3 id="二、Map操作"><a href="#二、Map操作" class="headerlink" title="二、Map操作"></a>二、Map操作</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">m := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="type">string</span>]<span class="type">int</span>)</span><br><span class="line"><span class="comment">//增加元素</span></span><br><span class="line">m[<span class="string">&quot;hello&quot;</span>] = <span class="number">123</span></span><br><span class="line">fmt.Println(m[<span class="string">&quot;hello&quot;</span>]) <span class="comment">//123</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//删除</span></span><br><span class="line"><span class="built_in">delete</span>(m, <span class="string">&quot;hello&quot;</span>)</span><br><span class="line">fmt.Println(m[<span class="string">&quot;hello&quot;</span>]) <span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
+<h3><span id="二-map操作">二、Map操作</span></h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">m := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="type">string</span>]<span class="type">int</span>)</span><br><span class="line"><span class="comment">//增加元素</span></span><br><span class="line">m[<span class="string">&quot;hello&quot;</span>] = <span class="number">123</span></span><br><span class="line">fmt.Println(m[<span class="string">&quot;hello&quot;</span>]) <span class="comment">//123</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//删除</span></span><br><span class="line"><span class="built_in">delete</span>(m, <span class="string">&quot;hello&quot;</span>)</span><br><span class="line">fmt.Println(m[<span class="string">&quot;hello&quot;</span>]) <span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
 
 
 
 
 
-<h3 id="三、Map扩容"><a href="#三、Map扩容" class="headerlink" title="三、Map扩容"></a>三、Map扩容</h3><p>向map插入新key时内存不足，满足以下两个条件则会发生扩容</p>
+<h3><span id="三-map扩容">三、Map扩容</span></h3><p>向map插入新key时内存不足，满足以下两个条件则会发生扩容</p>
 <p>负载因子 &#x3D; 键值对的数目 &#x2F; 桶的数目</p>
 <p><strong>1、超过负载</strong></p>
 <p>map元素个数 &gt; 6.5（负载因子，即桶内元素） * 桶个数</p>

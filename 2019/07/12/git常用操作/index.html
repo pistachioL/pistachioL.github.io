@@ -106,18 +106,18 @@
                     
 
                         
-                        <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
                     
 
                         
                         <li>
                             <a href="/categories/">categories</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -204,24 +204,24 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="git常用操作"><a href="#git常用操作" class="headerlink" title="git常用操作"></a>git常用操作</h1><h3 id="github上传laravel项目"><a href="#github上传laravel项目" class="headerlink" title="github上传laravel项目"></a>github上传laravel项目</h3><p><code>git init</code></p>
+                <h1><span id="git常用操作">git常用操作</span></h1><h3><span id="github上传laravel项目">github上传laravel项目</span></h3><p><code>git init</code></p>
 <p><code>git remote add origin git@github.com:pistachioL/xxx.git</code></p>
 <p><code>git add .</code></p>
 <p><code>git commit -m &quot;xxxx&quot;</code></p>
 <p><code>git push origin master -f</code></p>
 <p>删除远程关联</p>
 <p><code> git remote rm origin</code></p>
-<h3 id="创建新分支"><a href="#创建新分支" class="headerlink" title="创建新分支"></a>创建新分支</h3><p><code>git branch deepin</code>    新分支deepin</p>
+<h3><span id="创建新分支">创建新分支</span></h3><p><code>git branch deepin</code>    新分支deepin</p>
 <p><code>git branch -a</code> 查看所有分支</p>
 <p><code>git checkout -b dev origin/dev  </code>  在本地创建一个分之dev，并且与上游的origin&#x2F;dev保持一致</p>
 <p><code>git checkout dev</code> 切换分支</p>
-<h3 id="git全局的用户名和密码"><a href="#git全局的用户名和密码" class="headerlink" title="git全局的用户名和密码"></a>git全局的用户名和密码</h3><p>保存密码到硬盘</p>
+<h3><span id="git全局的用户名和密码">git全局的用户名和密码</span></h3><p>保存密码到硬盘</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config credential.helper store</span><br></pre></td></tr></table></figure>
 
 <p><code>git config --global user.name &quot;用户名&quot;</code></p>
 <p><code>git config --global user.email &quot;邮箱&quot;</code></p>
-<h3 id="git删除远程分支操作"><a href="#git删除远程分支操作" class="headerlink" title="git删除远程分支操作"></a>git删除远程分支操作</h3><p><code>	git push origin --delete branch-name</code></p>
-<h3 id="git-回滚"><a href="#git-回滚" class="headerlink" title="git 回滚"></a>git 回滚</h3><ul>
+<h3><span id="git删除远程分支操作">git删除远程分支操作</span></h3><p><code>	git push origin --delete branch-name</code></p>
+<h3><span id="git-回滚">git 回滚</span></h3><ul>
 <li><p>回退到上个版本</p>
 <p><code>$ git reset --hard HEAD^</code></p>
 </li>

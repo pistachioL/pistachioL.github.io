@@ -106,18 +106,18 @@
                     
 
                         
-                        <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
                     
 
                         
                         <li>
                             <a href="/categories/">categories</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -204,19 +204,19 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="B-Tree（B树）"><a href="#B-Tree（B树）" class="headerlink" title="B-Tree（B树）"></a>B-Tree（B树）</h3><p>B树属于多叉树又名平衡多路查找树（查找路径不只两个），数据库索引技术里大量使用者B树和B+树的数据结构</p>
+                <h3><span id="b-treeb树">B-Tree（B树）</span></h3><p>B树属于多叉树又名平衡多路查找树（查找路径不只两个），数据库索引技术里大量使用者B树和B+树的数据结构</p>
 <blockquote>
 <p>如果数据库索引用红黑树的话，会导致读取磁盘次数过多，并且读取出来的数据也会浪费很多。例如一个结点能存一页，一页有16K数据</p>
 <p>由于 B+ 树分支比二叉树更多，所以相同数量的内容，B+ 树的深度更浅，深度代表什么？代表磁盘 io 次数</p>
 </blockquote>
-<h4 id="m阶B树有如下特点（阶表示一个节点最多孩子节点的个数）"><a href="#m阶B树有如下特点（阶表示一个节点最多孩子节点的个数）" class="headerlink" title="m阶B树有如下特点（阶表示一个节点最多孩子节点的个数）"></a>m阶B树有如下特点（阶表示一个节点最多孩子节点的个数）</h4><ul>
+<h4><span id="m阶b树有如下特点阶表示一个节点最多孩子节点的个数">m阶B树有如下特点（阶表示一个节点最多孩子节点的个数）</span></h4><ul>
 <li>根节点至少有两个孩子节点</li>
 <li>每个中间节点都包含<code>k-1</code>个元素和<code>k</code>个孩子(m&#x2F;2&lt;&#x3D;k&lt;&#x3D;m)</li>
 <li>所以叶子节点都在同一层</li>
 <li>每一个叶子节点都包含<code>k-1</code>个元素(m&#x2F;2&lt;&#x3D;k&lt;&#x3D;m)</li>
 <li>每个节点都存有索引和数据，也就是对应的key和value。</li>
 </ul>
-<h3 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h3>
+<h3><span id="b树">B+树</span></h3>
 
                 <hr>
 

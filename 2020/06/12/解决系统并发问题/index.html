@@ -106,18 +106,18 @@
                     
 
                         
-                        <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
                     
 
                         
                         <li>
                             <a href="/categories/">categories</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -204,8 +204,8 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>之前开发了办公室预约系统，功能上基本实现了，现在需要提升性能问题，比如考虑并发情况，在多个人<strong>同时</strong>预约的时候，怎样解决并发问题呢？其实本质是要对事务<strong>上锁</strong>。</p>
-<h3 id="1-在MySQL方面提升"><a href="#1-在MySQL方面提升" class="headerlink" title="1. 在MySQL方面提升"></a>1. 在MySQL方面提升</h3><p><strong>MySQL的性能分析</strong></p>
+                <h3><span id="前言">前言</span></h3><p>之前开发了办公室预约系统，功能上基本实现了，现在需要提升性能问题，比如考虑并发情况，在多个人<strong>同时</strong>预约的时候，怎样解决并发问题呢？其实本质是要对事务<strong>上锁</strong>。</p>
+<h3><span id="1-在mysql方面提升">1. 在MySQL方面提升</span></h3><p><strong>MySQL的性能分析</strong></p>
 <ul>
 <li>MySQL Query Optimizer(自带的优化器)</li>
 <li>MySQL常见的瓶颈<ul>
@@ -224,9 +224,9 @@
 <p><strong>索引优化</strong></p>
 <p><strong>MySQL的悲观锁</strong></p>
 <p>MySQL的InooDB支持行级锁，当锁住某行数据时，其他进程不能对这行数据进行操作</p>
-<h3 id="2-消息队列-FIFO-缓存请求"><a href="#2-消息队列-FIFO-缓存请求" class="headerlink" title="2.消息队列(FIFO)缓存请求"></a>2.消息队列(FIFO)缓存请求</h3><p>把用户的请求放到消息队列中，用户把需求放在队列中，而系统通过队列处理需求，这样可以拦截大量的请求</p>
-<h3 id="3-Redis缓存"><a href="#3-Redis缓存" class="headerlink" title="3. Redis缓存"></a>3. Redis缓存</h3><p>redis的WATCH监控: 在监控的事务，如果在事务执行期间被其他事务改动，则其它事务会被打断</p>
-<h3 id="4-设计分库分表"><a href="#4-设计分库分表" class="headerlink" title="4.设计分库分表"></a>4.设计分库分表</h3><h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>以上是点滴思考和总结，将用在系统优化中，未完待续…</p>
+<h3><span id="2消息队列fifo缓存请求">2.消息队列(FIFO)缓存请求</span></h3><p>把用户的请求放到消息队列中，用户把需求放在队列中，而系统通过队列处理需求，这样可以拦截大量的请求</p>
+<h3><span id="3-redis缓存">3. Redis缓存</span></h3><p>redis的WATCH监控: 在监控的事务，如果在事务执行期间被其他事务改动，则其它事务会被打断</p>
+<h3><span id="4设计分库分表">4.设计分库分表</span></h3><h3><span id="写在最后">写在最后</span></h3><p>以上是点滴思考和总结，将用在系统优化中，未完待续…</p>
 <p><a target="_blank" rel="noopener" href="https://juejin.im/post/5cb025fb5188251b0351ef48#heading-1">什么是消息队列</a></p>
 
 

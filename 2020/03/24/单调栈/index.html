@@ -106,18 +106,18 @@
                     
 
                         
-                        <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
                     
 
                         
                         <li>
                             <a href="/categories/">categories</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -204,14 +204,14 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="单调栈"><a href="#单调栈" class="headerlink" title="单调栈"></a>单调栈</h1><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>单调栈分为单调递增栈和单调递减栈，顾名思义就是栈内元素大小保持递增或递减。</p>
-<h3 id="操作规则（以单调递增栈为例）"><a href="#操作规则（以单调递增栈为例）" class="headerlink" title="操作规则（以单调递增栈为例）"></a>操作规则（以单调递增栈为例）</h3><p>如果<strong>新进来的元素</strong>比<strong>栈顶元素</strong>大，则进栈</p>
+                <h1><span id="单调栈">单调栈</span></h1><h3><span id="简介">简介</span></h3><p>单调栈分为单调递增栈和单调递减栈，顾名思义就是栈内元素大小保持递增或递减。</p>
+<h3><span id="操作规则以单调递增栈为例">操作规则（以单调递增栈为例）</span></h3><p>如果<strong>新进来的元素</strong>比<strong>栈顶元素</strong>大，则进栈</p>
 <p>如果<strong>新进的元素</strong>比<strong>栈顶元素</strong>小，就把栈内元素出栈，直到找到<strong>第一个</strong>比新进元素要小的元素为止。</p>
-<h3 id="代码模板"><a href="#代码模板" class="headerlink" title="代码模板"></a>代码模板</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">MonotoneStack</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; height)</span></span>&#123;</span><br><span class="line">    stack&lt;<span class="type">int</span>&gt;st;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; height.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">        <span class="keyword">while</span>(!st.<span class="built_in">empty</span>() &amp;&amp; height[st.<span class="built_in">top</span>()] &gt;= height[i])&#123;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        st.<span class="built_in">push</span>(i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="代码模板">代码模板</span></h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">MonotoneStack</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; height)</span></span>&#123;</span><br><span class="line">    stack&lt;<span class="type">int</span>&gt;st;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; height.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">        <span class="keyword">while</span>(!st.<span class="built_in">empty</span>() &amp;&amp; height[st.<span class="built_in">top</span>()] &gt;= height[i])&#123;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        st.<span class="built_in">push</span>(i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><p><strong>LeetCode　接雨水</strong></p>
+<h3><span id="例题">例题</span></h3><p><strong>LeetCode　接雨水</strong></p>
 <p><img src="/2020/03/24/%E5%8D%95%E8%B0%83%E6%A0%88/1.png"></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">trap</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; height)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = height.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span>(n &lt; <span class="number">3</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        stack&lt;<span class="type">int</span>&gt;st;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">            <span class="keyword">while</span>(!st.<span class="built_in">empty</span>() &amp;&amp; height[i] &gt; height[st.<span class="built_in">top</span>()])&#123;</span><br><span class="line">                <span class="type">int</span> top = st.<span class="built_in">top</span>();</span><br><span class="line">                st.<span class="built_in">pop</span>();</span><br><span class="line">                <span class="keyword">if</span>(st.<span class="built_in">empty</span>())</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="type">int</span> width = i - st.<span class="built_in">top</span>() - <span class="number">1</span>;</span><br><span class="line">                <span class="type">int</span> h = <span class="built_in">min</span>(height[i],height[st.<span class="built_in">top</span>()]) - height[top];</span><br><span class="line">                ans += width * h;</span><br><span class="line">            &#125;</span><br><span class="line">            st.<span class="built_in">push</span>(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 

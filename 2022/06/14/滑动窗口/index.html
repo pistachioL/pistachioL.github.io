@@ -106,18 +106,18 @@
                     
 
                         
-                        <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
                     
 
                         
                         <li>
                             <a href="/categories/">categories</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -205,7 +205,8 @@
                 post-container">
 
                 <p>题目中关键字是有<code>连续、数组</code>等字眼，可以考虑使用滑动窗口。</p>
-<h3 id="LeetCode题目总结"><a href="#LeetCode题目总结" class="headerlink" title="LeetCode题目总结"></a>LeetCode题目总结</h3><p><strong>和为s的连续正数序列</strong></p>
+<p>但如果数组中有负数，就不能用滑动窗口解决，可以考虑前缀和的方法。</p>
+<h3><span id="leetcode题目总结">LeetCode题目总结</span></h3><p><strong>和为s的连续正数序列</strong></p>
 <p>滑动窗口</p>
 <blockquote>
 <p>输入一个正整数 <code>target</code> ，输出所有和为 <code>target</code> 的连续正整数序列（至少含有两个数）。</p>
@@ -214,6 +215,19 @@
 <p>选取一个点i，让j一直走，直到j&gt;target，若都没有找到和为target的连续序列，则证明前面选的i之后没有满足条件的连续数，因此i向下一位移动。循环往复，直到i的<strong>上界</strong>（i &lt;&#x3D; target&#x2F;2）时。</p>
 <p>用sum记录累加的和，如果sum&lt;target，j还能往右走，sum不断累加。直到sum&gt;target，都没有找到连续的数和为target，则证明以i开头没有连续的数，则sum-i，i继续下一位，i++。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">findContinuousSequence</span>(<span class="type">int</span> target) &#123;</span><br><span class="line">       <span class="type">int</span> i = <span class="number">1</span>;</span><br><span class="line">       <span class="type">int</span> j = <span class="number">1</span>;</span><br><span class="line">       <span class="type">int</span> sum  = <span class="number">0</span>;</span><br><span class="line">       </span><br><span class="line">       vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;ans;</span><br><span class="line">       <span class="keyword">while</span>(i &lt;= target/<span class="number">2</span>)&#123;</span><br><span class="line">           <span class="keyword">if</span>(sum &lt; target)&#123;</span><br><span class="line">               sum += j;</span><br><span class="line">               j++;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">else</span> <span class="keyword">if</span>(sum &gt; target)&#123;</span><br><span class="line">               sum -= i;</span><br><span class="line">               i++;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">else</span>&#123;</span><br><span class="line">               vector&lt;<span class="type">int</span>&gt;vec;</span><br><span class="line">               <span class="keyword">for</span>(<span class="type">int</span> k = i; k &lt; j; k++)&#123;</span><br><span class="line">                   vec.<span class="built_in">push_back</span>(k);</span><br><span class="line">               &#125;	</span><br><span class="line">               ans.<span class="built_in">push_back</span>(vec);</span><br><span class="line">               sum -= i;</span><br><span class="line">               i++;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> ans;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/ZVAVXX/">剑指 Offer II 009. 乘积小于 K 的子数组</a></p>
+<p>思路：</p>
+<p>如果符合条件(乘积 &lt;k)，则不断右移，并不断计算子数组的个数  j - i + 1； </p>
+<p>否则左边窗口移动，i++， 缩小窗口范围，sum &#x2F;&#x3D; nums[i] 保持和为最新的值</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">numSubarrayProductLessThanK</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>, sum = <span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">    <span class="keyword">while</span>(j &lt; n) &#123;</span><br><span class="line">        sum *= nums[j];</span><br><span class="line">        <span class="keyword">while</span>(i &lt;= j &amp;&amp; sum &gt;= k) &#123;</span><br><span class="line">            sum /= nums[i];</span><br><span class="line">            i++;</span><br><span class="line">        &#125; </span><br><span class="line">        ans += j - i + <span class="number">1</span>;</span><br><span class="line">        j++;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/2VG8Kg/">https://leetcode.cn/problems/2VG8Kg/</a></p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/ZVAVXX/">https://leetcode.cn/problems/ZVAVXX/</a></p>
 
 
                 <hr>

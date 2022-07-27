@@ -106,18 +106,18 @@
                     
 
                         
-                        <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
                     
 
                         
                         <li>
                             <a href="/categories/">categories</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -204,14 +204,14 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="双端队列"><a href="#双端队列" class="headerlink" title="双端队列"></a>双端队列</h1><h3 id="一-定义"><a href="#一-定义" class="headerlink" title="一. 定义"></a>一. 定义</h3><p>双端队列支持前后双端插入元素、弹出、删除元素</p>
+                <h1><span id="双端队列">双端队列</span></h1><h3><span id="一-定义">一. 定义</span></h3><p>双端队列支持前后双端插入元素、弹出、删除元素</p>
 <p><code>deque&lt;object_type&gt;deq </code></p>
 <p>常用函数：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">push_back</span>();<span class="comment">//队尾添加元素</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">push_front</span>(); <span class="comment">//队列开头添加元素</span></span><br><span class="line"></span><br><span class="line">TreeNode *node = deq.<span class="built_in">front</span>();</span><br><span class="line"></span><br><span class="line"><span class="built_in">pop_front</span>(); <span class="comment">// 删除队列中第一个元素</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">pop_back</span>();<span class="comment">//删除队列中第一个元素</span></span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="二、例题"><a href="#二、例题" class="headerlink" title="二、例题"></a>二、例题</h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/er-cha-shu-de-jing-xiang-lcof/">二叉树的镜像</a></p>
+<h3><span id="二-例题">二、例题</span></h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/er-cha-shu-de-jing-xiang-lcof/">二叉树的镜像</a></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">mirrorTree</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        deque&lt;TreeNode*&gt;deq;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">NULL</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        deq.<span class="built_in">push_back</span>(root);</span><br><span class="line">        <span class="keyword">while</span>(!deq.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            TreeNode *node = deq.<span class="built_in">front</span>();</span><br><span class="line">            deq.<span class="built_in">pop_front</span>(); </span><br><span class="line">            <span class="keyword">if</span>(node-&gt;left) &#123;</span><br><span class="line">                deq.<span class="built_in">push_front</span>(node-&gt;left);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(node-&gt;right) &#123;</span><br><span class="line">                deq.<span class="built_in">push_front</span>(node-&gt;right);</span><br><span class="line">            &#125;</span><br><span class="line">            TreeNode *tmp = node-&gt;left;</span><br><span class="line">            node-&gt;left = node-&gt;right;</span><br><span class="line">            node-&gt;right = tmp;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 

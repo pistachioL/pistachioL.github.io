@@ -106,18 +106,18 @@
                     
 
                         
-                        <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
                     
 
                         
                         <li>
                             <a href="/categories/">categories</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -204,12 +204,12 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="1-求前缀表next"><a href="#1-求前缀表next" class="headerlink" title="1.求前缀表next[]"></a>1.求前缀表next[]</h3><h5 id="为什么要求前缀表？"><a href="#为什么要求前缀表？" class="headerlink" title="为什么要求前缀表？"></a>为什么要求前缀表？</h5><blockquote>
+                <h3><span id="1求前缀表next">1.求前缀表next[]</span></h3><h5><span id="为什么要求前缀表">为什么要求前缀表？</span></h5><blockquote>
 <p>如果用暴力的双指针，在失配的时候又从模式串的开头重新匹配，增加了回溯的次数，效率低，复杂度为O(m*n)。</p>
 <p>前面已经匹配上的不用再搜索，通过next[]数组，在失去匹配的地方找到该元素的前后缀个数n，移动到模式串的下标n。复杂度时O(m+n)。</p>
 <p>通俗来说，next数组存放每个元素之前的字符串，最长公共前后缀的个数。</p>
 </blockquote>
-<h5 id="如何求next-呢？"><a href="#如何求next-呢？" class="headerlink" title="如何求next[]呢？"></a>如何求next[]呢？</h5><p><strong>Text: A B A B A B A B C A B A A B</strong></p>
+<h5><span id="如何求next呢">如何求next[]呢？</span></h5><p><strong>Text: A B A B A B A B C A B A A B</strong></p>
 <p><strong>Pattern: A B A B C A B A A</strong></p>
 <table>
 <thead>
@@ -264,7 +264,7 @@
 
 
 
-<h3 id="2-KMP的实现过程"><a href="#2-KMP的实现过程" class="headerlink" title="2.KMP的实现过程"></a>2.KMP的实现过程</h3><blockquote>
+<h3><span id="2kmp的实现过程">2.KMP的实现过程</span></h3><blockquote>
 <p>主串和匹配串依次匹配，当在失配的地方，查看当前next[i]，模式串从Pattern[next[i]]开始进行匹配</p>
 </blockquote>
 <p><img src="/2020/02/19/KMP/1.png"></p>

@@ -106,18 +106,18 @@
                     
 
                         
-                        <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
                     
 
                         
                         <li>
                             <a href="/categories/">categories</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -204,12 +204,12 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="使用上的区别"><a href="#使用上的区别" class="headerlink" title="使用上的区别"></a>使用上的区别</h3><ol>
+                <h3><span id="使用上的区别">使用上的区别</span></h3><ol>
 <li>GET通过URL或Cookie传参，而POST将数据放在BODY中（是HTTP的约定）</li>
 <li>GET方式提交的数据有长度限制，而POST的数据则可以非常大。HTTP协议对GET和POST长度没有限制，并且对HTTP头和Body都没有长度的要求。只是因为它们使用的操作系统和浏览器设置的不同引起的区别。</li>
 <li>POST比GET安全，因为数据在地址栏上不可见。通过GET提交数据，用户名和密码将明文出现在URL上，因为登录页面有可能被浏览器缓存，其他人查看浏览器的历史纪录，那么别人就可以拿到你的账号和密码了，除此之外，使用GET提交数据还可能会造成Cross-site request forgery攻击。</li>
 </ol>
-<h3 id="本质区别"><a href="#本质区别" class="headerlink" title="本质区别"></a>本质区别</h3><p>GET和POST最大的区别主要是GET请求是幂等性的，POST请求不是。</p>
+<h3><span id="本质区别">本质区别</span></h3><p>GET和POST最大的区别主要是GET请求是幂等性的，POST请求不是。</p>
 <blockquote>
 <p>幂等性是指一次和多次请求某一个资源应该具有同样的副作用。简单来说意味着对同一URL的多个请求应该返回同样的结果。</p>
 </blockquote>
