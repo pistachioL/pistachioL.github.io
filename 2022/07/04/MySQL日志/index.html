@@ -13,11 +13,11 @@
 
     <title>
         
-          sync - Pistachio的楼阁 | Pistachio&#39;s Blog
+          MySQL日志 - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2022/06/22/Sync包/">
+    <link rel="canonical" href="https://pistachiol.github.io/2022/07/04/MySQL日志/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -178,14 +178,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#Go学习" title="Go学习">Go学习</a>
+                          <a class="tag" href="/tags/#MySQL" title="MySQL">MySQL</a>
                         
                     </div>
-                    <h1>sync</h1>
+                    <h1>MySQL日志</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
-                        2022-06-22
+                        2022-07-04
                     </span>
                 </div>
             </div>
@@ -204,30 +204,51 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p>sync包提供线程同步原语的方法</p>
-<h3><span id="一-waitgroup">一、WaitGroup</span></h3><p>1.1 Go语言标准库提供了WaitGroup原语，可以用来等待一批Goroutine结束，或者说让主协程等待子协程结束再操作。</p>
-<p>1.2 使用例子</p>
-<p>主协程是main，如果不加WaitGroup，则运行完就会先退出，没法打印字符串。</p>
-<p>加上WaitGroup，让主协程等待5个子协程都执行完毕后，主协程再继续执行</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;sync&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> wg sync.WaitGroup</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">5</span>; i++ &#123;</span><br><span class="line">    wg.Add(<span class="number">1</span>) <span class="comment">//添加请求goroutine的数量，add(n)，counter+=n s</span></span><br><span class="line">		<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">			<span class="keyword">defer</span> wg.Done() <span class="comment">//每执行完一个goroutine，counter -= 1。当计数器counter为0时通过信号量调用runtime_Semrelease唤醒waiter线程</span></span><br><span class="line">			fmt.Println(<span class="string">&quot;hello&quot;</span>)</span><br><span class="line">		&#125;()</span><br><span class="line">	&#125;</span><br><span class="line">  wg.Wait() <span class="comment">//waiter++，通过信号量runtime_Semacquire(semap)阻塞当前goroutine</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+                <h3><span id="一-redo-log">一、Redo Log</span></h3><h4><span id="11-定义">1.1 定义</span></h4><p>Redo log是物理日志，记录事务提交时，数据页的物理修改（具体存放了什么数据），用于实现事务的持久性。</p>
+<h4><span id="12-作用">1.2 作用</span></h4><p>保证事务的持久性。保证内存中和磁盘中数据的一致性，当刷新脏页到磁盘，发生错误时，进行数据恢复。</p>
+<h4><span id="13-操作原理">1.3 操作原理</span></h4><p>Redo Log由 重做日志缓冲 (Redo Log buffer) 和 重做日志文件 (Redo Log file) 组成。前者在内存中，后者在磁盘中。</p>
+<img src="/2022/07/04/MySQL%E6%97%A5%E5%BF%97/1.png" style="width:600px">
 
+<ol>
+<li><p>当进行数据操作（增、删、改）时，首先在Buffer Pool中查找有没有需要更新的数据，若没有找到则通过后台线程将数据从磁盘中读取，保存在Buffer Pool中</p>
+</li>
+<li><p>对Buffer Pool增删改的数据，记录在Redo Log buffer中</p>
+<blockquote>
+<ul>
+<li>对Buffer Pool的数据进行操作，这时候Buffer Pool的数据有所变更，但磁盘的内容还没变，此时Buffer Pool的数据页就是脏页。需要通过一定时间，通过后台线程将脏页数据刷新到磁盘，以保证磁盘和内存数据的一致性。</li>
+</ul>
+</blockquote>
+</li>
+<li><p>事务提交时，会将Redo Log buffer的数据异步刷新到磁盘中。当脏页刷新数据到磁盘中时，Redo Log进行数据恢复</p>
+<blockquote>
+<p>直接将Buffer Pool中的脏页刷新到磁盘？此时有个2问题：</p>
+<p>1⃣️ 但若此时脏页异步刷新到磁盘的操作失败，此时事务已经提交了，客户端也收到更新成功，但脏页刷新失败，那么此时就不能保证「持久性」了。</p>
+<p>2⃣️ 一次事务中，可能要操作很多条记录（增、删、改），而这些记录都是随机操作到数据页的，这时会涉及大量的随机磁盘IO，性能低。因此要考虑先将修改的数据放到redo log buffer，commit之后异步追加到磁盘中的redo log file中，是顺序磁盘IO，性能高</p>
+</blockquote>
+</li>
+<li><p>每隔一段时间，会清理redo log</p>
+<blockquote>
+<p>如果顺利将Buffer Pool中的脏页数据刷到磁盘，则不需要redo log</p>
+</blockquote>
+</li>
+</ol>
+<p>Innodb采用WAL技术(write-ahead logging)，思想是先写日志再写磁盘，只有日志写成功，才算事务提交成功。</p>
+<h4><span id="14-优点">1.4 优点</span></h4><ul>
+<li>redo log降低了刷盘频率。由于修改某个表的某个字段时，数据从磁盘读加载内存是以页为单位的，若每时每刻从内存刷磁盘的话，性能大大降低</li>
+<li>redo log占用空间非常小</li>
+</ul>
+<h4><span id="15-特点">1.5  特点</span></h4><p>-<br>  redo log 日志是顺序写入磁盘，比随机磁盘IO要快</p>
+<ul>
+<li>事务执行过程中，redo log不断记录</li>
+</ul>
+<h3><span id="二-undo-log">二、Undo Log</span></h3><h4><span id="21-定义">2.1 定义</span></h4><p>undo log属于逻辑日志，即记录每一步执行什么样的操作(sql语句)，在发生错误时回滚之前的操作。</p>
+<p>undo log会记录每一条数据变更的逆向过程，如增加insert语句，undo log则会记录delete语句；update一个语句，undo log则会记录update前的值</p>
+<h4><span id="22-作用">2.2 作用</span></h4><ul>
+<li>事务的回滚（保证原子性）</li>
+<li>MVCC（一致性）</li>
+</ul>
+<h3><span id="三-binlog">三、binlog</span></h3><p>binlog是逻辑日志，记录语句的原始逻辑</p>
 
-
-<h3><span id="二-map">二、map</span></h3><h3><span id="三-mutex">三、mutex</span></h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Mutex <span class="keyword">struct</span> &#123;</span><br><span class="line">	state <span class="type">int32</span> <span class="comment">//存储互斥锁的状态，state = 0即是未加锁</span></span><br><span class="line">	sema  <span class="type">uint32</span> <span class="comment">//信号量，主要用作等待队列</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3><span id="四-rwmutex">四、RWMutex</span></h3><p>适用于读多于写的场景</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> RWMutex <span class="keyword">struct</span> &#123;</span><br><span class="line">	w           Mutex  <span class="comment">// held if there are pending writers 复用互斥锁</span></span><br><span class="line">	writerSem   <span class="type">uint32</span> <span class="comment">// semaphore for writers to wait for completing readers  写操作的阻塞和唤醒的信号量</span></span><br><span class="line">	readerSem   <span class="type">uint32</span> <span class="comment">// semaphore for readers to wait for completing writers  读操作的阻塞和唤醒的信号量</span></span><br><span class="line">	readerCount <span class="type">int32</span>  <span class="comment">// number of pending readers 正在执行读的goroutine数量</span></span><br><span class="line">	readerWait  <span class="type">int32</span>  <span class="comment">// number of departing readers 被阻塞的准备读的goroutine（groutine获取了写锁，若后面有goroutine要读，那么这些goroutine会被阻塞）</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3><span id="四-once">四、Once</span></h3><p>场景：实现单例模式</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;sync&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> mydb <span class="keyword">struct</span> &#123;</span><br><span class="line">	name <span class="type">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//需要声明在外面</span></span><br><span class="line"><span class="keyword">var</span> (</span><br><span class="line">	once     sync.Once</span><br><span class="line">	instance *mydb</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *mydb)</span></span> getinstance() *mydb &#123;</span><br><span class="line">	once.Do(<span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		instance = &amp;mydb&#123; <span class="comment">// 实例化，返回mydb结构体的引用</span></span><br><span class="line">			name: <span class="string">&quot;mysql&quot;</span>,</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;)</span><br><span class="line">	<span class="keyword">return</span> instance</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> s *mydb</span><br><span class="line">	ans1 := s.getinstance()</span><br><span class="line">	ans2 := s.getinstance()</span><br><span class="line"></span><br><span class="line">	fmt.Printf(<span class="string">&quot;s1: %p\n&quot;</span>, ans1) <span class="comment">//s1: 0x1400008e210</span></span><br><span class="line">	fmt.Printf(<span class="string">&quot;s2: %p\n&quot;</span>, ans2) <span class="comment">//s2: 0x1400008e210</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3><span id="五-pool">五、pool</span></h3>
 
                 <hr>
 
@@ -235,13 +256,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2022/06/22/Map/" data-toggle="tooltip" data-placement="top" title="go Map">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2022/06/17/双端队列/" data-toggle="tooltip" data-placement="top" title="双端队列">Next Post &rarr;</a>
+                            <a href="/2022/07/01/下一个排列/" data-toggle="tooltip" data-placement="top" title="下一个排列的实现">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -274,7 +291,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#Go学习" title="Go学习">Go学习</a>
+                          <a class="tag" href="/tags/#MySQL" title="MySQL">MySQL</a>
                         
                     </div>
                 </section>
@@ -306,8 +323,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2022/06/22/Sync%E5%8C%85/";
-    var disqus_url = "https://pistachiol.github.io/2022/06/22/Sync%E5%8C%85/";
+    var disqus_identifier = "https://pistachiol.github.io/2022/07/04/MySQL%E6%97%A5%E5%BF%97/";
+    var disqus_url = "https://pistachiol.github.io/2022/07/04/MySQL%E6%97%A5%E5%BF%97/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

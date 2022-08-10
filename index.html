@@ -197,6 +197,29 @@
 
 <div class="post-preview">
 
+    <a href="/2022/07/04/MySQL日志/">
+        <h2 class="post-title">
+            MySQL日志
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            一、Redo Log1.1 定义Redo log是物理日志，记录事务提交时，数据页的物理修改（具体存放了什么数据），用于实现事务的持久性。
+1.2 作用保证事务的持久性。保证内存中和磁盘中数据的一致性，当刷新脏页到磁盘，发生错误时，进行数据恢复。
+1.3 操作原理Redo Log由 重做日志缓冲 (Redo Log buffer) 和 重做日志文件 (Redo Log file) 组成。前者......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2022-07-04
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2022/07/01/下一个排列/">
         <h2 class="post-title">
             下一个排列的实现
@@ -257,11 +280,11 @@ map类型的变量本质上是一个指针，指向hmap结构体
         </h3>
         <div class="post-content-preview">
             sync包提供线程同步原语的方法
-一、WaitGroup1.1Go语言标准库提供了WaitGroup原语，可以用来等待一批Goroutine结束，或者说让主协程等待子协程结束再操作。
-1.2使用例子
+一、WaitGroup1.1 Go语言标准库提供了WaitGroup原语，可以用来等待一批Goroutine结束，或者说让主协程等待子协程结束再操作。
+1.2 使用例子
 主协程是main，如果不加WaitGroup，则运行完就会先退出，没法打印字符串。
 加上WaitGroup，让主协程等待5个子协程都执行完毕后，主协程再继续执行
-1234567891011121......
+12345678910111......
         </div>
     </a>
     <p class="post-meta">
@@ -421,32 +444,6 @@ M转移G增加额外开销。例如M1在运行G1时，创建了G2。为了继续
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2022/04/21/GC/">
-        <h2 class="post-title">
-            go GC
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            一、背景知识
-bbs数据段：全局变量、静态数据
-函数栈帧（栈）：函数的局部变量、参数、返回值。栈是系统自动分配空间的，例如定义一个var a string；系统会自动在栈上为其开辟空间。
-堆：函数内部动态分配的内存，由程序员申请分配和释放。在编译阶段不能确定数据对象的大小、或者对象的生命周期超出了当前所在函数，则不适合分配在栈上，要分配在堆。
-
-分配在堆上的数据需要程序主动释放才可以重新使用......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2022-04-21
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -524,7 +521,7 @@ bbs数据段：全局变量、静态数据
                             
                         
                             
-                            <a href="/tags/#MySQL" title="MySQL" rel="6">MySQL</a>
+                            <a href="/tags/#MySQL" title="MySQL" rel="7">MySQL</a>
                             
                         
                             
