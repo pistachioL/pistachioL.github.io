@@ -238,7 +238,7 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">Shell_Sort</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> i,j,d,tmp;</span><br><span class="line">    <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">    <span class="keyword">for</span>(d = n/<span class="number">2</span>; d &gt; <span class="number">0</span>; d /= <span class="number">2</span>)&#123;</span><br><span class="line">        <span class="keyword">for</span>(i = d; i &lt; n; i++)&#123;</span><br><span class="line">            tmp = nums[i];</span><br><span class="line">            <span class="keyword">for</span>(j = i; j &gt;= d &amp;&amp; nums[j-d] &gt; tmp; j -= d)&#123;</span><br><span class="line">                nums[j] = nums[j-d];</span><br><span class="line">            &#125;</span><br><span class="line">            nums[j] = tmp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> nums;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/chengxiao/p/6104371.html"></a></p>
-<h3><span id="四-选择排序不稳定">四、选择排序（不稳定）</span></h3><p>思路：找出集合中最小的数，与当前的数交换</p>
+<h3><span id="四-选择排序不稳定-n2">四、选择排序（不稳定 N^2^）</span></h3><p>思路：找出集合中最小的数，与当前的数交换</p>
 <p>或者找到最大值，和最后一个数作交换</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">sortArray</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> mini,tmp;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">            mini = i;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j = i; j &lt; nums.<span class="built_in">size</span>(); j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(nums[j] &lt; nums[mini])</span><br><span class="line">                    mini = j;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(i != mini)&#123;           <span class="comment">//找出最小的数不是当前元素，则交换</span></span><br><span class="line">                tmp = nums[i];</span><br><span class="line">                nums[i] = nums[mini];</span><br><span class="line">                nums[mini] = tmp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;   </span><br><span class="line">        <span class="keyword">return</span> nums;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
@@ -289,6 +289,13 @@
 
 
 
+
+
+<h3><span id="使用场景">使用场景</span></h3><ol>
+<li>n较小(n &lt;&#x3D; 50) ，可选用插入排序或者选择排序</li>
+<li>若文件初始状态基本有序，可采用插入、冒泡、快速排序</li>
+<li>n较大，可考虑快速排序、堆排序、归并排序</li>
+</ol>
 
 
                 <hr>
