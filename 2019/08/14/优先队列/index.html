@@ -99,6 +99,9 @@
                     
 
                         
+                    
+
+                        
                         <li>
                             <a href="/about/">About</a>
                         </li>
@@ -106,18 +109,15 @@
                     
 
                         
-                    
-
-                        
                         <li>
-                            <a href="/categories/">categories</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/categories/">categories</a>
                         </li>
                         
                     
@@ -216,7 +216,6 @@
 </blockquote>
 <p>​	每一个点都带一个数字，这个数字越小，优先级越高。例如有{A,1} {C,5} {D,3}的元素，由于C的优先级比D低，故D做一个插队操作，排在队列前面：</p>
 <p><img src="/2019/08/14/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/8.png"></p>
-<p>大顶堆<br><img src="/2019/08/14/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/9.png"></p>
 <h3><span id="二-类型">二. 类型</span></h3><h5><span id="1-基本类型">1、基本类型</span></h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//基础类型，默认是大根堆</span></span><br><span class="line">    priority_queue&lt;<span class="type">int</span>&gt; a;   <span class="comment">//等同  priority_queue&lt;int, vector&lt;int&gt;,less&lt;int&gt; &gt; a;</span></span><br><span class="line">    priority_queue&lt;<span class="type">int</span>,vector&lt;<span class="type">int</span>&gt;,greater&lt;<span class="type">int</span>&gt; &gt; c;  <span class="comment">//小根堆</span></span><br><span class="line">    priority_queue&lt;string&gt; b;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">5</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        a.<span class="built_in">push</span>(i);</span><br><span class="line">        c.<span class="built_in">push</span>(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(!a.<span class="built_in">empty</span>())</span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; a.<span class="built_in">top</span>() &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">        a.<span class="built_in">pop</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(!c.<span class="built_in">empty</span>())</span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt;c.<span class="built_in">top</span>() &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">        c.<span class="built_in">pop</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">    b.<span class="built_in">push</span>(<span class="string">&quot;abc&quot;</span>);</span><br><span class="line">    b.<span class="built_in">push</span>(<span class="string">&quot;abcd&quot;</span>);</span><br><span class="line">    b.<span class="built_in">push</span>(<span class="string">&quot;cbd&quot;</span>);</span><br><span class="line">    <span class="keyword">while</span>(!b.<span class="built_in">empty</span>())</span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt;b.<span class="built_in">top</span>()&lt;&lt;<span class="string">&#x27; &#x27;</span>;</span><br><span class="line">        b.<span class="built_in">pop</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">输出</span></span><br><span class="line"><span class="comment">4 3 2 1 0 </span></span><br><span class="line"><span class="comment">0 1 2 3 4 </span></span><br><span class="line"><span class="comment">cbd abcd abc </span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
 
 
@@ -248,7 +247,7 @@
 <p>​		6）由于E点比之前的优先级高，故E放队首，并出队。</p>
 <p><img src="/2019/08/14/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/6.png"></p>
 <p>​		7）队列只剩下F没有走，故最后出列。</p>
-<p>​<img src="/2019/08/14/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/7.png"></p>
+<p><img src="/2019/08/14/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/7.png"></p>
 
 
                 <hr>

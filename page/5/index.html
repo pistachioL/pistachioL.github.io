@@ -99,6 +99,9 @@
                     
 
                         
+                    
+
+                        
                         <li>
                             <a href="/about/">About</a>
                         </li>
@@ -106,18 +109,15 @@
                     
 
                         
-                    
-
-                        
                         <li>
-                            <a href="/categories/">categories</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/categories/">categories</a>
                         </li>
                         
                     
@@ -194,6 +194,53 @@
             
                 <!-- Main Content -->
 
+
+<div class="post-preview">
+
+    <a href="/2020/04/23/Get和Post的区别/">
+        <h2 class="post-title">
+            Get和Post的区别
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            使用上的区别
+GET通过URL或Cookie传参，而POST将数据放在BODY中（是HTTP的约定）
+GET方式提交的数据有长度限制，而POST的数据则可以非常大。HTTP协议对GET和POST长度没有限制，并且对HTTP头和Body都没有长度的要求。只是因为它们使用的操作系统和浏览器设置的不同引起的区别。
+POST比GET安全，因为数据在地址栏上不可见。通过GET提交数据，用户名和密码将明......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-04-23
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/04/23/MySQL的分库分表/">
+        <h2 class="post-title">
+            MySQL的分库分表
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            对于MySQL的性能优化，可能会想到索引优化。但是如果在数据量很大的情况（100w以上），而且写操作比较多的情况下，优化索引性能提升不明显。传统的分库分表是通过应用层逻辑实现的
+分库分表把单一的数据库拆分成若干的数据库，将原来数据大表分成若干数据表，使得单一数据库、单一数据表的数量变小（数据量也随着拆分而变少），从而解决数据库由于数据量过大而导致性能降低的问题。
+分库分表的方式1) 垂直分表......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-04-23
+    </p>
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -408,51 +455,6 @@
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2020/03/26/Prototype/">
-        <h2 class="post-title">
-            原型模式
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            深克隆实现深克隆有两种方式
-1.种是采用序列化的方式实现2.采用依次克隆各个可变的引用类型域 覆盖Object中的clone方法， 实现深拷贝...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-03-26
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/03/25/PHP面向对象/">
-        <h2 class="post-title">
-            PHP面向对象
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            构造方法只要类被实例化之后，构造方法会被执行，就是在对象执行方法之前。
-构造方法必须为public，否则无法被实例化
-12345678910111213&lt;?phpclass Number&#123;    public function __construct()&#123;        echo &quot;1输出&quot;;   		echo &quot;2输出&quot;; ......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-03-25
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -492,6 +494,10 @@
                     <div class="tags">
                         
                             
+                            <a href="/tags/#设计模式" title="设计模式" rel="4">设计模式</a>
+                            
+                        
+                            
                             <a href="/tags/#生活" title="生活" rel="2">生活</a>
                             
                         
@@ -500,23 +506,7 @@
                             
                         
                             
-                            <a href="/tags/#设计模式" title="设计模式" rel="4">设计模式</a>
-                            
-                        
-                            
                             <a href="/tags/#C++" title="C++" rel="2">C++</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#算法" title="算法" rel="12">算法</a>
-                            
-                        
-                            
-                            <a href="/tags/#Go学习" title="Go学习" rel="7">Go学习</a>
                             
                         
                             
@@ -524,13 +514,29 @@
                             
                         
                             
-                            <a href="/tags/#HTTP" title="HTTP" rel="2">HTTP</a>
+                        
+                            
+                            <a href="/tags/#算法" title="算法" rel="13">算法</a>
+                            
+                        
+                            
+                            <a href="/tags/#Go学习" title="Go学习" rel="7">Go学习</a>
+                            
+                        
+                            
+                        
                             
                         
                             
                             <a href="/tags/#字符串" title="字符串" rel="4">字符串</a>
                             
                         
+                            
+                            <a href="/tags/#Linux" title="Linux" rel="4">Linux</a>
+                            
+                        
+                            
+                            <a href="/tags/#HTTP" title="HTTP" rel="2">HTTP</a>
                             
                         
                             
@@ -542,11 +548,9 @@
                             
                         
                             
-                            <a href="/tags/#Linux" title="Linux" rel="4">Linux</a>
+                            <a href="/tags/#Nginx" title="Nginx" rel="2">Nginx</a>
                             
                         
-                            
-                            <a href="/tags/#Nginx" title="Nginx" rel="2">Nginx</a>
                             
                         
                             
@@ -554,13 +558,11 @@
                             
                         
                             
-                        
-                            
                             <a href="/tags/#Redis" title="Redis" rel="2">Redis</a>
                             
                         
                             
-                            <a href="/tags/#STL" title="STL" rel="8">STL</a>
+                            <a href="/tags/#STL" title="STL" rel="9">STL</a>
                             
                         
                             
@@ -570,9 +572,9 @@
                             
                         
                             
-                            <a href="/tags/#树" title="树" rel="2">树</a>
-                            
                         
+                            
+                            <a href="/tags/#树" title="树" rel="2">树</a>
                             
                         
                             
