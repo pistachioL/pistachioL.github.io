@@ -204,14 +204,15 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p>Redis除了可以保存在内存中，但是内存的数据容易丢失，因此有两种持久化策略：<code>快照</code>RDB（Redis Database）和<code>追加式文件</code>AOF机制（Append Only File）。 </p>
-<h3><span id="rdb机制默认">RDB机制（默认）</span></h3><p>把数据以快照的形式存储在磁盘上，在指定的<code>时间间隔</code>内将内存中的数据集以快照的形式写入磁盘，默认使用这种方式。</p>
+                <p>Redis除了可以保存在内存中，但是内存的数据容易丢失，因此有两种持久化策略：<code>快照</code>RDB（Redis Database Backup file）和<code>追加式文件</code>AOF机制（Append Only File）。 </p>
+<h3><span id="rdb机制默认">RDB机制（默认）</span></h3><h5><span id="定义">定义</span></h5><p>在指定的<code>时间间隔</code>内将内存中的数据集以快照文件的形式写入磁盘。当Redis实例故障重启后，从磁盘读取快照文件，恢复数据。默认使用这种方式。</p>
 <h5><span id="工作原理">工作原理</span></h5><ul>
 <li>Redis调用fork()，主进程产生一个子进程，子进程负责持久化工作，而主线程不会触及IO操作，而是去响应其它操作<ul>
 <li>调用fork()会阻塞，导致Redis读写性能下降。①可以控制Redis单个实例的最大内存，尽可能降低Redis在fork()时的事件消耗。</li>
+<li>fock()采用写时复制(copy on write)技术</li>
 </ul>
 </li>
-<li>子进程把数据写入临时RDB文件 dump.rdb写完新的RDB文件后，把旧的RDB文件替换掉 生成快照的方式</li>
+<li>子进程子进程读取内存中的数据，写入新的RDB文件dump.rdb。写完新的RDB文件后，替换掉旧的RDB文件。</li>
 </ul>
 <p><img src="/2020/07/30/Redis%E6%8C%81%E4%B9%85%E5%8C%96%E6%9C%BA%E5%88%B6/1.png"></p>
 <h5><span id="优点">优点</span></h5><ul>
@@ -220,7 +221,7 @@
 </ul>
 <p> </p>
 <h5><span id="缺点">缺点</span></h5><ul>
-<li><p>数据容易丢失。</p>
+<li><p>两次RDB执行时间较长，数据容易丢失。</p>
 </li>
 <li><p>没法做到永久持久化数据量大的时候会比较费时</p>
 </li>
