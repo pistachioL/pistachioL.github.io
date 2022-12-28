@@ -204,34 +204,40 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1><span id="git常用操作">git常用操作</span></h1><h3><span id="github上传laravel项目">github上传laravel项目</span></h3><p><code>git init</code></p>
-<p><code>git remote add origin git@github.com:pistachioL/xxx.git</code></p>
-<p><code>git add .</code></p>
-<p><code>git commit -m &quot;xxxx&quot;</code></p>
-<p><code>git push origin master -f</code></p>
-<p>删除远程关联</p>
-<p><code> git remote rm origin</code></p>
-<h3><span id="创建新分支">创建新分支</span></h3><p><code>git branch deepin</code>    新分支deepin</p>
-<p><code>git branch -a</code> 查看所有分支</p>
-<p><code>git checkout -b dev origin/dev  </code>  在本地创建一个分之dev，并且与上游的origin&#x2F;dev保持一致</p>
-<p><code>git checkout dev</code> 切换分支</p>
+                <h1><span id="git常用操作">git常用操作</span></h1><h3><span id="github上传laravel项目">github上传laravel项目</span></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line"></span><br><span class="line">git remote add origin git@github.com:pistachioL/xxx.git</span><br><span class="line"></span><br><span class="line">git add .</span><br><span class="line"></span><br><span class="line">git commit -m <span class="string">&quot;xxxx&quot;</span></span><br><span class="line"></span><br><span class="line">git push origin master -f</span><br></pre></td></tr></table></figure>
+
+
+
+<h3><span id="删除远程关联">删除远程关联</span></h3><p><code> git remote rm origin</code></p>
+<h3><span id="创建新分支">创建新分支</span></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git branch deepin    <span class="comment">#新分支deepin</span></span><br><span class="line"></span><br><span class="line">git branch -a  <span class="comment">#查看所有分支</span></span><br><span class="line"></span><br><span class="line">git checkout -b dev origin/dev   <span class="comment"># 在本地创建一个分之dev，并且与上游的origin/dev保持一致</span></span><br><span class="line"></span><br><span class="line">git checkout dev <span class="comment"># 切换分支</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
 <h3><span id="git全局的用户名和密码">git全局的用户名和密码</span></h3><p>保存密码到硬盘</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config credential.helper store</span><br></pre></td></tr></table></figure>
 
-<p><code>git config --global user.name &quot;用户名&quot;</code></p>
-<p><code>git config --global user.email &quot;邮箱&quot;</code></p>
-<h3><span id="git删除远程分支操作">git删除远程分支操作</span></h3><p><code>	git push origin --delete branch-name</code></p>
-<h3><span id="git-回滚">git 回滚</span></h3><ul>
-<li><p>回退到上个版本</p>
-<p><code>$ git reset --hard HEAD^</code></p>
-</li>
-<li><p>退到&#x2F;进到 指定commit_id</p>
-<p><code>$ git reset --hard commit_id</code>   </p>
-</li>
-<li><p>推送到远程</p>
-</li>
-</ul>
-<p>​       <code>$ git push origin HEAD --force</code></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config <span class="attr">--global</span> user<span class="selector-class">.name</span> <span class="string">&quot;用户名&quot;</span></span><br><span class="line"></span><br><span class="line">git config <span class="attr">--global</span> user<span class="selector-class">.email</span> <span class="string">&quot;邮箱&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3><span id="git删除远程分支操作">git删除远程分支操作</span></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin --delete branch-name</span><br></pre></td></tr></table></figure>
+
+
+
+<h3><span id="git-回滚">git 回滚</span></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 回退到上个版本</span></span><br><span class="line">$ git reset --hard HEAD^</span><br><span class="line"></span><br><span class="line"><span class="comment"># 退到/进到 指定commit_id</span></span><br><span class="line">$ git reset --hard commit_id</span><br><span class="line"></span><br><span class="line"><span class="comment"># 推送到远程</span></span><br><span class="line">$ git push origin HEAD --force</span><br></pre></td></tr></table></figure>
+
+<h3><span id="git查看配置信息">git查看配置信息</span></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global -l</span><br></pre></td></tr></table></figure>
+
+
+
+<h3><span id="设置代理-amp-取消设置">设置代理 &amp; 取消设置</span></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置代理</span></span><br><span class="line">git config --global http.proxy http://127.0.0.1:1080</span><br><span class="line"></span><br><span class="line">git config --global https.proxy http://127.0.0.1:1080</span><br><span class="line"></span><br><span class="line"><span class="comment"># 取消设置</span></span><br><span class="line">git config --global --<span class="built_in">unset</span> http.proxy </span><br><span class="line"></span><br><span class="line">git config --global --<span class="built_in">unset</span> https.proxy </span><br></pre></td></tr></table></figure>
+
 
 
                 <hr>
