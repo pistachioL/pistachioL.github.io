@@ -197,31 +197,6 @@
 
 <div class="post-preview">
 
-    <a href="/2020/03/30/约瑟夫环问题/">
-        <h2 class="post-title">
-            约瑟夫环问题
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            LeetCode
-
-0,1,,n-1这n个数字排成一个圆圈，从数字0开始，每次从这个圆圈里删除第m个数字。求出这个圆圈里剩下的最后一个数字。
-
-1234567int lastRemaining(int n, int m) &#123;       int ans = 0;       for(int i = 2; i &lt;= n; i++)&#123;           ans = (......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-03-30
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
     <a href="/2020/03/26/Prototype/">
         <h2 class="post-title">
             原型模式
@@ -448,6 +423,34 @@ BFS方式实现（队列）
 </div>
 <hr>
 
+<div class="post-preview">
+
+    <a href="/2020/03/19/Palindrome/">
+        <h2 class="post-title">
+            回文串
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            LeetCode 最长回文串
+
+在给定包含大小写的字符串中，找出这些字母构成的最长回文串，构造时注意区分大小写
+
+这道题目不同在于可以通过构造找出最长回文串，于是可以通过找规律求得。
+首先把每个字母出现的个数统计出来，放进vector中（方便处理）。
+查看vector中每个字母出现的次数，如果字母出现的个数时偶数，一定可以构成回文串，则可以把这些个数直接加起来；
+如果字母出现的个数是奇数，则......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-03-19
+    </p>
+
+</div>
+<hr>
+
 
 
 <!-- Pager -->
@@ -487,7 +490,7 @@ BFS方式实现（队列）
                     <div class="tags">
                         
                             
-                            <a href="/tags/#数据结构" title="数据结构" rel="16">数据结构</a>
+                            <a href="/tags/#数据结构" title="数据结构" rel="17">数据结构</a>
                             
                         
                             

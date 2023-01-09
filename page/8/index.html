@@ -197,32 +197,6 @@
 
 <div class="post-preview">
 
-    <a href="/2020/02/19/KMP/">
-        <h2 class="post-title">
-            KMP
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            1.求前缀表next[]为什么要求前缀表？
-如果用暴力的双指针，在失配的时候又从模式串的开头重新匹配，增加了回溯的次数，效率低，复杂度为O(m*n)。
-前面已经匹配上的不用再搜索，通过next[]数组，在失去匹配的地方找到该元素的前后缀个数n，移动到模式串的下标n。复杂度时O(m+n)。
-通俗来说，next数组存放每个元素之前的字符串，最长公共前后缀的个数。
-
-如何求next[]呢？Text......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-02-19
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
     <a href="/2020/02/18/hello-world/">
         <h2 class="post-title">
             今天博客又搬回hexo啦～
@@ -455,6 +429,35 @@ Qu......
 </div>
 <hr>
 
+<div class="post-preview">
+
+    <a href="/2019/11/29/栈/">
+        <h2 class="post-title">
+            栈
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            栈的基本操作:
+stack  s;
+s.push(item)  &#x2F;&#x2F;入栈
+s.top() 返回栈顶元素
+s.pop()删除栈顶元素
+s.size() &#x2F;&#x2F;返回栈中元素个数
+s.empty()检查栈是否为空，为空返回true，否则返回false
+新生赛题目
+输入一个字符串，通过处理能使字符串中两个相邻且相同的字符互相消除，得到新的字符串，然后继续对新字符......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-11-29
+    </p>
+
+</div>
+<hr>
+
 
 
 <!-- Pager -->
@@ -494,7 +497,7 @@ Qu......
                     <div class="tags">
                         
                             
-                            <a href="/tags/#数据结构" title="数据结构" rel="16">数据结构</a>
+                            <a href="/tags/#数据结构" title="数据结构" rel="17">数据结构</a>
                             
                         
                             
