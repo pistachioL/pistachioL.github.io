@@ -197,6 +197,61 @@
 
 <div class="post-preview">
 
+    <a href="/2020/05/14/Linux权限/">
+        <h2 class="post-title">
+            Linux权限
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            Linux权限
+ Linux下权限的粒度有：拥有者、群组、其他组。每个文件都可以针对三个粒度，设置不同的rwx(读写执行)权限
+
+文件权限chmod数字权限的使用用于改变文件权限
+u-g-o 用户(所有者)-组内-其他用户(组外)
+4 2 1分别表示读，写，执行，文件权限的组合由它们组合表示
+文件拥有者权限chown将文件拥有者改为指定的用户或组
+https://blog.csdn.net/......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-05-14
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/05/14/MySQL锁/">
+        <h2 class="post-title">
+            MySQL锁
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            隔离性的底层实现其中事务的隔离性底层实现的原理是锁
+锁的分类按照数据操作的类型划分
+读锁（共享锁）：同一份数据，多个读操作可以同时进行，互不影响
+写锁（排它锁）：当前写操作还没完成，会阻断其他写锁和读锁
+
+
+session1 加了读锁，当前session1不能读其他未加锁的表，而且不能插入或更新锁定的表。session2可以读或操作未加锁的表，但如果对加读锁的表进行操作，会一直等待获得锁（阻......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-05-14
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2020/05/13/MySQL索引/">
         <h2 class="post-title">
             MySQL索引
@@ -413,54 +468,6 @@ A是原数组，C是新开辟的数组，C[i]的意思是求前**lowbit(i)**个�
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2020/04/24/Nginx和Php-fpm的运行原理/">
-        <h2 class="post-title">
-            Nginx解析PHP的原理
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            Nginx是一个高性能的服务器，能处理HTTP请求，并能做反向代理。
-Nginx本身不会对PHP进行解析，而是通过进程管理器php-fpm对其进行解析。
-Nginx通过反向代理的功能将动态请求转向php-fpm。
-CgiCgi是Common Gateway Interface的缩写。过去服务器只能处理静态语言，无法对动态语言（PHP）进行处理。Cgi协议是用于解决语言解释器（PHP、Pyth......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-04-24
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/04/24/序列和/">
-        <h2 class="post-title">
-            序列和
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-给出一个正整数N和长度L，找出一段长度大于等于L的连续非负整数，他们的和恰好为N。答案可能有多个，我我们需要找出长度最小的那个。 例如 N &#x3D; 18 L &#x3D; 2： 5 + 6 + 7 &#x3D; 18 3 + 4 + 5 + 6 &#x3D; 18 都是满足要求的，但是我们输出更短的 5 6 7
-
-Sn &#x3D; (a1 + an) * n &#x2F; 2 &#......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-04-24
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -518,9 +525,11 @@ Sn &#x3D; (a1 + an) * n &#x2F; 2 &#......
                             
                         
                             
-                            <a href="/tags/#算法" title="算法" rel="13">算法</a>
+                            <a href="/tags/#算法" title="算法" rel="14">算法</a>
                             
                         
+                            
+                            <a href="/tags/#动态规划" title="动态规划" rel="2">动态规划</a>
                             
                         
                             
