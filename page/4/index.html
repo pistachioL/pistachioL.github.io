@@ -197,6 +197,58 @@
 
 <div class="post-preview">
 
+    <a href="/2020/05/16/B树/">
+        <h2 class="post-title">
+            B树
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            B-Tree（B树）B树属于多叉树又名平衡多路查找树（查找路径不只两个），数据库索引技术里大量使用者B树和B+树的数据结构
+
+如果数据库索引用红黑树的话，会导致读取磁盘次数过多，并且读取出来的数据也会浪费很多。例如一个结点能存一页，一页有16K数据
+由于 B+ 树分支比二叉树更多，所以相同数量的内容，B+ 树的深度更浅，深度代表什么？代表磁盘 io 次数
+
+m阶B树有如下特点（阶表示一个节点......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-05-16
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/05/16/哈希表/">
+        <h2 class="post-title">
+            哈希表
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            一、简介哈希表在待查关键字和它的存储位置之间，通过哈希函数，建立一个确定的对应关系。从而不必在关键字值之间的比较。
+
+由图可以得出存储地址和关键字值的对应关系是：存储地址 &#x3D; 关键字值 - 32001，这个就是哈希函数。
+但是，并不能保证每次都能构造出理想的哈希函数，因此要构建哈希表。哈希表中的存储地址就是哈希地址。
+
+根据设定的哈希函数和处理冲突的方法，将查找表中各元素存储在一段......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-05-16
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2020/05/14/Linux权限/">
         <h2 class="post-title">
             Linux权限
@@ -419,55 +471,6 @@ A是原数组，C是新开辟的数组，C[i]的意思是求前**lowbit(i)**个�
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2020/04/26/合并k个链表/">
-        <h2 class="post-title">
-            合并k个链表
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            在之前的文章中分析过合并两个有序的链表，今天遇到一道题就是合并多个链表，则有分治法和优先队列的解法。
-分治法
-分治法的思想是，把一个复杂问题分解成两个或者更多相同或相似的子问题，再把子问题分成更小的子问题，直到最后的子问题可以简单地直接求解，最后把子问题的解合并，就得到原问题的解啦。（昨天百度一面的时候问过这个问题）
-
-[  1-&gt;4-&gt;5,  1-&gt;3-&gt;4,  2......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-04-26
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/04/24/PHP垃圾回收机制/">
-        <h2 class="post-title">
-            PHP垃圾回收机制
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            PHP5.3以前 引用计数机制PHP5.3之前使用过内存回收算法Reference Counting 引用计数。
-其思想是，为内存对象分配一个计数器，当内存对象建立时计数器初始化为1。（如$a = &quot;hello world&quot;）
-以后每一个新变量引用该变量，(如赋值$a = $b)，计数器加1；当减少引用次内存对象(unset($a))，计数器减1。
-把一个变量赋值给另一变......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-04-24
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -525,7 +528,7 @@ A是原数组，C是新开辟的数组，C[i]的意思是求前**lowbit(i)**个�
                             
                         
                             
-                            <a href="/tags/#算法" title="算法" rel="14">算法</a>
+                            <a href="/tags/#算法" title="算法" rel="15">算法</a>
                             
                         
                             
@@ -549,7 +552,7 @@ A是原数组，C是新开辟的数组，C[i]的意思是求前**lowbit(i)**个�
                             
                         
                             
-                            <a href="/tags/#字符串" title="字符串" rel="4">字符串</a>
+                            <a href="/tags/#字符串" title="字符串" rel="5">字符串</a>
                             
                         
                             
