@@ -197,6 +197,57 @@
 
 <div class="post-preview">
 
+    <a href="/2020/01/31/安装deepin后要做的事情/">
+        <h2 class="post-title">
+            安装deepin后要做的事情
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            1. 换源1vim /etc/apt/sources.list
+
+
+2. 命令行主题配置下载oh-my-zsh
+通过curl
+1sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;
+
+通过wget
+1sh -c &quot;$(wget......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-01-31
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/12/11/LinuxShell命令模拟器/">
+        <h2 class="post-title">
+            LinuxShell命令模拟器
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            LinuxShell命令模拟器一.原理分析0.终端执行步骤​	1）读取用户从键盘输入的命令，终端会分析是否是内部命令。如果是，则把命令分解为系统调用，并传给linux内核。如果不是，若不是再检查是否是一个应用程序，模拟shell的命令解析器正是这样。上述两种情况也不是的话，则报出错误信息。
+​	2）分析命令，以命令名为文件名，将其他参数改造为系统调用execve()内核级系统调用所要求的形式......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-12-11
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2019/12/11/PTA/">
         <h2 class="post-title">
             PTA技巧
@@ -232,15 +283,10 @@
             
         </h3>
         <div class="post-content-preview">
-            PTA 
-这道题要对分数进行处理，分子相加起来可能会爆long long，因此要把输进来的分子与分母进行约分（通过gcd找出最大公约数），然后通过lcm找出最小公倍数进行通分，最后把分子相加后，再与分母约分。
-有几个点要进行判断的：
+            1、用于求斜率
+points &#x3D; [[1,1],[2,2],[3,3]]
 
-判断思路是，可以把求出来的数分为分数，整数和0。分数可以分真分数和假分数。
-
-真分数：题目要求分子小于分母，在这个情况下则能直接输出。
-
-假分数：如果分子大于......
+123456789101112131415int gcd(int a, int b) &#123;        return b == 0 ? a : gcd(b, a % b);&#125;void maxPoints(vector&lt;vector&lt;int&gt;&gt;&amp; point......
         </div>
     </a>
     <p class="post-meta">
@@ -417,57 +463,6 @@ Cookie-Session认证机制
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2019/10/12/WaitNotify通知机制/">
-        <h2 class="post-title">
-            Wait&Notify的通知机制
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            Wait&amp;Notify的通知机制
-​		wait表示线程的等待，调用该方法会导致线程阻塞，直至另一线程调用notify或notifyAll方法才可另其继续执行。经典的生产者、消费者模式即是使用wait&#x2F;notify机制得以完成。
-
-
-1.当线程A（消费者）调用wait()时，A会把锁释放出来，使自己进入等待状态，同时加入“锁对象”的等待队列。
-2.线程B获取锁后，调用not......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-10-12
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/10/12/中国剩余定理/">
-        <h2 class="post-title">
-            中国剩余定理
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            1.定义中国剩余定理 (Chinese Remainder Theorem, CRT) 可求解如下形式的一元线性同余方程组（其中  两两互质）：
-
-物不知数问题：一个整数除以3余2、除以5余3、除以7余2，求这个整数。
-定理1：两个数相加，如果存在一个加数，不能被整数a整除，那么它们的和，就不能被整数a整除。
-定理2：两数不能整除，若除数扩大（或缩小）了几倍，而被除数不变，则其商和余数也同时......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-10-12
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -511,7 +506,7 @@ Cookie-Session认证机制
                             
                         
                             
-                            <a href="/tags/#设计模式" title="设计模式" rel="4">设计模式</a>
+                            <a href="/tags/#设计模式" title="设计模式" rel="6">设计模式</a>
                             
                         
                             

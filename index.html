@@ -197,6 +197,59 @@
 
 <div class="post-preview">
 
+    <a href="/2023/01/12/Observer Pattern/">
+        <h2 class="post-title">
+            行为型--观察者模式
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            一、定义定义对象间的一种一对多（变化）的依赖关系，以便当一个对象的状态发生改变时，所有依赖它的对象都得到通知并自动更新。
+二、结构
+
+使用面向对象的抽象，Observer模式使得我们可以独立地改变目标与观察者（通过add&#x2F;remove），从而使二者之间的依赖关系达致松耦合。 
+目标发送通知时，无需指定观察者，通知会自动传播。
+观察者自己决定是否需要订阅通知，目标对象对此一无所知。
+......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2023-01-12
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2023/01/12/Strategy Pattern/">
+        <h2 class="post-title">
+            行为型--策略模式
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            一、定义策略模式定义了一系列算法，把它们一个个封装起来，并且可以使它们可相互替换（变化）。该模式使得算法可独立于使用它的客户端程序（稳定）而变化。
+二、结构
+
+Strategy及其子类为组件提供了一系列可重用的算法，从而可以使得类型在运行时方便地根据需求在各个算法之间进行切换。
+
+Strategy模式提供了用条件判断语句(if&#x2F;else)以外的另一种选择，消除条件判断语句，就是在解......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2023-01-12
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2023/01/11/Longest Palindrome Substring/">
         <h2 class="post-title">
             最长回文子串
@@ -400,57 +453,6 @@
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2022/06/22/Map/">
-        <h2 class="post-title">
-            go Map
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            一、定义1a := map[string]string&#123;&#125;
-
-map类型的变量本质上是一个指针，指向hmap结构体
-/runtime/map.go
-12345678910111213141516type hmap struct &#123;	// Note: the format of the hmap is also encoded in cmd/compile/int......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2022-06-22
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2022/06/22/Sync包/">
-        <h2 class="post-title">
-            Sync包
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            sync包提供线程同步原语的方法
-一、WaitGroup1.1 Go语言标准库提供了WaitGroup原语，可以用来等待一批Goroutine结束，或者说让主协程等待子协程结束再操作。
-1.2 使用例子
-主协程是main，如果不加WaitGroup，则运行完就会先退出，没法打印字符串。
-加上WaitGroup，让主协程等待5个子协程都执行完毕后，主协程再继续执行
-12345678910111......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2022-06-22
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -490,7 +492,7 @@ map类型的变量本质上是一个指针，指向hmap结构体
                             
                         
                             
-                            <a href="/tags/#设计模式" title="设计模式" rel="4">设计模式</a>
+                            <a href="/tags/#设计模式" title="设计模式" rel="6">设计模式</a>
                             
                         
                             
