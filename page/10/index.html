@@ -197,6 +197,121 @@
 
 <div class="post-preview">
 
+    <a href="/2019/11/27/字符串/">
+        <h2 class="post-title">
+            字符串
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            hdu 1238
+找出字符串中，连续子串（逆子串）相等的长度
+简单字符串处理
+首先要读懂题意，题目给出一串手机号，按格式从大到小输出手机号中含有的数字，存入arr数组，再输出每个手机号的数字在arr数组中的下标。
+处理的几个巧妙之处：
+
+首先把vis数组初始化为1（默认手机号的每个数字都已经访问过），然后通过循环查询，出现手机号码中的数字则记录，没有出现则通过判断语句筛掉了，实现找出没有重复......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-11-27
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/11/22/深夜奇想/">
+        <h2 class="post-title">
+            Hello 2020,Bye 2019!
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+“Yeah It’s on. ”
+
+前言其实大一的时候就想用博客来总结技术经验，记录生活点滴。但囿于在学习其他东西搁了很久。在今年暑假，开始学习算法，想通过一个平台来自己学习和分析的过程，便正式使用博客啦～
+
+---
+
+大一的我（懵懂、进取的小萌新）​		刚刚进入大学，便认识到一个非常好玩而且十分特别的互联网组织——星空学生创新中心，一个以互联网为主的校级组织。当时二话不说赶紧拿了报名表就......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Pistachio on
+        2019-11-22
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/11/05/Docker/">
+        <h2 class="post-title">
+            docker
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            基本操作启动
+docker start   
+查看
+sudo docker images ls  sudo docker ps -a 
+先停止后删除
+sudo docker stop 容器id
+删除 
+sudo docker rm 容器id 
+Mysql
+创建
+sudo docker run --name mysql -e MYSQL_ROOT_PASSWORD=11 -d -p 3306:......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-11-05
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/10/12/JWT/">
+        <h2 class="post-title">
+            JWT
+        </h2>
+        <h3 class="post-subtitle">
+            基于Token的身份认证
+        </h3>
+        <div class="post-content-preview">
+            JWT是什么
+JWT本质是Token，用于验证身份的凭证。这个凭证能允许我们使用JWT在用户和服务器之间传递安全可靠的信息。
+
+是经过base64编码字符串。
+
+
+Cookie-Session认证机制
+​    客户端（用户）通过用户名和密码进行身份认证，但是下回发请求的时候又得验证以下。
+​    解决的办法是，用户成功登录之后，会在服务器端产生一条记录（Session），说明这用户是谁，......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-10-12
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2019/10/12/WaitNotify通知机制/">
         <h2 class="post-title">
             Wait&Notify的通知机制
@@ -351,112 +466,6 @@ http://www.rkpass.cn/tk_jiexi.jsp?product_id=201905281544305456038&amp;tixing=xu
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2019/09/22/python爬虫学习笔记/">
-        <h2 class="post-title">
-            python爬虫学习笔记
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            安装requests库pip install requests
-12345import requestsr = requests.get(&quot;https://www.baidu.com&quot;)r.status_code   #返回状态码r.encoding(&quot;utf-8&quot;)r.text  #打印出首页内容
-
-
-
-
-百度360关键词提交12345678910i......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-09-22
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/09/13/线段树/">
-        <h2 class="post-title">
-            线段树
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            1.定义
-线段树（segment tree） 是用来存放给定区间内对应信息的一种数据结构。线段树是二叉树，一个区间每次被折半往下分，所以往下查找，（二叉树的二分查找）最多lon2n次就能查找到。
-
-有两种操作：
-​	1）求某段区间的和
-​	2）修改某个区间的值
-2.过程1）建立二叉树
-​	
-2）剪枝部分  e.g.求区间[2,5]的和
-
-可以直接返回 return0，即不用对其以下的结点进行......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-09-13
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/09/12/linux常用命令-/">
-        <h2 class="post-title">
-            linux常用命令
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            SCP上传下载1.从服务器拉取文件夹到本地scp -r root@xx.xxx.x.xx:文件所在路径 /home/Document
-2.从本地上传文件到服务器scp -r /home/Document root@xx.xxx.x.xx:/home/default
-3.rsync文件压缩tar -xvf file.tar
-tar -xzvf  file.tar.gz 
-tar -xjvf f......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-09-12
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/09/03/欧拉降幂公式/">
-        <h2 class="post-title">
-            欧拉函数
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            1. 欧拉函数​	对正整数n，欧拉函数是小于n的正整数中与n互质的数的数目。例如φ(8)&#x3D;4，因为1,3,5,7均和8互质。
-对φ(N)的值,我们可以通俗地理解为小于N且与N互质的数的个数(包含1) 
-欧拉函数公式$$φ(x) &#x3D; x \times (1-\frac{1}{p_1}) \times (1-\frac{1}{p_2}) \times …..\times (1......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-09-03
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -500,7 +509,7 @@ tar -xjvf f......
                             
                         
                             
-                            <a href="/tags/#设计模式" title="设计模式" rel="6">设计模式</a>
+                            <a href="/tags/#设计模式" title="设计模式" rel="9">设计模式</a>
                             
                         
                             
@@ -514,7 +523,7 @@ tar -xjvf f......
                             
                         
                             
-                            <a href="/tags/#算法" title="算法" rel="15">算法</a>
+                            <a href="/tags/#算法" title="算法" rel="16">算法</a>
                             
                         
                             

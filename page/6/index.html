@@ -197,6 +197,104 @@
 
 <div class="post-preview">
 
+    <a href="/2020/04/23/Get和Post的区别/">
+        <h2 class="post-title">
+            Get和Post的区别
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            使用上的区别
+GET通过URL或Cookie传参，而POST将数据放在BODY中（是HTTP的约定）
+GET方式提交的数据有长度限制，而POST的数据则可以非常大。HTTP协议对GET和POST长度没有限制，并且对HTTP头和Body都没有长度的要求。只是因为它们使用的操作系统和浏览器设置的不同引起的区别。
+POST比GET安全，因为数据在地址栏上不可见。通过GET提交数据，用户名和密码将明......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-04-23
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/04/23/MySQL的分库分表/">
+        <h2 class="post-title">
+            MySQL的分库分表
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            对于MySQL的性能优化，可能会想到索引优化。但是如果在数据量很大的情况（100w以上），而且写操作比较多的情况下，优化索引性能提升不明显。传统的分库分表是通过应用层逻辑实现的
+分库分表把单一的数据库拆分成若干的数据库，将原来数据大表分成若干数据表，使得单一数据库、单一数据表的数量变小（数据量也随着拆分而变少），从而解决数据库由于数据量过大而导致性能降低的问题。
+分库分表的方式1) 垂直分表......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-04-23
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/04/22/红黑树/">
+        <h2 class="post-title">
+            红黑树
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            红黑树（Red Black Tree）是对二叉搜索树的改进，解决二叉搜索树多次插入新节点导致的不平衡问题。对于搜索、插入和删除较多操作的情况下，通常使用红黑树。
+红黑树的底层结构是二叉查找树。
+其产生过程：链表-&gt;二叉树-&gt;二叉查找树-&gt;自平衡的二叉查找树
+
+特性以下特性保证了红黑树的平衡特性，确保没有一条路径比其它路径长出两倍
+
+是自平衡的二叉查找树
+结点是红色或黑色
+根......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-04-22
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/04/21/Redis基础知识/">
+        <h2 class="post-title">
+            Redis基础知识
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            一、简介Redis是一种高性能的NoSQL(not only sql)非关系型数据库，key-value存储。key可以是任意类型，redis底层会转换为string。而value可以是五种的基本类型。
+二、启动、状态、结束123systemctl start redis-serversystemctl status redis-serversystemctl stop redis-serv......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-04-21
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2020/04/18/操作系统的内存管理/">
         <h2 class="post-title">
             操作系统的内存管理
@@ -229,7 +327,7 @@
 
     <a href="/2020/04/14/decoratorPattern/">
         <h2 class="post-title">
-            装饰者模式
+            【结构型】装饰者模式
         </h2>
         <h3 class="post-subtitle">
             
@@ -356,100 +454,6 @@
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2020/03/26/Prototype/">
-        <h2 class="post-title">
-            原型模式
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            深克隆实现深克隆有两种方式
-1.种是采用序列化的方式实现2.采用依次克隆各个可变的引用类型域 覆盖Object中的clone方法， 实现深拷贝...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-03-26
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/03/25/PHP面向对象/">
-        <h2 class="post-title">
-            PHP面向对象
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            构造方法只要类被实例化之后，构造方法会被执行，就是在对象执行方法之前。
-构造方法必须为public，否则无法被实例化
-12345678910111213&lt;?phpclass Number&#123;    public function __construct()&#123;        echo &quot;1输出&quot;;   		echo &quot;2输出&quot;; ......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-03-25
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/03/24/单调栈/">
-        <h2 class="post-title">
-            单调栈
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            单调栈简介单调栈分为单调递增栈和单调递减栈，顾名思义就是栈内元素大小保持递增或递减。
-操作规则（以单调递增栈为例）如果新进来的元素比栈顶元素大，则进栈
-如果新进的元素比栈顶元素小，就把栈内元素出栈，直到找到第一个比新进元素要小的元素为止。
-代码模板123456789int MonotoneStack(vector&lt;int&gt;&amp; height)&#123;    stack&......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-03-24
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/03/24/DP/">
-        <h2 class="post-title">
-            动态规划
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            动态规划用于解决重叠子问题(overlap sub-problem)，已经计算过的不再重复计算，而是从内存中重新调出来使用。
-LeetCode　按摩师（同打家劫舍系列）
-
-给定预约时长，找到最优的预约集合(时长最长)，且不能接收相邻的预约
-输入： [2,1,4,5,3,1,1,3]输出： 12解释： 选择 1 号预约、 3 号预约、 5 号预约和 8 号预约，总时长 &#x3D; 2 + 4......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-03-24
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -493,7 +497,7 @@ LeetCode　按摩师（同打家劫舍系列）
                             
                         
                             
-                            <a href="/tags/#设计模式" title="设计模式" rel="6">设计模式</a>
+                            <a href="/tags/#设计模式" title="设计模式" rel="9">设计模式</a>
                             
                         
                             
@@ -507,7 +511,7 @@ LeetCode　按摩师（同打家劫舍系列）
                             
                         
                             
-                            <a href="/tags/#算法" title="算法" rel="15">算法</a>
+                            <a href="/tags/#算法" title="算法" rel="16">算法</a>
                             
                         
                             
