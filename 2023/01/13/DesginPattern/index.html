@@ -224,14 +224,19 @@
 <p>通过“对象创建”模式绕开new，来避免对象创建过程中所导致的紧耦合（依赖具体类，new通常会带来细节依赖，违背依赖倒转原则）</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ISpliter fp = <span class="keyword">new</span> <span class="built_in">PicturSpliter</span>(); <span class="comment">// PicturSpliter就是具体类</span></span><br></pre></td></tr></table></figure>
 
-
-
-<p>3、典型模式：</p>
+<p>典型模式：</p>
 <ul>
 <li>Factory Method</li>
 <li>Abstract Factory</li>
 <li>Prototype</li>
 <li>Builder</li>
+</ul>
+<p>3、对象性能模式</p>
+<p>面向对象很好地解决了“抽象”的问题，但是不可避免地要付出一定的代价。对于通常情况，面向对象的成本大都可以忽略不计，但某些情况，面向对象所带来的成本问题必须谨慎处理。</p>
+<p>典型模式：</p>
+<ul>
+<li>Singleton</li>
+<li>Flyweight</li>
 </ul>
 
 
