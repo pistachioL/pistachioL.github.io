@@ -211,7 +211,7 @@
 
 
 
-<h5><span id="例子一-c的stl中deque是queue和stack的适配器">例子一、c++的stl中，deque是queue和stack的适配器。</span></h5><h5><span id="例子二有一个220v电压需要适配器转成5v电压才能给手机充电">例子二：有一个220v电压，需要适配器转成5V电压才能给手机充电。</span></h5><h5><span id="类适配器">类适配器</span></h5><p><img src="/2020/04/02/AdapterPattern/1.png"></p>
+<h5><span id="例子一-c的stl中deque是queue和stack的适配器">例子一、c++的stl中，deque是queue和stack的适配器。</span></h5><h5><span id="例子二有一个220v电压需要适配器转成5v电压才能给手机充电">例子二：有一个220v电压，需要适配器转成5V电压才能给手机充电。</span></h5><h5><span id="类适配器不推荐使用">类适配器(不推荐使用)</span></h5><p><img src="/2020/04/02/AdapterPattern/1.png"></p>
 <p>被适配器类:Voltage220V 适配类:Voltage5V </p>
 <p>通过适配器类VoltageAdapter继承Voltage220V（拿到220V电压），并且实现了Voltage5V的接口（并转乘5V）</p>
 <p>手机类依赖Voltage5V，实质上是依赖VoltageAdapter</p>
