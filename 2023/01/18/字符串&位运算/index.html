@@ -13,11 +13,11 @@
 
     <title>
         
-          【结构型】享元模式 - Pistachio的楼阁 | Pistachio&#39;s Blog
+          字符串和位运算的应用 - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2023/01/17/Flyweight/">
+    <link rel="canonical" href="https://pistachiol.github.io/2023/01/18/字符串&amp;位运算/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -178,14 +178,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#设计模式" title="设计模式">设计模式</a>
+                          <a class="tag" href="/tags/#字符串" title="字符串">字符串</a>
                         
                     </div>
-                    <h1>【结构型】享元模式</h1>
+                    <h1>字符串和位运算的应用</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
-                        2023-01-17
+                        2023-01-18
                     </span>
                 </div>
             </div>
@@ -204,23 +204,40 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3><span id="一-定义">一、定义</span></h3><p>运用<strong>共享</strong>技术有效地支持 <strong>大量细粒度对象</strong> （如字符串、线程池）。</p>
-<p>模式动机：软件系统采用纯粹对象方案的问题在于，大量细粒度对象会很快充斥在系统，从而带来很高的运行代价。（主要指内存需求方面的代价）</p>
-<h3><span id="二-结构">二、结构</span></h3><img src="/2023/01/17/Flyweight/1.png" width="700px">
+                <p>判断字符串是否由相同字符组成，可以结合位运算来计算，提升效率。</p>
+<h3><span id="一-原理">一、原理</span></h3><p>1、对字符串每个单词进行位运算</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// word1 = &quot;abdeg&quot; </span></span><br><span class="line">  <span class="type">int</span> bitmask1 = <span class="number">0</span>; bitmask = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="type">char</span> c : word1) &#123;</span><br><span class="line">    mask1 |= <span class="number">1</span> &lt;&lt; (c - <span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 
-<p>基本思想（共享）：</p>
-<p>在共享池中查找对象是否创建过，如果对象创建过，则直接返回对象；否则先创建对象，把该对象放到共享池中。不过有些对象不支持恭共享。</p>
-<h3><span id="三-使用场景">三、使用场景</span></h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Font</span> &#123; </span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="comment">// unique object key;</span></span><br><span class="line">    string key;</span><br><span class="line">   <span class="comment">// object status;</span></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">    </span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Font</span>(<span class="type">const</span> string&amp; key) &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">class</span> <span class="title">FontFactory</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    map&lt;string, Font* &gt; fontPool;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">Font* <span class="title">GetFont</span><span class="params">(<span class="type">const</span> string&amp; key)</span> </span>&#123;</span><br><span class="line">      <span class="comment">// 一般存储在共享池的对象状态不会改变，因此是只读状态。</span></span><br><span class="line">        map&lt;string, Font*&gt;::iterator item = fontPool.<span class="built_in">find</span>(key); </span><br><span class="line">        <span class="keyword">if</span>(item != fontPool.<span class="built_in">end</span>()) &#123; <span class="comment">// 字体池中存在</span></span><br><span class="line">            <span class="keyword">return</span> fontPool[key];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123; <span class="comment">// 不存在则创建</span></span><br><span class="line">            Font* font = <span class="keyword">new</span> <span class="built_in">Font</span>(key);</span><br><span class="line">            fontPool[key] = font;</span><br><span class="line">            <span class="keyword">return</span> font;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<img src="/2023/01/18/%E5%AD%97%E7%AC%A6%E4%B8%B2&%E4%BD%8D%E8%BF%90%E7%AE%97/1.png" width="700px">
 
-
-
+<p>2、根据各自 | 运算得出来的结果，进行 &amp; 运算，若结果不是0的，即是有相同字符的字符串。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">hasSameChar</span><span class="params">(string word1, string word2)</span> </span>&#123;</span><br><span class="line">  <span class="type">int</span> bitmask1 = <span class="number">0</span>; bitmask = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="type">char</span> c : word1) &#123;</span><br><span class="line">    mask1 |= <span class="number">1</span> &lt;&lt; (c - <span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">   <span class="keyword">for</span>(<span class="type">char</span> c : word2) &#123;</span><br><span class="line">    mask2 |= <span class="number">1</span> &lt;&lt; (c - <span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> (mask1 &amp; mask2) != <span class="number">0</span>;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
 
 
-<h3><span id="四-总结">四、总结</span></h3><ul>
-<li>面向对象很好地解决了抽象性的问题，但作为运行在机器中的程序实体，我们要考虑对象的代价问题。Flyweight主要解决对象的代价问题，一般步涉及面向对象的抽象问题。</li>
-<li>Flyweight采用对象共享的做法来降低系统中对象的个数（对象的大小需要合理评估），从而降低细粒度对象给系统带来的内存压力。在具体实现上，要注意对象的状态（只读）。</li>
-<li>对象的数量太大从而导致对象内存开销加大——此处的数量要实际应用情况评估，而不能凭空臆断。</li>
+
+<h3><span id="二-例题">二、例题</span></h3><h5><span id="lc周赛2506-统计相似字符串对的数目">LC周赛2506. 统计相似字符串对的数目</span></h5><blockquote>
+<p>给你一个下标从 <strong>0</strong> 开始的字符串数组 <code>words</code> 。</p>
+<p>如果两个字符串由相同的字符组成，则认为这两个字符串 <strong>相似</strong> 。</p>
+<ul>
+<li>例如，<code>&quot;abca&quot;</code> 和 <code>&quot;cba&quot;</code> 相似，因为它们都由字符 <code>&#39;a&#39;</code>、<code>&#39;b&#39;</code>、<code>&#39;c&#39;</code> 组成。</li>
+<li>然而，<code>&quot;abacba&quot;</code> 和 <code>&quot;bcfd&quot;</code> 不相似，因为它们不是相同字符组成的。</li>
 </ul>
+<p>请你找出满足字符串 <code>words[i]</code> 和 <code>words[j]</code> 相似的下标对 <code>(i, j)</code> ，并返回下标对的数目，其中 <code>0 &lt;= i &lt; j &lt;= word.length - 1</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：words = <span class="selector-attr">[<span class="string">&quot;aba&quot;</span>,<span class="string">&quot;aabb&quot;</span>,<span class="string">&quot;abcd&quot;</span>,<span class="string">&quot;bac&quot;</span>,<span class="string">&quot;aabc&quot;</span>]</span></span><br><span class="line">输出：<span class="number">2</span></span><br><span class="line">解释：共有 <span class="number">2</span> 对满足条件：</span><br><span class="line">- <span class="selector-tag">i</span> = <span class="number">0</span> 且 j = <span class="number">1</span> ：words<span class="selector-attr">[0]</span> 和 words<span class="selector-attr">[1]</span> 只由字符 <span class="string">&#x27;a&#x27;</span> 和 <span class="string">&#x27;b&#x27;</span> 组成。 </span><br><span class="line">- <span class="selector-tag">i</span> = <span class="number">3</span> 且 j = <span class="number">4</span> ：words<span class="selector-attr">[3]</span> 和 words<span class="selector-attr">[4]</span> 只由字符 <span class="string">&#x27;a&#x27;</span>、<span class="string">&#x27;b&#x27;</span> 和 <span class="string">&#x27;c&#x27;</span> 。</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">similarPairs</span><span class="params">(vector&lt;string&gt;&amp; words)</span> </span>&#123;</span><br><span class="line">    unordered_map&lt;<span class="type">int</span>, <span class="type">int</span>&gt;mp;</span><br><span class="line">    <span class="type">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(string word : words) &#123;</span><br><span class="line">        <span class="type">int</span> mask = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">char</span> c : word) &#123;</span><br><span class="line">            mask |= <span class="number">1</span> &lt;&lt; (c - <span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        cnt += mp[mask];</span><br><span class="line">        mp[mask]++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> cnt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5><span id="剑指-offer-ii-005-单词长度的最大乘积">剑指 Offer II 005. 单词长度的最大乘积</span></h5><blockquote>
+<p>给定一个字符串数组 <code>words</code>，请计算当两个字符串 <code>words[i]</code> 和 <code>words[j]</code> 不包含相同字符时，它们长度的乘积的最大值。假设字符串中只包含英语的小写字母。如果没有不包含相同字符的一对字符串，返回 0。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: <span class="built_in">words</span> = [<span class="string">&quot;abcw&quot;</span>,<span class="string">&quot;baz&quot;</span>,<span class="string">&quot;foo&quot;</span>,<span class="string">&quot;bar&quot;</span>,<span class="string">&quot;fxyz&quot;</span>,<span class="string">&quot;abcdef&quot;</span>]</span><br><span class="line">输出: <span class="number">16</span> </span><br><span class="line">解释: 这两个单词为 <span class="string">&quot;abcw&quot;</span>, <span class="string">&quot;fxyz&quot;</span>。它们不包含相同字符，且长度的乘积最大。</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>预计算 + 位运算</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">maxProduct</span><span class="params">(vector&lt;string&gt;&amp; words)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n = words.<span class="built_in">size</span>();</span><br><span class="line">    unordered_map&lt;<span class="type">int</span>, <span class="type">int</span>&gt;mp; <span class="comment">// key单词的掩码，val长度</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//预处理字符是否有相同，保存在mp中。</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="type">int</span> bitmask = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">char</span> c : words[i]) &#123;</span><br><span class="line">            bitmask |= <span class="number">1</span> &lt;&lt; (c - <span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(mp.<span class="built_in">count</span>(bitmask)) &#123;</span><br><span class="line">            <span class="type">int</span> maxval = <span class="built_in">max</span>(mp[bitmask], (<span class="type">int</span>)words[i].<span class="built_in">size</span>());</span><br><span class="line">            mp[bitmask] = maxval;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            mp[bitmask] = words[i].<span class="built_in">size</span>();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span>&amp; x : mp) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span>&amp; y : mp) &#123;</span><br><span class="line">          <span class="comment">// 虽然需要2次循环，</span></span><br><span class="line">          <span class="comment">// 但通过map存储起每个单词的最大的长度，</span></span><br><span class="line">          <span class="comment">// 减少了多次重复的计算</span></span><br><span class="line">            <span class="keyword">if</span>((x.first &amp; y.first) == <span class="number">0</span>) &#123; </span><br><span class="line">                ans = <span class="built_in">max</span>(x.second * y.second, ans);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
 
                 <hr>
@@ -229,13 +246,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2023/01/17/Facade/" data-toggle="tooltip" data-placement="top" title="【创建型】外观模式">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2023/01/17/Singleton/" data-toggle="tooltip" data-placement="top" title="【创建型】单例模式">Next Post &rarr;</a>
+                            <a href="/2023/01/17/Facade/" data-toggle="tooltip" data-placement="top" title="【创建型】外观模式">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -268,7 +281,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#设计模式" title="设计模式">设计模式</a>
+                          <a class="tag" href="/tags/#字符串" title="字符串">字符串</a>
                         
                     </div>
                 </section>
@@ -300,8 +313,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2023/01/17/Flyweight/";
-    var disqus_url = "https://pistachiol.github.io/2023/01/17/Flyweight/";
+    var disqus_identifier = "https://pistachiol.github.io/2023/01/18/%E5%AD%97%E7%AC%A6%E4%B8%B2&amp;%E4%BD%8D%E8%BF%90%E7%AE%97/";
+    var disqus_url = "https://pistachiol.github.io/2023/01/18/%E5%AD%97%E7%AC%A6%E4%B8%B2&amp;%E4%BD%8D%E8%BF%90%E7%AE%97/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

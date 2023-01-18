@@ -213,14 +213,16 @@
 </ul>
 <p>二、依赖倒转原则</p>
 <p>应该依赖抽象，不应该依赖实现细节。（此处的依赖指的是编译时依赖，只有抽象在才能编译通过）</p>
-<p>1、组件合协作模式：</p>
+<p>三、开放封闭原则</p>
+<p>里氏替换原则</p>
+<p>1、组件合协作模式</p>
 <p>现代软件专业分工后的第一个结果是”框架与应用程序的划分”，”组件协作”模式通过晚期绑定，来实现框架与应用程序之间的松耦合，是二者之间协作时常用的模式。</p>
 <ul>
 <li>Template Method</li>
 <li>Strategy</li>
 <li>Observer&#x2F;Event</li>
 </ul>
-<p>2、对象创建模式：</p>
+<p>2、对象创建模式</p>
 <p>通过“对象创建”模式绕开new，来避免对象创建过程中所导致的紧耦合（依赖具体类，new通常会带来细节依赖，违背依赖倒转原则）</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ISpliter fp = <span class="keyword">new</span> <span class="built_in">PicturSpliter</span>(); <span class="comment">// PicturSpliter就是具体类</span></span><br></pre></td></tr></table></figure>
 
@@ -237,6 +239,15 @@
 <ul>
 <li>Singleton</li>
 <li>Flyweight</li>
+</ul>
+<p>4、”接口隔离”模式</p>
+<p>在组件构建过程中，某些接口的依赖常常会带来很多问题、甚至根本无法实现。采用添加一层<strong>间接</strong>（稳定）接口，来隔离本来互相紧密关联的接口是一种常见的解决方案。</p>
+<p>典型模式：</p>
+<ul>
+<li>Facade</li>
+<li>Proxy</li>
+<li>Adapter</li>
+<li>Mediator</li>
 </ul>
 
 

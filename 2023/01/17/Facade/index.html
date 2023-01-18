@@ -13,11 +13,11 @@
 
     <title>
         
-          About - Pistachio的楼阁 | Pistachio&#39;s Blog
+          【创建型】外观模式 - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/about/">
+    <link rel="canonical" href="https://pistachiol.github.io/2023/01/17/Facade/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -160,244 +160,114 @@
 
 
     <!-- Main Content -->
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/about-bg.jpg')">
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://pistachiol.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/bg_Jerry.jpg')
+    }
+</style>
+<header class="intro-header" >
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>About</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">Hey, this is pistachio.</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#设计模式" title="设计模式">设计模式</a>
+                        
+                    </div>
+                    <h1>【创建型】外观模式</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Liao on
+                        2023-01-17
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
-
-<!-- USE SIDEBAR -->
     <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-            
-                <blockquote>
-<p>曾经使我悲伤的一切，都是我热爱的一切</p>
-</blockquote>
-<p>Hi，我是pistachio</p>
-<p>取名曰pistachio 旨在提醒自己面对失败的时候要保持乐观，努力前行</p>
-<p>会为喜欢的事情不断钻研</p>
-<p>会为千辛万苦做出的一道题目并且AC了而手舞足蹈</p>
-<p>喜欢宽阔的环境（甚至向往拿着电脑到空旷的操场敲代码）</p>
-<p>喜欢学习后端技术，并且为校级组织搭建、维护网站</p>
-<p>喜欢有新的尝试，折腾系统，直到目前是win10+deepin双系统（天气终于没有辣么冷啦，加上薅了移动飞快的羊毛，又开始折腾了）…</p>
-<p>热爱交流，热爱分享 ❤️</p>
-<p>&amp;emsp;  &amp;emsp; &amp;emsp; &amp;emsp; &amp;emsp; &amp;emsp; &amp;emsp;  &amp;emsp;  &amp;emsp; &amp;emsp;  &amp;emsp; &amp;emsp; &amp;emsp; &amp;emsp; &amp;emsp; &amp;emsp;  &amp;emsp;  &amp;emsp; &amp;emsp;  &amp;emsp; &amp;emsp; &amp;emsp;<br>&amp;emsp;  &amp;emsp; &amp;emsp; &amp;emsp; &amp;emsp; &amp;emsp; &amp;emsp;  &amp;emsp;  &amp;emsp; &amp;emsp;  &amp;emsp; &amp;emsp; &amp;emsp; &amp;emsp; &amp;emsp; &amp;emsp;  &amp;emsp;  &amp;emsp; &amp;emsp;  &amp;emsp; &amp;emsp; &amp;emsp; &amp;emsp; &amp;emsp; &amp;emsp;  &amp;emsp;  &amp;emsp; &amp;emsp;  &amp;emsp; &amp;emsp;  &amp;emsp;  &amp;emsp; &amp;emsp;  &amp;emsp; &amp;emsp; &amp;emsp;  &amp;emsp;  &amp;emsp; &amp;emsp;编辑于2020年2月1日</p>
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h3><span id="一-定义">一、定义</span></h3><p>为子系统中的一组接口（不稳定）提供一个一致（稳定）的界面，Facade模式定义了一个高层接口，这个接口使得这一子系统更加容易使用（复用）。</p>
+<img src="/2023/01/17/Facade/2.png" width="650px">
+
+<h3><span id="二-结构">二、结构</span></h3><img src="/2023/01/17/Facade/1.png" width="650px">
+
+<p>体现了一种设计原则和思想的表达，子系统内部和外部的解耦。红色部分是稳定的，蓝色部分是不稳定的数据</p>
+<p>三、总结</p>
+<ul>
+<li>Facade模式更注重从<strong>架构</strong>的层次去看整个系统（多个类形成系统级别的设计），而不是单个类的层次。Facade更多是一种架构设计模式。（如电脑的显示器、鼠标这些面对客户的东西要保持稳定，可以堪称Facade，但里面的内存条、CPU等需要做快速迭代，是内部的东西，需要和外部分割开来，以给用户保持稳定可靠的状态）</li>
+<li></li>
+</ul>
 
 
-                <!-- 如果开启评论功能 -->
+                <hr>
+
                 
-                    <hr>
 
+                <ul class="pager">
                     
-
+                        <li class="previous">
+                            <a href="/2023/01/18/字符串&位运算/" data-toggle="tooltip" data-placement="top" title="字符串和位运算的应用">&larr; Previous Post</a>
+                        </li>
                     
-                    <!-- disqus 评论框 start -->
-                    <div class="comment">
-                        <div id="disqus_thread" class="disqus-thread"></div>
-                    </div>
-                    <!-- disqus 评论框 end -->
                     
-
-
+                        <li class="next">
+                            <a href="/2023/01/17/Flyweight/" data-toggle="tooltip" data-placement="top" title="【结构型】享元模式">Next Post &rarr;</a>
+                        </li>
                     
+                </ul>
 
-                    
-                    <!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
-                    <script type="text/javascript">
-                        /* * * CONFIGURATION VARIABLES * * */
-                        var disqus_shortname = "hexo-theme-huxblog";
-                        var disqus_identifier = "https://pistachiol.github.io/about/index.html";
-                        var disqus_url = "https://pistachiol.github.io/about/index.html";
+                
 
-                        (function() {
-                            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                        })();
-
-                        
-                    </script>
-                    <!-- disqus 公共JS代码 end -->
-                    
-
-
-
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
                 
 
             </div>
+    <!-- Side Catalog Container -->
+        
+
     <!-- Sidebar Container -->
+
             <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
                 <!-- Featured Tags -->
                 
                 <section>
                     <!-- no hr -->
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
-                        
-                            
-                            <a href="/tags/#数据结构" title="数据结构" rel="17">数据结构</a>
-                            
-                        
-                            
-                            <a href="/tags/#设计模式" title="设计模式" rel="12">设计模式</a>
-                            
-                        
-                            
-                            <a href="/tags/#C++" title="C++" rel="2">C++</a>
-                            
-                        
-                            
-                            <a href="/tags/#生活" title="生活" rel="2">生活</a>
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#算法" title="算法" rel="16">算法</a>
-                            
-                        
-                            
-                            <a href="/tags/#动态规划" title="动态规划" rel="2">动态规划</a>
-                            
-                        
-                            
-                            <a href="/tags/#Go学习" title="Go学习" rel="7">Go学习</a>
-                            
-                        
-                            
-                            <a href="/tags/#读书笔记" title="读书笔记" rel="5">读书笔记</a>
-                            
-                        
-                            
-                            <a href="/tags/#HTTP" title="HTTP" rel="2">HTTP</a>
-                            
-                        
-                            
-                            <a href="/tags/#PHP" title="PHP" rel="4">PHP</a>
-                            
-                        
-                            
-                            <a href="/tags/#字符串" title="字符串" rel="6">字符串</a>
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#Linux" title="Linux" rel="4">Linux</a>
-                            
-                        
-                            
-                            <a href="/tags/#MySQL" title="MySQL" rel="7">MySQL</a>
-                            
-                        
-                            
-                            <a href="/tags/#Nginx" title="Nginx" rel="2">Nginx</a>
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#数论" title="数论" rel="12">数论</a>
-                            
-                        
-                            
-                            <a href="/tags/#Redis" title="Redis" rel="2">Redis</a>
-                            
-                        
-                            
-                            <a href="/tags/#STL" title="STL" rel="8">STL</a>
-                            
-                        
-                            
-                            <a href="/tags/#博客" title="博客" rel="2">博客</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#树" title="树" rel="2">树</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
+                       
+                          <a class="tag" href="/tags/#设计模式" title="设计模式">设计模式</a>
                         
                     </div>
                 </section>
                 
 
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
-
-                        
-                            <img src="/img/avatar.jpeg" />
-                        
-
-                        
-                            <p>我要成为魔法师!</p>
-                        
-
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            
-                            
-
-                            
-
-                            
-
-                            
-                                <li>
-                                    <a target="_blank"  href="https://github.com/pistachioL">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-                            
-                            
-                            
-                        </ul>
-                    </div>
-                </section>
-                
                 <!-- Friends Blog -->
                 
                 <hr>
@@ -412,9 +282,66 @@
                 </ul>
                 
             </div>
-        
+
+        </div>
     </div>
-</div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "hexo-theme-huxblog";
+    var disqus_identifier = "https://pistachiol.github.io/2023/01/17/Facade/";
+    var disqus_url = "https://pistachiol.github.io/2023/01/17/Facade/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
 
     <!-- Footer -->

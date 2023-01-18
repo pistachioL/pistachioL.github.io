@@ -197,6 +197,58 @@
 
 <div class="post-preview">
 
+    <a href="/2023/01/18/字符串&位运算/">
+        <h2 class="post-title">
+            字符串和位运算的应用
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            判断字符串是否由相同字符组成，可以结合位运算来计算，提升效率。
+一、原理1、对字符串每个单词进行位运算
+12345// word1 = &quot;abdeg&quot;   int bitmask1 = 0; bitmask = 0;  for(char c : word1) &#123;    mask1 |= 1 &lt;&lt; (c - &#x27;a&#x27;);  &#125......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2023-01-18
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2023/01/17/Facade/">
+        <h2 class="post-title">
+            【创建型】外观模式
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            一、定义为子系统中的一组接口（不稳定）提供一个一致（稳定）的界面，Facade模式定义了一个高层接口，这个接口使得这一子系统更加容易使用（复用）。
+
+
+二、结构
+
+体现了一种设计原则和思想的表达，子系统内部和外部的解耦。红色部分是稳定的，蓝色部分是不稳定的数据
+三、总结
+
+Facade模式更注重从架构的层次去看整个系统（多个类形成系统级别的设计），而不是单个类的层次。Facade更多是一种架......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2023-01-17
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2023/01/17/Flyweight/">
         <h2 class="post-title">
             【结构型】享元模式
@@ -320,11 +372,12 @@ Bridge
 
 二、依赖倒转原则
 应该依赖抽象，不应该依赖实现细节。（此处的依赖指的是编译时依赖，只有抽象在才能编译通过）
-1、组件合协作模式：
+三、开放封闭原则
+里氏替换原则
+1、组件合协作模式
 现代软件专业分工后的第一个结果是”框架与应用程序的划分”，”组件协作”模式通过晚期绑定，来实现框架与应用程序之间的松耦合，是二者之间协作时常用的模式。
 
-Template Method
-......
+T......
         </div>
     </a>
     <p class="post-meta">
@@ -418,56 +471,6 @@ Strategy模式提供了用条件判断语句(if&#x2F;else)以外的另一种选�
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2023/01/11/Longest Palindrome Substring/">
-        <h2 class="post-title">
-            最长回文子串
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            求最长回文子串是面试中常考的题目，这道题有三种解法：动态规划、中心扩展法和Manacher算法。
-
-给你一个字符串 s，找到 s 中最长的回文子串。
-如果字符串的反序与原始字符串相同，则该字符串称为回文字符串。
-示例 1：
-123&gt;输入：s = &quot;babad&quot;&gt;输出：&quot;bab&quot;&gt;解释：&quot;aba&quot; 同样是符合题意的答......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2023-01-11
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2023/01/11/brian kernighan算法/">
-        <h2 class="post-title">
-            Brian Kernighan算法
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            Brian Kernighan是一种位移运算的算法，将n和n-1按位与后，n最右边的1会被清除。故用于清除二进制串中最右边的1。
-1n &amp; (n - 1)
-
-...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2023-01-11
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -507,7 +510,7 @@ Strategy模式提供了用条件判断语句(if&#x2F;else)以外的另一种选�
                             
                         
                             
-                            <a href="/tags/#设计模式" title="设计模式" rel="11">设计模式</a>
+                            <a href="/tags/#设计模式" title="设计模式" rel="12">设计模式</a>
                             
                         
                             
@@ -545,7 +548,7 @@ Strategy模式提供了用条件判断语句(if&#x2F;else)以外的另一种选�
                             
                         
                             
-                            <a href="/tags/#字符串" title="字符串" rel="5">字符串</a>
+                            <a href="/tags/#字符串" title="字符串" rel="6">字符串</a>
                             
                         
                             
