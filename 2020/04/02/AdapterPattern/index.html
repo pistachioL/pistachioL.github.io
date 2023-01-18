@@ -13,7 +13,7 @@
 
     <title>
         
-          适配器模式 - Pistachio的楼阁 | Pistachio&#39;s Blog
+          【结构型】适配器模式 - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
@@ -181,7 +181,7 @@
                           <a class="tag" href="/tags/#设计模式" title="设计模式">设计模式</a>
                         
                     </div>
-                    <h1>适配器模式</h1>
+                    <h1>【结构型】适配器模式</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
@@ -204,12 +204,18 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p>实例：有一个220v电压，需要适配器转成5V电压才能给手机充电。</p>
-<h3><span id="类适配器">类适配器</span></h3><p><img src="/2020/04/02/AdapterPattern/1.png"></p>
+                <h3><span id="一-定义">一、定义</span></h3><p>将一个类的接口转换成客户希望的另一个接口。Adapter模式使得原本由于接口不兼容而不能一起工作的类能够一起工作。</p>
+<h3><span id="二-结构">二、结构</span></h3><p><img src="/2020/04/02/AdapterPattern/3.png"></p>
+<p>Adapter-&gt;Adaptee是组合的关系（is a）</p>
+<h3><span id="三-例子">三、例子</span></h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 目标接口（新接口）</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ITarget</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">//The = 0 makes the function pure virtual, rendering the class an abstract class.</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">process</span><span class="params">()</span></span>=<span class="number">0</span>; </span><br><span class="line">    </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//遗留接口（老接口）</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">IAdaptee</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">foo</span><span class="params">(<span class="type">int</span> data)</span></span>=<span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">int</span> <span class="title">bar</span><span class="params">()</span></span>=<span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//遗留类型</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">OldClass</span>: <span class="keyword">public</span> IAdaptee &#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//种类一：对象适配器（通过组合对象来实现）</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Adapter</span>: <span class="keyword">public</span> ITarget &#123; <span class="comment">//继承</span></span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    IAdaptee* pAdaptee; <span class="comment">// 组合（比较灵活，可以指向不同的对象，更符合松耦合的原则）</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Adapter</span>(IAdaptee* pAdaptee) &#123; <span class="comment">//构造器</span></span><br><span class="line">        <span class="keyword">this</span>-&gt;pAdaptee = pAdaptee;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">process</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> data = pAdaptee-&gt;<span class="built_in">bar</span>();</span><br><span class="line">        pAdaptee-&gt;<span class="built_in">foo</span>(data);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//种类二：类适配器</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Adapter</span>: <span class="keyword">public</span> ITarget, <span class="keyword">protected</span> IAdaptee &#123; <span class="comment">//多继承（不灵活，定死了继承的类，不推荐使用）</span></span><br><span class="line">    </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//1、旧的类，2、放到适配器里，3、可以当成新接口使用</span></span><br><span class="line">    IAdaptee* pAdaptee = <span class="keyword">new</span> <span class="built_in">OldClass</span>(); <span class="comment">// 1</span></span><br><span class="line">    </span><br><span class="line">    ITarget* pTarget = <span class="keyword">new</span> <span class="built_in">Adapter</span>(pAdaptee); <span class="comment">// 2</span></span><br><span class="line">    pTarget-&gt;<span class="built_in">process</span>(); <span class="comment">// 3</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h5><span id="例子一-c的stl中deque是queue和stack的适配器">例子一、c++的stl中，deque是queue和stack的适配器。</span></h5><h5><span id="例子二有一个220v电压需要适配器转成5v电压才能给手机充电">例子二：有一个220v电压，需要适配器转成5V电压才能给手机充电。</span></h5><h5><span id="类适配器">类适配器</span></h5><p><img src="/2020/04/02/AdapterPattern/1.png"></p>
 <p>被适配器类:Voltage220V 适配类:Voltage5V </p>
 <p>通过适配器类VoltageAdapter继承Voltage220V（拿到220V电压），并且实现了Voltage5V的接口（并转乘5V）</p>
 <p>手机类依赖Voltage5V，实质上是依赖VoltageAdapter</p>
-<h3><span id="对象适配器">对象适配器</span></h3><p>由于Java单继承原因</p>
+<h5><span id="对象适配器">对象适配器</span></h5><p>由于Java单继承原因</p>
 <p>对类适配器模式进行改进，不需要继承原先的类，而是直接持有被适配对象</p>
 <p>通过合成复用原则，由继承关系转变为聚合关系</p>
 <p><img src="/2020/04/02/AdapterPattern/2.png"></p>
@@ -217,7 +223,7 @@
 
 
 
-<h3><span id="接口适配器">接口适配器</span></h3><p>如果不需要试下全部接口中的方法，可先设计一个抽象类实现接口，并为该接口的每个方法提供默认空方法，那么该抽象类的子类就能有选择性地覆盖父类某些方法来实现需求。</p>
+<h5><span id="接口适配器">接口适配器</span></h5><p>如果不需要试下全部接口中的方法，可先设计一个抽象类实现接口，并为该接口的每个方法提供默认空方法，那么该抽象类的子类就能有选择性地覆盖父类某些方法来实现需求。</p>
 
 
                 <hr>

@@ -197,6 +197,33 @@
 
 <div class="post-preview">
 
+    <a href="/2020/04/14/decoratorPattern/">
+        <h2 class="post-title">
+            【结构型】装饰者模式
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            一、定义动态（组合）地给一个对象增加一些额外的指责。就增加功能而言，Decorator模式比生成子类（继承）更为灵活（消除重复代码 &amp; 减少子类个数）
+动态地把职责添加到对象上，若想添加功能，装饰者类提供了比继承更有弹性的方案。
+二、结构
+例子：很多中单品咖啡，很多种调料的不同组合
+把被装饰着放到装饰者中管理，例如调料是装饰者，单品咖啡是被装饰者，则把单品咖啡放到调料中管理。
+
+这种......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-04-14
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2020/04/08/CompositePattern/">
         <h2 class="post-title">
             组合模式
@@ -226,19 +253,16 @@
 
     <a href="/2020/04/02/AdapterPattern/">
         <h2 class="post-title">
-            适配器模式
+            【结构型】适配器模式
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            实例：有一个220v电压，需要适配器转成5V电压才能给手机充电。
-类适配器
-被适配器类:Voltage220V 适配类:Voltage5V 
-通过适配器类VoltageAdapter继承Voltage220V（拿到220V电压），并且实现了Voltage5V的接口（并转乘5V）
-手机类依赖Voltage5V，实质上是依赖VoltageAdapter
-对象适配器由于Java单继承原因
-对类适配......
+            一、定义将一个类的接口转换成客户希望的另一个接口。Adapter模式使得原本由于接口不兼容而不能一起工作的类能够一起工作。
+二、结构
+Adapter-&gt;Adaptee是组合的关系（is a）
+三、例子1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950// ......
         </div>
     </a>
     <p class="post-meta">
@@ -423,31 +447,6 @@ LeetCode　按摩师（同打家劫舍系列）
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2020/03/22/PowerSet/">
-        <h2 class="post-title">
-            幂集
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-幂集，也是原集合的所有子集
-
-位运算求幂集
-1234567891011121314vector&lt;vector&lt;int&gt;&gt; subsets(vector&lt;int&gt;&amp; nums) &#123;       vector&lt;vector&lt;int&gt;&gt;ans;       for(int i = 0; i &lt; (1&lt;&lt......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-03-22
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -491,7 +490,7 @@ LeetCode　按摩师（同打家劫舍系列）
                             
                         
                             
-                            <a href="/tags/#设计模式" title="设计模式" rel="12">设计模式</a>
+                            <a href="/tags/#设计模式" title="设计模式" rel="13">设计模式</a>
                             
                         
                             
