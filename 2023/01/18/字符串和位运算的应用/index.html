@@ -17,7 +17,7 @@
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2023/01/18/字符串&amp;位运算/">
+    <link rel="canonical" href="https://pistachiol.github.io/2023/01/18/字符串和位运算的应用/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -208,7 +208,7 @@
 <h3><span id="一-原理">一、原理</span></h3><p>1、对字符串每个单词进行位运算</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// word1 = &quot;abdeg&quot; </span></span><br><span class="line">  <span class="type">int</span> bitmask1 = <span class="number">0</span>; bitmask = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="type">char</span> c : word1) &#123;</span><br><span class="line">    mask1 |= <span class="number">1</span> &lt;&lt; (c - <span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/2023/01/18/%E5%AD%97%E7%AC%A6%E4%B8%B2&%E4%BD%8D%E8%BF%90%E7%AE%97/1.png"></p>
+<p><img src="/2023/01/18/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E5%BA%94%E7%94%A8/1.png"></p>
 <p>2、根据各自 | 运算得出来的结果，进行 &amp; 运算，若结果不是0的，即是有相同字符的字符串。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">hasSameChar</span><span class="params">(string word1, string word2)</span> </span>&#123;</span><br><span class="line">  <span class="type">int</span> bitmask1 = <span class="number">0</span>; bitmask = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="type">char</span> c : word1) &#123;</span><br><span class="line">    mask1 |= <span class="number">1</span> &lt;&lt; (c - <span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">   <span class="keyword">for</span>(<span class="type">char</span> c : word2) &#123;</span><br><span class="line">    mask2 |= <span class="number">1</span> &lt;&lt; (c - <span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> (mask1 &amp; mask2) != <span class="number">0</span>;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
 
@@ -316,8 +316,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2023/01/18/%E5%AD%97%E7%AC%A6%E4%B8%B2&amp;%E4%BD%8D%E8%BF%90%E7%AE%97/";
-    var disqus_url = "https://pistachiol.github.io/2023/01/18/%E5%AD%97%E7%AC%A6%E4%B8%B2&amp;%E4%BD%8D%E8%BF%90%E7%AE%97/";
+    var disqus_identifier = "https://pistachiol.github.io/2023/01/18/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E5%BA%94%E7%94%A8/";
+    var disqus_url = "https://pistachiol.github.io/2023/01/18/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E5%BA%94%E7%94%A8/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
