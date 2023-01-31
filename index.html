@@ -339,9 +339,14 @@ Facade模式更注重从架构的层次去看整个系统（多个类形成系�
             
         </h3>
         <div class="post-content-preview">
-            差分数组通常用于区间修改的操作，例如对数组[4,1,3,5,2,7] 下标[1 ~ 3]的元素+5，[3 ~ 4]的元素 -6，得到[4,6,8,-4-4,7]
-1、求差分数组
-1234diff[0] = nums[0];for(int i = 1; i &lt; ; i++) &#123;	diff[i] = nums[i] - nums[i - 1]; // 4,-3,2,2,-3,5&......
+            一、区间和检索（数组不可变）1、先求数组的前缀和presum；
+2、再求区间presum[right - 1] - presume[left]的值
+LC303. 区域和检索 - 数组不可变
+给定一个整数数组  nums，处理以下类型的多个查询:
+
+计算索引 left 和 right （包含 left 和 right）之间的 nums 元素的 和 ，其中 left &lt;= right
+
+实......
         </div>
     </a>
     <p class="post-meta">
