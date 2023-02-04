@@ -13,11 +13,11 @@
 
     <title>
         
-          设计模式总览 - Pistachio的楼阁 | Pistachio&#39;s Blog
+          01背包 - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2023/01/13/DesginPattern/">
+    <link rel="canonical" href="https://pistachiol.github.io/2023/02/02/完全背包/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -178,14 +178,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#设计模式" title="设计模式">设计模式</a>
+                          <a class="tag" href="/tags/#动态规划" title="动态规划">动态规划</a>
                         
                     </div>
-                    <h1>设计模式总览</h1>
+                    <h1>01背包</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
-                        2023-01-13
+                        2023-02-02
                     </span>
                 </div>
             </div>
@@ -204,60 +204,40 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p>八大面向对象设计原则</p>
-<p>如果模式违背了设计原则，则这个模式是错误的。</p>
-<p>一、依赖倒置原则（DIP）</p>
-<p>高层模块（稳定）不应该依赖底层模块（变化），二者都该依赖抽象（稳定）。</p>
-<p>抽象（稳定）不应该依赖实现细节，实现细节（变化）应该依赖抽象（稳定）。</p>
-<blockquote>
-<p> 例如A依赖B，就是A在编译时B需要存在，才能编译通过（通常是编译时依赖）。</p>
-</blockquote>
-<p><img src="/2023/01/13/DesginPattern/1.png" width="450px"> (Before)</p>
-<p><img src="/2023/01/13/DesginPattern/2.png" width="450px">(After)</p>
-<p>单一职责原则</p>
-<p>典型模式：</p>
-<ul>
-<li>Decorator</li>
-<li>Bridge</li>
-</ul>
-<p>二、依赖倒转原则</p>
-<p>应该依赖抽象，不应该依赖实现细节。（此处的依赖指的是编译时依赖，只有抽象在才能编译通过）</p>
-<p>三、开放封闭原则</p>
-<p>里氏替换原则</p>
-<p>1、组件合协作模式</p>
-<p>现代软件专业分工后的第一个结果是”框架与应用程序的划分”，”组件协作”模式通过晚期绑定，来实现框架与应用程序之间的松耦合，是二者之间协作时常用的模式。</p>
-<ul>
-<li>Template Method</li>
-<li>Strategy</li>
-<li>Observer&#x2F;Event</li>
-</ul>
-<p>2、对象创建模式</p>
-<p>通过“对象创建”模式绕开new，来避免对象创建过程中所导致的紧耦合（依赖具体类，new通常会带来细节依赖，违背依赖倒转原则）</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ISpliter fp = <span class="keyword">new</span> <span class="built_in">PicturSpliter</span>(); <span class="comment">// PicturSpliter就是具体类</span></span><br></pre></td></tr></table></figure>
+                <p>1、求组合数：外层for循环物品，内存for循环背包。 组合数{1,3}与{3,1}属于同一种组合</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> coin : coins) &#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt;= amount; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span>(i &gt;= coin) &#123;</span><br><span class="line">      dp[i] += dp[i - coin];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 
-<p>典型模式：</p>
-<ul>
-<li>Factory Method</li>
-<li>Abstract Factory</li>
-<li>Prototype</li>
-<li>Builder</li>
-</ul>
-<p>3、对象性能模式</p>
-<p>面向对象很好地解决了“抽象”的问题，但是不可避免地要付出一定的代价。对于通常情况，面向对象的成本大都可以忽略不计，但某些情况，面向对象所带来的成本问题必须谨慎处理。</p>
-<p>典型模式：</p>
-<ul>
-<li>Singleton</li>
-<li>Flyweight</li>
-</ul>
-<p>4、”接口隔离”模式</p>
-<p>在组件构建过程中，某些接口的依赖常常会带来很多问题、甚至根本无法实现。采用添加一层<strong>间接</strong>（稳定）接口，来隔离本来互相紧密关联的接口是一种常见的解决方案。</p>
-<p>典型模式：</p>
-<ul>
-<li>Facade</li>
-<li>Proxy</li>
-<li>Adapter</li>
-<li>Mediator</li>
-</ul>
+
+
+<p>LC518. 零钱兑换 II</p>
+<blockquote>
+<p>给你一个整数数组 <code>coins</code> 表示不同面额的硬币，另给一个整数 <code>amount</code> 表示总金额。</p>
+<p>请你计算并返回可以凑成总金额的硬币组合数。如果任何硬币组合都无法凑出总金额，返回 <code>0</code> 。</p>
+<p>假设每一种面额的硬币有无限个。 </p>
+<p>题目数据保证结果符合 32 位带符号整数。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入：amount = 5, coins = [1, 2, 5]</span><br><span class="line">输出：4</span><br><span class="line">解释：有四种方式可以凑成总金额：</span><br><span class="line">5=5</span><br><span class="line">5=2<span class="string">+2</span><span class="string">+1</span></span><br><span class="line">5=2<span class="string">+1</span><span class="string">+1</span><span class="string">+1</span></span><br><span class="line">5=1<span class="string">+1</span><span class="string">+1</span><span class="string">+1</span><span class="string">+1</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">change</span><span class="params">(<span class="type">int</span> amount, vector&lt;<span class="type">int</span>&gt;&amp; coins)</span> </span>&#123;</span><br><span class="line">      <span class="comment">// 求组合数</span></span><br><span class="line">      vector&lt;<span class="type">int</span>&gt;<span class="built_in">dp</span>(amount + <span class="number">1</span>);</span><br><span class="line">      dp[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">for</span>(<span class="type">int</span> coin : coins) &#123;</span><br><span class="line">          <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt;= amount; i++) &#123;</span><br><span class="line">              <span class="keyword">if</span>(i &gt;= coin) &#123;</span><br><span class="line">                  dp[i] += dp[i - coin];</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> dp[amount];</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>2、求排列数：外层for背包，内层for物品。排列数是{1,3}与{3,1}属于两种不同的排列。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; amount; i++) &#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="type">int</span> num : nums) &#123;</span><br><span class="line">    dp[i] += dp[i - num];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>LC377.组合总和IV</p>
+<blockquote>
+<p>给你一个由 <strong>不同</strong> 整数组成的数组 <code>nums</code> ，和一个目标整数 <code>target</code> 。请你从 <code>nums</code> 中找出并返回总和为 <code>target</code> 的元素组合的个数。</p>
+<p>题目数据保证答案符合 32 位整数范围。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>], <span class="keyword">target</span> = <span class="number">4</span></span><br><span class="line">输出：<span class="number">7</span></span><br><span class="line">解释：</span><br><span class="line">所有可能的组合为：</span><br><span class="line">(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">(<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">(<span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>)</span><br><span class="line">(<span class="number">1</span>, <span class="number">3</span>)</span><br><span class="line">(<span class="number">2</span>, <span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">(<span class="number">2</span>, <span class="number">2</span>)</span><br><span class="line">(<span class="number">3</span>, <span class="number">1</span>)</span><br><span class="line">请注意，顺序不同的序列被视作不同的组合。</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">combinationSum4</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> target)</span> </span>&#123;</span><br><span class="line">      <span class="comment">// 求排列数</span></span><br><span class="line">      vector&lt;<span class="type">int</span>&gt;<span class="built_in">dp</span>(target + <span class="number">1</span>);</span><br><span class="line">      dp[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt;= target; i++) &#123; <span class="comment">// 遍历背包</span></span><br><span class="line">          <span class="keyword">for</span>(<span class="type">int</span> num : nums) &#123; <span class="comment">// 遍历物品</span></span><br><span class="line">              <span class="keyword">if</span>(i - num &gt;= <span class="number">0</span> &amp;&amp; dp[i] &lt; INT_MAX - dp[i-num]) &#123;</span><br><span class="line">                  dp[i] += dp[i - num];</span><br><span class="line">              &#125; </span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> dp[target];</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+
+
 
 
                 <hr>
@@ -266,13 +246,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2023/01/13/Factory/" data-toggle="tooltip" data-placement="top" title="【创建型】工厂模式">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2023/01/13/Bridge/" data-toggle="tooltip" data-placement="top" title="【结构型】桥接模式">Next Post &rarr;</a>
+                            <a href="/2023/01/18/Proxy/" data-toggle="tooltip" data-placement="top" title="【结构型】代理模式">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -305,7 +281,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#设计模式" title="设计模式">设计模式</a>
+                          <a class="tag" href="/tags/#动态规划" title="动态规划">动态规划</a>
                         
                     </div>
                 </section>
@@ -337,8 +313,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2023/01/13/DesginPattern/";
-    var disqus_url = "https://pistachiol.github.io/2023/01/13/DesginPattern/";
+    var disqus_identifier = "https://pistachiol.github.io/2023/02/02/%E5%AE%8C%E5%85%A8%E8%83%8C%E5%8C%85/";
+    var disqus_url = "https://pistachiol.github.io/2023/02/02/%E5%AE%8C%E5%85%A8%E8%83%8C%E5%8C%85/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
