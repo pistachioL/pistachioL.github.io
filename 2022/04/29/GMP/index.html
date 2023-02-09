@@ -217,16 +217,21 @@
 <img src="/2022/04/29/GMP/1.png" style="width:450px">
 
 <p>有四个重要的结构，G、M、P、sched</p>
-<p>**G(Goroutine)**：存储了Goroutine的执行栈信息、Goroutine状态、Goroutine的任务函数等。</p>
-<p>**P(Processor)**：将可运行的goroutine分配到工作线程上。如果p队列goroutine为空，则会尝试从全局队列或者别的本地队列偷G过来。P的数量默认是本机CPU核数，但可以通过环境变量<code>$GOMAXPROCS</code> 或者 <code>rumtime.GOMAXPROCS()</code>来设置</p>
-<p>**M(Machine)**：</p>
+<p><strong>G(Goroutine)</strong></p>
+<p> 存储了Goroutine的执行栈信息、Goroutine状态、Goroutine的任务函数等。</p>
+<p><strong>P(Processor)</strong> </p>
+<ul>
+<li>将可运行的goroutine分配到工作线程上。如果p队列goroutine为空，则会尝试从全局队列或者别的本地队列偷G过来。</li>
+<li>P的数量默认是本机CPU核数，但可以通过环境变量<code>$GOMAXPROCS</code> 或者 <code>rumtime.GOMAXPROCS()</code>来设置</li>
+</ul>
+<p><strong>M(Machine)</strong></p>
 <ul>
 <li>Go对OS thread 的封装，可以看作内核级线程，是运行Goroutine的实体。</li>
 <li>在CUP上运行代码必须要有线程，通过clone()创建。</li>
 <li>M绑定有效的P之后，会进入一个调度循环，即从P的本地队列及全局队列中获取G。M数量默认限制为10000，可以通过debug.SetMaxThreads()方法进行设置。</li>
 <li>一个 M 阻塞了，会创建新的 M。</li>
 </ul>
-<p><strong>Sched</strong>：调度器结构，它维护</p>
+<p><strong>Sched</strong>：调度器结构</p>
 <p>操作系统把内核级线程调度到cpu上执行</p>
 <h4><span id="22-gmp调度流程">2.2 GMP调度流程</span></h4><img src="/2022/04/29/GMP/3.png" style="width:750px">
 
@@ -234,7 +239,7 @@
 <li><code>go func</code>创建协程goroutine，放在局部队列中，若满则放在全局队列</li>
 <li>M相当于是消费者，首先从本地队列获取G，如果取不到则取全局队列获取，再取不到则从别的P中“偷取”一半G （work stealing机制）</li>
 <li>M拿到G之后执行调度；否则会被阻塞，M会处于自旋的状态（不断获取G）<ol>
-<li>M执行G过程中如果发生**系统调用systemCall()**而阻塞，会阻塞M和G，则会释放P，让另一个M执行（hand off机制）。如果没有空闲的M，则会新建一个M，接管当前正在阻塞G所属的P，接着执行P中剩余的G； 系统调用结束后，M会尝试获取空闲的P（优先获取之前绑定的P），若获取不到空闲P，则这个空闲的M会休眠，加入到休眠队列中，</li>
+<li>M执行G过程中如果发生<strong>系统调用systemCall()</strong>  而阻塞，会阻塞M和G，则会释放P，让另一个M执行（hand off机制）。如果没有空闲的M，则会新建一个M，接管当前正在阻塞G所属的P，接着执行P中剩余的G； 系统调用结束后，M会尝试获取空闲的P（优先获取之前绑定的P），若获取不到空闲P，则这个空闲的M会休眠，加入到休眠队列中，</li>
 <li>M执行G过程中如果发生<strong>网络IO操作</strong>而阻塞（异步），则会阻塞G，但不会阻塞M。M继续寻找P中其它可执行的G继续执行，而被阻塞的G会被网络轮询器（network poller）接手。当G被恢复之后，把这个G放回本地队列中，重新进入可执行状态。</li>
 </ol>
 </li>

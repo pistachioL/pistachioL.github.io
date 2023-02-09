@@ -209,7 +209,8 @@
 
 map类型的变量本质上是一个指针，指向hmap结构体
 /runtime/map.go
-12345678910111213141516type hmap struct &#123;	// Note: the format of the hmap is also encoded in cmd/compile/int......
+hmaphmap是哈希表
+1234567891011121314type hmap struct &#123;	count     int // （记录已经存储的键值对的数量） # live cells == size of ......
         </div>
     </a>
     <p class="post-meta">
