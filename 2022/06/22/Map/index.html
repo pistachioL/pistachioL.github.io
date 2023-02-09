@@ -215,18 +215,15 @@
 
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> mapextra <span class="keyword">struct</span> &#123;</span><br><span class="line">	<span class="comment">// If both key and elem do not contain pointers and are inline, then we mark bucket</span></span><br><span class="line">	<span class="comment">// type as containing no pointers. This avoids scanning such maps.</span></span><br><span class="line">	<span class="comment">// However, bmap.overflow is a pointer. In order to keep overflow buckets</span></span><br><span class="line">	<span class="comment">// alive, we store pointers to all overflow buckets in hmap.extra.overflow and hmap.extra.oldoverflow.</span></span><br><span class="line">	<span class="comment">// overflow and oldoverflow are only used if key and elem do not contain pointers.</span></span><br><span class="line">	<span class="comment">// overflow contains overflow buckets for hmap.buckets.</span></span><br><span class="line">	<span class="comment">// oldoverflow contains overflow buckets for hmap.oldbuckets.</span></span><br><span class="line">	<span class="comment">// The indirection allows to store a pointer to the slice in hiter.</span></span><br><span class="line">	overflow    *[]*bmap <span class="comment">// 记录当前已被使用的溢出桶地址</span></span><br><span class="line">	oldoverflow *[]*bmap</span><br><span class="line"></span><br><span class="line">	<span class="comment">// nextOverflow holds a pointer to a free overflow bucket.</span></span><br><span class="line">	nextOverflow *bmap <span class="comment">// 下一个空闲溢出桶</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
-
-<h4><span id="bmap">bmap</span></h4><p>map使用的桶，即是bmap结构</p>
-<p>一个桶可以放8个键值对</p>
+<h4><span id="bmap">bmap</span></h4><p>map使用的桶，即是bmap结构。一个桶可以放8个键值对</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bucketCntBits = <span class="number">3</span>	</span><br><span class="line">bucketCnt     = <span class="number">1</span> &lt;&lt; bucketCntBits</span><br></pre></td></tr></table></figure>
 
 <p>bmap的内存布局：8个key放在一起，8个value放一起。上面是8个tophash，每个tophash都对应哈希值的高8位，目的是为了让内存排列更紧凑。</p>
 <p>bmap型指针指向溢出桶，其内存布局和“常规桶”相同，为了减少扩容次数引入的。当一个桶存满了，还有可用的溢出桶时就在桶后面链一个溢出桶。</p>
 <img src="/2022/06/22/Map/2.png" style="width:450px">
 
-<p>实际上，哈希表要分配桶的数目B&gt;4，则认为使用溢出桶的概率比较大，会预分配2^(B-4)个溢出桶备用。</p>
-<p>常规桶和溢出桶在内存中是连续的，只是前2^B个用作常规桶，后面用作溢出桶</p>
+<p>实际上，哈希表要分配桶的数目B&gt;4，则认为使用溢出桶的概率比较大，会预分配2^(B-4)^个溢出桶备用。</p>
+<p>常规桶和溢出桶在内存中是连续的，只是前2^B^个用作常规桶，后面用作溢出桶</p>
 <img src="/2022/06/22/Map/3.png" style="width:450px">
 
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// A bucket for a Go map.</span></span><br><span class="line"><span class="keyword">type</span> bmap <span class="keyword">struct</span> &#123;</span><br><span class="line">	<span class="comment">// tophash generally contains the top byte of the hash value</span></span><br><span class="line">	<span class="comment">// for each key in this bucket. If tophash[0] &lt; minTopHash,</span></span><br><span class="line">	<span class="comment">// tophash[0] is a bucket evacuation state instead.</span></span><br><span class="line">	tophash [bucketCnt]<span class="type">uint8</span></span><br><span class="line">	<span class="comment">// Followed by bucketCnt keys and then bucketCnt elems.</span></span><br><span class="line">	<span class="comment">// <span class="doctag">NOTE:</span> packing all the keys together and then all the elems together makes the</span></span><br><span class="line">	<span class="comment">// code a bit more complicated than alternating key/elem/key/elem/... but it allows</span></span><br><span class="line">	<span class="comment">// us to eliminate padding which would be needed for, e.g., map[int64]int8.</span></span><br><span class="line">	<span class="comment">// Followed by an overflow pointer.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -254,23 +251,29 @@
 <h3><span id="三-map扩容">三、Map扩容</span></h3><p>对哈希表的扩容是保障读写效率的有效手段</p>
 <p>向map插入新key时内存不足，满足以下两个条件则会发生扩容</p>
 <p>Load Factor(负载因子)  &#x3D; 6.5 &#x3D; count (键值对的数目 ) &#x2F; b(桶的数目 ) <code>loadFactorNum/loadFactorDen</code> ， 是判断是否需要扩容的依据</p>
-<h4><span id="map的扩容方式">Map的扩容方式</span></h4><p>一次性扩容：</p>
-<p>1、分配更多的新桶buckets</p>
+<h4><span id="map的扩容方式">Map的扩容方式</span></h4><h5><span id="31-一次性扩容">3.1 一次性扩容：</span></h5><p>1、分配更多的新桶buckets</p>
 <p>2、把旧桶oldBuckets里存储的键值对都迁移到新桶buckets</p>
 <p>缺点：</p>
 <p>若哈希表里的键值对较多，一次性迁移桶花费的时间长</p>
-<p>渐进式扩容过程</p>
-<p>1、一次性分配足够多的新桶buckets，用oldBuckets记录旧桶的位置</p>
+<h5><span id="32-渐进式扩容过程">3.2 渐进式扩容过程</span></h5><p>1、一次性分配足够多的新桶buckets，用oldBuckets记录旧桶的位置</p>
 <p>2、nevacuate记录下一个要迁移的旧桶编号</p>
 <p>3、对哈希表进行读写操作时，若检测到处于扩容阶段，则完成一部分键值对的迁移认为。直到所有的旧桶迁移完成，旧桶不再使用，才算完成一次哈希表的扩容</p>
 <p>将键值对迁移的时间分摊到多次哈希表的操作中，可以避免一次性扩容带来的性能瞬时抖动。（redis的rehash）</p>
-<h4><span id="扩容规则">扩容规则</span></h4><p><strong>1、超过负载</strong></p>
-<p>count &#x2F; 2^b  &gt;  6.5，则翻倍扩容</p>
-<p>扩容规则：双倍扩容，扩容后的buckets大小时原来的两倍，并把旧的buckets数据搬到新的buckets</p>
-<p><strong>2、溢出桶太多</strong></p>
+<h4><span id="扩容规则">扩容规则</span></h4><p><strong>1、超过负载 (翻倍扩容)</strong> </p>
+<p>count &#x2F; 2^b^  &gt;  6.5，则翻倍扩容。扩容后的buckets大小时原来的两倍，并把旧的buckets数据搬到新的buckets</p>
+<p><strong>2、溢出桶太多（等量扩容）</strong> </p>
+<p>等量扩容，就是创建和旧桶数目一样多的新桶，然后把原来的键值对迁移到新桶中。</p>
+<p>为什么要这样做呢？等量扩容出现的情况是由于负载因子没有超过上限值，但却使用了很多溢出桶数目。这种情况通常是有很多键值对被删除，如下图编号为0的桶，若此时满足等量扩容的触发条件，编号为0的桶会被迁移到同样编号的新桶，同样数目的键值对迁移到新桶中能够排列得更加紧凑，从而减少溢出桶的使用。</p>
+<img src="/2022/06/22/Map/4.png" style="width:500px">
+
+<p>B&lt;&#x3D;15，noverflow &gt;&#x3D; 2^B</p>
+<p>B&gt;15，noverflow &gt;&#x3D; 2^15</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">tooManyOverflowBuckets</span><span class="params">(noverflow <span class="type">uint16</span>, B <span class="type">uint8</span>)</span></span> <span class="type">bool</span> &#123;</span><br><span class="line">	<span class="comment">// If the threshold is too low, we do extraneous work.</span></span><br><span class="line">	<span class="comment">// If the threshold is too high, maps that grow and shrink can hold on to lots of unused memory.</span></span><br><span class="line">	<span class="comment">// &quot;too many&quot; means (approximately) as many overflow buckets as regular buckets.</span></span><br><span class="line">	<span class="comment">// See incrnoverflow for more details.</span></span><br><span class="line">	<span class="keyword">if</span> B &gt; <span class="number">15</span> &#123;</span><br><span class="line">		B = <span class="number">15</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// The compiler doesn&#x27;t see here that B &lt; 16; mask B to generate shorter shift code.</span></span><br><span class="line">	<span class="keyword">return</span> noverflow &gt;= <span class="type">uint16</span>(<span class="number">1</span>)&lt;&lt;(B&amp;<span class="number">15</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+
+
 <p><a target="_blank" rel="noopener" href="https://go.dev/tour/moretypes/19">https://go.dev/tour/moretypes/19</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Sp4y1U7dJ/?spm_id_from=333.337.search-card.all.click&amp;vd_source=d85f289ebf4d31920c7178bbb563a0a4">https://www.bilibili.com/video/BV1Sp4y1U7dJ/?spm_id_from=333.337.search-card.all.click&amp;vd_source=d85f289ebf4d31920c7178bbb563a0a4</a></p>
 
 
                 <hr>
