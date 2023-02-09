@@ -266,6 +266,13 @@
 </ul>
 <h5><span id="5-xampx-1表示什么">5) x&amp;(x-1)表示什么</span></h5><p>每次与运算会把最低位的1去掉，用于统计一个数的二进制1的个数。</p>
 <h5><span id="6-c-x3d-1ltlt5">6) c ^&#x3D; 1&lt;&lt;5</span></h5><p>ASCII 码中 a为97，A为65，中间差了32，而2^5^&#x3D;32，因此一个字符c <code>异或</code> <code>左移5位</code>可以表示大小写之间的转换。</p>
+<h5><span id="7x3d-异或">7）^&#x3D; 异或</span></h5><p>根据异或性质，可以把出现2次的数消除掉</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// nums = [1,1,2,3,3,4,4,8,8] 数组中只有一个数字出现一次，其余都出现2次。要找出只出现一次的数字</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">singleNonDuplicate</span><span class="params">(nums []<span class="type">int</span>)</span></span> <span class="type">int</span> &#123;</span><br><span class="line">    ans := <span class="number">0</span></span><br><span class="line">    <span class="comment">//  出现2次会消除</span></span><br><span class="line">    <span class="keyword">for</span> _, x := <span class="keyword">range</span> nums &#123;</span><br><span class="line">        ans ^= x</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
 
 
                 <hr>

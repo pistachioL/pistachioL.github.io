@@ -220,7 +220,19 @@
 
 
 
-<h3><span id="字符的运算和转化">字符的运算和转化</span></h3><h5><span id="1字符-0就转化成数字">1)字符-‘0’就转化成数字。</span></h5><h5><span id="数字0转化成字符">数字+’0’转化成字符</span></h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> a=<span class="string">&#x27;3&#x27;</span>,b=<span class="string">&#x27;1&#x27;</span>;</span><br><span class="line">a = a -<span class="string">&#x27;0&#x27;</span> + <span class="string">&#x27;1&#x27;</span>;  <span class="comment">//a = 4</span></span><br><span class="line">a = (a - <span class="string">&#x27;0&#x27;</span>) % <span class="number">2</span> + <span class="string">&#x27;0&#x27;</span>;   <span class="comment">//a=1</span></span><br></pre></td></tr></table></figure>
+<h3><span id="字符的运算和转化">字符的运算和转化</span></h3><h5><span id="1字符-0就转化成数字">1)字符-‘0’就转化成数字。</span></h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;11：23&quot;</span> =&gt; hour:<span class="number">11</span>, minute:<span class="number">23</span></span><br><span class="line"> <span class="type">int</span> <span class="built_in">getMin</span>(string s) &#123;</span><br><span class="line">    <span class="built_in">return</span> (<span class="built_in">int</span>(s[<span class="number">0</span>] - <span class="string">&#x27;0&#x27;</span>) * <span class="number">10</span> + <span class="built_in">int</span>(s[<span class="number">1</span>] - <span class="string">&#x27;0&#x27;</span>)) * <span class="number">60</span> + <span class="built_in">int</span>(s[<span class="number">3</span>] - <span class="string">&#x27;0&#x27;</span>) * <span class="number">10</span> + <span class="built_in">int</span>(s[<span class="number">4</span>] - <span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5><span id="2数字0转化成字符">2）数字+’0’转化成字符</span></h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> a=<span class="string">&#x27;3&#x27;</span>,b=<span class="string">&#x27;1&#x27;</span>;</span><br><span class="line">a = a -<span class="string">&#x27;0&#x27;</span> + <span class="string">&#x27;1&#x27;</span>;  <span class="comment">//a = 4</span></span><br><span class="line">a = (a - <span class="string">&#x27;0&#x27;</span>) % <span class="number">2</span> + <span class="string">&#x27;0&#x27;</span>;   <span class="comment">//a=1</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5><span id="3-字符-a变数字">3) 字符-‘a’变数字</span></h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> arr[<span class="number">26</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">char</span> c : s) &#123;</span><br><span class="line"> 	arr[c - <span class="string">&#x27;a&#x27;</span>]++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
 
 <h5><span id="整型x2f浮点型转字符串">整型&#x2F;浮点型转字符串</span></h5><p>①<code>string to_string(int n);</code></p>
 <p>②stringstream</p>
