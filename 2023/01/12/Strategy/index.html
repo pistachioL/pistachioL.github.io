@@ -17,7 +17,7 @@
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2023/01/12/Strategy Pattern/">
+    <link rel="canonical" href="https://pistachiol.github.io/2023/01/12/Strategy/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -205,7 +205,7 @@
                 post-container">
 
                 <h3><span id="一-定义">一、定义</span></h3><p>策略模式定义了一系列算法，把它们一个个封装起来，并且可以使它们可相互替换（变化）。该模式使得算法<strong>可独立于</strong>使用它的客户端程序（稳定）而变化。</p>
-<h3><span id="二-结构">二、结构</span></h3><img src="/2023/01/12/Strategy%20Pattern/1.png" width="700px">
+<h3><span id="二-结构">二、结构</span></h3><img src="/2023/01/12/Strategy/1.png" width="700px">
 
 
 
@@ -219,7 +219,7 @@
 <li><p>但在一些if else绝对不变的情况下，不一定要使用Strategy，如：性别、一周有7天等等情况。</p>
 </li>
 <li><p>支持不是用的算法（代码）会增加性能负担，有很大段代码被装载到代码段中，却不被使用。而Strategy通常在运行时加载到内存，（代码本地化）最好加载到cpu的高级缓存中。若代码过长则有些需要加载到主存中，甚至需要放到硬盘。</p>
-<img src="/2023/01/12/Strategy%20Pattern/2.png" style="width:300px">
+<img src="/2023/01/12/Strategy/2.png" style="width:300px">
 </li>
 <li><p>如果Strategy对象没有实例变量，那么各个上下文可以共享同一个Strategy对象，从而节省对象开销。（单例模式）</p>
 </li>
@@ -303,8 +303,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2023/01/12/Strategy%20Pattern/";
-    var disqus_url = "https://pistachiol.github.io/2023/01/12/Strategy%20Pattern/";
+    var disqus_identifier = "https://pistachiol.github.io/2023/01/12/Strategy/";
+    var disqus_url = "https://pistachiol.github.io/2023/01/12/Strategy/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

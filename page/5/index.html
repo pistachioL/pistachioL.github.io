@@ -430,10 +430,10 @@ InnoDB
         <div class="post-content-preview">
             事务事务是由一组SQL语句组成的一个执行单元，该执行单元要么全部执行或全部不执行
 事务四大特质（ACID）
-原子性(Atomicity)：指事务包含的所有操作要么全部成功，要么全部失败回滚。事务是最小单位，不可再分。
+原子性(Atomicity)：指事务包含的所有操作（sql）要么全部成功，要么全部失败回滚。事务是最小单位，不可再分。
 
 回滚通过undo log实现，回滚行记录到某个特定版本
-undo log 记录的是逻辑操作日志（如对某行数据进行insert操作，那么undo log会记录一条与之相反的de......
+undo log 记录的是逻辑操作日志（如对某行数据进行insert操作，那么undo log会记录一条与之......
         </div>
     </a>
     <p class="post-meta">
