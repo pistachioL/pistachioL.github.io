@@ -17,7 +17,7 @@
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2023/01/13/DesginPattern/">
+    <link rel="canonical" href="https://pistachiol.github.io/2023/01/13/设计模式总览/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -210,20 +210,41 @@
 <p>高层模块（稳定）不应该依赖底层模块（变化），二者都该依赖抽象（稳定）。</p>
 <p>抽象（稳定）不应该依赖实现细节，实现细节（变化）应该依赖抽象（稳定）。</p>
 <blockquote>
-<p> 例如A依赖B，就是A在编译时B需要存在，才能编译通过（通常是编译时依赖）。</p>
+<p> 例如A依赖B，就是A在编译时B需要存在，才能编译通过（此处的依赖通常是指编译时依赖，只有抽象在才能编译通过）。</p>
 </blockquote>
-<p><img src="/2023/01/13/DesginPattern/1.png" width="450px"> (Before)</p>
-<p><img src="/2023/01/13/DesginPattern/2.png" width="450px">(After)</p>
-<p>单一职责原则</p>
+<p><img src="/2023/01/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E8%A7%88/1.png" width="450px"> (Before)</p>
+<p><img src="/2023/01/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E8%A7%88/2.png" width="450px">(After)</p>
+<p>二、开放封闭原则（OCP）</p>
+<ul>
+<li>对扩展开放，对更改封闭</li>
+<li>类模块应该是可扩展的，但是不可修改</li>
+</ul>
+<p>应该扩展（增加）文件来应对需求变化，不需要对原有的代码重新编译、测试、部署</p>
+<p>三、单一职责原则（SRP）</p>
+<ul>
+<li><p>一个类应该仅有一个引起它变化的原因</p>
+</li>
+<li><p>变化的方向隐含着类的责任</p>
+</li>
+</ul>
 <p>典型模式：</p>
 <ul>
 <li>Decorator</li>
 <li>Bridge</li>
 </ul>
-<p>二、依赖倒转原则</p>
-<p>应该依赖抽象，不应该依赖实现细节。（此处的依赖指的是编译时依赖，只有抽象在才能编译通过）</p>
-<p>三、开放封闭原则</p>
-<p>里氏替换原则</p>
+<p>四、Lisov替换原则（LSP）</p>
+<ul>
+<li>子类必须能够替换它们的基类(IS-A)</li>
+<li>继承表达类型抽象</li>
+</ul>
+<p>五、接口隔离原则（ISP）</p>
+<ul>
+<li><p>不应该强迫客户程序依赖它们不用的方法</p>
+</li>
+<li><p>接口应该小而完备</p>
+<p>没必要暴露的方法尽量不使用public，子类使用portected，本类使用private。否则很容易让外部程序对public的方法产生依赖</p>
+</li>
+</ul>
 <p>1、组件合协作模式</p>
 <p>现代软件专业分工后的第一个结果是”框架与应用程序的划分”，”组件协作”模式通过晚期绑定，来实现框架与应用程序之间的松耦合，是二者之间协作时常用的模式。</p>
 <ul>
@@ -267,12 +288,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2023/01/13/Factory/" data-toggle="tooltip" data-placement="top" title="【创建型】工厂模式">&larr; Previous Post</a>
+                            <a href="/2023/01/13/Bridge/" data-toggle="tooltip" data-placement="top" title="【结构型】桥接模式">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2023/01/13/Bridge/" data-toggle="tooltip" data-placement="top" title="【结构型】桥接模式">Next Post &rarr;</a>
+                            <a href="/2023/01/12/Observer/" data-toggle="tooltip" data-placement="top" title="【行为型】观察者模式">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -337,8 +358,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2023/01/13/DesginPattern/";
-    var disqus_url = "https://pistachiol.github.io/2023/01/13/DesginPattern/";
+    var disqus_identifier = "https://pistachiol.github.io/2023/01/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E8%A7%88/";
+    var disqus_url = "https://pistachiol.github.io/2023/01/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E8%A7%88/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
