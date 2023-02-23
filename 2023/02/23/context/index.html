@@ -13,11 +13,11 @@
 
     <title>
         
-          go GC - Pistachio的楼阁 | Pistachio&#39;s Blog
+          context - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2022/04/21/GC/">
+    <link rel="canonical" href="https://pistachiol.github.io/2023/02/23/context/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -181,11 +181,11 @@
                           <a class="tag" href="/tags/#Go学习" title="Go学习">Go学习</a>
                         
                     </div>
-                    <h1>go GC</h1>
+                    <h1>context</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
-                        2022-04-21
+                        2023-02-23
                     </span>
                 </div>
             </div>
@@ -204,76 +204,37 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3><span id="一-背景知识">一、背景知识</span></h3><ul>
-<li>bbs数据段：全局变量、静态数据</li>
-<li>函数栈帧（栈）：函数的局部变量、参数、返回值。栈是系统自动分配空间的，例如定义一个var a string；系统会自动在栈上为其开辟空间。</li>
-<li>堆：函数内部动态分配的内存，由程序员申请分配和释放。在编译阶段不能确定数据对象的大小、或者对象的生命周期超出了当前所在函数，则不适合分配在栈上，要分配在堆。</li>
+                <h3><span id="一-简介">一、简介</span></h3><p>go并发编程中，用一个goroutine处理一个任务，而它又会创建多个goroutine来负责不同子任务，这种场景往往需要在api边界之间、过程之间传递截止时间、取消信号、以及其它请求数据，这时候便可以使用context。</p>
+<h3><span id="二-使用场景">二、使用场景</span></h3><blockquote>
+<p>At Google, we developed a <code>context</code> package that makes it easy to pass request-scoped values, cancellation signals, and deadlines across API boundaries to all the goroutines involved in handling a request. </p>
+</blockquote>
+<h4><span id="21传递数据-请求相关">2.1传递数据 (请求相关)</span></h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> valueCtx <span class="keyword">struct</span> &#123;</span><br><span class="line">   Context</span><br><span class="line">   key, val any <span class="comment">// 支持键值对</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>给context附加一个键值对信息，即可通过context传递数据</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">WithValue</span><span class="params">(parent Context, key <span class="keyword">interface</span>&#123;&#125;, val <span class="keyword">interface</span>&#123;&#125;)</span></span> Context</span><br></pre></td></tr></table></figure>
+
+
+
+<h4><span id="22-优雅地取消goroutine">2.2 优雅地取消goroutine</span></h4><h5><span id="cancelctx">cancelCtx</span></h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">WithCancel</span><span class="params">(parent Context)</span></span> (ctx Context, cancel CancelFunc) <span class="comment">// 创建cancelCtx</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">   ctx, cancel := context.WithCancel(context.Background()) <span class="comment">// Background()在初始化时获取一个context</span></span><br><span class="line">   <span class="keyword">defer</span> cancel()</span><br><span class="line">   <span class="keyword">for</span> i := <span class="number">1</span>; i &lt;= <span class="number">100</span>; i++ &#123;</span><br><span class="line">      <span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">(i <span class="type">int</span>)</span></span> &#123;</span><br><span class="line">         <span class="keyword">select</span> &#123;</span><br><span class="line">         <span class="keyword">case</span> &lt;-ctx.Done(): <span class="comment">// 收到取消信号，则所有gorouine退出</span></span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">         <span class="keyword">default</span>:</span><br><span class="line">            fmt.Println(i)</span><br><span class="line">         &#125;</span><br><span class="line">      &#125;(i)</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5><span id="timerctx">timerCtx</span></h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> timerCtx <span class="keyword">struct</span> &#123; </span><br><span class="line">	cancelCtx </span><br><span class="line">	timer *time.Timer <span class="comment">// Under cancelCtx.mu.</span></span><br><span class="line"></span><br><span class="line">	deadline time.Time</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>创建timerCtx的方式：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">WithTimeout</span><span class="params">(parent Context, timeout time.Duration)</span></span> (Context, CancelFunc) <span class="comment">//时间段</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">WithDeadline</span><span class="params">(parent Context, d time.Time)</span></span> (Context, CancelFunc)  <span class="comment">// 时间点</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3><span id="三-参考">三、参考</span></h3><ul>
+<li><a target="_blank" rel="noopener" href="https://go.dev/blog/context">https://go.dev/blog/context</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.codebaoku.com/godeep/godeep-context-purpose.html">http://www.codebaoku.com/godeep/godeep-context-purpose.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV19K411T7NL/?spm_id_from=333.337.search-card.all.click&amp;vd_source=d85f289ebf4d31920c7178bbb563a0a4">https://www.bilibili.com/video/BV19K411T7NL/?spm_id_from=333.337.search-card.all.click&amp;vd_source=d85f289ebf4d31920c7178bbb563a0a4</a></li>
 </ul>
-<p>分配在堆上的数据需要程序主动释放才可以重新使用，否则会成为垃圾，而垃圾越积越多会消耗系统内存。</p>
-<p><strong>手动垃圾回收</strong>：c、c++等语言需要程序手动释放不再需要的、分配在堆上的数据。一旦释放得早，后续对该数据的访问会出错，因为被释放的内存可能已经被清空，或者重新分配，甚至已经还给OS，这就是<code>悬挂指针</code>问题；但若忘记释放，就会一直占用内存，出现<code>内存泄露</code>。</p>
-<p><strong>自动垃圾回收</strong>：由运行时识别不再有用的数据，并释放它们占用的内存。</p>
-<h3><span id="二-种类">二、种类</span></h3><h4><span id="21-三色抽象法追踪式回收">2.1 三色抽象法（追踪式回收）</span></h4><p>三色抽象法是基于**标记-清扫算法 (Mark - Sweep) **的思想：程序中用得到的数据是从<code>栈</code>、<code>数据段</code>追踪得到的数据（可达性近似等于存活性），可以以它们为根结点进行追踪，能追中到的数据进行标记，追踪不到的对象就是垃圾，进行回收。</p>
-<img src="/2022/04/21/GC/1.png" style="width:300px">
-
-
-
-<p>而三色抽象能够清晰地表现追踪式回收过程中对象的变化过程：</p>
-<p>1、垃圾回收开始前，所有数据都为<code>白色</code>；</p>
-<img src="/2022/04/21/GC/0.png" style="width:300px">
-
-<p>2、把直接追踪到的root结点标记为<code>灰色</code> （灰色代表基于当前结点展开的追踪还没完成）</p>
-<img src="/2022/04/21/GC/2.png" style="width:300px">
-
-<p>3、当基于某个节点的追踪完成后（基于该节点追踪不到数据），便把该节点标记为黑色，表示它为<code>存活数据</code>，而且无需基于它进行追踪；</p>
-<img src="/2022/04/21/GC/3.png" style="width:300px">
-
-<p>4、基于黑色结点追踪到的数据标为灰色，表示还需要基于它们展开追踪</p>
-<img src="/2022/04/21/GC/4.png" style="width:300px">
-
-<p>5、当没有灰色结点时，标记任务结束，有用数据均为黑色，垃圾数据为白色。接着回收白色对象的内存即可</p>
-<img src="/2022/04/21/GC/5.png" style="width:300px">
-
-<p>缺点：</p>
-<ul>
-<li><p>容易造成内存碎片化</p>
-</li>
-<li><p>避免存活对象误判为垃圾对象的情况：强弱三色不变式</p>
-</li>
-</ul>
-<p><strong>强三色不变式</strong>：无论如何，不允许黑色对象到白色对象的引用</p>
-<p><strong>弱三色不变式</strong>：可以出现黑色对象到白色对象的引用，但可以保证通过灰色对象可以抵达白色对象，也可避免错误回收</p>
-<img src="/2022/04/21/GC/5.png" style="width:300px">
-
-
-
-<h4><span id="实现强x2f弱三色不变式">实现强&#x2F;弱三色不变式</span></h4><p>通过建立读写屏障，实现强&#x2F;弱三色不变式</p>
-<p><strong>写屏障</strong>：</p>
-<p>插入写屏障：（实现强三色不变式）A对象引用B对象时，B对象标记为灰色。 可以把白色指针着为灰色，或者把写入的黑色对象退化为灰色</p>
-<p>删除写屏障：（弱三色不变式 对白色对象路径的破坏行为）例如要删除灰色对象到白色对象的引用，可以把白色对象着为灰色，则是删除写屏障</p>
-<p><strong>读屏障</strong>：</p>
-<p><strong>混合写屏障</strong></p>
-<h4><span id="24-引用计数">2.4 引用计数</span></h4><p>程序运行时会对对象进行计数，当技术为0时表示这个对象不再有用，可以回收它占用的内存。</p>
-<p>缺点：高频率更新引用次数会造成不小的系统开销，而且容易造成<code>循环引用</code>。</p>
-<h4><span id="25-复制式回收追踪式回收">2.5 复制式回收（追踪式回收）</span></h4><ul>
-<li>把堆内存划分为两个相等的空间，From和To。程序执行时，使用From空间。</li>
-<li>垃圾回收执行时，会扫描From空间，把能追踪到的数据复制到To空间。</li>
-</ul>
-<img src="/2022/04/21/GC/6.png" style="width:300px">
-
-<ul>
-<li>当所有有用的数据都复制到To空间后，把From和To的角色交换</li>
-</ul>
-<img src="/2022/04/21/GC/7.png" style="width:300px">
-
-<p>优缺点：复制式回收不会带来碎片化问题，但只有一半的堆内存可以被使用，因此通常搭配其它垃圾回收算法（如分代回收）一起使用，只在一部分堆内存中使用复制式回收。</p>
-<h4><span id="26-分代回收追踪式回收">2.6 分代回收（追踪式回收）</span></h4><ul>
-<li><p>该垃圾回收算法基于<strong>弱分代假说</strong>：大部分对象都在年轻时死亡。</p>
-<p>换言之，新生代对象成为垃圾的概率高于老年代对象，故可把数据分为新生代和老年代，降低老年代垃圾回收的频率，不用每次都处理所有数据，提升垃圾回收效率。</p>
-</li>
-<li><p>新生代和老年代可以分别采取不同的垃圾回收策略，进一步提升回收效率并减少开销。</p>
-</li>
-</ul>
-<img src="/2022/04/21/GC/8.png" style="width:300px">
 
 
                 <hr>
@@ -282,13 +243,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2022/04/29/GMP/" data-toggle="tooltip" data-placement="top" title="go GMP模型">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2022/04/20/channel/" data-toggle="tooltip" data-placement="top" title="channel">Next Post &rarr;</a>
+                            <a href="/2023/02/22/二叉搜索树/" data-toggle="tooltip" data-placement="top" title="二叉搜索树">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -353,8 +310,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2022/04/21/GC/";
-    var disqus_url = "https://pistachiol.github.io/2022/04/21/GC/";
+    var disqus_identifier = "https://pistachiol.github.io/2023/02/23/context/";
+    var disqus_url = "https://pistachiol.github.io/2023/02/23/context/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
