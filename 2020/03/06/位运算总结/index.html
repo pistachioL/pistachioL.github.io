@@ -17,7 +17,7 @@
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2020/03/06/位运算/">
+    <link rel="canonical" href="https://pistachiol.github.io/2020/03/06/位运算总结/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -259,12 +259,22 @@
 
 
 
-<h5><span id="4-x-amp-x表示什么">4) x &amp; (-x)表示什么</span></h5><ul>
+<h5><span id="4-x-amp-x表示什么">4) x &amp; (-x)表示什么</span></h5><p>-x 代表 ~x+1（x取反再加1，负数在二进制中是正数的补码表示，补码是反码+1）</p>
+<p>lowbit &#x3D; x &amp; -x 可以算出从右到左第一个1出现的位置，如<code>6 &amp; (-6) </code>&#x3D;<code>110 &amp; (010)</code>&#x3D;<code> 010</code>。</p>
+<ul>
 <li>x &#x3D; 0，结果为0</li>
 <li>x 是奇数，结果为1</li>
 <li>x是偶数，结果是2最大次方的因子。（如x&#x3D;28,2^4^&#x3D;16,故为4）</li>
 </ul>
-<h5><span id="5-xampx-1表示什么">5) x&amp;(x-1)表示什么</span></h5><p>每次与运算会把最低位的1去掉，用于统计一个数的二进制1的个数。</p>
+<h5><span id="5-xampx-1表示什么">5) x&amp;(x-1)表示什么</span></h5><ul>
+<li><p>每次与运算会把最低位的1去掉，用于统计一个数的二进制1的个数。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// num = 7（111）, 则输出3</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">hammingWeight</span><span class="params">(num <span class="type">uint32</span>)</span></span> <span class="type">int</span> &#123;</span><br><span class="line">	cnt := <span class="number">0</span></span><br><span class="line">	<span class="keyword">for</span> num != <span class="number">0</span> &#123;</span><br><span class="line">		num = num &amp; (num - <span class="number">1</span>)</span><br><span class="line">		cnt++</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> cnt</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>x&amp;(x-1) &#x3D;&#x3D; 0，即x为2的幂次</p>
+</li>
+</ul>
 <h5><span id="6-c-x3d-1ltlt5">6) c ^&#x3D; 1&lt;&lt;5</span></h5><p>ASCII 码中 a为97，A为65，中间差了32，而2^5^&#x3D;32，因此一个字符c <code>异或</code> <code>左移5位</code>可以表示大小写之间的转换。</p>
 <h5><span id="7x3d-异或">7）^&#x3D; 异或</span></h5><p>根据异或性质，可以把出现2次的数消除掉</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// nums = [1,1,2,3,3,4,4,8,8] 数组中只有一个数字出现一次，其余都出现2次。要找出只出现一次的数字</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">singleNonDuplicate</span><span class="params">(nums []<span class="type">int</span>)</span></span> <span class="type">int</span> &#123;</span><br><span class="line">    ans := <span class="number">0</span></span><br><span class="line">    <span class="comment">//  出现2次会消除</span></span><br><span class="line">    <span class="keyword">for</span> _, x := <span class="keyword">range</span> nums &#123;</span><br><span class="line">        ans ^= x</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -351,8 +361,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2020/03/06/%E4%BD%8D%E8%BF%90%E7%AE%97/";
-    var disqus_url = "https://pistachiol.github.io/2020/03/06/%E4%BD%8D%E8%BF%90%E7%AE%97/";
+    var disqus_identifier = "https://pistachiol.github.io/2020/03/06/%E4%BD%8D%E8%BF%90%E7%AE%97%E6%80%BB%E7%BB%93/";
+    var disqus_url = "https://pistachiol.github.io/2020/03/06/%E4%BD%8D%E8%BF%90%E7%AE%97%E6%80%BB%E7%BB%93/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
