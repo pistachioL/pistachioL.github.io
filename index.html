@@ -197,6 +197,32 @@
 
 <div class="post-preview">
 
+    <a href="/2023/02/24/go数据类型/">
+        <h2 class="post-title">
+            rune类型
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            使用场景1、Go字符串不支持下标修改，需要转byte或者rune才能改。byte是uint8的别名，而rune是int32的别名
+1234str := &quot;hello&quot;str1 := []byte(str)str1[0] = &#x27;x&#x27;fmt.Println(string(str1)) // xello
+
+
+
+2、算法题：abcde你好 &#x3D;&gt;......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2023-02-24
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2023/02/23/context/">
         <h2 class="post-title">
             context
@@ -428,34 +454,6 @@ Facade模式更注重从架构的层次去看整个系统（多个类形成系�
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2023/01/15/差分/">
-        <h2 class="post-title">
-            差分数组
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            一、区间和检索（数组不可变）1、先求数组的前缀和presum；
-2、再求区间presum[right - 1] - presume[left]的值
-LC303. 区域和检索 - 数组不可变
-给定一个整数数组  nums，处理以下类型的多个查询:
-
-计算索引 left 和 right （包含 left 和 right）之间的 nums 元素的 和 ，其中 left &lt;= right
-
-实......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2023-01-15
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -517,7 +515,7 @@ LC303. 区域和检索 - 数组不可变
                             
                         
                             
-                            <a href="/tags/#Go学习" title="Go学习" rel="8">Go学习</a>
+                            <a href="/tags/#Go学习" title="Go学习" rel="9">Go学习</a>
                             
                         
                             
