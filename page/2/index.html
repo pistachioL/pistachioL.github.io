@@ -92,18 +92,8 @@
                     
 
                         
-                    
-
-                        
                         <li>
                             <a href="/archives/">Archives</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -117,8 +107,18 @@
 
                         
                         <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/categories/">categories</a>
                         </li>
+                        
+                    
+
                         
                     
                     
@@ -194,59 +194,6 @@
             
                 <!-- Main Content -->
 
-
-<div class="post-preview">
-
-    <a href="/2023/01/17/Flyweight/">
-        <h2 class="post-title">
-            【结构型】享元模式
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            一、定义运用共享技术有效地支持 大量细粒度对象 （如字符串、线程池）。
-模式动机：软件系统采用纯粹对象方案的问题在于，大量细粒度对象会很快充斥在系统，从而带来很高的运行代价。（主要指内存需求方面的代价）
-二、结构
-
-基本思想（共享）：
-在共享池中查找对象是否创建过，如果对象创建过，则直接返回对象；否则先创建对象，把该对象放到共享池中。不过有些对象不支持恭共享。
-三、使用场景123456789......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2023-01-17
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2023/01/17/Singleton/">
-        <h2 class="post-title">
-            【创建型】单例模式
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            一、定义保证一个类仅有一个实例，并提供一个该实例的全局访问点。
-二、结构
-
-
-
-三、创建方式12345678class Singleton &#123;private:    Singleton(); // 使其私有化，只能自己使用，别人不能使用，故放在private    Singleton(const Singleton&amp; other);public:    static Sin......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2023-01-17
-    </p>
-
-</div>
-<hr>
 
 <div class="post-preview">
 
@@ -470,6 +417,60 @@ Strategy模式提供了用条件判断语句(if&#x2F;else)以外的另一种选�
 </div>
 <hr>
 
+<div class="post-preview">
+
+    <a href="/2023/01/10/字符串的动态规划/">
+        <h2 class="post-title">
+            字符串DP题目总结
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            1. LC72. 编辑距离
+给你两个单词 word1 和 word2， 请返回将 word1 转换成 word2 所使用的最少操作数 。
+你可以对一个单词进行如下三种操作：
+
+插入一个字符
+删除一个字符
+替换一个字符
+
+示例 1：
+123456输入：word1 = &quot;horse&quot;, word2 = &quot;ros&quot;输出：3解释：horse -&gt; ror......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2023-01-10
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2023/01/10/LIS算法/">
+        <h2 class="post-title">
+            LIS题目总结
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            LIS (Longest Increasing Subsequence)最长递增子序列，通常使用动态规划求解。
+1. LC647. 最长连续递增序列
+给定一个未经排序的整数数组，找到最长且 连续递增的子序列，并返回该序列的长度。
+连续递增的子序列 可以由两个下标 l 和 r（l &lt; r）确定，如果对于每个 l &lt;= i &lt; r，都有 nums[i] &lt; nums[i ......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2023-01-10
+    </p>
+
+</div>
+<hr>
+
 
 
 <!-- Pager -->
@@ -509,11 +510,15 @@ Strategy模式提供了用条件判断语句(if&#x2F;else)以外的另一种选�
                     <div class="tags">
                         
                             
-                            <a href="/tags/#数据结构" title="数据结构" rel="19">数据结构</a>
+                            <a href="/tags/#设计模式" title="设计模式" rel="13">设计模式</a>
                             
                         
                             
-                            <a href="/tags/#设计模式" title="设计模式" rel="13">设计模式</a>
+                            <a href="/tags/#生活" title="生活" rel="2">生活</a>
+                            
+                        
+                            
+                            <a href="/tags/#数据结构" title="数据结构" rel="17">数据结构</a>
                             
                         
                             
@@ -521,7 +526,7 @@ Strategy模式提供了用条件判断语句(if&#x2F;else)以外的另一种选�
                             
                         
                             
-                            <a href="/tags/#生活" title="生活" rel="2">生活</a>
+                            <a href="/tags/#动态规划" title="动态规划" rel="3">动态规划</a>
                             
                         
                             
@@ -531,7 +536,7 @@ Strategy模式提供了用条件判断语句(if&#x2F;else)以外的另一种选�
                             
                         
                             
-                            <a href="/tags/#动态规划" title="动态规划" rel="3">动态规划</a>
+                            <a href="/tags/#读书笔记" title="读书笔记" rel="5">读书笔记</a>
                             
                         
                             
@@ -539,15 +544,7 @@ Strategy模式提供了用条件判断语句(if&#x2F;else)以外的另一种选�
                             
                         
                             
-                            <a href="/tags/#读书笔记" title="读书笔记" rel="5">读书笔记</a>
-                            
-                        
-                            
                             <a href="/tags/#HTTP" title="HTTP" rel="2">HTTP</a>
-                            
-                        
-                            
-                            <a href="/tags/#PHP" title="PHP" rel="4">PHP</a>
                             
                         
                             
@@ -555,9 +552,13 @@ Strategy模式提供了用条件判断语句(if&#x2F;else)以外的另一种选�
                             
                         
                             
+                            <a href="/tags/#PHP" title="PHP" rel="4">PHP</a>
+                            
                         
                             
                             <a href="/tags/#Linux" title="Linux" rel="4">Linux</a>
+                            
+                        
                             
                         
                             
@@ -575,11 +576,15 @@ Strategy模式提供了用条件判断语句(if&#x2F;else)以外的另一种选�
                             
                         
                             
+                        
+                            
                             <a href="/tags/#Redis" title="Redis" rel="2">Redis</a>
                             
                         
                             
                             <a href="/tags/#STL" title="STL" rel="8">STL</a>
+                            
+                        
                             
                         
                             
@@ -589,11 +594,7 @@ Strategy模式提供了用条件判断语句(if&#x2F;else)以外的另一种选�
                             
                         
                             
-                        
-                            
                             <a href="/tags/#树" title="树" rel="2">树</a>
-                            
-                        
                             
                         
                             

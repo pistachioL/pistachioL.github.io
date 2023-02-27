@@ -92,18 +92,8 @@
                     
 
                         
-                    
-
-                        
                         <li>
                             <a href="/archives/">Archives</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -117,8 +107,18 @@
 
                         
                         <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/categories/">categories</a>
                         </li>
+                        
+                    
+
                         
                     
                     
@@ -194,66 +194,6 @@
             
                 <!-- Main Content -->
 
-
-<div class="post-preview">
-
-    <a href="/2020/03/21/扩展欧几里得算法/">
-        <h2 class="post-title">
-            扩展欧几里得算法的应用
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            LeetCode 水壶问题
-
-有两个容量分别为 x升 和 y升 的水壶以及无限多的水。请判断能否通过使用这两个水壶，从而可以得到恰好 z升 的水？
-如果可以，最后请用以上水壶中的一或两个来盛放取得的 z升 水。
-你允许：
-
-装满任意一个水壶
-清空任意一个水壶
-从一个水壶向另外一个水壶倒水，直到装满或者倒空
-
-
-样例：　x&#x3D;3,  y&#x3D;5,  z&#x3D;4  true,......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-03-21
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/03/19/Palindrome/">
-        <h2 class="post-title">
-            回文串
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            LeetCode 最长回文串
-
-在给定包含大小写的字符串中，找出这些字母构成的最长回文串，构造时注意区分大小写
-
-这道题目不同在于可以通过构造找出最长回文串，于是可以通过找规律求得。
-首先把每个字母出现的个数统计出来，放进vector中（方便处理）。
-查看vector中每个字母出现的次数，如果字母出现的个数时偶数，一定可以构成回文串，则可以把这些个数直接加起来；
-如果字母出现的个数是奇数，则......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-03-19
-    </p>
-
-</div>
-<hr>
 
 <div class="post-preview">
 
@@ -472,6 +412,57 @@ Leetcode 主要元素
 </div>
 <hr>
 
+<div class="post-preview">
+
+    <a href="/2020/02/23/字符串知识总结/">
+        <h2 class="post-title">
+            字符串知识总结
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            读入有空格的字符串1、getline
+123#include &lt;string&gt;string str;getline(cin,str);
+
+2、将句子中每个单词读入队列中
+1234567891011 // sentence1 = &quot;My name is Haley&quot;; sentence2 = &quot;My Haley&quot;string w; strin......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-02-23
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/02/19/KMP/">
+        <h2 class="post-title">
+            KMP
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            1.求前缀表next[]为什么要求前缀表？
+如果用暴力的双指针，在失配的时候又从模式串的开头重新匹配，增加了回溯的次数，效率低，复杂度为O(m*n)。
+前面已经匹配上的不用再搜索，通过next[]数组，在失去匹配的地方找到该元素的前后缀个数n，移动到模式串的下标n。复杂度时O(m+n)。
+通俗来说，next数组存放每个元素之前的字符串，最长公共前后缀的个数。
+
+如何求next[]呢？Text......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-02-19
+    </p>
+
+</div>
+<hr>
+
 
 
 <!-- Pager -->
@@ -511,11 +502,15 @@ Leetcode 主要元素
                     <div class="tags">
                         
                             
-                            <a href="/tags/#数据结构" title="数据结构" rel="19">数据结构</a>
+                            <a href="/tags/#设计模式" title="设计模式" rel="13">设计模式</a>
                             
                         
                             
-                            <a href="/tags/#设计模式" title="设计模式" rel="13">设计模式</a>
+                            <a href="/tags/#生活" title="生活" rel="2">生活</a>
+                            
+                        
+                            
+                            <a href="/tags/#数据结构" title="数据结构" rel="17">数据结构</a>
                             
                         
                             
@@ -523,7 +518,7 @@ Leetcode 主要元素
                             
                         
                             
-                            <a href="/tags/#生活" title="生活" rel="2">生活</a>
+                            <a href="/tags/#动态规划" title="动态规划" rel="3">动态规划</a>
                             
                         
                             
@@ -533,7 +528,7 @@ Leetcode 主要元素
                             
                         
                             
-                            <a href="/tags/#动态规划" title="动态规划" rel="3">动态规划</a>
+                            <a href="/tags/#读书笔记" title="读书笔记" rel="5">读书笔记</a>
                             
                         
                             
@@ -541,15 +536,7 @@ Leetcode 主要元素
                             
                         
                             
-                            <a href="/tags/#读书笔记" title="读书笔记" rel="5">读书笔记</a>
-                            
-                        
-                            
                             <a href="/tags/#HTTP" title="HTTP" rel="2">HTTP</a>
-                            
-                        
-                            
-                            <a href="/tags/#PHP" title="PHP" rel="4">PHP</a>
                             
                         
                             
@@ -557,9 +544,13 @@ Leetcode 主要元素
                             
                         
                             
+                            <a href="/tags/#PHP" title="PHP" rel="4">PHP</a>
+                            
                         
                             
                             <a href="/tags/#Linux" title="Linux" rel="4">Linux</a>
+                            
+                        
                             
                         
                             
@@ -577,11 +568,15 @@ Leetcode 主要元素
                             
                         
                             
+                        
+                            
                             <a href="/tags/#Redis" title="Redis" rel="2">Redis</a>
                             
                         
                             
                             <a href="/tags/#STL" title="STL" rel="8">STL</a>
+                            
+                        
                             
                         
                             
@@ -591,11 +586,7 @@ Leetcode 主要元素
                             
                         
                             
-                        
-                            
                             <a href="/tags/#树" title="树" rel="2">树</a>
-                            
-                        
                             
                         
                             

@@ -92,18 +92,8 @@
                     
 
                         
-                    
-
-                        
                         <li>
                             <a href="/archives/">Archives</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -117,8 +107,18 @@
 
                         
                         <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/categories/">categories</a>
                         </li>
+                        
+                    
+
                         
                     
                     
@@ -208,6 +208,14 @@
 <h3><span id="二-使用场景">二、使用场景</span></h3><blockquote>
 <p>At Google, we developed a <code>context</code> package that makes it easy to pass request-scoped values, cancellation signals, and deadlines across API boundaries to all the goroutines involved in handling a request. </p>
 </blockquote>
+<h4><span id="20-创建空的context">2.0 创建空的context</span></h4><p>1、context.Background()相当于获得根context，该context不能被取消，用在main函数或者顶级请求派生的其它context</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx := context.Background()</span><br></pre></td></tr></table></figure>
+
+<p>2、 context.TODO() 获得一个空context，只能用于不知道context是什么类型的时候</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx := context.TODO() </span><br></pre></td></tr></table></figure>
+
+
+
 <h4><span id="21传递数据-请求相关">2.1传递数据 (请求相关)</span></h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> valueCtx <span class="keyword">struct</span> &#123;</span><br><span class="line">   Context</span><br><span class="line">   key, val any <span class="comment">// 支持键值对</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>给context附加一个键值对信息，即可通过context传递数据</p>
@@ -249,7 +257,7 @@
                     
                     
                         <li class="next">
-                            <a href="/2023/02/22/二叉搜索树/" data-toggle="tooltip" data-placement="top" title="二叉搜索树">Next Post &rarr;</a>
+                            <a href="/2023/02/02/组合数&排列数/" data-toggle="tooltip" data-placement="top" title="组合数&排列数">Next Post &rarr;</a>
                         </li>
                     
                 </ul>

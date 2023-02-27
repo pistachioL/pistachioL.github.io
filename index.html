@@ -92,18 +92,8 @@
                     
 
                         
-                    
-
-                        
                         <li>
                             <a href="/archives/">Archives</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -117,8 +107,18 @@
 
                         
                         <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/categories/">categories</a>
                         </li>
+                        
+                    
+
                         
                     
                     
@@ -297,60 +297,6 @@ At Google, we developed a context package that makes it easy to pass reque......
 
 <div class="post-preview">
 
-    <a href="/2023/02/22/二叉搜索树/">
-        <h2 class="post-title">
-            二叉搜索树
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            二叉搜索树（Binary Search Tree，BST）是一种二叉树，它或者是一棵空树，或者是具有下列性质的二叉树：
-
-若左子树不空，则左子树上所有结点的值均小于它的根结点的值，右子树上所有结点的值均大于根结点的值
-中序遍历树的每个结点是有序的
-
-验证二叉搜索树
-1234567891011121314151617181920212223242526272829func main() &#1......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2023-02-22
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2023/02/22/Context/">
-        <h2 class="post-title">
-            二叉搜索树
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            二叉搜索树（Binary Search Tree，BST）是一种二叉树，它或者是一棵空树，或者是具有下列性质的二叉树：
-
-若左子树不空，则左子树上所有结点的值均小于它的根结点的值，右子树上所有结点的值均大于根结点的值
-中序遍历树的每个结点是有序的
-
-验证二叉搜索树
-1234567891011121314151617181920212223242526272829func main() &#1......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2023-02-22
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
     <a href="/2023/02/02/组合数&排列数/">
         <h2 class="post-title">
             组合数&排列数
@@ -452,6 +398,59 @@ Facade模式更注重从架构的层次去看整个系统（多个类形成系�
 </div>
 <hr>
 
+<div class="post-preview">
+
+    <a href="/2023/01/17/Flyweight/">
+        <h2 class="post-title">
+            【结构型】享元模式
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            一、定义运用共享技术有效地支持 大量细粒度对象 （如字符串、线程池）。
+模式动机：软件系统采用纯粹对象方案的问题在于，大量细粒度对象会很快充斥在系统，从而带来很高的运行代价。（主要指内存需求方面的代价）
+二、结构
+
+基本思想（共享）：
+在共享池中查找对象是否创建过，如果对象创建过，则直接返回对象；否则先创建对象，把该对象放到共享池中。不过有些对象不支持恭共享。
+三、使用场景123456789......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2023-01-17
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2023/01/17/Singleton/">
+        <h2 class="post-title">
+            【创建型】单例模式
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            一、定义保证一个类仅有一个实例，并提供一个该实例的全局访问点。
+二、结构
+
+
+
+三、创建方式12345678class Singleton &#123;private:    Singleton(); // 使其私有化，只能自己使用，别人不能使用，故放在private    Singleton(const Singleton&amp; other);public:    static Sin......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2023-01-17
+    </p>
+
+</div>
+<hr>
+
 
 
 <!-- Pager -->
@@ -487,11 +486,15 @@ Facade模式更注重从架构的层次去看整个系统（多个类形成系�
                     <div class="tags">
                         
                             
-                            <a href="/tags/#数据结构" title="数据结构" rel="19">数据结构</a>
+                            <a href="/tags/#设计模式" title="设计模式" rel="13">设计模式</a>
                             
                         
                             
-                            <a href="/tags/#设计模式" title="设计模式" rel="13">设计模式</a>
+                            <a href="/tags/#生活" title="生活" rel="2">生活</a>
+                            
+                        
+                            
+                            <a href="/tags/#数据结构" title="数据结构" rel="17">数据结构</a>
                             
                         
                             
@@ -499,7 +502,7 @@ Facade模式更注重从架构的层次去看整个系统（多个类形成系�
                             
                         
                             
-                            <a href="/tags/#生活" title="生活" rel="2">生活</a>
+                            <a href="/tags/#动态规划" title="动态规划" rel="3">动态规划</a>
                             
                         
                             
@@ -509,7 +512,7 @@ Facade模式更注重从架构的层次去看整个系统（多个类形成系�
                             
                         
                             
-                            <a href="/tags/#动态规划" title="动态规划" rel="3">动态规划</a>
+                            <a href="/tags/#读书笔记" title="读书笔记" rel="5">读书笔记</a>
                             
                         
                             
@@ -517,15 +520,7 @@ Facade模式更注重从架构的层次去看整个系统（多个类形成系�
                             
                         
                             
-                            <a href="/tags/#读书笔记" title="读书笔记" rel="5">读书笔记</a>
-                            
-                        
-                            
                             <a href="/tags/#HTTP" title="HTTP" rel="2">HTTP</a>
-                            
-                        
-                            
-                            <a href="/tags/#PHP" title="PHP" rel="4">PHP</a>
                             
                         
                             
@@ -533,9 +528,13 @@ Facade模式更注重从架构的层次去看整个系统（多个类形成系�
                             
                         
                             
+                            <a href="/tags/#PHP" title="PHP" rel="4">PHP</a>
+                            
                         
                             
                             <a href="/tags/#Linux" title="Linux" rel="4">Linux</a>
+                            
+                        
                             
                         
                             
@@ -553,11 +552,15 @@ Facade模式更注重从架构的层次去看整个系统（多个类形成系�
                             
                         
                             
+                        
+                            
                             <a href="/tags/#Redis" title="Redis" rel="2">Redis</a>
                             
                         
                             
                             <a href="/tags/#STL" title="STL" rel="8">STL</a>
+                            
+                        
                             
                         
                             
@@ -567,11 +570,7 @@ Facade模式更注重从架构的层次去看整个系统（多个类形成系�
                             
                         
                             
-                        
-                            
                             <a href="/tags/#树" title="树" rel="2">树</a>
-                            
-                        
                             
                         
                             

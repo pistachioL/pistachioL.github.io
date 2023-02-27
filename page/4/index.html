@@ -92,18 +92,8 @@
                     
 
                         
-                    
-
-                        
                         <li>
                             <a href="/archives/">Archives</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -117,8 +107,18 @@
 
                         
                         <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/categories/">categories</a>
                         </li>
+                        
+                    
+
                         
                     
                     
@@ -194,58 +194,6 @@
             
                 <!-- Main Content -->
 
-
-<div class="post-preview">
-
-    <a href="/2022/06/14/滑动窗口/">
-        <h2 class="post-title">
-            滑动窗口
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            题目中关键字是有连续、数组等字眼，可以考虑使用滑动窗口。
-但如果数组中有负数，就不能用滑动窗口解决，可以考虑前缀和的方法。
-LeetCode题目总结和为s的连续正数序列滑动窗口
-
-输入一个正整数 target ，输出所有和为 target 的连续正整数序列（至少含有两个数）。
-
-思路：
-选取一个点i，让j一直走，直到j&gt;target，若都没有找到和为target的连续序列，则证明前面选......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2022-06-14
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2022/06/02/go常用命令/">
-        <h2 class="post-title">
-            go常用命令
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            删除不需要的依赖包、下载新的依赖包、更新go.sum
-1go mod tidy
-
-...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2022-06-02
-    </p>
-
-</div>
-<hr>
 
 <div class="post-preview">
 
@@ -452,6 +400,77 @@ URI......
 </div>
 <hr>
 
+<div class="post-preview">
+
+    <a href="/2020/06/04/PHP几个判断变量为空的函数/">
+        <h2 class="post-title">
+            PHP几个判断变量为空的函数
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            isset()、is_null()、empty()isset()判断变量一个变量是否设置，变量存在返回true，不存在则返回false
+12345&lt;?php$a = 0;var_dump(isset($a))?&gt;//bool(true)
+
+
+
+is_null()查看变量是否为空。以下三种情况返回true:
+
+如果一个变量没有赋值
+
+变量赋值为NULL
+
+变量还没定义，或者变量被销......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-06-04
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/06/03/UNIX下IO模型/">
+        <h2 class="post-title">
+            UNIX下的IO模型
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            Unix的IO读写过程
+等待数据准备
+
+把数据从系统内核拷贝到用户进程中
+
+
+Unix下网络的IO模型（五种）同步IO
+
+阻塞式IO (Blocking IO)
+同步阻塞
+
+
+非阻塞式IO (NonBlocking IO)
+同步非阻塞（就是IO复用 select poll）
+
+
+IO多路复用 (IO multiplexing)
+信号驱动型IO (Signal Driven IO) 比较少用
+......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-06-03
+    </p>
+
+</div>
+<hr>
+
 
 
 <!-- Pager -->
@@ -491,11 +510,15 @@ URI......
                     <div class="tags">
                         
                             
-                            <a href="/tags/#数据结构" title="数据结构" rel="19">数据结构</a>
+                            <a href="/tags/#设计模式" title="设计模式" rel="13">设计模式</a>
                             
                         
                             
-                            <a href="/tags/#设计模式" title="设计模式" rel="13">设计模式</a>
+                            <a href="/tags/#生活" title="生活" rel="2">生活</a>
+                            
+                        
+                            
+                            <a href="/tags/#数据结构" title="数据结构" rel="17">数据结构</a>
                             
                         
                             
@@ -503,7 +526,7 @@ URI......
                             
                         
                             
-                            <a href="/tags/#生活" title="生活" rel="2">生活</a>
+                            <a href="/tags/#动态规划" title="动态规划" rel="3">动态规划</a>
                             
                         
                             
@@ -513,7 +536,7 @@ URI......
                             
                         
                             
-                            <a href="/tags/#动态规划" title="动态规划" rel="3">动态规划</a>
+                            <a href="/tags/#读书笔记" title="读书笔记" rel="5">读书笔记</a>
                             
                         
                             
@@ -521,15 +544,7 @@ URI......
                             
                         
                             
-                            <a href="/tags/#读书笔记" title="读书笔记" rel="5">读书笔记</a>
-                            
-                        
-                            
                             <a href="/tags/#HTTP" title="HTTP" rel="2">HTTP</a>
-                            
-                        
-                            
-                            <a href="/tags/#PHP" title="PHP" rel="4">PHP</a>
                             
                         
                             
@@ -537,9 +552,13 @@ URI......
                             
                         
                             
+                            <a href="/tags/#PHP" title="PHP" rel="4">PHP</a>
+                            
                         
                             
                             <a href="/tags/#Linux" title="Linux" rel="4">Linux</a>
+                            
+                        
                             
                         
                             
@@ -557,11 +576,15 @@ URI......
                             
                         
                             
+                        
+                            
                             <a href="/tags/#Redis" title="Redis" rel="2">Redis</a>
                             
                         
                             
                             <a href="/tags/#STL" title="STL" rel="8">STL</a>
+                            
+                        
                             
                         
                             
@@ -571,11 +594,7 @@ URI......
                             
                         
                             
-                        
-                            
                             <a href="/tags/#树" title="树" rel="2">树</a>
-                            
-                        
                             
                         
                             
