@@ -211,12 +211,36 @@
 削峰：在访问量剧增的情况下，使用消息队列顶住突发时的访问压力
 缓冲：有助于控制和优化数据经过系统的速度，解决生产消息和消费消息处理速度不一致的情况（通常是生产速度比较大）
 
-...
+模式1、点对点模式2、发布订阅模式消息生产者（发布）把消息......
         </div>
     </a>
     <p class="post-meta">
         Posted by Liao on
         2023-02-27
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2023/02/24/Raft算法/">
+        <h2 class="post-title">
+            Raft算法
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            前言如果有多个机器（集群），则需要保证每个机器数据的一致性，这时候则需要分布式共识算法。Raft是实现分布式共识算法的协议，除了Raft，还有Paxos、ZAB、Gossip等。
+Leader election每个节点有三个状态，分别是Leader、Follower或Candidate
+
+一开始的时候，所有节点都处于Follower的状态。每个结点都有一个Election Timeout（随......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2023-02-24
     </p>
 
 </div>
@@ -428,33 +452,6 @@ Facade模式更注重从架构的层次去看整个系统（多个类形成系�
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2023/01/17/Flyweight/">
-        <h2 class="post-title">
-            【结构型】享元模式
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            一、定义运用共享技术有效地支持 大量细粒度对象 （如字符串、线程池）。
-模式动机：软件系统采用纯粹对象方案的问题在于，大量细粒度对象会很快充斥在系统，从而带来很高的运行代价。（主要指内存需求方面的代价）
-二、结构
-
-基本思想（共享）：
-在共享池中查找对象是否创建过，如果对象创建过，则直接返回对象；否则先创建对象，把该对象放到共享池中。不过有些对象不支持恭共享。
-三、使用场景123456789......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2023-01-17
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -573,6 +570,8 @@ Facade模式更注重从架构的层次去看整个系统（多个类形成系�
                         
                             
                             <a href="/tags/#树" title="树" rel="2">树</a>
+                            
+                        
                             
                         
                             
