@@ -229,7 +229,6 @@
 <li>若超过半数的Followers知道了操作变更，则Leader会把操作写入（AppendEntries），变为<strong>commited</strong>状态（已持久化状态），并通知其它followers将本地日志中uncommitted的日志改<strong>committed</strong>，并更新数据。返回相应给client</li>
 <li>此时，整个集群的数据是一致的（consensus）</li>
 </ul>
-<p>网络分区的情况</p>
 <h3><span id="参考">参考</span></h3><ul>
 <li><a target="_blank" rel="noopener" href="http://thesecretlivesofdata.com/">http://thesecretlivesofdata.com/</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Wy4y1K7zF/?spm_id_from=333.337.search-card.all.click&amp;vd_source=d85f289ebf4d31920c7178bbb563a0a4">https://www.bilibili.com/video/BV1Wy4y1K7zF/?spm_id_from=333.337.search-card.all.click&amp;vd_source=d85f289ebf4d31920c7178bbb563a0a4</a></li>
