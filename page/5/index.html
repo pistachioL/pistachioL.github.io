@@ -197,6 +197,45 @@
 
 <div class="post-preview">
 
+    <a href="/2020/06/03/UNIX下IO模型/">
+        <h2 class="post-title">
+            UNIX下的IO模型
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            Unix的IO读写过程
+等待数据准备
+
+把数据从系统内核拷贝到用户进程中
+
+
+Unix下网络的IO模型（五种）同步IO
+
+阻塞式IO (Blocking IO)
+同步阻塞
+
+
+非阻塞式IO (NonBlocking IO)
+同步非阻塞（就是IO复用 select poll）
+
+
+IO多路复用 (IO multiplexing)
+信号驱动型IO (Signal Driven IO) 比较少用
+......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-06-03
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2020/06/01/配置nginx/">
         <h2 class="post-title">
             配置nginx
@@ -430,33 +469,6 @@ https://blog.csdn.net/......
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2020/05/14/MySQL锁/">
-        <h2 class="post-title">
-            MySQL锁
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            隔离性的底层实现其中事务的隔离性底层实现的原理是锁
-锁的分类按照数据操作的类型划分
-读锁（共享锁）：同一份数据，多个读操作可以同时进行，互不影响
-写锁（排它锁）：当前写操作还没完成，会阻断其他写锁和读锁
-
-
-session1 加了读锁，当前session1不能读其他未加锁的表，而且不能插入或更新锁定的表。session2可以读或操作未加锁的表，但如果对加读锁的表进行操作，会一直等待获得锁（阻......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-05-14
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -504,7 +516,7 @@ session1 加了读锁，当前session1不能读其他未加锁的表，而且不
                             
                         
                             
-                            <a href="/tags/#数据结构" title="数据结构" rel="17">数据结构</a>
+                            <a href="/tags/#数据结构" title="数据结构" rel="18">数据结构</a>
                             
                         
                             

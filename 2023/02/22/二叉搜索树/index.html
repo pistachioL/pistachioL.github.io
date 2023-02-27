@@ -13,11 +13,11 @@
 
     <title>
         
-          context - Pistachio的楼阁 | Pistachio&#39;s Blog
+          二叉搜索树 - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2023/02/23/context/">
+    <link rel="canonical" href="https://pistachiol.github.io/2023/02/22/二叉搜索树/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -178,14 +178,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#Go学习" title="Go学习">Go学习</a>
+                          <a class="tag" href="/tags/#数据结构" title="数据结构">数据结构</a>
                         
                     </div>
-                    <h1>context</h1>
+                    <h1>二叉搜索树</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
-                        2023-02-23
+                        2023-02-22
                     </span>
                 </div>
             </div>
@@ -204,45 +204,14 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3><span id="一-简介">一、简介</span></h3><p>go并发编程中，用一个goroutine处理一个任务，而它又会创建多个goroutine来负责不同子任务，这种场景往往需要在api边界之间、过程之间传递截止时间、取消信号、以及其它请求数据，这时候便可以使用context。</p>
-<h3><span id="二-使用场景">二、使用场景</span></h3><blockquote>
-<p>At Google, we developed a <code>context</code> package that makes it easy to pass request-scoped values, cancellation signals, and deadlines across API boundaries to all the goroutines involved in handling a request. </p>
-</blockquote>
-<h4><span id="20-创建空的context">2.0 创建空的context</span></h4><p>1、context.Background()相当于获得根context，该context不能被取消，用在main函数或者顶级请求派生的其它context</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx := context.Background()</span><br></pre></td></tr></table></figure>
-
-<p>2、 context.TODO() 获得一个空context，只能用于不知道context是什么类型的时候</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx := context.TODO() </span><br></pre></td></tr></table></figure>
-
-
-
-<h4><span id="21传递数据-请求相关">2.1传递数据 (请求相关)</span></h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> valueCtx <span class="keyword">struct</span> &#123;</span><br><span class="line">   Context</span><br><span class="line">   key, val any <span class="comment">// 支持键值对</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>给context附加一个键值对信息，即可通过context传递数据</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">WithValue</span><span class="params">(parent Context, key <span class="keyword">interface</span>&#123;&#125;, val <span class="keyword">interface</span>&#123;&#125;)</span></span> Context</span><br></pre></td></tr></table></figure>
-
-
-
-<h4><span id="22-优雅地取消goroutine">2.2 优雅地取消goroutine</span></h4><h5><span id="cancelctx">cancelCtx</span></h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">WithCancel</span><span class="params">(parent Context)</span></span> (ctx Context, cancel CancelFunc) <span class="comment">// 创建cancelCtx</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">   ctx, cancel := context.WithCancel(context.Background()) <span class="comment">// Background()在初始化时获取一个context</span></span><br><span class="line">   <span class="keyword">defer</span> cancel()</span><br><span class="line">   <span class="keyword">for</span> i := <span class="number">1</span>; i &lt;= <span class="number">100</span>; i++ &#123;</span><br><span class="line">      <span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">(i <span class="type">int</span>)</span></span> &#123;</span><br><span class="line">         <span class="keyword">select</span> &#123;</span><br><span class="line">         <span class="keyword">case</span> &lt;-ctx.Done(): <span class="comment">// 收到取消信号，则所有gorouine退出</span></span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">         <span class="keyword">default</span>:</span><br><span class="line">            fmt.Println(i)</span><br><span class="line">         &#125;</span><br><span class="line">      &#125;(i)</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h5><span id="timerctx">timerCtx</span></h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> timerCtx <span class="keyword">struct</span> &#123; </span><br><span class="line">	cancelCtx </span><br><span class="line">	timer *time.Timer <span class="comment">// Under cancelCtx.mu.</span></span><br><span class="line"></span><br><span class="line">	deadline time.Time</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>创建timerCtx的方式：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">WithTimeout</span><span class="params">(parent Context, timeout time.Duration)</span></span> (Context, CancelFunc) <span class="comment">//时间段</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">WithDeadline</span><span class="params">(parent Context, d time.Time)</span></span> (Context, CancelFunc)  <span class="comment">// 时间点</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3><span id="三-参考">三、参考</span></h3><ul>
-<li><a target="_blank" rel="noopener" href="https://go.dev/blog/context">https://go.dev/blog/context</a></li>
-<li><a target="_blank" rel="noopener" href="http://www.codebaoku.com/godeep/godeep-context-purpose.html">http://www.codebaoku.com/godeep/godeep-context-purpose.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV19K411T7NL/?spm_id_from=333.337.search-card.all.click&amp;vd_source=d85f289ebf4d31920c7178bbb563a0a4">https://www.bilibili.com/video/BV19K411T7NL/?spm_id_from=333.337.search-card.all.click&amp;vd_source=d85f289ebf4d31920c7178bbb563a0a4</a></li>
+                <p>二叉搜索树（Binary Search Tree，BST）是一种二叉树，它或者是一棵空树，或者是具有下列性质的二叉树：</p>
+<ul>
+<li>若左子树不空，则左子树上所有结点的值均小于它的根结点的值，右子树上所有结点的值均大于根结点的值</li>
+<li>中序遍历树的每个结点是有序的</li>
 </ul>
+<p><strong>验证二叉搜索树</strong></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	ans := isValidBST(&amp;TreeNode&#123;Val: <span class="number">4</span>, Left: &amp;TreeNode&#123;<span class="number">2</span>, &amp;TreeNode&#123;<span class="number">1</span>, <span class="literal">nil</span>, <span class="literal">nil</span>&#125;, &amp;TreeNode&#123;<span class="number">3</span>, <span class="literal">nil</span>, <span class="literal">nil</span>&#125;&#125;&#125;)</span><br><span class="line">	fmt.Println(ans)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> TreeNode <span class="keyword">struct</span> &#123;</span><br><span class="line">	Val   <span class="type">int</span></span><br><span class="line">	Left  *TreeNode</span><br><span class="line">	Right *TreeNode</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">isValidBST</span><span class="params">(root *TreeNode)</span></span> <span class="type">bool</span> &#123;</span><br><span class="line">	pre := math.MinInt64</span><br><span class="line">	<span class="keyword">var</span> dfs <span class="function"><span class="keyword">func</span><span class="params">(*TreeNode)</span></span> <span class="type">bool</span></span><br><span class="line">	dfs = <span class="function"><span class="keyword">func</span><span class="params">(node *TreeNode)</span></span> <span class="type">bool</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> node == <span class="literal">nil</span> &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> !isValidBST(node.Left) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> node.Val &lt;= pre &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">		&#125;</span><br><span class="line">		pre = node.Val</span><br><span class="line">		<span class="keyword">return</span> dfs(node.Right)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> dfs(root)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
 
                 <hr>
@@ -252,12 +221,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2023/02/24/go数据类型/" data-toggle="tooltip" data-placement="top" title="rune类型">&larr; Previous Post</a>
+                            <a href="/2023/02/23/context/" data-toggle="tooltip" data-placement="top" title="context">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2023/02/22/二叉搜索树/" data-toggle="tooltip" data-placement="top" title="二叉搜索树">Next Post &rarr;</a>
+                            <a href="/2023/02/02/组合数&排列数/" data-toggle="tooltip" data-placement="top" title="组合数&排列数">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -290,7 +259,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#Go学习" title="Go学习">Go学习</a>
+                          <a class="tag" href="/tags/#数据结构" title="数据结构">数据结构</a>
                         
                     </div>
                 </section>
@@ -322,8 +291,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2023/02/23/context/";
-    var disqus_url = "https://pistachiol.github.io/2023/02/23/context/";
+    var disqus_identifier = "https://pistachiol.github.io/2023/02/22/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/";
+    var disqus_url = "https://pistachiol.github.io/2023/02/22/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
