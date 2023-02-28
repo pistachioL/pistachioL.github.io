@@ -13,11 +13,11 @@
 
     <title>
         
-          rune类型 - Pistachio的楼阁 | Pistachio&#39;s Blog
+          go可变参数 - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2023/02/24/go数据类型/">
+    <link rel="canonical" href="https://pistachiol.github.io/2023/02/28/go可变参数/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -181,11 +181,11 @@
                           <a class="tag" href="/tags/#Go学习" title="Go学习">Go学习</a>
                         
                     </div>
-                    <h1>rune类型</h1>
+                    <h1>go可变参数</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
-                        2023-02-24
+                        2023-02-28
                     </span>
                 </div>
             </div>
@@ -204,14 +204,13 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3><span id="使用场景">使用场景</span></h3><p>1、Go字符串不支持下标修改，需要转byte或者rune才能改。byte是uint8的别名，而rune是int32的别名</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">str := <span class="string">&quot;hello&quot;</span></span><br><span class="line">str1 := []<span class="type">byte</span>(str)</span><br><span class="line">str1[<span class="number">0</span>] = <span class="string">&#x27;x&#x27;</span></span><br><span class="line">fmt.Println(<span class="type">string</span>(str1)) <span class="comment">// xello</span></span><br></pre></td></tr></table></figure>
+                <p>add()接受不定量长度的参数，并且是int类型</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  add(<span class="number">1</span>, <span class="number">2</span>) <span class="comment">// 3</span></span><br><span class="line">	add([]<span class="type">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;...) <span class="comment">// 10</span></span><br><span class="line">  </span><br><span class="line">  num := []<span class="type">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;</span><br><span class="line">  add(num[<span class="number">1</span>:]...)<span class="comment">// 9</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(args ...<span class="type">int</span>)</span></span> <span class="type">int</span> &#123;</span><br><span class="line">	sum := <span class="number">0</span></span><br><span class="line">	<span class="keyword">for</span> _, arg := <span class="keyword">range</span> args &#123;</span><br><span class="line">		sum += arg</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(sum)</span><br><span class="line">	<span class="keyword">return</span> sum</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<p>2、算法题：abcde你好 &#x3D;&gt; 好你edcba</p>
-<p>[]rune(s)可以将字符串转为unicode，输出中文</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Reverse</span><span class="params">(s <span class="type">string</span>)</span></span> <span class="type">string</span> &#123;</span><br><span class="line">   r := []<span class="type">rune</span>(s)</span><br><span class="line">   <span class="keyword">for</span> i, j := <span class="number">0</span>, <span class="built_in">len</span>(r)<span class="number">-1</span>; i &lt; jw; i, j = i+<span class="number">1</span>, j<span class="number">-1</span> &#123;</span><br><span class="line">      r[i], r[j] = r[j], r[i]</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> <span class="type">string</span>(s)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">   a := <span class="string">&quot;好你gfedcba&quot;</span></span><br><span class="line">   <span class="built_in">println</span>(Reverse(a))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
 
 
                 <hr>
@@ -220,13 +219,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2023/02/24/Raft算法/" data-toggle="tooltip" data-placement="top" title="Raft算法">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2023/02/23/context/" data-toggle="tooltip" data-placement="top" title="context">Next Post &rarr;</a>
+                            <a href="/2023/02/27/消息队列/" data-toggle="tooltip" data-placement="top" title="消息队列">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -291,8 +286,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2023/02/24/go%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/";
-    var disqus_url = "https://pistachiol.github.io/2023/02/24/go%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/";
+    var disqus_identifier = "https://pistachiol.github.io/2023/02/28/go%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/";
+    var disqus_url = "https://pistachiol.github.io/2023/02/28/go%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

@@ -13,11 +13,11 @@
 
     <title>
         
-          context - Pistachio的楼阁 | Pistachio&#39;s Blog
+          rune类型 - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2023/02/23/context/">
+    <link rel="canonical" href="https://pistachiol.github.io/2023/02/24/rune类型/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -181,11 +181,11 @@
                           <a class="tag" href="/tags/#Go学习" title="Go学习">Go学习</a>
                         
                     </div>
-                    <h1>context</h1>
+                    <h1>rune类型</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
-                        2023-02-23
+                        2023-02-24
                     </span>
                 </div>
             </div>
@@ -204,45 +204,14 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3><span id="一-简介">一、简介</span></h3><p>go并发编程中，用一个goroutine处理一个任务，而它又会创建多个goroutine来负责不同子任务，这种场景往往需要在api边界之间、过程之间传递截止时间、取消信号、以及其它请求数据，这时候便可以使用context。</p>
-<h3><span id="二-使用场景">二、使用场景</span></h3><blockquote>
-<p>At Google, we developed a <code>context</code> package that makes it easy to pass request-scoped values, cancellation signals, and deadlines across API boundaries to all the goroutines involved in handling a request. </p>
-</blockquote>
-<h4><span id="20-创建空的context">2.0 创建空的context</span></h4><p>1、context.Background()相当于获得根context，该context不能被取消，用在main函数或者顶级请求派生的其它context</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx := context.Background()</span><br></pre></td></tr></table></figure>
-
-<p>2、 context.TODO() 获得一个空context，只能用于不知道context是什么类型的时候</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx := context.TODO() </span><br></pre></td></tr></table></figure>
+                <h3><span id="使用场景">使用场景</span></h3><p>1、Go字符串不支持下标修改，需要转byte或者rune才能改。byte是uint8的别名，而rune是int32的别名</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">str := <span class="string">&quot;hello&quot;</span></span><br><span class="line">str1 := []<span class="type">byte</span>(str)</span><br><span class="line">str1[<span class="number">0</span>] = <span class="string">&#x27;x&#x27;</span></span><br><span class="line">fmt.Println(<span class="type">string</span>(str1)) <span class="comment">// xello</span></span><br></pre></td></tr></table></figure>
 
 
 
-<h4><span id="21传递数据-请求相关">2.1传递数据 (请求相关)</span></h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> valueCtx <span class="keyword">struct</span> &#123;</span><br><span class="line">   Context</span><br><span class="line">   key, val any <span class="comment">// 支持键值对</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>给context附加一个键值对信息，即可通过context传递数据</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">WithValue</span><span class="params">(parent Context, key <span class="keyword">interface</span>&#123;&#125;, val <span class="keyword">interface</span>&#123;&#125;)</span></span> Context</span><br></pre></td></tr></table></figure>
-
-
-
-<h4><span id="22-优雅地取消goroutine">2.2 优雅地取消goroutine</span></h4><h5><span id="cancelctx">cancelCtx</span></h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">WithCancel</span><span class="params">(parent Context)</span></span> (ctx Context, cancel CancelFunc) <span class="comment">// 创建cancelCtx</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">   ctx, cancel := context.WithCancel(context.Background()) <span class="comment">// Background()在初始化时获取一个context</span></span><br><span class="line">   <span class="keyword">defer</span> cancel()</span><br><span class="line">   <span class="keyword">for</span> i := <span class="number">1</span>; i &lt;= <span class="number">100</span>; i++ &#123;</span><br><span class="line">      <span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">(i <span class="type">int</span>)</span></span> &#123;</span><br><span class="line">         <span class="keyword">select</span> &#123;</span><br><span class="line">         <span class="keyword">case</span> &lt;-ctx.Done(): <span class="comment">// 收到取消信号，则所有gorouine退出</span></span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">         <span class="keyword">default</span>:</span><br><span class="line">            fmt.Println(i)</span><br><span class="line">         &#125;</span><br><span class="line">      &#125;(i)</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h5><span id="timerctx">timerCtx</span></h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> timerCtx <span class="keyword">struct</span> &#123; </span><br><span class="line">	cancelCtx </span><br><span class="line">	timer *time.Timer <span class="comment">// Under cancelCtx.mu.</span></span><br><span class="line"></span><br><span class="line">	deadline time.Time</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>创建timerCtx的方式：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">WithTimeout</span><span class="params">(parent Context, timeout time.Duration)</span></span> (Context, CancelFunc) <span class="comment">//时间段</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">WithDeadline</span><span class="params">(parent Context, d time.Time)</span></span> (Context, CancelFunc)  <span class="comment">// 时间点</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3><span id="三-参考">三、参考</span></h3><ul>
-<li><a target="_blank" rel="noopener" href="https://go.dev/blog/context">https://go.dev/blog/context</a></li>
-<li><a target="_blank" rel="noopener" href="http://www.codebaoku.com/godeep/godeep-context-purpose.html">http://www.codebaoku.com/godeep/godeep-context-purpose.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV19K411T7NL/?spm_id_from=333.337.search-card.all.click&amp;vd_source=d85f289ebf4d31920c7178bbb563a0a4">https://www.bilibili.com/video/BV19K411T7NL/?spm_id_from=333.337.search-card.all.click&amp;vd_source=d85f289ebf4d31920c7178bbb563a0a4</a></li>
-</ul>
+<p>2、算法题：abcde你好 &#x3D;&gt; 好你edcba</p>
+<p>[]rune(s)可以将字符串转为unicode，输出中文</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Reverse</span><span class="params">(s <span class="type">string</span>)</span></span> <span class="type">string</span> &#123;</span><br><span class="line">   r := []<span class="type">rune</span>(s)</span><br><span class="line">   <span class="keyword">for</span> i, j := <span class="number">0</span>, <span class="built_in">len</span>(r)<span class="number">-1</span>; i &lt; jw; i, j = i+<span class="number">1</span>, j<span class="number">-1</span> &#123;</span><br><span class="line">      r[i], r[j] = r[j], r[i]</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> <span class="type">string</span>(s)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">   a := <span class="string">&quot;好你gfedcba&quot;</span></span><br><span class="line">   <span class="built_in">println</span>(Reverse(a))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
                 <hr>
@@ -252,12 +221,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2023/02/24/rune类型/" data-toggle="tooltip" data-placement="top" title="rune类型">&larr; Previous Post</a>
+                            <a href="/2023/02/24/Raft算法/" data-toggle="tooltip" data-placement="top" title="Raft算法">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2023/02/22/二叉搜索树/" data-toggle="tooltip" data-placement="top" title="二叉搜索树">Next Post &rarr;</a>
+                            <a href="/2023/02/23/context/" data-toggle="tooltip" data-placement="top" title="context">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -322,8 +291,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2023/02/23/context/";
-    var disqus_url = "https://pistachiol.github.io/2023/02/23/context/";
+    var disqus_identifier = "https://pistachiol.github.io/2023/02/24/rune%E7%B1%BB%E5%9E%8B/";
+    var disqus_url = "https://pistachiol.github.io/2023/02/24/rune%E7%B1%BB%E5%9E%8B/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
