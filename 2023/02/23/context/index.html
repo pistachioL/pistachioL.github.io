@@ -204,7 +204,7 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3><span id="一-简介">一、简介</span></h3><p>go并发编程中，用一个goroutine处理一个任务，而它又会创建多个goroutine来负责不同子任务，这种场景往往需要在api边界之间、过程之间传递截止时间、取消信号、以及其它请求数据，这时候便可以使用context。</p>
+                <h3><span id="一-简介">一、简介</span></h3><p>go并发编程中，用一个goroutine处理一个任务，而它又会创建多个goroutine来负责不同子任务的场景很常见。这种场景往往需要在api边界之间、过程之间传递截止时间、取消信号、以及其它请求数据（总的来说就是goroutine之间的通信），这时候便可以使用context。</p>
 <h3><span id="二-使用场景">二、使用场景</span></h3><blockquote>
 <p>At Google, we developed a <code>context</code> package that makes it easy to pass request-scoped values, cancellation signals, and deadlines across API boundaries to all the goroutines involved in handling a request. </p>
 </blockquote>
