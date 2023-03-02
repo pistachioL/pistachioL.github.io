@@ -13,11 +13,11 @@
 
     <title>
         
-          go可变参数 - Pistachio的楼阁 | Pistachio&#39;s Blog
+          分布式Id - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2023/02/28/go可变参数/">
+    <link rel="canonical" href="https://pistachiol.github.io/2023/03/01/分布式Id/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -178,14 +178,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#Go学习" title="Go学习">Go学习</a>
+                          <a class="tag" href="/tags/#分布式" title="分布式">分布式</a>
                         
                     </div>
-                    <h1>go可变参数</h1>
+                    <h1>分布式Id</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
-                        2023-02-28
+                        2023-03-01
                     </span>
                 </div>
             </div>
@@ -204,13 +204,14 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p>add()接受不定量长度的参数，并且是int类型</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  add(<span class="number">1</span>, <span class="number">2</span>) <span class="comment">// 3</span></span><br><span class="line">	add([]<span class="type">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;...) <span class="comment">// 10</span></span><br><span class="line">  </span><br><span class="line">  num := []<span class="type">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;</span><br><span class="line">  add(num[<span class="number">1</span>:]...)<span class="comment">// 9</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(args ...<span class="type">int</span>)</span></span> <span class="type">int</span> &#123;</span><br><span class="line">	sum := <span class="number">0</span></span><br><span class="line">	<span class="keyword">for</span> _, arg := <span class="keyword">range</span> args &#123;</span><br><span class="line">		sum += arg</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(sum)</span><br><span class="line">	<span class="keyword">return</span> sum</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
+                <h3><span id="前言">前言</span></h3><p>在实习期间做的是手百APP动态UGC相关的业务，其中FeedId生成是常见的问题，因此总结一下</p>
+<p>1、数据库自增id</p>
+<p>2、UUID( Universally unique identifier) 生成id</p>
+<p>3、Redis生成id</p>
+<p>4、 Snowflake IDs</p>
+<p>5、UidGenerator</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/baidu/uid-generator/blob/master/README.zh_cn.md">https://github.com/baidu/uid-generator/blob/master/README.zh_cn.md</a></p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/bFDLb6U6EgI-DvCdLTq_QA">https://mp.weixin.qq.com/s/bFDLb6U6EgI-DvCdLTq_QA</a></p>
 
 
                 <hr>
@@ -219,13 +220,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2023/03/01/分布式Id/" data-toggle="tooltip" data-placement="top" title="分布式Id">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2023/02/27/消息队列/" data-toggle="tooltip" data-placement="top" title="消息队列">Next Post &rarr;</a>
+                            <a href="/2023/02/28/go可变参数/" data-toggle="tooltip" data-placement="top" title="go可变参数">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -258,7 +255,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#Go学习" title="Go学习">Go学习</a>
+                          <a class="tag" href="/tags/#分布式" title="分布式">分布式</a>
                         
                     </div>
                 </section>
@@ -290,8 +287,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2023/02/28/go%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/";
-    var disqus_url = "https://pistachiol.github.io/2023/02/28/go%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/";
+    var disqus_identifier = "https://pistachiol.github.io/2023/03/01/%E5%88%86%E5%B8%83%E5%BC%8FId/";
+    var disqus_url = "https://pistachiol.github.io/2023/03/01/%E5%88%86%E5%B8%83%E5%BC%8FId/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

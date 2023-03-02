@@ -197,6 +197,30 @@
 
 <div class="post-preview">
 
+    <a href="/2020/04/24/PHP垃圾回收机制/">
+        <h2 class="post-title">
+            PHP垃圾回收机制
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            PHP5.3以前 引用计数机制PHP5.3之前使用过内存回收算法Reference Counting 引用计数。
+其思想是，为内存对象分配一个计数器，当内存对象建立时计数器初始化为1。（如$a = &quot;hello world&quot;）
+以后每一个新变量引用该变量，(如赋值$a = $b)，计数器加1；当减少引用次内存对象(unset($a))，计数器减1。
+把一个变量赋值给另一变......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-04-24
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2020/04/24/Nginx和Php-fpm的运行原理/">
         <h2 class="post-title">
             Nginx解析PHP的原理
@@ -425,30 +449,6 @@ POST比GET安全，因为数据在地址栏上不可见。通过GET提交数据�
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2020/04/02/AdapterPattern/">
-        <h2 class="post-title">
-            【结构型】适配器模式
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            一、定义将一个类的接口转换成客户希望的另一个接口。Adapter模式使得原本由于接口不兼容而不能一起工作的类能够一起工作。
-二、结构
-Adapter-&gt;Adaptee是组合的关系（is a）
-三、例子1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950// ......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-04-02
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -553,6 +553,8 @@ Adapter-&gt;Adaptee是组合的关系（is a）
                             <a href="/tags/#数论" title="数论" rel="12">数论</a>
                             
                         
+                            
+                            <a href="/tags/#分布式" title="分布式" rel="2">分布式</a>
                             
                         
                             
