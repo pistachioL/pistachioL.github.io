@@ -353,6 +353,31 @@
 
 <div class="post-preview">
 
+    <a href="/2022/07/26/分布式系统/">
+        <h2 class="post-title">
+            分布式系统
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            当执行锁操作时，涉及不同的线程可能不知道彼此的状态。对于另外一些线程，它们只希望获取到数据而不受到其它线程的干扰，因此线程之间也需要交流以等待对方的数据，通常叫协作。
+协程间的通信，称为Coordination，Go中提供了几种方法实现：
+
+channel
+Sync.cond() 若有些线程停在那里，你想每隔一段时间发一个信号，但你不确定线程是否在等你。若它在等，就给它发一个ticket，它......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2022-07-26
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2022/07/04/MySQL日志/">
         <h2 class="post-title">
             MySQL日志
@@ -416,32 +441,6 @@ map类型的变量本质上是一个指针，指向hmap结构体
 /runtime/map.go
 hmaphmap是哈希表
 1234567891011121314type hmap struct &#123;	count     int // （记录已经存储的键值对的数量） # live cells == size of ......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2022-06-22
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2022/06/22/Sync包/">
-        <h2 class="post-title">
-            Sync包
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            sync包提供线程同步原语的方法
-一、WaitGroup1.1 Go语言标准库提供了WaitGroup原语，可以用来等待一批Goroutine结束，或者说让主协程等待子协程结束再操作。
-1.2 使用例子
-主协程是main，如果不加WaitGroup，则运行完就会先退出，没法打印字符串。
-加上WaitGroup，让主协程等待5个子协程都执行完毕后，主协程再继续执行
-12345678910111......
         </div>
     </a>
     <p class="post-meta">
@@ -557,7 +556,7 @@ hmaphmap是哈希表
                             
                         
                             
-                            <a href="/tags/#分布式" title="分布式" rel="2">分布式</a>
+                            <a href="/tags/#分布式" title="分布式" rel="3">分布式</a>
                             
                         
                             

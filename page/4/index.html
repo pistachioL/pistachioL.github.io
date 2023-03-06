@@ -197,6 +197,32 @@
 
 <div class="post-preview">
 
+    <a href="/2022/06/22/Sync包/">
+        <h2 class="post-title">
+            Sync包
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            sync包提供线程同步原语的方法
+一、WaitGroup1.1 Go语言标准库提供了WaitGroup原语，可以用来等待一批Goroutine结束，或者说让主协程等待子协程结束再操作。
+1.2 使用例子
+主协程是main，如果不加WaitGroup，则运行完就会先退出，没法打印字符串。
+加上WaitGroup，让主协程等待5个子协程都执行完毕后，主协程再继续执行
+12345678910111......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2022-06-22
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2022/06/17/双端队列/">
         <h2 class="post-title">
             双端队列
@@ -418,34 +444,6 @@ Redis调用f......
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2020/06/12/解决系统并发问题/">
-        <h2 class="post-title">
-            解决系统并发问题
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            前言之前开发了办公室预约系统，功能上基本实现了，现在需要提升性能问题，比如考虑并发情况，在多个人同时预约的时候，怎样解决并发问题呢？其实本质是要对事务上锁。
-1. 在MySQL方面提升MySQL的性能分析
-
-MySQL Query Optimizer(自带的优化器)
-MySQL常见的瓶颈
-CPU饱和：通常发生在数据装入内存或者从磁盘中读数据
-磁盘IO饱和：载入的数据远大于内存的容量
-服务器性......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-06-12
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -551,7 +549,7 @@ CPU饱和：通常发生在数据装入内存或者从磁盘中读数据
                             
                         
                             
-                            <a href="/tags/#分布式" title="分布式" rel="2">分布式</a>
+                            <a href="/tags/#分布式" title="分布式" rel="3">分布式</a>
                             
                         
                             

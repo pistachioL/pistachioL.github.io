@@ -197,6 +197,34 @@
 
 <div class="post-preview">
 
+    <a href="/2020/05/02/树状数组/">
+        <h2 class="post-title">
+            树状数组
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+对于长度为n的数组进行修改和查询
+
+如果对1~m个数进行求前缀和，复杂度为O(n)。如果n很大效率会非常低。而树状数组只用O(logn)
+
+A是原数组，C是新开辟的数组，C[i]的意思是求前**lowbit(i)**个元素的前缀和，同时也是下标i管辖的元素个数2^k，k是i二进制末尾0的个数
+例如C[8] lowbit(8) &#x3D; 1000 &amp; 1000 &#x3D; 1
+......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-05-02
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2020/04/26/合并k个链表/">
         <h2 class="post-title">
             合并k个链表
@@ -420,33 +448,6 @@ POST比GET安全，因为数据在地址栏上不可见。通过GET提交数据�
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2020/04/14/decoratorPattern/">
-        <h2 class="post-title">
-            【结构型】装饰者模式
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            一、定义动态（组合）地给一个对象增加一些额外的指责。就增加功能而言，Decorator模式比生成子类（继承）更为灵活（消除重复代码 &amp; 减少子类个数）
-动态地把职责添加到对象上，若想添加功能，装饰者类提供了比继承更有弹性的方案。
-二、结构
-例子：很多中单品咖啡，很多种调料的不同组合
-把被装饰着放到装饰者中管理，例如调料是装饰者，单品咖啡是被装饰者，则把单品咖啡放到调料中管理。
-
-这种......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-04-14
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -552,7 +553,7 @@ POST比GET安全，因为数据在地址栏上不可见。通过GET提交数据�
                             
                         
                             
-                            <a href="/tags/#分布式" title="分布式" rel="2">分布式</a>
+                            <a href="/tags/#分布式" title="分布式" rel="3">分布式</a>
                             
                         
                             

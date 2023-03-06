@@ -17,7 +17,7 @@
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2019/07/24/C语言小知识/">
+    <link rel="canonical" href="https://pistachiol.github.io/2019/07/24/编程小知识/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -204,7 +204,11 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h5><span id="1字符变数字stri-0">1）字符变数字：str[i]-‘0’</span></h5><h5><span id="2char-strncpychar-destconst-char-srcsize_t-n">2）char *strncpy(char *dest,const char *src,size_t n)</span></h5><p>把str所指向的字符串复制最多n个字符到dest</p>
+                <h5><span id="1字符变数字stri-0">1）字符变数字：str[i]-‘0’</span></h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> num = <span class="number">123</span>;</span><br><span class="line">string s = <span class="built_in">to_string</span>(num);</span><br><span class="line">cout &lt;&lt; s[<span class="number">0</span>]-<span class="string">&#x27;0&#x27;</span>&lt;&lt;endl;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5><span id="2char-strncpychar-destconst-char-srcsize_t-n">2）char *strncpy(char *dest,const char *src,size_t n)</span></h5><p>把str所指向的字符串复制最多n个字符到dest</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="type">char</span> src[<span class="number">40</span>];</span><br><span class="line">   <span class="type">char</span> dest[<span class="number">12</span>];</span><br><span class="line">  </span><br><span class="line">   <span class="built_in">memset</span>(dest, <span class="string">&#x27;\0&#x27;</span>, <span class="built_in">sizeof</span>(dest));</span><br><span class="line">   <span class="built_in">strcpy</span>(src, <span class="string">&quot;This is runoob.com&quot;</span>);</span><br><span class="line">   <span class="built_in">strncpy</span>(dest, src, <span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;最终的目标字符串： %s\n&quot;</span>, dest);</span><br><span class="line">   </span><br><span class="line">   <span class="keyword">return</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//最终的目标字符串： This is ru</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
@@ -317,8 +321,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2019/07/24/C%E8%AF%AD%E8%A8%80%E5%B0%8F%E7%9F%A5%E8%AF%86/";
-    var disqus_url = "https://pistachiol.github.io/2019/07/24/C%E8%AF%AD%E8%A8%80%E5%B0%8F%E7%9F%A5%E8%AF%86/";
+    var disqus_identifier = "https://pistachiol.github.io/2019/07/24/%E7%BC%96%E7%A8%8B%E5%B0%8F%E7%9F%A5%E8%AF%86/";
+    var disqus_url = "https://pistachiol.github.io/2019/07/24/%E7%BC%96%E7%A8%8B%E5%B0%8F%E7%9F%A5%E8%AF%86/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
