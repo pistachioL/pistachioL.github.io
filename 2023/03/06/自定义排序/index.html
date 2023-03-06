@@ -13,11 +13,11 @@
 
     <title>
         
-          Pistachio的楼阁 | Pistachio&#39;s Blog
+          自定义排序 - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/page/14/">
+    <link rel="canonical" href="https://pistachiol.github.io/2023/03/06/自定义排序/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -160,269 +160,102 @@
 
 
     <!-- Main Content -->
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/bg_Jerry.jpg')">
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://pistachiol.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/bg_Jerry.jpg')
+    }
+</style>
+<header class="intro-header" >
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>Pistachio&#39;s Blog</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">Later equals never.</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#C++" title="C++">C++</a>
+                        
+                    </div>
+                    <h1>自定义排序</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Liao on
+                        2023-03-06
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
-
-<!-- USE SIDEBAR -->
     <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-            
-                <!-- Main Content -->
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
 
-
-<div class="post-preview">
-
-    <a href="/2019/07/12/树/">
-        <h2 class="post-title">
-            树
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            2019蓝桥杯校内选拔一题
-一棵包含有2019个结点的树，最多包含多少个叶结点？
-
-解法1：
-首先他问“最多”，当然便是完全二叉树（满二叉树）了。
-记i为树的层数，由完全二叉树的性质可得，结点总数为$$2^i-1$$，叶子结点总数为$$2^(i-1)$$，列出等式即可计算出。
-解法2：
-二叉树的性质：叶子结点 &#x3D; 度为2的结点数 + 1
-当二叉树叶子结点最多时，即度为2的结点数最多......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-07-12
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/07/12/Laravel导出excel数据/">
-        <h2 class="post-title">
-            Laravel导出excel数据
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            Laravel 导出excel1.扩展包的安装在laravel项目下的terminal安装：
-composer require maatwebsite/excel  
-2.config&#x2F;app.php文件下的providers数组下加载如下类：1234&#x27;providers&#x27; =&gt; [...Maatwebsite\Excel\ExcelServiceProv......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-07-12
-    </p>
-
-</div>
-<hr>
+                <p>构造题目所需的排序方法，例如 差 从小到大排列：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;tasks = &#123;&#123;<span class="number">1</span>,<span class="number">3</span>&#125;,&#123;<span class="number">2</span>,<span class="number">4</span>&#125;,&#123;<span class="number">10</span>,<span class="number">11</span>&#125;, &#123;<span class="number">10</span>,<span class="number">12</span>&#125;,&#123;<span class="number">8</span>,<span class="number">9</span>&#125;&#125;;</span><br><span class="line"><span class="built_in">sort</span>(tasks.<span class="built_in">begin</span>(), tasks.<span class="built_in">end</span>(), [&amp;](vector&lt;<span class="type">int</span>&gt; &amp;a, vector&lt;<span class="type">int</span>&gt; &amp;b)&#123;</span><br><span class="line">    <span class="keyword">return</span> a[<span class="number">1</span>] - a[<span class="number">0</span>] &lt; b[<span class="number">1</span>] - b[<span class="number">0</span>]; <span class="comment">//&#123;10,11&#125;, &#123;8,9&#125;, &#123;1,3&#125;, &#123;2,4&#125;, &#123;10,12&#125;</span></span><br><span class="line">&#125;);    </span><br></pre></td></tr></table></figure>
 
 
 
-<!-- Pager -->
+                <hr>
 
-<ul class="pager">
-    
-        <li class="previous">
-            <a href="/page/13/">&larr; Newer Posts</a>
-        </li>
-    
-    
-</ul>
+                
 
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2023/03/02/区间/" data-toggle="tooltip" data-placement="top" title="差分思想的应用">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
 
+                
 
-                <!-- 如果开启评论功能 -->
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
                 
 
             </div>
+    <!-- Side Catalog Container -->
+        
+
     <!-- Sidebar Container -->
+
             <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
                 <!-- Featured Tags -->
                 
                 <section>
                     <!-- no hr -->
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
-                        
-                            
-                            <a href="/tags/#设计模式" title="设计模式" rel="13">设计模式</a>
-                            
-                        
-                            
-                            <a href="/tags/#生活" title="生活" rel="2">生活</a>
-                            
-                        
-                            
-                            <a href="/tags/#数据结构" title="数据结构" rel="18">数据结构</a>
-                            
-                        
-                            
-                            <a href="/tags/#C++" title="C++" rel="4">C++</a>
-                            
-                        
-                            
-                            <a href="/tags/#动态规划" title="动态规划" rel="3">动态规划</a>
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#算法" title="算法" rel="17">算法</a>
-                            
-                        
-                            
-                            <a href="/tags/#读书笔记" title="读书笔记" rel="4">读书笔记</a>
-                            
-                        
-                            
-                            <a href="/tags/#Go学习" title="Go学习" rel="10">Go学习</a>
-                            
-                        
-                            
-                            <a href="/tags/#HTTP" title="HTTP" rel="2">HTTP</a>
-                            
-                        
-                            
-                            <a href="/tags/#字符串" title="字符串" rel="6">字符串</a>
-                            
-                        
-                            
-                            <a href="/tags/#PHP" title="PHP" rel="4">PHP</a>
-                            
-                        
-                            
-                            <a href="/tags/#Linux" title="Linux" rel="4">Linux</a>
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#MySQL" title="MySQL" rel="7">MySQL</a>
-                            
-                        
-                            
-                            <a href="/tags/#Nginx" title="Nginx" rel="2">Nginx</a>
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#数论" title="数论" rel="12">数论</a>
-                            
-                        
-                            
-                            <a href="/tags/#分布式" title="分布式" rel="3">分布式</a>
-                            
-                        
-                            
-                            <a href="/tags/#Redis" title="Redis" rel="2">Redis</a>
-                            
-                        
-                            
-                            <a href="/tags/#STL" title="STL" rel="8">STL</a>
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#博客" title="博客" rel="2">博客</a>
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#树" title="树" rel="2">树</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
+                       
+                          <a class="tag" href="/tags/#C++" title="C++">C++</a>
                         
                     </div>
                 </section>
                 
 
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
-
-                        
-                            <img src="/img/avatar.jpeg" />
-                        
-
-                        
-                            <p>道阻且长，行则将至；行而不辍，未来可期</p>
-                        
-
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            
-                            
-
-                            
-
-                            
-
-                            
-                                <li>
-                                    <a target="_blank"  href="https://github.com/pistachioL">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-                            
-                            
-                            
-                        </ul>
-                    </div>
-                </section>
-                
                 <!-- Friends Blog -->
                 
                 <hr>
@@ -437,9 +270,66 @@ composer require maatwebsite/excel
                 </ul>
                 
             </div>
-        
+
+        </div>
     </div>
-</div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "hexo-theme-huxblog";
+    var disqus_identifier = "https://pistachiol.github.io/2023/03/06/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%92%E5%BA%8F/";
+    var disqus_url = "https://pistachiol.github.io/2023/03/06/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%92%E5%BA%8F/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
 
     <!-- Footer -->

@@ -197,6 +197,32 @@
 
 <div class="post-preview">
 
+    <a href="/2019/10/12/WaitNotify通知机制/">
+        <h2 class="post-title">
+            Wait&Notify的通知机制
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            Wait&amp;Notify的通知机制
+​		wait表示线程的等待，调用该方法会导致线程阻塞，直至另一线程调用notify或notifyAll方法才可另其继续执行。经典的生产者、消费者模式即是使用wait&#x2F;notify机制得以完成。
+
+
+1.当线程A（消费者）调用wait()时，A会把锁释放出来，使自己进入等待状态，同时加入“锁对象”的等待队列。
+2.线程B获取锁后，调用not......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-10-12
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2019/10/12/中国剩余定理/">
         <h2 class="post-title">
             中国剩余定理
@@ -431,28 +457,6 @@ tar -xjvf f......
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2019/09/02/快速幂/">
-        <h2 class="post-title">
-            快速幂
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            快速幂模板
-12345678910111213long long fastpow(long long x,long long n)&#123;    int base = x;    int res = 1;    while(n)    &#123;        if(n&amp;1)            res = (res%mod * base%mod)%mod;        b......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-09-02
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -504,7 +508,7 @@ tar -xjvf f......
                             
                         
                             
-                            <a href="/tags/#C++" title="C++" rel="2">C++</a>
+                            <a href="/tags/#C++" title="C++" rel="4">C++</a>
                             
                         
                             
@@ -518,7 +522,7 @@ tar -xjvf f......
                             
                         
                             
-                            <a href="/tags/#读书笔记" title="读书笔记" rel="5">读书笔记</a>
+                            <a href="/tags/#读书笔记" title="读书笔记" rel="4">读书笔记</a>
                             
                         
                             
