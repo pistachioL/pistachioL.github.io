@@ -341,7 +341,8 @@ is_null()查看变量是否为空。以下三种情况返回true:
             
         </h3>
         <div class="post-content-preview">
-            Unix的IO读写过程
+            前言做一个网络服务器，若使用多线程，每一个请求都是一个线程，但会有CPU上下文切换，代价比较高，因此考虑用单线程处理并发问题，这时候需要网络模型。
+Unix的IO读写过程
 等待数据准备
 
 把数据从系统内核拷贝到用户进程中
@@ -354,12 +355,7 @@ Unix下网络的IO模型（五种）同步IO
 
 
 非阻塞式IO (NonBlocking IO)
-同步非阻塞（就是IO复用 select poll）
-
-
-IO多路复用 (IO multiplexing)
-信号驱动型IO (Signal Driven IO) 比较少用
-......
+同步非阻塞（就是IO复......
         </div>
     </a>
     <p class="post-meta">
