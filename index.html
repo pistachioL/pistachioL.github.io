@@ -197,6 +197,30 @@
 
 <div class="post-preview">
 
+    <a href="/2023/03/07/分布式事务/">
+        <h2 class="post-title">
+            分布式事务基础理论CAP/BASE
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            本地事务使用本地事务，更多是通过关系型数据库数据库来控制事务，利用数据库本身的事务特性ACID实现，因此称数据库事务。
+由于主要靠关系型数据库控制事务，而数据库和应用通常在同一个服务器，因此说关系型的数据库事务称为本地事务。
+分布式事务提供服务的各个节点分布在不同的机器上，相互之间通过网络交互，但网络不稳定会出现不一致的问题，因此需要更进一步的理论支持。
+CAP理论CAP分别是Consist......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2023-03-07
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2023/03/06/自定义排序/">
         <h2 class="post-title">
             自定义排序
@@ -421,28 +445,6 @@ At Google, we developed a context package that......
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2023/02/02/组合数&排列数/">
-        <h2 class="post-title">
-            组合数&排列数
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            1、求组合数：外层for循环物品，内存for循环背包。 组合数{1,3}与{3,1}属于同一种组合
-1234567for(int coin : coins) &#123;  for(int i = 0; i &lt;= amount; i++) &#123;    if(i &gt;= coin) &#123;      dp[i] += dp[i - coin];    &#125;  &......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2023-02-02
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -544,7 +546,7 @@ At Google, we developed a context package that......
                             
                         
                             
-                            <a href="/tags/#分布式" title="分布式" rel="3">分布式</a>
+                            <a href="/tags/#分布式" title="分布式" rel="4">分布式</a>
                             
                         
                             

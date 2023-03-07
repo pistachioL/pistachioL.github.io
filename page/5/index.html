@@ -197,6 +197,31 @@
 
 <div class="post-preview">
 
+    <a href="/2022/04/20/channel/">
+        <h2 class="post-title">
+            channel
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            一、定义Channel 是 goroutine 之间的通信方式，Go语言的并发模型是CSP（Communicating Sequential Processes），提倡通信来共享内存，而不是共享内存来通信。
+gorotine由 runtime来管理
+二、创建创建有缓冲的缓存
+1ch := make(chan int, 2)   //创建channel,类型为char, buffer大小是2
+......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2022-04-20
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2020/07/30/Redis持久化机制/">
         <h2 class="post-title">
             Redis持久化机制
@@ -445,31 +470,6 @@ x = inroot - il + pl，求出左子树右边界的下标。
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2020/05/19/C++字符串转数字/">
-        <h2 class="post-title">
-            C++字符串转数字
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            通过几种方法，把数字字符串转成int输出
-stoi(string s)
-stoi()会做范围检查，默认范围是在int的范围内的，如果超出范围的话则会runtime error！
-
-12345678910111213#include &lt;iostream&gt;//#include &lt;cstring&gt;using namespace std;int main()&#123;	st......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-05-19
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -575,7 +575,7 @@ stoi()会做范围检查，默认范围是在int的范围内的，如果超出�
                             
                         
                             
-                            <a href="/tags/#分布式" title="分布式" rel="3">分布式</a>
+                            <a href="/tags/#分布式" title="分布式" rel="4">分布式</a>
                             
                         
                             
