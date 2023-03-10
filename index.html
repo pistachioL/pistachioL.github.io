@@ -205,17 +205,15 @@
             
         </h3>
         <div class="post-content-preview">
-            2PC2PC是Two-Phase commit protocol，2阶段提交协议
-trasaction coordinator（TC协调器）：对事务进行协调
-Participants(事务参与者)：负责执行事务中部分任务的服务器叫参与者，存在于不同的服务器上
+            一、2PC定义2PC是Two-Phase commit protocol，2阶段提交协议
 
+trasaction coordinator（TC，事务协调器）：实质是一台服务器，负责对事务进行协调
+Participants(事务参与者)：可以有多个，负责执行事务中部分任务的服务器叫参与者，存在于不同的服务器上
 
-2PC流程
+二、2PC流程
+
 此处假设TC是调度器，假设有A、B是两个事务参与者
-
-客户端请求TC执行A、B事务，等待TC的响应
-
-TC运行整个事务......
+1、客户端请......
         </div>
     </a>
     <p class="post-meta">
