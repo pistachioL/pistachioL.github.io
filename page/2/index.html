@@ -197,6 +197,56 @@
 
 <div class="post-preview">
 
+    <a href="/2023/02/23/context/">
+        <h2 class="post-title">
+            context
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            一、简介go并发编程中，用一个goroutine处理一个任务，而它又会创建多个goroutine来负责不同子任务的场景很常见。这种场景往往需要在api边界之间、过程之间传递截止时间、取消信号、以及其它请求数据（总的来说就是goroutine之间的通信），这时候便可以使用context。
+二、使用场景
+At Google, we developed a context package that......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2023-02-23
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2023/02/22/二叉搜索树/">
+        <h2 class="post-title">
+            二叉搜索树
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            二叉搜索树（Binary Search Tree，BST）是一种二叉树，它或者是一棵空树，或者是具有下列性质的二叉树：
+
+若左子树不空，则左子树上所有结点的值均小于它的根结点的值，右子树上所有结点的值均大于根结点的值
+中序遍历树的每个结点是有序的
+
+验证二叉搜索树
+1234567891011121314151617181920212223242526272829func main() &#1......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2023-02-22
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2023/02/02/组合数&排列数/">
         <h2 class="post-title">
             组合数&排列数
@@ -409,64 +459,6 @@ LC303. 区域和检索 - 数组不可变
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2023/01/13/Bridge/">
-        <h2 class="post-title">
-            【结构型】桥接模式
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            一、定义将抽象部分（业务功能）与实现部分（平台实现）分离，使它们都可以独立地变化。
-二、结构
-
-三、总结
-Bridge模式使用“对象间的组合关系”（抽象的指针），解耦了抽象与实现之间固有的绑定关系，使得抽象和实现之间可以沿着各自的维度变化（子类化）。
-Bridge模式的应用一般在“两个非常强的变化维度”，有时一个类也有多于两个的变化维度，这时可以使用Bridge的扩展模式。
-编译时装配转为 ......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2023-01-13
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2023/01/13/设计模式总览/">
-        <h2 class="post-title">
-            设计模式总览
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            八大面向对象设计原则
-如果模式违背了设计原则，则这个模式是错误的。
-一、依赖倒置原则（DIP）
-高层模块（稳定）不应该依赖底层模块（变化），二者都该依赖抽象（稳定）。
-抽象（稳定）不应该依赖实现细节，实现细节（变化）应该依赖抽象（稳定）。
-
- 例如A依赖B，就是A在编译时B需要存在，才能编译通过（此处的依赖通常是指编译时依赖，只有抽象在才能编译通过）。
-
- (Before)
-(After)
-......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2023-01-13
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -572,7 +564,7 @@ Bridge模式的应用一般在“两个非常强的变化维度”，有时一�
                             
                         
                             
-                            <a href="/tags/#分布式" title="分布式" rel="4">分布式</a>
+                            <a href="/tags/#分布式" title="分布式" rel="6">分布式</a>
                             
                         
                             

@@ -197,6 +197,64 @@
 
 <div class="post-preview">
 
+    <a href="/2023/01/13/Bridge/">
+        <h2 class="post-title">
+            【结构型】桥接模式
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            一、定义将抽象部分（业务功能）与实现部分（平台实现）分离，使它们都可以独立地变化。
+二、结构
+
+三、总结
+Bridge模式使用“对象间的组合关系”（抽象的指针），解耦了抽象与实现之间固有的绑定关系，使得抽象和实现之间可以沿着各自的维度变化（子类化）。
+Bridge模式的应用一般在“两个非常强的变化维度”，有时一个类也有多于两个的变化维度，这时可以使用Bridge的扩展模式。
+编译时装配转为 ......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2023-01-13
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2023/01/13/设计模式总览/">
+        <h2 class="post-title">
+            设计模式总览
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            八大面向对象设计原则
+如果模式违背了设计原则，则这个模式是错误的。
+一、依赖倒置原则（DIP）
+高层模块（稳定）不应该依赖底层模块（变化），二者都该依赖抽象（稳定）。
+抽象（稳定）不应该依赖实现细节，实现细节（变化）应该依赖抽象（稳定）。
+
+ 例如A依赖B，就是A在编译时B需要存在，才能编译通过（此处的依赖通常是指编译时依赖，只有抽象在才能编译通过）。
+
+ (Before)
+(After)
+......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2023-01-13
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2023/01/12/Observer/">
         <h2 class="post-title">
             【行为型】观察者模式
@@ -407,54 +465,6 @@ Strategy模式提供了用条件判断语句(if&#x2F;else)以外的另一种选�
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2022/07/26/分布式系统/">
-        <h2 class="post-title">
-            分布式系统
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            当执行锁操作时，涉及不同的线程可能不知道彼此的状态。对于另外一些线程，它们只希望获取到数据而不受到其它线程的干扰，因此线程之间也需要交流以等待对方的数据，通常叫协作。
-协程间的通信，称为Coordination，Go中提供了几种方法实现：
-
-channel
-Sync.cond() 若有些线程停在那里，你想每隔一段时间发一个信号，但你不确定线程是否在等你。若它在等，就给它发一个ticket，它......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2022-07-26
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2022/07/04/MySQL日志/">
-        <h2 class="post-title">
-            MySQL日志
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            一、Redo Log1.1 定义Redo log是物理日志，记录事务提交时，数据页的物理修改（具体存放了什么数据），用于实现事务的持久性。
-1.2 作用保证事务的持久性。保证内存中和磁盘中数据的一致性，当刷新脏页到磁盘，发生错误时，进行数据恢复。
-1.3 操作原理Redo Log由 重做日志缓冲 (Redo Log buffer) 和 重做日志文件 (Redo Log file) 组成。前者......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2022-07-04
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -560,7 +570,7 @@ Sync.cond() 若有些线程停在那里，你想每隔一段时间发一个信�
                             
                         
                             
-                            <a href="/tags/#分布式" title="分布式" rel="4">分布式</a>
+                            <a href="/tags/#分布式" title="分布式" rel="6">分布式</a>
                             
                         
                             

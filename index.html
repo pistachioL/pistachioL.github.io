@@ -197,7 +197,63 @@
 
 <div class="post-preview">
 
-    <a href="/2023/03/07/分布式事务/">
+    <a href="/2023/03/08/分布式事务解决方案之2PC/">
+        <h2 class="post-title">
+            分布式事务基解决方案之2PC
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            2PC2PC是Two-Phase commit protocol，2阶段提交协议
+trasaction coordinator（TC协调器）：对事务进行协调
+Participants(事务参与者)：负责执行事务中部分任务的服务器叫参与者，存在于不同的服务器上
+
+
+2PC流程
+此处假设TC是调度器，假设有A、B是两个事务参与者
+
+客户端请求TC执行A、B事务，等待TC的响应
+
+TC运行整个事务......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2023-03-08
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2023/03/08/分布式事务/">
+        <h2 class="post-title">
+            分布式事务
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            Conccurency contral并发控制悲观锁并发控制1、Two-Phase Locking
+
+require lock：事务对任何数据进行操作之前，都要获取该数据对应的锁；
+
+hold until done ：直到事务被提交或终止之后，事务才能释放掉它所获得的锁。不能在事务执行过程中释放锁，只能对这些锁进行累加操作，直到事务结束。(此处体现了有序性Serialization的定义，本......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2023-03-08
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2023/03/07/分布式事务CAP:BASE/">
         <h2 class="post-title">
             分布式事务基础理论CAP/BASE
         </h2>
@@ -395,56 +451,6 @@ Leader election每个节点有三个状态，分别是Leader、Follower或Candid
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2023/02/23/context/">
-        <h2 class="post-title">
-            context
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            一、简介go并发编程中，用一个goroutine处理一个任务，而它又会创建多个goroutine来负责不同子任务的场景很常见。这种场景往往需要在api边界之间、过程之间传递截止时间、取消信号、以及其它请求数据（总的来说就是goroutine之间的通信），这时候便可以使用context。
-二、使用场景
-At Google, we developed a context package that......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2023-02-23
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2023/02/22/二叉搜索树/">
-        <h2 class="post-title">
-            二叉搜索树
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            二叉搜索树（Binary Search Tree，BST）是一种二叉树，它或者是一棵空树，或者是具有下列性质的二叉树：
-
-若左子树不空，则左子树上所有结点的值均小于它的根结点的值，右子树上所有结点的值均大于根结点的值
-中序遍历树的每个结点是有序的
-
-验证二叉搜索树
-1234567891011121314151617181920212223242526272829func main() &#1......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2023-02-22
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -546,7 +552,7 @@ At Google, we developed a context package that......
                             
                         
                             
-                            <a href="/tags/#分布式" title="分布式" rel="4">分布式</a>
+                            <a href="/tags/#分布式" title="分布式" rel="6">分布式</a>
                             
                         
                             

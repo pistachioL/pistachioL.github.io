@@ -13,11 +13,11 @@
 
     <title>
         
-          分布式事务基础理论CAP/BASE - Pistachio的楼阁 | Pistachio&#39;s Blog
+          分布式事务 - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2023/03/07/分布式事务/">
+    <link rel="canonical" href="https://pistachiol.github.io/2023/03/08/分布式事务/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -181,11 +181,11 @@
                           <a class="tag" href="/tags/#分布式" title="分布式">分布式</a>
                         
                     </div>
-                    <h1>分布式事务基础理论CAP/BASE</h1>
+                    <h1>分布式事务</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
-                        2023-03-07
+                        2023-03-08
                     </span>
                 </div>
             </div>
@@ -204,40 +204,20 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1><span id="本地事务">本地事务</span></h1><p>使用本地事务，更多是通过关系型数据库数据库来控制事务，利用数据库本身的事务特性ACID实现，因此称数据库事务。</p>
-<p>由于主要靠关系型数据库控制事务，而数据库和应用通常在同一个服务器，因此说关系型的数据库事务称为本地事务。</p>
-<h1><span id="分布式事务">分布式事务</span></h1><p>提供服务的各个节点分布在不同的机器上，相互之间通过网络交互，但网络不稳定会出现不一致的问题，因此需要更进一步的理论支持。</p>
-<h3><span id="cap理论">CAP理论</span></h3><p>CAP分别是Consistency（一致性）、Avaliable（可用性）、Patition tolerant（分区容错性） 的首字母。一个分布式系统只能满足其中两个</p>
+                <h1><span id="conccurency-contral并发控制">Conccurency contral并发控制</span></h1><h3><span id="悲观锁并发控制">悲观锁并发控制</span></h3><p><strong>1、Two-Phase Locking</strong></p>
 <ul>
-<li><p>一致性 (C)：指的是写操作后读操作可以读取到最新的数据状态，当数据分布在多个节点上时，从任意节点读取到的数据都是最新状态。这种一致性是强一致性。</p>
-<p>实现一致性的例子：</p>
+<li><p>require lock：事务对任何数据进行操作之前，都要获取该数据对应的锁；</p>
+</li>
+<li><p>hold until done ：直到事务被提交或终止之后，事务才能释放掉它所获得的锁。不能在事务执行过程中释放锁，只能对这些锁进行累加操作，直到事务结束。(此处体现了有序性Serialization的定义，本来锁状态是1，获取一下变为2，多次获取可能位n，当事务结束或异常后，需要将该锁状态置为0，才算释放) </p>
+<p>避免幻影读</p>
+<p>避免死锁</p>
+</li>
+</ul>
+<p>​			<img src="/2023/03/08/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/1.png" width="700px"></p>
 <ul>
-<li>读写分离架构下（主负责写入，从负责读），写入主数据库后要将数据同步到从数据库。</li>
-<li>写入主数据库后，同步给从数据库期间，要将从数据库锁住，同步完后再释放锁，以免在同步过程中读数据读取到旧的数据</li>
+<li>乐观锁并发控制(OCC)</li>
 </ul>
-</li>
-<li><p>可用性 (A)：任何事务的操作都可以得到响应结果，且不会出现<strong>响应超时</strong>或者<strong>响应错误</strong>。</p>
-</li>
-<li><p>分区容错性 (P)：分布式系统的各个节点部署在不同子网中，这是网络分区。由于网络问题导致某个节点间通信失败，但不影响集群对外提供服务。</p>
-<ul>
-<li>异步取代同步操作，节点之间解耦合</li>
-<li>一主多从</li>
-</ul>
-</li>
-</ul>
-<h3><span id="base理论">BASE理论</span></h3><p>BASE理论是对CAP中AP的扩展，通过牺牲强一致性来获得可用性。当出现故障时，允许部分不可用，但要保证核心功能可用，允许数据在一段时间内不一致，但最终达到一致状态。满足BASE理论的事务，称之为“柔性事务”</p>
-<ul>
-<li>基本可用(Basically Avaliable)：分布式系统出现故障时，允许损失部分功能可用性，但保证核心功能可用<ul>
-<li>电商网站交易付款出现问题，</li>
-</ul>
-</li>
-<li>软状态(Soft state)：分布式系统中允许存在中间状态（软状态），这个状态不影响系统可用性<ul>
-<li>“支付中”,”数据同步中”等，待数据最终一致后改为”成功”状态</li>
-</ul>
-</li>
-<li>最终一致性(Eventually consistent)：经过一段时间之后，所有节点数据都会达到一致，但需要一定时间的延迟、等待</li>
-</ul>
-
+<h1><span id="原子性">原子性</span></h1>
 
                 <hr>
 
@@ -245,9 +225,13 @@
 
                 <ul class="pager">
                     
+                        <li class="previous">
+                            <a href="/2023/03/08/分布式事务解决方案之2PC/" data-toggle="tooltip" data-placement="top" title="分布式事务基解决方案之2PC">&larr; Previous Post</a>
+                        </li>
+                    
                     
                         <li class="next">
-                            <a href="/2023/03/06/自定义排序/" data-toggle="tooltip" data-placement="top" title="自定义排序">Next Post &rarr;</a>
+                            <a href="/2023/03/07/分布式事务CAP:BASE/" data-toggle="tooltip" data-placement="top" title="分布式事务基础理论CAP/BASE">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -312,8 +296,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2023/03/07/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/";
-    var disqus_url = "https://pistachiol.github.io/2023/03/07/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/";
+    var disqus_identifier = "https://pistachiol.github.io/2023/03/08/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/";
+    var disqus_url = "https://pistachiol.github.io/2023/03/08/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
