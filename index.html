@@ -100,18 +100,8 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/categories/">categories</a>
                         </li>
-                        
-                    
-
                         
                     
 
@@ -119,6 +109,16 @@
                         <li>
                             <a href="/archives/">Archives</a>
                         </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
                         
                     
                     
@@ -194,6 +194,32 @@
             
                 <!-- Main Content -->
 
+
+<div class="post-preview">
+
+    <a href="/2023/03/08/分布式事务解决方案之2PC copy/">
+        <h2 class="post-title">
+            分布式事务基解决方案之2PC
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            一、2PC定义2PC是Two-Phase commit protocol，原子性提交的两阶段提交协议
+
+trasaction coordinator（TC，事务协调器）：实质是一台服务器，负责对事务进行协调
+Participants(事务参与者)：可以有多个，负责执行事务中部分任务的服务器叫参与者。它们各自负责自己的那部分事务，存在于不同的服务器上
+
+只有TC来决定是否提交事务或终止事务，P......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2023-03-08
+    </p>
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -420,32 +446,6 @@ Leader election每个节点有三个状态，分别是Leader、Follower或Candid
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2023/02/24/rune类型/">
-        <h2 class="post-title">
-            rune类型
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            使用场景1、Go字符串不支持下标修改，需要转byte或者rune才能改。byte是uint8的别名，而rune是int32的别名
-1234str := &quot;hello&quot;str1 := []byte(str)str1[0] = &#x27;x&#x27;fmt.Println(string(str1)) // xello
-
-
-
-2、算法题：abcde你好 &#x3D;&gt;......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2023-02-24
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -481,15 +481,15 @@ Leader election每个节点有三个状态，分别是Leader、Follower或Candid
                     <div class="tags">
                         
                             
+                            <a href="/tags/#设计模式" title="设计模式" rel="13">设计模式</a>
+                            
+                        
+                            
                             <a href="/tags/#生活" title="生活" rel="2">生活</a>
                             
                         
                             
                             <a href="/tags/#数据结构" title="数据结构" rel="18">数据结构</a>
-                            
-                        
-                            
-                            <a href="/tags/#设计模式" title="设计模式" rel="13">设计模式</a>
                             
                         
                             
@@ -519,17 +519,17 @@ Leader election每个节点有三个状态，分别是Leader、Follower或Candid
                             
                         
                             
-                            <a href="/tags/#PHP" title="PHP" rel="4">PHP</a>
-                            
-                        
-                            
-                        
-                            
                             <a href="/tags/#字符串" title="字符串" rel="6">字符串</a>
                             
                         
                             
+                            <a href="/tags/#PHP" title="PHP" rel="4">PHP</a>
+                            
+                        
+                            
                             <a href="/tags/#Linux" title="Linux" rel="4">Linux</a>
+                            
+                        
                             
                         
                             
@@ -541,13 +541,9 @@ Leader election每个节点有三个状态，分别是Leader、Follower或Candid
                             
                         
                             
-                        
-                            
                             <a href="/tags/#数论" title="数论" rel="12">数论</a>
                             
                         
-                            
-                            <a href="/tags/#Redis" title="Redis" rel="2">Redis</a>
                             
                         
                             
@@ -555,7 +551,11 @@ Leader election每个节点有三个状态，分别是Leader、Follower或Candid
                             
                         
                             
-                            <a href="/tags/#分布式" title="分布式" rel="6">分布式</a>
+                            <a href="/tags/#分布式" title="分布式" rel="7">分布式</a>
+                            
+                        
+                            
+                            <a href="/tags/#Redis" title="Redis" rel="2">Redis</a>
                             
                         
                             
