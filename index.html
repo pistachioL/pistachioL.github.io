@@ -197,25 +197,21 @@
 
 <div class="post-preview">
 
-    <a href="/2023/03/08/分布式事务解决方案之2PC copy/">
+    <a href="/2023/03/10/分布式事务解决方案之3PC/">
         <h2 class="post-title">
-            分布式事务基解决方案之2PC
+            分布式事务解决方案之3PC
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            一、2PC定义2PC是Two-Phase commit protocol，原子性提交的两阶段提交协议
-
-trasaction coordinator（TC，事务协调器）：实质是一台服务器，负责对事务进行协调
-Participants(事务参与者)：可以有多个，负责执行事务中部分任务的服务器叫参与者。它们各自负责自己的那部分事务，存在于不同的服务器上
-
-只有TC来决定是否提交事务或终止事务，P......
+            一、定义3PC，Three-phase commit protocol，是对2PC的改进，分为3个阶段canCommit,preCommit,doCommit
+...
         </div>
     </a>
     <p class="post-meta">
         Posted by Liao on
-        2023-03-08
+        2023-03-10
     </p>
 
 </div>
