@@ -197,6 +197,32 @@
 
 <div class="post-preview">
 
+    <a href="/2023/02/24/rune类型/">
+        <h2 class="post-title">
+            rune类型
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            使用场景1、Go字符串不支持下标修改，需要转byte或者rune才能改。byte是uint8的别名，而rune是int32的别名
+1234str := &quot;hello&quot;str1 := []byte(str)str1[0] = &#x27;x&#x27;fmt.Println(string(str1)) // xello
+
+
+
+2、算法题：abcde你好 &#x3D;&gt;......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2023-02-24
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2023/02/23/context/">
         <h2 class="post-title">
             context
@@ -429,36 +455,6 @@ LC303. 区域和检索 - 数组不可变
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2023/01/13/Factory/">
-        <h2 class="post-title">
-            【创建型】工厂模式
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            一、动机面向接口编程
-实例化时不要写具体的类
-1ISplitter * splitter = new FileSpliter(); // 不推荐：FileSpliter * splitter = new FileSpliter();
-
-但C++或者其它语言不支持抽象基类上创建对象，不管在栈上声明对象或在堆上new对象，都不可以
-1ISplitter sp; // 不可取
-
-
-
-二、定义定义一......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2023-01-13
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -568,7 +564,7 @@ LC303. 区域和检索 - 数组不可变
                             
                         
                             
-                            <a href="/tags/#分布式" title="分布式" rel="6">分布式</a>
+                            <a href="/tags/#分布式" title="分布式" rel="7">分布式</a>
                             
                         
                             
