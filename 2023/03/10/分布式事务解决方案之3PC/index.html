@@ -204,7 +204,7 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3><span id="一-定义">一、定义</span></h3><p>3PC，Three-phase commit protocol，是对2PC的改进，解决了2PC的阻塞问题，分为3个阶段<code>canCommit</code>,<code>preCommit</code>,<code>doCommit</code></p>
+                <h3><span id="一-定义">一、定义</span></h3><p>3PC，Three-phase commit protocol，解决了2PC的阻塞问题，分为3个阶段<code>canCommit</code>,<code>preCommit</code>,<code>doCommit</code></p>
 <h3><span id="二-3pc过程">二、3PC过程</span></h3><img src="/2023/03/10/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E4%B9%8B3PC/1.png" width="550px">
 
 <p><strong>1、阶段一 CanCommit</strong></p>
@@ -222,7 +222,7 @@
 <li><p>中断事务：如果任何一个Participants反馈为NO，或者等待超时后，TC无法收到所有Participants的反馈，则会中断事务</p>
 <ul>
 <li>发送中断请求：TC向所有Participants发送<strong>Abort</strong>请求。</li>
-<li>中断事务：无论收到abort请求，还是等待超时，Participants都要中断事务。</li>
+<li>中断事务：无论收到Abort请求，还是等待超时，Participants都要中断事务。</li>
 </ul>
 </li>
 </ul>
@@ -244,6 +244,10 @@
 <li>中断事务：TC接收到所有Participants的ACK消息后，执行<strong>中断事务</strong>操作。</li>
 </ul>
 </li>
+</ul>
+<h3><span id="三-3pc优缺点">三、3PC优缺点</span></h3><ul>
+<li>优点：降低2PC中Participants的阻塞范围，并能够在出现单点故障后继续达成一致</li>
+<li>缺陷：仍然有数据不一致的问题，如网络分区情况下，TC发送完PreCommit消息后突然两个机房断开，这时候TC所在的机房会发送<strong>Abort</strong>，剩余的机房里则会发送<strong>Commit</strong>。</li>
 </ul>
 
 

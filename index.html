@@ -205,12 +205,12 @@
             
         </h3>
         <div class="post-content-preview">
-            一、定义3PC，Three-phase commit protocol，是对2PC的改进，解决了2PC的阻塞问题，分为3个阶段canCommit,preCommit,doCommit
+            一、定义3PC，Three-phase commit protocol，解决了2PC的阻塞问题，分为3个阶段canCommit,preCommit,doCommit
 二、3PC过程
 
 1、阶段一 CanCommit
 （1）事务询问：TC向各个Participants发送CanCommit，询问是否可以执行事务提交操作，并开始等待Participants的响应。
-（2）反馈询......
+（2）反馈询问响应：Parti......
         </div>
     </a>
     <p class="post-meta">
@@ -233,7 +233,7 @@
         <div class="post-content-preview">
             一、2PC定义2PC是Two-Phase commit protocol，原子性提交的两阶段提交协议
 
-trasaction coordinator（TC，事务协调器）：实质是一台服务器，负责对事务进行协调
+Trasaction Coordinator（TC，事务协调器）：实质是一台服务器，负责对事务进行协调
 Participants(事务参与者)：可以有多个，负责执行事务中部分任务的服务器叫参与者。它们各自负责自己的那部分事务，存在于不同的服务器上
 
 只有TC来决定是否提交事务或终止事务，P......
