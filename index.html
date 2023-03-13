@@ -205,8 +205,12 @@
             
         </h3>
         <div class="post-content-preview">
-            一、定义3PC，Three-phase commit protocol，是对2PC的改进，分为3个阶段canCommit,preCommit,doCommit
-...
+            一、定义3PC，Three-phase commit protocol，是对2PC的改进，解决了2PC的阻塞问题，分为3个阶段canCommit,preCommit,doCommit
+二、3PC过程
+
+1、阶段一 CanCommit
+（1）事务询问：TC向各个Participants发送CanCommit，询问是否可以执行事务提交操作，并开始等待Participants的响应。
+（2）反馈询......
         </div>
     </a>
     <p class="post-meta">

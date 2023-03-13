@@ -204,7 +204,47 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3><span id="一-定义">一、定义</span></h3><p>3PC，Three-phase commit protocol，是对2PC的改进，分为3个阶段<code>canCommit</code>,<code>preCommit</code>,<code>doCommit</code></p>
+                <h3><span id="一-定义">一、定义</span></h3><p>3PC，Three-phase commit protocol，是对2PC的改进，解决了2PC的阻塞问题，分为3个阶段<code>canCommit</code>,<code>preCommit</code>,<code>doCommit</code></p>
+<h3><span id="二-3pc过程">二、3PC过程</span></h3><img src="/2023/03/10/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E4%B9%8B3PC/1.png" width="550px">
+
+<p><strong>1、阶段一 CanCommit</strong></p>
+<p>（1）事务询问：TC向各个Participants发送CanCommit，询问是否可以执行事务提交操作，并开始等待Participants的响应。</p>
+<p>（2）反馈询问响应：Participants收到CanCommit请求后，如果任务自身可以完成事务则返回YES，否则返回NO</p>
+<p><strong>2、阶段二 PreCommit</strong></p>
+<ul>
+<li><p>执行PreCommit： 如果TC收到Participants反馈全为<strong>YES</strong>，则执行PreCommit（事务预提交）</p>
+<ul>
+<li>TC向所有Participants发送PreCommit请求，进入<strong>Prepared阶段</strong>。</li>
+<li>Participants收到PreCommit请求后，会执行事务操作，并将Undo和Redo信息记录到事务日志中。</li>
+<li>Participants向TC反馈事务执行响应：如果Participants都成功执行了事务，则给反馈给TC<strong>ACK</strong>响应。</li>
+</ul>
+</li>
+<li><p>中断事务：如果任何一个Participants反馈为NO，或者等待超时后，TC无法收到所有Participants的反馈，则会中断事务</p>
+<ul>
+<li>发送中断请求：TC向所有Participants发送<strong>Abort</strong>请求。</li>
+<li>中断事务：无论收到abort请求，还是等待超时，Participants都要中断事务。</li>
+</ul>
+</li>
+</ul>
+<p><strong>3、阶段三 DoCommit</strong></p>
+<ul>
+<li><p>执行DoCommit：若TC接收到所有Participants的ACK响应，则实行DoCommit</p>
+<ul>
+<li>发送DoCommit请求：如果TC正常工作，接收到所有Participants的ACK响应，则从Prepared阶段进入提交阶段，并向所有Participants发送DoCommit消息。</li>
+<li>事务提交：所有Participants收到DoCommit请求后，正式<strong>提交事务</strong>，并在完成事务后释放占用的资源。</li>
+<li>反馈事务提交结果：所有Participants完成事务提交后，向TC发送<strong>ACK</strong>响应。</li>
+<li>完成事务：TC接收到所有Participants的ACK响应后，完成事务。</li>
+</ul>
+</li>
+<li><p>中断事务：假设TC正常工作，并且有任何一个Participants反馈NO，或者等待超时后无法接收所有Participants的反馈，则会中断事务</p>
+<ul>
+<li>发送中断请求：TC向所有Participants节点发送<strong>Abort</strong>请求</li>
+<li>事务回滚：Participants接收到Abort请求后，利用<strong>Undo日志</strong>执行事务回滚，并在事务回滚完成后释放所占用的资源</li>
+<li>反馈事务回滚结果：Participants完成事务回滚后，向TC发送<strong>ACK</strong>消息。</li>
+<li>中断事务：TC接收到所有Participants的ACK消息后，执行<strong>中断事务</strong>操作。</li>
+</ul>
+</li>
+</ul>
 
 
                 <hr>

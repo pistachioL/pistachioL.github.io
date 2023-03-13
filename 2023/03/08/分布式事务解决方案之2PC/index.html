@@ -213,16 +213,43 @@
 <h3><span id="二-2pc流程">二、2PC流程</span></h3><img src="/2023/03/08/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E4%B9%8B2PC/2.png">
 
 <p>此处假设TC是调度器，假设有A、B是两个事务参与者，A负责对x+1，B负责对y-1,</p>
-<p>1、客户端请求TC执行A、B事务，等待TC的响应</p>
-<p>2、TC运行整个事务，向服务器A发送get请求， A执行事务；TC向B发送put请求，B执行事务。A、B执行事务过程中，会锁住它要读的这部分数据</p>
-<p>3、<strong>Prepare phase</strong>：进行任何事务之前，TC需要确保不同的Participants有能力去执行它们负责的那部分事务。因此TC会给所有Participants发送Prepare消息</p>
-<p>4、Participants记录日志。。。</p>
-<p>5、A、B回复YES&#x2F;NO。收到Prepare消息后，知道该事务的进度接近完成，但还没完成，它们回去查看它们的状态，判断它们实际是否能完成事务中的操作（当它们进行最后操作时，它们可能需要中断这个事务来干预这个死锁，或者因为它们崩溃而重启了，会忘记了事务相关的事情，并且无法完成事务，所以要check下状态），给TC回复YES&#x2F;NO。</p>
-<p>TC将事务的信息记录到日志中。。。</p>
-<p>6、发送Commit&#x2F;Abort（<strong>Commit phase</strong>）。如果<strong>A、B都返回OK</strong>，表示可以提交事务，给A、B发送Commit消息；但如果任何一个Participants回复NO（可能因为故障、数据不一致而需要终断），TC都不会发送Commit，而是会对所有Participants发送Abort消息，以回滚事务（体现了原子性，要不全部做，要不全部不做）</p>
-<p>7、A、B给TC发送ACK信息。这时候Participants对TC回复确认信息ACK：YES，我收到结果了！Participants可以把事务相关的信息从日志中清除。</p>
-<p>8、当TC完成事务时，想要去提交该事务，并持久化到磁盘上；为了遵循Two-Phase Locking规则，当Participants看到commit或abort消息后，会释放该事务中用到的所有锁（其它事务就可以使用数据），并让事务的修改结果对外可见（展示给其它事务），它可能会对客户端或用户进行回复，删除日志相关事务的记录。</p>
-<h3><span id="三-2pc不同情况下的崩溃">三、2PC不同情况下的崩溃</span></h3><h6><span id="参与者角度">参与者角度</span></h6><ul>
+<blockquote>
+<p>客户端请求TC执行A、B事务，等待TC的响应</p>
+<p>TC运行整个事务，向服务器A发送get请求， A执行事务；TC向B发送put请求，B执行事务。A、B执行事务过程中，会锁住它要读的这部分数据</p>
+</blockquote>
+<p><strong>1、 阶段一 Prepare phase</strong>：投票阶段</p>
+<ul>
+<li><p>事务询问：进行任何事务之前，TC需要确保不同的Participants有能力去执行它们负责的那部分事务。因此TC会给所有Participants发送<strong>Prepare消息</strong></p>
+</li>
+<li><p>执行事务：各个Participants执行事务操作，并将<strong>Undo</strong>和<strong>Redo</strong>信息记录到事务日志中。</p>
+<blockquote>
+<p>Participants收到Prepare消息后，知道该事务的进度接近完成，但还没完成，它们回去查看它们的状态，判断它们实际是否能完成事务中的操作（当它们进行最后操作时，它们可能需要中断这个事务来干预这个死锁，或者因为它们崩溃而重启了，会忘记了事务相关的事情，并且无法完成事务，所以要check下状态）</p>
+</blockquote>
+</li>
+<li><p>反馈事务询问响应：如果Participants成功完成了事务，则给TC回复<strong>YES</strong>响应，表示事务可以执行；如果Participants没有成功执行事务，则返回 <strong>NO</strong>响应，表示事务不可以执行。</p>
+</li>
+</ul>
+<blockquote>
+<p> TC将事务的信息记录到日志中。。。</p>
+</blockquote>
+<p><strong>2、阶段二 Commit phase</strong>：</p>
+<ul>
+<li>执行事务提交：所有Participants都返回<strong>OK</strong>响应<ul>
+<li>发送提交请求：如果A、B都返回OK，表示可以提交事务，TC将会给给A、B发送<strong>Commit</strong>请求。</li>
+<li>事务提交：Participants接收到Commit请求后，会正式执行<strong>事务提交</strong>操作，并在完成事务提交之后释放整个事务执行期间占用的事务资源。（可以把事务相关的信息从日志中清除。）</li>
+<li>反馈事务提交结果：Participants完成事务提交后，会给TC返回<strong>ACK</strong>消息（YES，我收到结果了！）</li>
+<li>完成事务：TC收到所有Participants的ACK响应后，完成事务，并提交该事务，并持久化到磁盘上；为了遵循Two-Phase Locking规则，当Participants看到commit或abort消息后，会释放该事务中用到的所有锁（其它事务就可以使用数据），并让事务的修改结果对外可见（展示给其它事务），它可能会对客户端或用户进行回复，删除日志相关事务的记录。</li>
+</ul>
+</li>
+<li>中断事务：任何一个Participants返回<strong>NO</strong>响应<ul>
+<li>发送回滚请求：但如果任何一个Participants回复NO（可能因为故障、数据不一致而需要中断），会对所有Participants节点发送<strong>Rollback</strong>请求，以回滚事务（体现了原子性，要不全部做，要不全部不做）</li>
+<li>事务回滚：Participants收到Rollback请求后，会利用在阶段一记录的<strong>Undo</strong>日志来执行事务回滚操作，并在完成回滚后释放整个事务执行期占用的资源。</li>
+<li>反馈事务回滚结果：Participants在完成事务回滚后，向TC发送<strong>ACK</strong>消息。</li>
+<li>中断事务：TC收到所有Participants的ACK响应后，完成事务中断。</li>
+</ul>
+</li>
+</ul>
+<h3><span id="三-2pc不同情况下的崩溃">三、2PC不同情况下的崩溃</span></h3><h5><span id="参与者角度">参与者角度</span></h5><ul>
 <li><p>B在回复YES给TC之前已经崩溃了（包括电源故障），则TC不会返回commit。</p>
 </li>
 <li><p><strong>B在回复YES给TC之后崩溃</strong>（主要）。这时B不知道TC返回的commit，只能等机器恢复之后再继续操作事务：</p>
@@ -242,23 +269,28 @@
 <li><p>由于网络原因丢失，在Participants发送YES&#x2F;NO后，长时间没有收到commit&#x2F;abort消息，没权利因为超时而单方终止事务，只能无限期地等待TC的回复(BLCOKING)，让人来对TC进行修复并重启，然后读取上面的日志，发送延迟很久的commit&#x2F;abort消息。因为此时TC可能已经收到YES消息，并发送了commit消息给其它Participants。</p>
 <img src="/2023/03/08/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E4%B9%8B2PC/5.png"></li>
 </ul>
-<h6><span id="tc角度">TC角度</span></h6><ul>
+<h5><span id="tc角度">TC角度</span></h5><ul>
 <li><p>在发送commit消息之前崩溃。没什么影响，因为并没有发送commit消息给任何一个Participants，TC可以直接终止该事务。</p>
 </li>
-<li><p><strong>发送一条或多条commit消息后发生崩溃</strong>（主要）。同样地，不允许TC忘记事务相关信息， 因此需要TC收到Participants的回复做出commit&#x2F;abort的决定前，需要把该事务的信息（事务的结果、事务id）写入日志，并持久化到存储设备中（磁盘）。当崩溃恢复后，TC会查看日志，知道当前正在执行一个事务的期间，根据日志知道应该回复commit&#x2F;abort消息。</p>
+<li><p>TC<strong>发送一条或多条commit消息后发生崩溃</strong>（主要）。同样地，不允许TC忘记事务相关信息， 因此需要TC收到Participants的回复做出commit&#x2F;abort的决定前，需要把该事务的信息（事务的结果、事务id）写入日志，并持久化到存储设备中（磁盘）。当崩溃恢复后，TC会查看日志，知道当前正在执行一个事务的期间，根据日志知道应该回复commit&#x2F;abort消息。</p>
 <img src="/2023/03/08/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E4%B9%8B2PC/4.png">
 </li>
 <li><p>由于网络原因丢失，TC长时间没有收到事务B YES&#x2F;NO的回复，则会触发超时，可以直接中止该事务，并将事务状态从所保存的表中移除。</p>
 </li>
 </ul>
 <h3><span id="四-2pc缺陷">四、2PC缺陷</span></h3><ul>
-<li>阻塞行为：由TC决定是否commit&#x2F;abort事务，可能会被阻塞，其它事务需要等待很长时间才能获得锁，阻塞了其它事务的执行</li>
-<li>速度慢<ul>
+<li><p>同步阻塞：2PC执行过程中事务执行逻辑都处于阻塞状态，其它事务需要等待很长时间才能获得锁，阻塞了其它事务的执行。同步阻塞会阻碍分布式系统的性能，可用性低。</p>
+</li>
+<li><p>数据不一致：TC发送一条或多条commit消息后发生崩溃，导致有部分Participants收到commit消息完成事务操作，部分没有收到而没法完成事务提交，整个分布式系统会出现数据不一致的情况。</p>
+</li>
+<li><p>单点问题：一旦TC出现问题，整个2PC流程无法运转；而且如果TC在commit后出现问题，那么其他Participants一直会处于锁定事务资源的状态，无法继续完成事务操作。</p>
+</li>
+<li><p>速度慢</p>
+<ul>
 <li>大量的磁盘写入操作。为了避免因为机器崩溃而丢失事务需要写日志，多个磁盘写入操作，整个2PC过程会进行得稍慢；</li>
-<li>大量的通信。在TC和Participants之间要发送多轮消息，里面存在大量通信，以此来让涉及多个参与者的事务执行完毕</li>
+<li>大量的通信。在TC和Participants之间要发送多轮消息，里面存在大量通信，以此来让涉及多个参与者的事务执行完毕。</li>
 </ul>
 </li>
-<li>可用性低</li>
 </ul>
 <h3><span id="五-使用场景">五、使用场景</span></h3><p>小机房、小范围的服务器中的分片数据库或存储系统上，它们需要支持可以读取或写入多条记录的事务，并将数据分片并存储到多台服务器上，获得ACID特性的事务，可以使用2PC协议</p>
 
