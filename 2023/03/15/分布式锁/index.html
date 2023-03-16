@@ -13,11 +13,11 @@
 
     <title>
         
-          编程小知识 - Pistachio的楼阁 | Pistachio&#39;s Blog
+          分布式锁 - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2019/07/24/编程小知识/">
+    <link rel="canonical" href="https://pistachiol.github.io/2023/03/15/分布式锁/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -178,14 +178,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#C++" title="C++">C++</a>
+                          <a class="tag" href="/tags/#分布式" title="分布式">分布式</a>
                         
                     </div>
-                    <h1>编程小知识</h1>
+                    <h1>分布式锁</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
-                        2019-07-24
+                        2023-03-15
                     </span>
                 </div>
             </div>
@@ -204,45 +204,38 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h5><span id="1字符变数字stri-0">1）字符变数字：str[i]-‘0’</span></h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> num = <span class="number">123</span>;</span><br><span class="line">string s = <span class="built_in">to_string</span>(num);</span><br><span class="line">cout &lt;&lt; s[<span class="number">0</span>]-<span class="string">&#x27;0&#x27;</span>&lt;&lt;endl;</span><br></pre></td></tr></table></figure>
+                <h3><span id="前言">前言</span></h3><p>在单机开发中，涉及并发同步时，往往使用lock或synchronize的方式实现多线程间代码同步问题。</p>
+<p>但如果在分布式或者集群环境下就无法通过多线程的锁来解决同步问题，如多个线程同时对服务A_1、A_2进行访问，由于负载均衡权重的原因，两个服务都有可能被访问，即使给服务上锁，也会有两个线程修改同一个数据的风险。</p>
+<img src="/2023/03/15/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/2.png" width="200px">
 
 
 
-<h5><span id="2char-strncpychar-destconst-char-srcsize_t-n">2）char *strncpy(char *dest,const char *src,size_t n)</span></h5><p>把str所指向的字符串复制最多n个字符到dest</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="type">char</span> src[<span class="number">40</span>];</span><br><span class="line">   <span class="type">char</span> dest[<span class="number">12</span>];</span><br><span class="line">  </span><br><span class="line">   <span class="built_in">memset</span>(dest, <span class="string">&#x27;\0&#x27;</span>, <span class="built_in">sizeof</span>(dest));</span><br><span class="line">   <span class="built_in">strcpy</span>(src, <span class="string">&quot;This is runoob.com&quot;</span>);</span><br><span class="line">   <span class="built_in">strncpy</span>(dest, src, <span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;最终的目标字符串： %s\n&quot;</span>, dest);</span><br><span class="line">   </span><br><span class="line">   <span class="keyword">return</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//最终的目标字符串： This is ru</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3><span id="一-分布式锁的介绍">一、分布式锁的介绍</span></h3><p>可以引入分布式锁组件，通过分布式组件给集群服务提供唯一的锁。当某个服务需要锁时，向分布式组件申请一个唯一的锁，使用完后释放归还给分布式组件，其它服务才可以申请分布式锁来获取数据。</p>
+<p>分布式锁是处理<strong>跨机器（JVM）的进程之间的数据同步问题</strong>。 </p>
+<img src="/2023/03/15/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/3.png" width="200px">
 
-
-
-<h5><span id="3-用0x3f3f3f3f设定int的最大值">3） 用0x3f3f3f3f设定int的最大值</span></h5><p>在许多算法中都要用到一个常量来表示最大值，例如：寻找一个最小数。</p>
-<ul>
-<li>不会数据溢出</li>
-<li>我们想将一个数组的数据全部置为无穷大的时候（经常用到），使用的 memset的第二个参数value是8-bit的，可使用memset来将数组所有值最大化。</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> INF = <span class="number">0x3f3f3f3f</span>;</span><br></pre></td></tr></table></figure>
-
-<p><a target="_blank" rel="noopener" href="https://www.kawabangga.com/posts/1153">参考</a></p>
-<h5><span id="4-printf08dn-num-第一个0表示用0填充第二个8是设置输出宽度学号8个字符">4) printf(“%08d\n”, num);  第一个0表示用0填充，第二个8是设置输出宽度（学号8个字符）</span></h5><h5><span id="5-表示最大x2f最小整数">5) 表示最大&#x2F;最小整数</span></h5><p>头文件 <code>#include &lt;climits&gt;</code></p>
-<p><code>INT_MAX</code>  +2147483647   (2^31 - 1)    </p>
-<p><code>INt_MIN</code>  -2147483648  （-2^31）</p>
-<p>int占4字节32位</p>
-<p>long long 占8字节64位</p>
-<h5><span id="6-pairltint-intgt-是一种类型">6) pair&lt;int, int&gt; 是一种类型</span></h5><p><code>pair&lt;int, int&gt;x</code></p>
-<p>通过<code>x.first x.second来引用其元素</code></p>
-<h5><span id="7-字符数组-字符指针">7) 字符数组　字符指针</span></h5><p><em>今天百度面试被问道这题</em></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *str = <span class="string">&quot;abcff&quot;</span>;  <span class="comment">//字符指针</span></span><br><span class="line"><span class="type">char</span> str1[] = &#123;<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>&#125;; <span class="comment">//字符数组</span></span><br><span class="line">cout &lt;&lt; <span class="built_in">strlen</span>(str) &lt;&lt;endl;  <span class="comment">// 5</span></span><br><span class="line">cout &lt;&lt; <span class="built_in">strlen</span>(str1) &lt;&lt;endl;  <span class="comment">// 9</span></span><br><span class="line">cout &lt;&lt; <span class="built_in">sizeof</span>(str)/<span class="built_in">sizeof</span>(<span class="type">char</span>) &lt;&lt; endl;　<span class="comment">//8　在64位系统中，8代表的是指针的大小，指针占8字节。</span></span><br><span class="line">cout &lt;&lt; <span class="built_in">sizeof</span>(str1)/<span class="built_in">sizeof</span>(<span class="type">char</span>) &lt;&lt; endl; <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
-
-<p>char*类型，<code>sizeof()</code>计算出指针的大小，32位系统占4字节，64位系统占8字节，与char *的字符串长度无关系；而可以计算出字符数组char a[]中元素个数，而非指针大小。</p>
-<blockquote>
-<p>但是如果将其用于参数传递的话，子函数中获取的将不再是字符串数组类型，而是指针，这个要特别注意。</p>
+<h3><span id="二-分布式锁的实现方式">二、分布式锁的实现方式</span></h3><h4><span id="1-缓存性能高但不可靠">1、缓存（性能高，但不可靠）</span></h4><blockquote>
+<p>用redis做成了集群后，一旦master节点挂了，并且没给其它slave节点同步数据，这个时候可能多个机器都获取到锁</p>
 </blockquote>
-<p><code>strlen()</code>可以计算字符指针字符串的真实值大小，判断方法是找’\0’，根据’\0’来计算长度。</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xc889078/article/details/8910812">https://blog.csdn.net/xc889078/article/details/8910812</a></p>
-<h5><span id="8-c向上向下取整">8） c++向上向下取整</span></h5><h5><span id="81-向上取整">8.1 向上取整</span></h5><p>1、公式：<code> x = (n - 1) / m + 1</code>，变形得<code> x = ( n + m - 1 )/ m</code></p>
-<p>2、ceil()， ceil(x)返回一个大于x的最小正数</p>
-<h5><span id="82-向下取整">8.2 向下取整</span></h5><p>1、整数除法运算符 &#x2F; 代表向下取整, 常用于计算当中</p>
-<p>2、<code>(x-1)/y</code></p>
-<p>2、floor()， floor(x)返回一个小于或等于x的最大整数</p>
-<p>3、直接舍去小数部分，赋值给整数变量(适用于正数)<br><code>例如：int a = 2.5, b = int(2.5), a, b数值都是2</code></p>
+<ul>
+<li>Redis</li>
+<li>Memcache</li>
+</ul>
+<h4><span id="2-zookeeper实现性能高较为可靠">2、ZooKeeper实现（性能高，较为可靠）</span></h4><p>核心思想：zk客户端想要获取锁，则创建zk节点，使用完锁，则删除该节点。</p>
+<img src="/2023/03/15/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/4.png" width="500px">
+
+<p>（1）客户端获取在锁时，会在&#x2F;lock节点下创建<strong>临时顺序</strong>节点</p>
+<blockquote>
+<p>临时：如果机器在使用过程中宕机了，则会断开客户端和zk的链接，临时节点会在会话结束后删除，因此需要设置临时节点 </p>
+<p>顺序：需要找最小的节点</p>
+</blockquote>
+<p>（2）然后客户端会获取&#x2F;lock下面的所有子节点，如果发现自己创建的子节点序号<strong>最小</strong>，那么被认为获取了锁。锁使用完后则将该节点删除。</p>
+<p>（3）若发现自己创建的节点序号并非最小，则说明没有获取到锁，此时客户端需要找到比自己小的<strong>一个节点</strong>，并同时对其注册监听事件，监听<strong>删除事件</strong></p>
+<p>（4）若发现比自己小的节点被删除，客户端的Watcher会收到通知，此时再次判断自己创建的节点是不是lock子节点中序号最小。如果是则获取锁，否则重复步骤（2）</p>
+<h4><span id="3-数据库层面实现实现方式简单但性能较低">3、数据库层面实现（实现方式简单，但性能较低）</span></h4><ul>
+<li>乐观送</li>
+<li>悲观锁</li>
+</ul>
 
 
                 <hr>
@@ -251,13 +244,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2019/08/14/优先队列/" data-toggle="tooltip" data-placement="top" title="优先队列">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2019/07/24/队列基本用法/" data-toggle="tooltip" data-placement="top" title="队列基本用法">Next Post &rarr;</a>
+                            <a href="/2023/03/13/ZooKeeper/" data-toggle="tooltip" data-placement="top" title="ZooKeeper">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -290,7 +279,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#C++" title="C++">C++</a>
+                          <a class="tag" href="/tags/#分布式" title="分布式">分布式</a>
                         
                     </div>
                 </section>
@@ -322,8 +311,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2019/07/24/%E7%BC%96%E7%A8%8B%E5%B0%8F%E7%9F%A5%E8%AF%86/";
-    var disqus_url = "https://pistachiol.github.io/2019/07/24/%E7%BC%96%E7%A8%8B%E5%B0%8F%E7%9F%A5%E8%AF%86/";
+    var disqus_identifier = "https://pistachiol.github.io/2023/03/15/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/";
+    var disqus_url = "https://pistachiol.github.io/2023/03/15/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

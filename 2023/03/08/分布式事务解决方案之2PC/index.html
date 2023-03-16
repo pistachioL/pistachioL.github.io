@@ -264,7 +264,7 @@
 </li>
 <li><p>由于网络原因丢失，Participants长时间没有收到Prepare消息，允许单方面向TC中止该事务。</p>
 </li>
-<li><p>由于网络原因丢失，在Participants发送YES&#x2F;NO后，长时间没有收到TC的commit&#x2F;abort消息，但没权利因为超时而单方终止事务 (因为此时TC可能已经发送了commit消息给其它Participants)，只能无限期地等待TC的回复(<strong>阻塞状态</strong>)，让人来对TC进行修复并重启，然后读取上面的日志，发送延迟很久的commit&#x2F;abort消息。</p>
+<li><p><strong>由于网络原因丢失，在Participants发送YES&#x2F;NO后，长时间没有收到TC的commit&#x2F;abort消息，但没权利因为超时而单方终止事务 (因为此时TC可能已经发送了commit消息给其它Participants)，只能无限期地等待TC的回复(阻塞状态)，让人来对TC进行修复并重启，然后读取上面的日志，发送延迟很久的commit&#x2F;abort消息</strong>。TC的崩溃导致全员阻塞是2PC缺陷的主要原因！</p>
 <img src="/2023/03/08/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E4%B9%8B2PC/5.png"></li>
 </ul>
 <h5><span id="tc角度">TC角度</span></h5><ul>

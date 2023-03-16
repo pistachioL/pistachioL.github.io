@@ -197,6 +197,61 @@
 
 <div class="post-preview">
 
+    <a href="/2023/03/15/分布式锁/">
+        <h2 class="post-title">
+            分布式锁
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            前言在单机开发中，涉及并发同步时，往往使用lock或synchronize的方式实现多线程间代码同步问题。
+但如果在分布式或者集群环境下就无法通过多线程的锁来解决同步问题，如多个线程同时对服务A_1、A_2进行访问，由于负载均衡权重的原因，两个服务都有可能被访问，即使给服务上锁，也会有两个线程修改同一个数据的风险。
+
+
+
+
+一、分布式锁的介绍可以引入分布式锁组件，通过分布式组件给集群服务提供......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2023-03-15
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2023/03/13/ZooKeeper/">
+        <h2 class="post-title">
+            ZooKeeper
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            数据结构ZooKeeper数据模型和Unix文件系统很类似，以树形结构存储数据，每个节点称为一个ZNode。每个ZNode默认存储1MB的数据（不适用于存储海量数据），每个ZNode可以通过路径唯一标识。
+
+
+创建ZNode，每个ZNode节点都有两个属性：myid、zxid
+
+myid：唯一
+
+zxid：当client有数据写入时，首先生成日志条目，用zxid打上标签，再把数据存储到内存中......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2023-03-13
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2023/03/10/分布式事务解决方案之3PC/">
         <h2 class="post-title">
             分布式事务解决方案之3PC
@@ -395,57 +450,6 @@ https://github.com/baidu/uid-generator/blob/maste......
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2023/02/27/消息队列/">
-        <h2 class="post-title">
-            消息队列
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            消息队列的作用
-异步通信：消息不需要立刻处理，把消息放在消息队列中，在需要的时候再去处理
-解耦：允许独立扩展或修改两边的处理过程，只需确保它们遵守同样的结构约束
-削峰：在访问量剧增的情况下，使用消息队列顶住突发时的访问压力
-缓冲：有助于控制和优化数据经过系统的速度，解决生产消息和消费消息处理速度不一致的情况（通常是生产速度比较大）
-
-模式1、点对点模式2、发布订阅模式消息生产者（发布）把消息......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2023-02-27
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2023/02/24/Raft算法/">
-        <h2 class="post-title">
-            Raft算法
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            前言如果有多个机器（集群），则需要保证每个机器数据的一致性，这时候则需要分布式共识算法。Raft是实现分布式共识算法的协议，除了Raft，还有Paxos、ZAB、Gossip等。
-Leader election每个节点有三个状态，分别是Leader、Follower或Candidate
-
-一开始的时候，所有节点都处于Follower的状态。每个结点都有一个Election Timeout（随......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2023-02-24
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -551,7 +555,7 @@ Leader election每个节点有三个状态，分别是Leader、Follower或Candid
                             
                         
                             
-                            <a href="/tags/#分布式" title="分布式" rel="7">分布式</a>
+                            <a href="/tags/#分布式" title="分布式" rel="9">分布式</a>
                             
                         
                             

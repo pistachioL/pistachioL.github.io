@@ -197,6 +197,60 @@
 
 <div class="post-preview">
 
+    <a href="/2023/01/17/Singleton/">
+        <h2 class="post-title">
+            【创建型】单例模式
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            一、定义保证一个类仅有一个实例，并提供一个该实例的全局访问点。
+二、结构
+
+
+
+三、创建方式12345678class Singleton &#123;private:    Singleton(); // 使其私有化，只能自己使用，别人不能使用，故放在private    Singleton(const Singleton&amp; other);public:    static Sin......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2023-01-17
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2023/01/15/差分/">
+        <h2 class="post-title">
+            差分数组
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            一、区间和检索（数组不可变）1、先求数组的前缀和presum；
+2、再求区间presum[right - 1] - presume[left]的值
+LC303. 区域和检索 - 数组不可变
+给定一个整数数组  nums，处理以下类型的多个查询:
+
+计算索引 left 和 right （包含 left 和 right）之间的 nums 元素的 和 ，其中 left &lt;= right
+
+实......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2023-01-15
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2023/01/13/Factory/">
         <h2 class="post-title">
             【创建型】工厂模式
@@ -419,57 +473,6 @@ Strategy模式提供了用条件判断语句(if&#x2F;else)以外的另一种选�
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2023/01/10/LIS算法/">
-        <h2 class="post-title">
-            LIS题目总结
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            LIS (Longest Increasing Subsequence)最长递增子序列，通常使用动态规划求解。
-1. LC647. 最长连续递增序列
-给定一个未经排序的整数数组，找到最长且 连续递增的子序列，并返回该序列的长度。
-连续递增的子序列 可以由两个下标 l 和 r（l &lt; r）确定，如果对于每个 l &lt;= i &lt; r，都有 nums[i] &lt; nums[i ......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2023-01-10
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2022/09/09/STL之list集合/">
-        <h2 class="post-title">
-            STL之list集合
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            一、定义list的底层是双向链表，通过指针进行数据访问。相对于vector，list能高效地在任何地方插入和删除。
-二、用法12345list&lt;Type&gt; list;list&lt;Type&gt;::iterator itlist.push_back()list.insert()list.erase()
-
-
-
-三、应用根据身高重建队列
-123456789101112131415......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2022-09-09
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -579,7 +582,7 @@ Strategy模式提供了用条件判断语句(if&#x2F;else)以外的另一种选�
                             
                         
                             
-                            <a href="/tags/#分布式" title="分布式" rel="7">分布式</a>
+                            <a href="/tags/#分布式" title="分布式" rel="9">分布式</a>
                             
                         
                             

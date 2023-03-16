@@ -197,6 +197,56 @@
 
 <div class="post-preview">
 
+    <a href="/2020/03/31/排序算法/">
+        <h2 class="post-title">
+            排序算法
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            一、冒泡排序（稳定  O(N)～ O(N^2^)）基本思想：两两数字比较，比较在每一趟遍历中，看当前数字会不会比下一个大，如果比下一个大则交换。每一趟交换中能找到最大的数，放在末尾。
+最好情况：顺序 只需遍历一遍 T &#x3D; O(N)
+最坏情况：逆序 全部都得排序　T &#x3D; O(N^2^)
+如数组：５，３，７，１０，６，１８，４
+123456789101112131415161......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-03-31
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/03/30/约瑟夫环问题/">
+        <h2 class="post-title">
+            约瑟夫环问题
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            LeetCode
+
+0,1,,n-1这n个数字排成一个圆圈，从数字0开始，每次从这个圆圈里删除第m个数字。求出这个圆圈里剩下的最后一个数字。
+
+1234567int lastRemaining(int n, int m) &#123;       int ans = 0;       for(int i = 2; i &lt;= n; i++)&#123;           ans = (......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-03-30
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2020/03/26/Prototype/">
         <h2 class="post-title">
             【创建型】原型模式
@@ -399,66 +449,6 @@ BFS方式实现（队列）
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2020/03/21/扩展欧几里得算法/">
-        <h2 class="post-title">
-            扩展欧几里得算法的应用
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            LeetCode 水壶问题
-
-有两个容量分别为 x升 和 y升 的水壶以及无限多的水。请判断能否通过使用这两个水壶，从而可以得到恰好 z升 的水？
-如果可以，最后请用以上水壶中的一或两个来盛放取得的 z升 水。
-你允许：
-
-装满任意一个水壶
-清空任意一个水壶
-从一个水壶向另外一个水壶倒水，直到装满或者倒空
-
-
-样例：　x&#x3D;3,  y&#x3D;5,  z&#x3D;4  true,......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-03-21
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/03/19/Palindrome/">
-        <h2 class="post-title">
-            回文串
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            LeetCode 最长回文串
-
-在给定包含大小写的字符串中，找出这些字母构成的最长回文串，构造时注意区分大小写
-
-这道题目不同在于可以通过构造找出最长回文串，于是可以通过找规律求得。
-首先把每个字母出现的个数统计出来，放进vector中（方便处理）。
-查看vector中每个字母出现的次数，如果字母出现的个数时偶数，一定可以构成回文串，则可以把这些个数直接加起来；
-如果字母出现的个数是奇数，则......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-03-19
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -568,7 +558,7 @@ BFS方式实现（队列）
                             
                         
                             
-                            <a href="/tags/#分布式" title="分布式" rel="7">分布式</a>
+                            <a href="/tags/#分布式" title="分布式" rel="9">分布式</a>
                             
                         
                             

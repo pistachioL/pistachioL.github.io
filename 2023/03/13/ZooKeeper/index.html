@@ -13,11 +13,11 @@
 
     <title>
         
-          编程小知识 - Pistachio的楼阁 | Pistachio&#39;s Blog
+          ZooKeeper - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2019/07/24/编程小知识/">
+    <link rel="canonical" href="https://pistachiol.github.io/2023/03/13/ZooKeeper/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -178,14 +178,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#C++" title="C++">C++</a>
+                          <a class="tag" href="/tags/#分布式" title="分布式">分布式</a>
                         
                     </div>
-                    <h1>编程小知识</h1>
+                    <h1>ZooKeeper</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
-                        2019-07-24
+                        2023-03-13
                     </span>
                 </div>
             </div>
@@ -204,45 +204,37 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h5><span id="1字符变数字stri-0">1）字符变数字：str[i]-‘0’</span></h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> num = <span class="number">123</span>;</span><br><span class="line">string s = <span class="built_in">to_string</span>(num);</span><br><span class="line">cout &lt;&lt; s[<span class="number">0</span>]-<span class="string">&#x27;0&#x27;</span>&lt;&lt;endl;</span><br></pre></td></tr></table></figure>
+                <h3><span id="数据结构">数据结构</span></h3><p>ZooKeeper数据模型和Unix文件系统很类似，以树形结构存储数据，每个节点称为一个<strong>ZNode</strong>。每个ZNode默认存储1MB的数据（不适用于存储海量数据），每个ZNode可以通过路径唯一标识。</p>
+<img src="/2023/03/13/ZooKeeper/1.png" width="550px">
 
-
-
-<h5><span id="2char-strncpychar-destconst-char-srcsize_t-n">2）char *strncpy(char *dest,const char *src,size_t n)</span></h5><p>把str所指向的字符串复制最多n个字符到dest</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="type">char</span> src[<span class="number">40</span>];</span><br><span class="line">   <span class="type">char</span> dest[<span class="number">12</span>];</span><br><span class="line">  </span><br><span class="line">   <span class="built_in">memset</span>(dest, <span class="string">&#x27;\0&#x27;</span>, <span class="built_in">sizeof</span>(dest));</span><br><span class="line">   <span class="built_in">strcpy</span>(src, <span class="string">&quot;This is runoob.com&quot;</span>);</span><br><span class="line">   <span class="built_in">strncpy</span>(dest, src, <span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;最终的目标字符串： %s\n&quot;</span>, dest);</span><br><span class="line">   </span><br><span class="line">   <span class="keyword">return</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//最终的目标字符串： This is ru</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h5><span id="3-用0x3f3f3f3f设定int的最大值">3） 用0x3f3f3f3f设定int的最大值</span></h5><p>在许多算法中都要用到一个常量来表示最大值，例如：寻找一个最小数。</p>
+<p>创建ZNode，每个ZNode节点都有两个属性：<code>myid</code>、<code>zxid</code></p>
 <ul>
-<li>不会数据溢出</li>
-<li>我们想将一个数组的数据全部置为无穷大的时候（经常用到），使用的 memset的第二个参数value是8-bit的，可使用memset来将数组所有值最大化。</li>
+<li><p><strong>myid</strong>：唯一</p>
+</li>
+<li><p><strong>zxid</strong>：当client有数据写入时，首先生成日志条目，用zxid打上标签，再把数据存储到内存中（结构时DataTree）</p>
+</li>
 </ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> INF = <span class="number">0x3f3f3f3f</span>;</span><br></pre></td></tr></table></figure>
+<h3><span id="一致性保证">一致性保证</span></h3><ul>
+<li>线性一致性(Linearizability Writes)：</li>
+<li>FIFO client order：zookepper的写操作顺序完全与client端发起的写请求顺序保持一致</li>
+<li>保证数据强一致性：客户端在server1中进行写操作，server之间会立刻进行数据同步，尽量做到数据强一致性</li>
+</ul>
+<h3><span id="leader选举机制">Leader选举机制</span></h3><p>1、数据最新的zxid最大的</p>
+<p>2、若数据都一样，则选择myid最大的</p>
+<h3><span id="应用场景">应用场景</span></h3><ul>
+<li>分布式锁</li>
+<li>配置中心</li>
+</ul>
+<h3><span id="基本使用">基本使用</span></h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">创建节点</span></span><br><span class="line">create /znode1 111</span><br></pre></td></tr></table></figure>
 
-<p><a target="_blank" rel="noopener" href="https://www.kawabangga.com/posts/1153">参考</a></p>
-<h5><span id="4-printf08dn-num-第一个0表示用0填充第二个8是设置输出宽度学号8个字符">4) printf(“%08d\n”, num);  第一个0表示用0填充，第二个8是设置输出宽度（学号8个字符）</span></h5><h5><span id="5-表示最大x2f最小整数">5) 表示最大&#x2F;最小整数</span></h5><p>头文件 <code>#include &lt;climits&gt;</code></p>
-<p><code>INT_MAX</code>  +2147483647   (2^31 - 1)    </p>
-<p><code>INt_MIN</code>  -2147483648  （-2^31）</p>
-<p>int占4字节32位</p>
-<p>long long 占8字节64位</p>
-<h5><span id="6-pairltint-intgt-是一种类型">6) pair&lt;int, int&gt; 是一种类型</span></h5><p><code>pair&lt;int, int&gt;x</code></p>
-<p>通过<code>x.first x.second来引用其元素</code></p>
-<h5><span id="7-字符数组-字符指针">7) 字符数组　字符指针</span></h5><p><em>今天百度面试被问道这题</em></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *str = <span class="string">&quot;abcff&quot;</span>;  <span class="comment">//字符指针</span></span><br><span class="line"><span class="type">char</span> str1[] = &#123;<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>&#125;; <span class="comment">//字符数组</span></span><br><span class="line">cout &lt;&lt; <span class="built_in">strlen</span>(str) &lt;&lt;endl;  <span class="comment">// 5</span></span><br><span class="line">cout &lt;&lt; <span class="built_in">strlen</span>(str1) &lt;&lt;endl;  <span class="comment">// 9</span></span><br><span class="line">cout &lt;&lt; <span class="built_in">sizeof</span>(str)/<span class="built_in">sizeof</span>(<span class="type">char</span>) &lt;&lt; endl;　<span class="comment">//8　在64位系统中，8代表的是指针的大小，指针占8字节。</span></span><br><span class="line">cout &lt;&lt; <span class="built_in">sizeof</span>(str1)/<span class="built_in">sizeof</span>(<span class="type">char</span>) &lt;&lt; endl; <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
 
-<p>char*类型，<code>sizeof()</code>计算出指针的大小，32位系统占4字节，64位系统占8字节，与char *的字符串长度无关系；而可以计算出字符数组char a[]中元素个数，而非指针大小。</p>
-<blockquote>
-<p>但是如果将其用于参数传递的话，子函数中获取的将不再是字符串数组类型，而是指针，这个要特别注意。</p>
-</blockquote>
-<p><code>strlen()</code>可以计算字符指针字符串的真实值大小，判断方法是找’\0’，根据’\0’来计算长度。</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xc889078/article/details/8910812">https://blog.csdn.net/xc889078/article/details/8910812</a></p>
-<h5><span id="8-c向上向下取整">8） c++向上向下取整</span></h5><h5><span id="81-向上取整">8.1 向上取整</span></h5><p>1、公式：<code> x = (n - 1) / m + 1</code>，变形得<code> x = ( n + m - 1 )/ m</code></p>
-<p>2、ceil()， ceil(x)返回一个大于x的最小正数</p>
-<h5><span id="82-向下取整">8.2 向下取整</span></h5><p>1、整数除法运算符 &#x2F; 代表向下取整, 常用于计算当中</p>
-<p>2、<code>(x-1)/y</code></p>
-<p>2、floor()， floor(x)返回一个小于或等于x的最大整数</p>
-<p>3、直接舍去小数部分，赋值给整数变量(适用于正数)<br><code>例如：int a = 2.5, b = int(2.5), a, b数值都是2</code></p>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">	查看节点</span></span><br><span class="line">ls /</span><br></pre></td></tr></table></figure>
+
+
+
+
+
 
 
                 <hr>
@@ -252,12 +244,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2019/08/14/优先队列/" data-toggle="tooltip" data-placement="top" title="优先队列">&larr; Previous Post</a>
+                            <a href="/2023/03/15/分布式锁/" data-toggle="tooltip" data-placement="top" title="分布式锁">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2019/07/24/队列基本用法/" data-toggle="tooltip" data-placement="top" title="队列基本用法">Next Post &rarr;</a>
+                            <a href="/2023/03/10/分布式事务解决方案之3PC/" data-toggle="tooltip" data-placement="top" title="分布式事务解决方案之3PC">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -290,7 +282,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#C++" title="C++">C++</a>
+                          <a class="tag" href="/tags/#分布式" title="分布式">分布式</a>
                         
                     </div>
                 </section>
@@ -322,8 +314,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2019/07/24/%E7%BC%96%E7%A8%8B%E5%B0%8F%E7%9F%A5%E8%AF%86/";
-    var disqus_url = "https://pistachiol.github.io/2019/07/24/%E7%BC%96%E7%A8%8B%E5%B0%8F%E7%9F%A5%E8%AF%86/";
+    var disqus_identifier = "https://pistachiol.github.io/2023/03/13/ZooKeeper/";
+    var disqus_url = "https://pistachiol.github.io/2023/03/13/ZooKeeper/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
