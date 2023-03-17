@@ -232,14 +232,13 @@
             
         </h3>
         <div class="post-content-preview">
-            数据结构ZooKeeper数据模型和Unix文件系统很类似，以树形结构存储数据，每个节点称为一个ZNode。每个ZNode默认存储1MB的数据（不适用于存储海量数据），每个ZNode可以通过路径唯一标识。
+            一、数据结构ZooKeeper数据模型和Unix文件系统很类似，以树形结构存储数据，每个节点称为一个ZNode。每个ZNode默认存储1MB的数据（不适用于存储海量数据），每个ZNode可以通过路径唯一标识。
 
 
-创建ZNode，每个ZNode节点都有两个属性：myid、zxid
+创建ZNode节点，每个节点会保存数据和节点信息，每个ZNode节点都有两个属性：myid、zxid
 
 myid：唯一
-
-zxid：当client有数据写入时，首先生成日志条目，用zxid打上标签，再把数据存储到内存中......
+zxid：当client有数据写入时，首先生成日志条目，用z......
         </div>
     </a>
     <p class="post-meta">
