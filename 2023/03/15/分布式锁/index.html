@@ -218,8 +218,11 @@
 <p>用redis做成了集群后，一旦master节点挂了，并且没给其它slave节点同步数据，这个时候可能多个机器都获取到锁</p>
 </blockquote>
 <ul>
-<li>Redis</li>
-<li>Memcache</li>
+<li><p>Redis</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">setnx key value  #加锁</span><br><span class="line">del key #释放锁</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Memcache</p>
+</li>
 </ul>
 <h4><span id="2-zookeeper实现性能高较为可靠">2、ZooKeeper实现（性能高，较为可靠）</span></h4><p>核心思想：zk客户端想要获取锁，则创建zk节点，使用完锁，则删除该节点。</p>
 <img src="/2023/03/15/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/4.png" width="500px">
