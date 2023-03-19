@@ -197,6 +197,28 @@
 
 <div class="post-preview">
 
+    <a href="/2023/02/28/go可变参数/">
+        <h2 class="post-title">
+            go可变参数
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            add()接受不定量长度的参数，并且是int类型
+12345678910111213141516func main() &#123;  add(1, 2) // 3	add([]int&#123;1, 2, 3, 4&#125;...) // 10    num := []int&#123;1, 2, 3, 4&#125;  add(num[1:]...)// 9&#125;func add......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2023-02-28
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2023/02/27/消息队列/">
         <h2 class="post-title">
             消息队列
@@ -425,33 +447,6 @@ Facade模式更注重从架构的层次去看整个系统（多个类形成系�
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2023/01/17/Flyweight/">
-        <h2 class="post-title">
-            【结构型】享元模式
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            一、定义运用共享技术有效地支持 大量细粒度对象 （如字符串、线程池）。
-模式动机：软件系统采用纯粹对象方案的问题在于，大量细粒度对象会很快充斥在系统，从而带来很高的运行代价。（主要指内存需求方面的代价）
-二、结构
-
-基本思想（共享）：
-在共享池中查找对象是否创建过，如果对象创建过，则直接返回对象；否则先创建对象，把该对象放到共享池中。不过有些对象不支持恭共享。
-三、使用场景123456789......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2023-01-17
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -578,6 +573,8 @@ Facade模式更注重从架构的层次去看整个系统（多个类形成系�
                         
                             
                             <a href="/tags/#树" title="树" rel="2">树</a>
+                            
+                        
                             
                         
                             

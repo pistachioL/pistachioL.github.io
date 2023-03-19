@@ -13,11 +13,11 @@
 
     <title>
         
-          自定义排序 - Pistachio的楼阁 | Pistachio&#39;s Blog
+          go编程学习 - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2023/03/06/自定义排序/">
+    <link rel="canonical" href="https://pistachiol.github.io/2023/03/19/go编程学习/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -178,14 +178,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#C++" title="C++">C++</a>
+                          <a class="tag" href="/tags/#go" title="go">go</a>
                         
                     </div>
-                    <h1>自定义排序</h1>
+                    <h1>go编程学习</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
-                        2023-03-06
+                        2023-03-19
                     </span>
                 </div>
             </div>
@@ -204,22 +204,9 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p>1、构造题目所需的排序方法，例如根据 两数之差 从小到大排列：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;tasks = &#123;&#123;<span class="number">1</span>,<span class="number">3</span>&#125;,&#123;<span class="number">2</span>,<span class="number">4</span>&#125;,&#123;<span class="number">10</span>,<span class="number">11</span>&#125;, &#123;<span class="number">10</span>,<span class="number">12</span>&#125;,&#123;<span class="number">8</span>,<span class="number">9</span>&#125;&#125;;</span><br><span class="line"><span class="built_in">sort</span>(tasks.<span class="built_in">begin</span>(), tasks.<span class="built_in">end</span>(), [&amp;](vector&lt;<span class="type">int</span>&gt; &amp;a, vector&lt;<span class="type">int</span>&gt; &amp;b)&#123;</span><br><span class="line">  <span class="keyword">return</span> a[<span class="number">1</span>] - a[<span class="number">0</span>] &lt; b[<span class="number">1</span>] - b[<span class="number">0</span>]; <span class="comment">//&#123;10,11&#125;, &#123;8,9&#125;, &#123;1,3&#125;, &#123;2,4&#125;, &#123;10,12&#125;</span></span><br><span class="line">&#125;);    </span><br></pre></td></tr></table></figure>
-
-
-
-<p>2、根据第n个值来排序</p>
-<p> tasks &#x3D; [[2,3,1],[4,5,1],[1,5,2]]</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sort</span>(tasks.<span class="built_in">begin</span>(), tasks.<span class="built_in">end</span>(), [](<span class="keyword">auto</span> &amp;a, <span class="keyword">auto</span> &amp;b) &#123;</span><br><span class="line">            <span class="keyword">return</span> a[<span class="number">1</span>] &lt; b[<span class="number">1</span>];</span><br><span class="line">        &#125;); </span><br></pre></td></tr></table></figure>
-
-<p>输出 [[2,<code>3</code>,1],[4,<code>5</code>,1],[1,<code>5</code>,2]]</p>
-<p>（Golang版本）</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">task := [][]<span class="type">int</span>&#123;&#123;<span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>&#125;, &#123;<span class="number">4</span>, <span class="number">5</span>, <span class="number">1</span>&#125;, &#123;<span class="number">1</span>, <span class="number">5</span>, <span class="number">2</span>&#125;&#125; <span class="comment">// start,end,duration</span></span><br><span class="line">sort.Slice(tasks, <span class="function"><span class="keyword">func</span><span class="params">(i, j <span class="type">int</span>)</span></span> <span class="type">bool</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> tasks[i][<span class="number">1</span>] &lt; tasks[j][<span class="number">1</span>] <span class="comment">// 根据下标第1值来排序</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// result: [[2 3 1] [4 5 1] [1 5 2]]</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">task := [][]<span class="type">int</span>&#123;<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>&#125;,&#123;<span class="number">2</span>,<span class="number">5</span>,<span class="number">3</span>&#125;,&#123;<span class="number">5</span>,<span class="number">6</span>,<span class="number">2</span>&#125;</span><br><span class="line">sort.Slice(tasks, <span class="function"><span class="keyword">func</span><span class="params">(i, j <span class="type">int</span>)</span></span> <span class="type">bool</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> tasks[i][<span class="number">2</span>] &lt; tasks[j][<span class="number">2</span>] <span class="comment">// 根据下标第2个值来排序 </span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// result：[[1 3 2] [5 6 2] [2 5 3]]</span></span><br></pre></td></tr></table></figure>
-
-
-
-
+                <p>LC周赛  中有些题目涉及到<strong>自定义pair类型</strong>和<strong>自定义排序</strong>的用法，因此记录下</p>
+<p>LC6351. 标记所有元素后数组的分数</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// nums = [2,1,3,4,5,2]</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">findScore</span><span class="params">(nums []<span class="type">int</span>)</span></span> (ans <span class="type">int64</span>) &#123;</span><br><span class="line">	a := <span class="built_in">make</span>([]pair, <span class="built_in">len</span>(nums))</span><br><span class="line">	<span class="keyword">for</span> i, x := <span class="keyword">range</span> nums &#123;</span><br><span class="line">		a[i] = pair&#123;x, i + <span class="number">1</span>&#125; <span class="comment">// [&#123;2 1&#125; &#123;1 2&#125; &#123;3 3&#125; &#123;4 4&#125; &#123;5 5&#125; &#123;2 6&#125;]</span></span><br><span class="line">	&#125;</span><br><span class="line">  </span><br><span class="line"><span class="comment">// 自定义排序</span></span><br><span class="line">	sort.Slice(a, <span class="function"><span class="keyword">func</span><span class="params">(i, j <span class="type">int</span>)</span></span> <span class="type">bool</span> &#123;</span><br><span class="line">		x, y := a[i], a[j]</span><br><span class="line">		<span class="keyword">return</span> x.v &lt; y.v || x.v == y.v &amp;&amp; x.i &lt; y.i</span><br><span class="line">	&#125;) <span class="comment">// [&#123;1 2&#125; &#123;2 1&#125; &#123;2 6&#125; &#123;3 3&#125; &#123;4 4&#125; &#123;5 5&#125;]</span></span><br><span class="line"></span><br><span class="line">	vis := <span class="built_in">make</span>([]<span class="type">bool</span>, <span class="built_in">len</span>(nums)+<span class="number">2</span>)</span><br><span class="line">	<span class="keyword">for</span> _, p := <span class="keyword">range</span> a &#123;</span><br><span class="line">		<span class="keyword">if</span> !vis[p.i] &#123; <span class="comment">// 下标没被访问</span></span><br><span class="line">			vis[p.i<span class="number">-1</span>] = <span class="literal">true</span></span><br><span class="line">			vis[p.i+<span class="number">1</span>] = <span class="literal">true</span></span><br><span class="line">			ans += <span class="type">int64</span>(p.v)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
 
@@ -229,13 +216,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2023/03/07/分布式事务CAP:BASE/" data-toggle="tooltip" data-placement="top" title="分布式事务基础理论CAP/BASE">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2023/03/02/区间/" data-toggle="tooltip" data-placement="top" title="差分思想的应用">Next Post &rarr;</a>
+                            <a href="/2023/03/15/分布式锁/" data-toggle="tooltip" data-placement="top" title="分布式锁">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -268,7 +251,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#C++" title="C++">C++</a>
+                          <a class="tag" href="/tags/#go" title="go">go</a>
                         
                     </div>
                 </section>
@@ -300,8 +283,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2023/03/06/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%92%E5%BA%8F/";
-    var disqus_url = "https://pistachiol.github.io/2023/03/06/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%92%E5%BA%8F/";
+    var disqus_identifier = "https://pistachiol.github.io/2023/03/19/go%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0/";
+    var disqus_url = "https://pistachiol.github.io/2023/03/19/go%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

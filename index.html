@@ -197,6 +197,29 @@
 
 <div class="post-preview">
 
+    <a href="/2023/03/19/go编程学习/">
+        <h2 class="post-title">
+            go编程学习
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            LC周赛  中有些题目涉及到自定义pair类型和自定义排序的用法，因此记录下
+LC6351. 标记所有元素后数组的分数
+123456789101112131415161718192021222324// nums = [2,1,3,4,5,2]func findScore(nums []int) (ans int64) &#123;	a := make([]pair, len(nums))	......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2023-03-19
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2023/03/15/分布式锁/">
         <h2 class="post-title">
             分布式锁
@@ -359,8 +382,8 @@ CAP理论CAP分别是Consist......
             
         </h3>
         <div class="post-content-preview">
-            1、构造题目所需的排序方法，例如 差 从小到大排列：
-1234vector&lt;vector&lt;int&gt;&gt;tasks = &#123;&#123;1,3&#125;,&#123;2,4&#125;,&#123;10,11&#125;, &#123;10,12&#125;,&#123;8,9&#125;&#125;;sort(tasks.begin(), tasks.end(......
+            1、构造题目所需的排序方法，例如根据 两数之差 从小到大排列：
+1234vector&lt;vector&lt;int&gt;&gt;tasks = &#123;&#123;1,3&#125;,&#123;2,4&#125;,&#123;10,11&#125;, &#123;10,12&#125;,&#123;8,9&#125;&#125;;sort(tasks.begin(), tasks......
         </div>
     </a>
     <p class="post-meta">
@@ -421,28 +444,6 @@ https://github.com/baidu/uid-generator/blob/maste......
     <p class="post-meta">
         Posted by Liao on
         2023-03-01
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2023/02/28/go可变参数/">
-        <h2 class="post-title">
-            go可变参数
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            add()接受不定量长度的参数，并且是int类型
-12345678910111213141516func main() &#123;  add(1, 2) // 3	add([]int&#123;1, 2, 3, 4&#125;...) // 10    num := []int&#123;1, 2, 3, 4&#125;  add(num[1:]...)// 9&#125;func add......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2023-02-28
     </p>
 
 </div>
@@ -570,6 +571,8 @@ https://github.com/baidu/uid-generator/blob/maste......
                         
                             
                             <a href="/tags/#树" title="树" rel="2">树</a>
+                            
+                        
                             
                         
                             
