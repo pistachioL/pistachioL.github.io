@@ -197,6 +197,30 @@
 
 <div class="post-preview">
 
+    <a href="/2020/02/25/位运算题目总结/">
+        <h2 class="post-title">
+            位运算题目总结
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            LeetCode 求二进制数中1的个数
+这是一种更高效的思路，把整数减1，再与原来的数做与运算，会把原来的二进制数最右边的1去掉。计算有多少次去掉1的操作，即可知道1的个数。
+n = n &amp; (n-1) 
+123456789int hammingWeight(uint32_t n) &#123;       int cnt = 0;       while(n)       &#12......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-02-25
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2020/02/24/全排列/">
         <h2 class="post-title">
             全排列
@@ -435,28 +459,6 @@ Qu......
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2019/12/11/LinuxShell命令模拟器/">
-        <h2 class="post-title">
-            LinuxShell命令模拟器
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            LinuxShell命令模拟器一.原理分析0.终端执行步骤​	1）读取用户从键盘输入的命令，终端会分析是否是内部命令。如果是，则把命令分解为系统调用，并传给linux内核。如果不是，若不是再检查是否是一个应用程序，模拟shell的命令解析器正是这样。上述两种情况也不是的话，则报出错误信息。
-​	2）分析命令，以命令名为文件名，将其他参数改造为系统调用execve()内核级系统调用所要求的形式......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-12-11
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -512,7 +514,7 @@ Qu......
                             
                         
                             
-                            <a href="/tags/#动态规划" title="动态规划" rel="3">动态规划</a>
+                            <a href="/tags/#动态规划" title="动态规划" rel="4">动态规划</a>
                             
                         
                             
