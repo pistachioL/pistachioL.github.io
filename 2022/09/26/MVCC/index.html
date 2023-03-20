@@ -13,11 +13,11 @@
 
     <title>
         
-          STL之list集合 - Pistachio的楼阁 | Pistachio&#39;s Blog
+          MVCC - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/2022/09/09/STL之list集合/">
+    <link rel="canonical" href="https://pistachiol.github.io/2022/09/26/MVCC/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -178,14 +178,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#STL" title="STL">STL</a>
+                          <a class="tag" href="/tags/#MySQL" title="MySQL">MySQL</a>
                         
                     </div>
-                    <h1>STL之list集合</h1>
+                    <h1>MVCC</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Liao on
-                        2022-09-09
+                        2022-09-26
                     </span>
                 </div>
             </div>
@@ -204,22 +204,23 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3><span id="一-定义">一、定义</span></h3><p>list的底层是双向链表，通过指针进行数据访问。相对于vector，list能高效地在任何地方插入和删除。</p>
-<h3><span id="二-用法">二、用法</span></h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">list&lt;Type&gt; list;</span><br><span class="line">list&lt;Type&gt;::iterator it</span><br><span class="line">list.<span class="built_in">push_back</span>()</span><br><span class="line">list.<span class="built_in">insert</span>()</span><br><span class="line">list.<span class="built_in">erase</span>()</span><br></pre></td></tr></table></figure>
+                <h3><span id="一-定义">一、定义</span></h3><p>MVCC (Multiversion Concurrenct Contiol) 多版本并发控制，通过数据行的多个版本（undo log）管理来实现数据库的并发控制</p>
+<h3><span id="二-实现原理">二、实现原理</span></h3><p>隐藏字段、Undo Log版本链、ReadView</p>
+<h4><span id="隐藏字段">隐藏字段</span></h4><ul>
+<li>trx_id：事务id</li>
+<li>roll_pointer</li>
+</ul>
+<h4><span id="undo-log版本">Undo Log版本</span></h4><img src="/2022/09/26/MVCC/1.png" width="600px">
 
-
-
-<h3><span id="三-应用">三、应用</span></h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/queue-reconstruction-by-height/">根据身高重建队列</a></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">static</span> <span class="type">bool</span> <span class="title">cmp</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp;a, vector&lt;<span class="type">int</span>&gt;&amp;b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(a[<span class="number">0</span>] == b[<span class="number">0</span>]) &#123;</span><br><span class="line">            <span class="keyword">return</span> a[<span class="number">1</span>] &lt; b[<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> a[<span class="number">0</span>] &gt; b[<span class="number">0</span>]; <span class="comment">// 从大到小排序</span></span><br><span class="line">    &#125;</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">reconstructQueue</span>(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; people) &#123;</span><br><span class="line">        <span class="built_in">sort</span>(people.<span class="built_in">begin</span>(), people.<span class="built_in">end</span>(),cmp);</span><br><span class="line">        list&lt;vector&lt;<span class="type">int</span>&gt;&gt;que; <span class="comment">//链表实现，插入效率比vector高</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; people.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="type">int</span> pos = people[i][<span class="number">1</span>];</span><br><span class="line">            list&lt;vector&lt;<span class="type">int</span>&gt;&gt;::iterator it = que.<span class="built_in">begin</span>();</span><br><span class="line">            <span class="keyword">while</span>(pos--) &#123;</span><br><span class="line">                it++;</span><br><span class="line">            &#125;</span><br><span class="line">            que.<span class="built_in">insert</span>(it, people[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;(que.<span class="built_in">begin</span>(), que.<span class="built_in">end</span>());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
+<h4><span id="readview">ReadView</span></h4><p>ReadView是事务A在使用MVCC机制进行快照读操作时产生的读视图</p>
+<p>数据结构</p>
+<ul>
+<li>creator_trx_id：创建ReadView事务的id</li>
+<li>trx_ids: 在生成ReadView时当前系统中活跃的（还没提交）读写事务的的事务id列表</li>
+<li>max_trx_id：trx_ids列表中的最大值</li>
+<li>min_trx_id：trx_ids列表中的最小值</li>
+</ul>
+<p>SELECT操作时，根据trx_ids、max_trx_id：trx_ids、min_trx_id：trx_ids之间的大小关系判断数据行快照是否可读</p>
 
 
                 <hr>
@@ -229,12 +230,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2022/09/26/MVCC/" data-toggle="tooltip" data-placement="top" title="MVCC">&larr; Previous Post</a>
+                            <a href="/2023/01/10/LIS算法/" data-toggle="tooltip" data-placement="top" title="LIS题目总结">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2022/08/25/组合数/" data-toggle="tooltip" data-placement="top" title="组合数">Next Post &rarr;</a>
+                            <a href="/2022/09/09/STL之list集合/" data-toggle="tooltip" data-placement="top" title="STL之list集合">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -267,7 +268,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#STL" title="STL">STL</a>
+                          <a class="tag" href="/tags/#MySQL" title="MySQL">MySQL</a>
                         
                     </div>
                 </section>
@@ -299,8 +300,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "hexo-theme-huxblog";
-    var disqus_identifier = "https://pistachiol.github.io/2022/09/09/STL%E4%B9%8Blist%E9%9B%86%E5%90%88/";
-    var disqus_url = "https://pistachiol.github.io/2022/09/09/STL%E4%B9%8Blist%E9%9B%86%E5%90%88/";
+    var disqus_identifier = "https://pistachiol.github.io/2022/09/26/MVCC/";
+    var disqus_url = "https://pistachiol.github.io/2022/09/26/MVCC/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

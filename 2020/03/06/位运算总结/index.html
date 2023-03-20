@@ -282,6 +282,15 @@
 
 
 <h5><span id="8-格雷码-i-igtgt1">8) 格雷码 i ^(i&gt;&gt;1)</span></h5><p>任意两个（包括首尾）相邻的数只有一位二进制数不同，这种编码方式就是格雷码，如<code>3,2,0,1</code> 。见LC1238. 循环码排列</p>
+<h5><span id="9位运算和集合论">9）位运算和集合论</span></h5><p>集合可以用二进制表示，二进制从低到高位1表示在集合中，0表示不在集合中。例如集合{1,2,4}用二进制可以表示为10110。</p>
+<p>9.1 判断元素d是否在集合mask中，如果为1则在集合中，为0则不在</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mask &gt;&gt; d &amp; <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>9.2 把元素d添加到集合mask中</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mask | (<span class="number">1</span> &lt;&lt; d)</span><br></pre></td></tr></table></figure>
+
+
+
 
 
                 <hr>

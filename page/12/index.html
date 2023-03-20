@@ -197,6 +197,33 @@
 
 <div class="post-preview">
 
+    <a href="/2019/12/11/PTA/">
+        <h2 class="post-title">
+            PTA技巧
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+
+这道题要求一天内所有书的借阅次数和阅读时长，如果有些书只有借没有还，或者只有还没有借，则忽略不处理。
+借书的时候书本不能被借阅，因此首先想到用结构体把书的属性写在一起。
+
+巧妙之处是，通过结构体数组访问不同id的书的属性，且能通过标记思想限制一本书在一段时间内只能被一位读者借阅。
+最后求平均阅读时间（阅读时间&#x2F;阅读次数）可能会是浮点数，其中阅读时长和阅读次数都是整数，要*1.0......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-12-11
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2019/12/09/欧几里得的应用/">
         <h2 class="post-title">
             欧几里得的应用
@@ -436,37 +463,6 @@ Cookie-Session认证机制
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2019/10/12/欧几里得/">
-        <h2 class="post-title">
-            欧几里得
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            求最大公约数（最大公因子　GCD）
-质因数分解法
-
-例如：求24和60的最大公约数，先分解质因数，得24&#x3D;2×2×2×3，60&#x3D;2×2×3×5，24与60的全部公有的质因数是2、2、3，它们的积是2×2×3&#x3D;12，所以，（24，60）&#x3D;12。
-
-
-辗转相除法
-gcd(a,b) &#x3D; gcd(b,a mod b)
-
-
-1234int gcd(in......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-10-12
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -558,7 +554,7 @@ gcd(a,b) &#x3D; gcd(b,a mod b)
                             
                         
                             
-                            <a href="/tags/#MySQL" title="MySQL" rel="7">MySQL</a>
+                            <a href="/tags/#MySQL" title="MySQL" rel="8">MySQL</a>
                             
                         
                             

@@ -251,6 +251,35 @@
 
 <div class="post-preview">
 
+    <a href="/2022/09/26/MVCC/">
+        <h2 class="post-title">
+            MVCC
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            一、定义MVCC (Multiversion Concurrenct Contiol) 多版本并发控制，通过数据行的多个版本（undo log）管理来实现数据库的并发控制
+二、实现原理隐藏字段、Undo Log版本链、ReadView
+隐藏字段
+trx_id：事务id
+roll_pointer
+
+Undo Log版本
+
+ReadViewReadView是事务A在使用MVCC机制进行快照读操作......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2022-09-26
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2022/09/09/STL之list集合/">
         <h2 class="post-title">
             STL之list集合
@@ -427,30 +456,6 @@ hmaphmap是哈希表
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2022/06/17/双端队列/">
-        <h2 class="post-title">
-            双端队列
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            双端队列一. 定义双端队列支持前后双端插入元素、弹出、删除元素
-deque&lt;object_type&gt;deq 
-常用函数：
-12345678910111213push_back();//队尾添加元素push_front(); //队列开头添加元素TreeNode *node = deq.front();pop_front(); // 删除队列中第一个元素pop_back();//删......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2022-06-17
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -542,7 +547,7 @@ deque&lt;object_type&gt;deq
                             
                         
                             
-                            <a href="/tags/#MySQL" title="MySQL" rel="7">MySQL</a>
+                            <a href="/tags/#MySQL" title="MySQL" rel="8">MySQL</a>
                             
                         
                             
