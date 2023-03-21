@@ -207,6 +207,10 @@
                 <h3><span id="定理">定理</span></h3><p>同余,顾名思义是相同的余数,如果a mod m &#x3D;&#x3D; b mod m,则说m为同余的模.</p>
 <p>也可这样理解:m|(a-b),即(a-b)是m的整数倍.</p>
 <p>给定一个正整数m，如果两个整数a和b满足（a-b）能够被m整除，即（a-b）&#x2F;m得到一个整数，那么就称整数a与b对模m同余，记作<code>a≡b(mod m)</code>。</p>
+<h3><span id="取模技巧">取模技巧</span></h3><p>若a&gt;0 &amp;&amp; b&gt;0，则<code>a≡b(mod m)</code> 相当于 <code>a mod m == b mod m</code></p>
+<p>若a &lt; 0 &amp;&amp; b &gt;&#x3D;0 ，则 <code>a≡b(mod m)</code> 相当于 <code>(a%m+m) == b%m</code></p>
+<p>如-17 mod 10 &#x3D;  -7+10 &#x3D; 3</p>
+<p>为了避免判断a是否为负数，等号左边可以写成<code>(a%m+m)%m</code>，这样无论a是否为负数，运算结果都会落在[0, m)中。</p>
 
 
                 <hr>
