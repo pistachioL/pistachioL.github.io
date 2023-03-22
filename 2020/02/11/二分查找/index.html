@@ -216,12 +216,12 @@
 
 <p>有序数组中的二分查找分为以下四种类型，这四种类型可以互相转换的（对于整数来说），因此以下四种类型都可以用lowerBound模板解决：</p>
 <ul>
+<li><code>&gt;= target</code></li>
+<li><code>&gt; target </code> 可以转化为 &gt;&#x3D; target + 1</li>
 <li><code>&lt; target</code> 可以转化为 &lt;&#x3D; target-1</li>
 <li><code>&lt;= target</code>可以转化为 &gt; target - 1</li>
-<li><code>&gt; target </code> 可以转化为 &gt;&#x3D; target + 1</li>
-<li><code>&gt;= target</code></li>
 </ul>
-<p>查找nums中第一个&gt;&#x3D;target的数的数，模板：</p>
+<p>查找nums中第一个&gt;&#x3D;target的数的数，lowerBound模板：</p>
 <figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">lowerBound</span><span class="params">(nums []<span class="type">int</span>, target <span class="type">int</span>)</span></span> <span class="type">int</span> &#123; <span class="comment">// &gt;= target的数</span></span><br><span class="line">	left, right := <span class="number">0</span>, <span class="built_in">len</span>(nums)<span class="number">-1</span></span><br><span class="line">	<span class="keyword">for</span> left &lt;= right &#123;</span><br><span class="line">		mid := left + (right-left)/<span class="number">2</span></span><br><span class="line">		<span class="keyword">if</span> nums[mid] &lt; target &#123;</span><br><span class="line">			left = mid + <span class="number">1</span></span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			right = mid - <span class="number">1</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> left</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
