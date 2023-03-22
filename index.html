@@ -197,6 +197,36 @@
 
 <div class="post-preview">
 
+    <a href="/2023/03/22/go GC/">
+        <h2 class="post-title">
+            go GC
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            前言之前已经学习过相关GC的知识，对于Go的GC细节还需要梳理一下。
+GC过程而三色抽象能够清晰地表现追踪式回收过程中对象的变化过程：
+1、垃圾回收开始前，所有数据都为白色；
+
+
+2、把直接追踪到的root结点标记为灰色 （灰色代表基于当前结点展开的追踪还没完成）
+
+
+3、当基于某个节点的追踪完成后（基于该节点追踪不到数据），便把该节点标记为黑色，表示它为存活数据，而且无需基于它进行追踪；
+......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2023-03-22
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2023/03/20/数位dp模版/">
         <h2 class="post-title">
             数位DP模板
@@ -423,34 +453,6 @@ CAP理论CAP分别是Consist......
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2023/03/02/区间/">
-        <h2 class="post-title">
-            差分思想的应用
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            LC253. 会议室 II
-
-给你一个会议时间安排的数组 intervals ，每个会议时间都会包括开始和结束的时间 intervals[i] = [starti, endi] ，返回 所需会议室的最小数量 。
-示例 1：
-12输入：intervals = [[0,30],[5,10],[15,20]]输出：2
-
-示例 2：
-12输入：intervals = [[7,10],[2,4]]输出......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2023-03-02
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -512,7 +514,7 @@ CAP理论CAP分别是Consist......
                             
                         
                             
-                            <a href="/tags/#Go学习" title="Go学习" rel="10">Go学习</a>
+                            <a href="/tags/#Go学习" title="Go学习" rel="11">Go学习</a>
                             
                         
                             

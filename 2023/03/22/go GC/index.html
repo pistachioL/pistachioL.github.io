@@ -13,11 +13,11 @@
 
     <title>
         
-          About - Pistachio的楼阁 | Pistachio&#39;s Blog
+          go GC - Pistachio的楼阁 | Pistachio&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://pistachiol.github.io/about/">
+    <link rel="canonical" href="https://pistachiol.github.io/2023/03/22/go GC/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -160,250 +160,171 @@
 
 
     <!-- Main Content -->
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/about-bg.jpg')">
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://pistachiol.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/bg_Jerry.jpg')
+    }
+</style>
+<header class="intro-header" >
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>About</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">Hey, this is pistachio.</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Go学习" title="Go学习">Go学习</a>
+                        
+                    </div>
+                    <h1>go GC</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Liao on
+                        2023-03-22
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
-
-<!-- USE SIDEBAR -->
     <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-            
-                <blockquote>
-<p>曾经使我悲伤的一切，都是我热爱的一切</p>
-</blockquote>
-<p>Hi，我是pistachio</p>
-<p>取名曰pistachio 旨在提醒自己面对失败的时候要保持乐观，努力前行</p>
-<p>会为喜欢的事情不断钻研</p>
-<p>会为千辛万苦做出的一道题目并且AC了而手舞足蹈</p>
-<p>喜欢宽阔的环境（甚至向往拿着电脑到空旷的操场敲代码）</p>
-<p>喜欢学习后端技术，并且为校级组织搭建、维护网站</p>
-<p>喜欢有新的尝试，折腾系统，直到目前是win10+deepin双系统（天气终于没有辣么冷啦，加上薅了移动飞快的羊毛，又开始折腾了）…</p>
-<p>热爱交流，热爱分享 ❤️</p>
-<p>编辑于2020年2月1日</p>
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1><span id="前言">前言</span></h1><p>之前已经学习过相关<a href="https://pistachiol.github.io/2022/04/21/GC/">GC</a>的知识，对于Go的GC细节还需要梳理一下。</p>
+<h1><span id="gc过程">GC过程</span></h1><p>而三色抽象能够清晰地表现追踪式回收过程中对象的变化过程：</p>
+<p>1、垃圾回收开始前，所有数据都为<code>白色</code>；</p>
+<img src="/2023/03/22/go%20GC/0.png" style="width:350px">
+
+<p>2、把直接追踪到的root结点标记为<code>灰色</code> （灰色代表基于当前结点展开的追踪还没完成）</p>
+<img src="/2023/03/22/go%20GC/2.png" style="width:350px">
+
+<p>3、当基于某个节点的追踪完成后（基于该节点追踪不到数据），便把该节点标记为黑色，表示它为<code>存活数据</code>，而且无需基于它进行追踪；</p>
+<img src="/2023/03/22/go%20GC/3.png" style="width:350px">
+
+<p>4、基于黑色结点追踪到的数据标为灰色，表示还需要基于它们展开追踪</p>
+<img src="/2023/03/22/go%20GC/4.png" style="width:350px">
+
+<p>5、当没有灰色结点时，标记任务结束，有用数据均为黑色，垃圾数据为白色。接着回收白色对象的内存即可</p>
+<img src="/2023/03/22/go%20GC/5.png" style="width:350px">
 
 
-                <!-- 如果开启评论功能 -->
+
+<p>缺点</p>
+<ul>
+<li><p>容易造成内存碎片化</p>
+</li>
+<li><p>避免存活对象误判为垃圾对象的情况，例如刚才识别为垃圾的对象被用户修改了，后面还需要用。这种情况通过强弱三色不变式解决</p>
+</li>
+</ul>
+<h1><span id="stw">STW</span></h1><p>STW (Stop the World) 暂停用户程序，只专注于垃圾回收。GO中的三色标记法是通过STW来保护的，其带来的问题是用户不能接受长时间的暂停。</p>
+<p>但如果没有STW的保护，三色标记法容易出现对象被误删的情况，即原本不是垃圾的对象却被回收了。</p>
+<p>因此可以通过强&#x2F;弱三色不变式来解决上面的问题。三色标记中如果满足强&#x2F;弱不变式之一，即使在没有STW的情况，即可保证对象不被误删的情况。</p>
+<p><strong>强三色不变式</strong>：无论如何，不允许黑色对象到白色对象的引用。避免把存货数据误判为垃圾的情况  </p>
+<img src="/2023/03/22/go%20GC/9.png" style="width:350px">
+
+<p><strong>弱三色不变式</strong>：可以出现黑色对象到白色对象的引用，但可以保证通过灰色对象可以抵达白色对象，或者可达白色对象的链路上存在灰色，也可避免错误回收</p>
+<img src="/2023/03/22/go%20GC/10.png" style="width:300px">
+
+
+
+
+
+<h1><span id="屏障机制">屏障机制</span></h1><p>屏障其实是在代码执行过程中，添加额外的判断机制，避免存活对象丢失的问题，即强弱三色不变式的实现。有读写屏障、混合写屏障</p>
+<h3><span id="写屏障">写屏障</span></h3><p>写屏障会在写操作中插入指令，目的是把数据对象的修改通知到垃圾回收器，因此写屏障都会有个记录集。</p>
+<ul>
+<li>插入写屏障：<ul>
+<li>触发机制：当对象被引用时，触发的机制。</li>
+<li>具体操作：A对象引用B对象时，B对象标记为灰色。 可以把白色指针着为灰色，或者把写入的黑色对象退化为灰色 </li>
+<li>作用：实现<strong>强三色不变式</strong>（不存在黑色对象引用白色对象的情况，因为白色对象强制变为灰色）</li>
+<li>缺点：只适用不在栈上的对象。因为栈的空间比较小，只适用函数调用（进栈、出栈）、小对象。需要在结束时通过启动STW重新扫描栈，大约用时10～100ms</li>
+</ul>
+</li>
+</ul>
+<img src="/2023/03/22/go%20GC/11.png" style="width:450px">
+
+<ul>
+<li>删除写屏障：<ul>
+<li>触发机制：当对象被删除时，触发的机制。</li>
+<li>具体操作：被删除的对象，如果自身为灰色或者白色，那么被标记成灰色</li>
+<li>作用：实现<strong>弱三色不变式</strong>，对白色对象路径的破坏行为</li>
+<li>缺点：回收精度低，一个对象即使被删除了最后一个只想它的指针，也依然可以活过一轮扫描，在下一轮GC中被清除</li>
+</ul>
+</li>
+</ul>
+<img src="/2023/03/22/go%20GC/12.png" style="width:450px">
+
+
+
+<h3><span id="混合写屏障">混合写屏障</span></h3><p>GO在V1.8引入三色标记法+混合写屏障，具体流程：</p>
+<ol>
+<li>GC开始前，所有节点都为白色</li>
+<li>优先扫描全部栈对象，将可达对象标记为黑色（优化插入写屏障的要重新扫描栈对象的不足）</li>
+<li>被删除的对象标记为灰色</li>
+<li>被添加的对象标记为灰色</li>
+</ol>
+
+
+                <hr>
+
                 
-                    <hr>
 
+                <ul class="pager">
                     
-
                     
-                    <!-- disqus 评论框 start -->
-                    <div class="comment">
-                        <div id="disqus_thread" class="disqus-thread"></div>
-                    </div>
-                    <!-- disqus 评论框 end -->
+                        <li class="next">
+                            <a href="/2023/03/20/数位dp模版/" data-toggle="tooltip" data-placement="top" title="数位DP模板">Next Post &rarr;</a>
+                        </li>
                     
+                </ul>
 
+                
 
-                    
-
-                    
-                    <!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
-                    <script type="text/javascript">
-                        /* * * CONFIGURATION VARIABLES * * */
-                        var disqus_shortname = "hexo-theme-huxblog";
-                        var disqus_identifier = "https://pistachiol.github.io/about/index.html";
-                        var disqus_url = "https://pistachiol.github.io/about/index.html";
-
-                        (function() {
-                            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                        })();
-
-                        
-                    </script>
-                    <!-- disqus 公共JS代码 end -->
-                    
-
-
-
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
                 
 
             </div>
+    <!-- Side Catalog Container -->
+        
+
     <!-- Sidebar Container -->
+
             <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
                 <!-- Featured Tags -->
                 
                 <section>
                     <!-- no hr -->
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
-                        
-                            
-                            <a href="/tags/#设计模式" title="设计模式" rel="13">设计模式</a>
-                            
-                        
-                            
-                            <a href="/tags/#生活" title="生活" rel="2">生活</a>
-                            
-                        
-                            
-                            <a href="/tags/#数据结构" title="数据结构" rel="18">数据结构</a>
-                            
-                        
-                            
-                            <a href="/tags/#C++" title="C++" rel="4">C++</a>
-                            
-                        
-                            
-                            <a href="/tags/#动态规划" title="动态规划" rel="4">动态规划</a>
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#算法" title="算法" rel="17">算法</a>
-                            
-                        
-                            
-                            <a href="/tags/#Go学习" title="Go学习" rel="11">Go学习</a>
-                            
-                        
-                            
-                            <a href="/tags/#HTTP" title="HTTP" rel="2">HTTP</a>
-                            
-                        
-                            
-                            <a href="/tags/#读书笔记" title="读书笔记" rel="5">读书笔记</a>
-                            
-                        
-                            
-                            <a href="/tags/#字符串" title="字符串" rel="6">字符串</a>
-                            
-                        
-                            
-                            <a href="/tags/#PHP" title="PHP" rel="4">PHP</a>
-                            
-                        
-                            
-                            <a href="/tags/#Linux" title="Linux" rel="4">Linux</a>
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#MySQL" title="MySQL" rel="8">MySQL</a>
-                            
-                        
-                            
-                            <a href="/tags/#Nginx" title="Nginx" rel="2">Nginx</a>
-                            
-                        
-                            
-                            <a href="/tags/#数论" title="数论" rel="12">数论</a>
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#STL" title="STL" rel="8">STL</a>
-                            
-                        
-                            
-                            <a href="/tags/#分布式" title="分布式" rel="9">分布式</a>
-                            
-                        
-                            
-                            <a href="/tags/#Redis" title="Redis" rel="2">Redis</a>
-                            
-                        
-                            
-                            <a href="/tags/#博客" title="博客" rel="2">博客</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#树" title="树" rel="2">树</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
+                       
+                          <a class="tag" href="/tags/#Go学习" title="Go学习">Go学习</a>
                         
                     </div>
                 </section>
                 
 
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
-
-                        
-                            <img src="/img/avatar.jpeg" />
-                        
-
-                        
-                            <p>道阻且长，行则将至；行而不辍，未来可期</p>
-                        
-
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            
-                            
-
-                            
-
-                            
-
-                            
-                                <li>
-                                    <a target="_blank"  href="https://github.com/pistachioL">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-                            
-                            
-                            
-                        </ul>
-                    </div>
-                </section>
-                
                 <!-- Friends Blog -->
                 
                 <hr>
@@ -418,9 +339,66 @@
                 </ul>
                 
             </div>
-        
+
+        </div>
     </div>
-</div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "hexo-theme-huxblog";
+    var disqus_identifier = "https://pistachiol.github.io/2023/03/22/go%20GC/";
+    var disqus_url = "https://pistachiol.github.io/2023/03/22/go%20GC/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
 
     <!-- Footer -->

@@ -197,6 +197,32 @@
 
 <div class="post-preview">
 
+    <a href="/2022/06/22/Map/">
+        <h2 class="post-title">
+            go Map
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            一、定义1a := map[string]string&#123;&#125;
+
+map类型的变量本质上是一个指针，指向hmap结构体
+/runtime/map.go
+hmaphmap是哈希表
+1234567891011121314type hmap struct &#123;	count     int // （记录已经存储的键值对的数量） # live cells == size of ......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2022-06-22
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2022/06/22/Sync包/">
         <h2 class="post-title">
             Sync包
@@ -373,7 +399,7 @@ M转移G增加额外开销。例如M1在运行G1时，创建了G2。为了继续
 
     <a href="/2022/04/21/GC/">
         <h2 class="post-title">
-            go GC
+            GC算法
         </h2>
         <h3 class="post-subtitle">
             
@@ -415,30 +441,6 @@ gorotine由 runtime来管理
     <p class="post-meta">
         Posted by Liao on
         2022-04-20
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/07/30/Redis持久化机制/">
-        <h2 class="post-title">
-            Redis持久化机制
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            Redis除了可以保存在内存中，但是内存的数据容易丢失，因此有两种持久化策略：快照RDB（Redis Database Backup file）和追加式文件AOF机制（Append Only File）。 
-RDB机制（默认）定义在指定的时间间隔内将内存中的数据集以快照文件的形式写入磁盘。当Redis实例故障重启后，从磁盘读取快照文件，恢复数据。默认使用这种方式。
-工作原理
-Redis调用f......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-07-30
     </p>
 
 </div>
@@ -509,7 +511,7 @@ Redis调用f......
                             
                         
                             
-                            <a href="/tags/#Go学习" title="Go学习" rel="10">Go学习</a>
+                            <a href="/tags/#Go学习" title="Go学习" rel="11">Go学习</a>
                             
                         
                             
