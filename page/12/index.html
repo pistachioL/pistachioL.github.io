@@ -197,6 +197,41 @@
 
 <div class="post-preview">
 
+    <a href="/2020/02/02/搭建Jekyll博客/">
+        <h2 class="post-title">
+            Jekyll搭建博客
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            1.先安装rvm  通过rvm安装ruby环境1curl -sSL https://get.rvm.io | bash -s stable
+
+查看是否安装成功
+1rvm -v 
+
+
+
+2.换国内源查看现在的源
+1gem sources -l
+
+删除之前的源
+1gem sources --remove
+
+增加国内源
+1gem sources -a https://gems.ruby-china......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-02-02
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2020/01/31/安装deepin后要做的事情/">
         <h2 class="post-title">
             安装deepin后要做的事情
@@ -434,35 +469,6 @@ sudo docker run --name mysql -e MYSQL_ROOT_PASSWORD=11 -d -p 3306:......
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2019/10/12/JWT/">
-        <h2 class="post-title">
-            JWT
-        </h2>
-        <h3 class="post-subtitle">
-            基于Token的身份认证
-        </h3>
-        <div class="post-content-preview">
-            JWT是什么
-JWT本质是Token，用于验证身份的凭证。这个凭证能允许我们使用JWT在用户和服务器之间传递安全可靠的信息。
-
-是经过base64编码字符串。
-
-
-Cookie-Session认证机制
-​    客户端（用户）通过用户名和密码进行身份认证，但是下回发请求的时候又得验证以下。
-​    解决的办法是，用户成功登录之后，会在服务器端产生一条记录（Session），说明这用户是谁，......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-10-12
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -528,7 +534,7 @@ Cookie-Session认证机制
                             
                         
                             
-                            <a href="/tags/#Go学习" title="Go学习" rel="11">Go学习</a>
+                            <a href="/tags/#Go学习" title="Go学习" rel="12">Go学习</a>
                             
                         
                             
