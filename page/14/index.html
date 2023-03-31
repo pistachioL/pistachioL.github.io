@@ -197,7 +197,7 @@
 
 <div class="post-preview">
 
-    <a href="/2019/09/04/Bellma-Ford/">
+    <a href="/2019/09/04/Bellman-Ford/">
         <h2 class="post-title">
             Bellman Ford
         </h2>
@@ -299,13 +299,14 @@
             
         </h3>
         <div class="post-content-preview">
-            一. 定义并查集是一种树型数据结构，用于处理一些不相交集合的合并及查询问题。
+            一. 定义并查集 (Disjoint set) 是一种树型数据结构，用于处理一些不相交集合的合并及查询问题，或者检查图上是否存在环。
 
 Find：确定元素属于哪一个子集。它可以被用来确定两个元素是否属于同一子集。
 Union：将两个子集合并成同一个集合。
 
-二.分析int find(int x):通过递归查找元素所在的根节点。
-void union(int x,int y): 找到两个元素的根，并把其中一个元素（如x）的根节点设置为另一个元素（如......
+性质：同一个集合的任意两个顶点相连会形成环
+二. 分析int find(int x):通过递归查找元素所在的根节点。
+void unio......
         </div>
     </a>
     <p class="post-meta">
