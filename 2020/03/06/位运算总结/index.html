@@ -281,6 +281,16 @@
 
 
 
+<p>将a加入集合 </p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">orset <span class="string">|= a</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>将a移出集合</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">orset</span><span class="regexp"> ^=</span> a</span><br></pre></td></tr></table></figure>
+
+
+
 <h5><span id="8-格雷码-i-igtgt1">8) 格雷码 i ^(i&gt;&gt;1)</span></h5><p>任意两个（包括首尾）相邻的数只有一位二进制数不同，这种编码方式就是格雷码，如<code>3,2,0,1</code> 。见LC1238. 循环码排列</p>
 <h5><span id="9位运算和集合论">9）位运算和集合论</span></h5><p>集合可以用二进制表示，二进制从低到高位1表示在集合中，0表示不在集合中。例如集合{1,2,4}用二进制可以表示为10110。</p>
 <p>9.1 判断元素d是否在集合mask中，如果为1则在集合中，为0则不在</p>
@@ -288,8 +298,6 @@
 
 <p>9.2 把元素d添加到集合mask中</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mask | (<span class="number">1</span> &lt;&lt; d)</span><br></pre></td></tr></table></figure>
-
-
 
 <p>9.3 求两个数组的交集</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// minNumber([]int&#123;3, 5, 2, 6&#125;, []int&#123;3, 1, 7&#125;)</span></span><br><span class="line"><span class="comment">// 数组对应的二进制位图是</span></span><br><span class="line"><span class="comment">// 101100 &amp;  10001010 = 1000, 0的个数就是交集的值</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">minNumber</span><span class="params">(nums1 []<span class="type">int</span>, nums2 []<span class="type">int</span>)</span></span> <span class="type">int</span> &#123;</span><br><span class="line">	mask1, mask2 := <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">	<span class="keyword">for</span> _, x := <span class="keyword">range</span> nums1 &#123;</span><br><span class="line">		mask1 |= <span class="number">1</span> &lt;&lt; x</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> _, x := <span class="keyword">range</span> nums2 &#123;</span><br><span class="line">		mask2 |= <span class="number">1</span> &lt;&lt; x</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(mask1 &amp; mask2) <span class="comment">// 1000，0的个数就是交集的值，此处为3</span></span><br><span class="line">	<span class="keyword">if</span> mask1&amp;mask2 != <span class="number">0</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> bits.TrailingZeros(<span class="type">uint</span>(mask1 &amp; mask2))</span><br><span class="line">	&#125;</span><br><span class="line">	x, y := bits.TrailingZeros(<span class="type">uint</span>(mask1)), bits.TrailingZeros(<span class="type">uint</span>(mask2))</span><br><span class="line">	<span class="keyword">return</span> min(x*<span class="number">10</span>+y, y*<span class="number">10</span>+y)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
