@@ -197,6 +197,34 @@
 
 <div class="post-preview">
 
+    <a href="/2023/10/21/RabbitMQ/">
+        <h2 class="post-title">
+            RabbitMQ的学习与实践
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            前言在一些实时性要求不是很高的场景，可以通过异步队列，将任务放在后台执行，将会大大降低接口的耗时，提高响应速度。
+一、工作原理 RabbitMQ基于AMQP(高级消息队列协议)
+
+
+
+Producer：消息的生产者
+Connection: 生产者&#x2F;消费者与队列建立的一个TCP连接
+Channel：轻量级的信道，每次与MQ连接都要建立TCP连接，开销大。若应用程序支持多线程，则每个线......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2023-10-21
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2023/03/23/Mediator/">
         <h2 class="post-title">
             【行为型】中介者模式
@@ -437,30 +465,6 @@ hold until done ：直到事务被提交或终止之后，事务才能释放掉�
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2023/03/07/分布式事务CAP:BASE/">
-        <h2 class="post-title">
-            分布式事务基础理论CAP/BASE
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            本地事务使用本地事务，更多是通过关系型数据库数据库来控制事务，利用数据库本身的事务特性ACID实现，因此称数据库事务。
-由于主要靠关系型数据库控制事务，而数据库和应用通常在同一个服务器，因此说关系型的数据库事务称为本地事务。
-分布式事务提供服务的各个节点分布在不同的机器上，相互之间通过网络交互，但网络不稳定会出现不一致的问题，因此需要更进一步的理论支持。
-CAP理论CAP分别是Consist......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2023-03-07
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -595,6 +599,8 @@ CAP理论CAP分别是Consist......
                         
                             
                         
+                            
+                        
                     </div>
                 </section>
                 
@@ -688,7 +694,7 @@ CAP理论CAP分别是Consist......
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Pistachio&#39;s Blog 2023 
+                    Copyright &copy; Pistachio&#39;s Blog 2024 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">
