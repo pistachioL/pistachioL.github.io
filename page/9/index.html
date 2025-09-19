@@ -190,57 +190,6 @@
 
 <div class="post-preview">
 
-    <a href="/2020/04/22/红黑树/">
-        <h2 class="post-title">
-            红黑树
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            红黑树（Red Black Tree）是对二叉搜索树的改进，解决二叉搜索树多次插入新节点导致的不平衡问题。对于搜索、插入和删除较多操作的情况下，通常使用红黑树。
-红黑树的底层结构是二叉查找树。
-其产生过程：链表-&gt;二叉树-&gt;二叉查找树-&gt;自平衡的二叉查找树
-
-特性以下特性保证了红黑树的平衡特性，确保没有一条路径比其它路径长出两倍
-
-是自平衡的二叉查找树
-结点是红色或黑色
-根......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-04-22
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/04/21/Redis基础知识/">
-        <h2 class="post-title">
-            Redis基础知识
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            一、简介Redis是一种高性能的NoSQL(not only sql)非关系型数据库，key-value存储。key可以是任意类型，redis底层会转换为string。而value可以是五种的基本类型。
-二、启动、状态、结束123systemctl start redis-serversystemctl status redis-serversystemctl stop redis-serv......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-04-21
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
     <a href="/2020/04/18/操作系统的内存管理/">
         <h2 class="post-title">
             操作系统的内存管理
@@ -450,6 +399,55 @@ Adapter-&gt;Adaptee是组合的关系（is a）
 </div>
 <hr>
 
+<div class="post-preview">
+
+    <a href="/2020/03/24/单调栈/">
+        <h2 class="post-title">
+            单调栈
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            单调栈简介单调栈分为单调递增栈和单调递减栈，顾名思义就是栈内元素大小保持递增或递减。
+操作规则（以单调递增栈为例）如果新进来的元素比栈顶元素大，则进栈
+如果新进的元素比栈顶元素小，就把栈内元素出栈，直到找到第一个比新进元素要小的元素为止。
+代码模板123456789int MonotoneStack(vector&lt;int&gt;&amp; height)&#123;    stack&......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-03-24
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/03/24/DP/">
+        <h2 class="post-title">
+            动态规划
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            动态规划用于解决重叠子问题(overlap sub-problem)，已经计算过的不再重复计算，而是从内存中重新调出来使用。
+LeetCode　按摩师（同打家劫舍系列）
+
+给定预约时长，找到最优的预约集合(时长最长)，且不能接收相邻的预约
+输入： [2,1,4,5,3,1,1,3]输出： 12解释： 选择 1 号预约、 3 号预约、 5 号预约和 8 号预约，总时长 &#x3D; 2 + 4......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-03-24
+    </p>
+
+</div>
+<hr>
+
 
 
 <!-- Pager -->
@@ -489,7 +487,7 @@ Adapter-&gt;Adaptee是组合的关系（is a）
                     <div class="tags">
                         
                             
-                            <a href="/tags/#设计模式" title="设计模式" rel="14">设计模式</a>
+                            <a href="/tags/#设计模式" title="设计模式" rel="13">设计模式</a>
                             
                         
                             
@@ -580,8 +578,6 @@ Adapter-&gt;Adaptee是组合的关系（is a）
                         
                             
                             <a href="/tags/#图论" title="图论" rel="2">图论</a>
-                            
-                        
                             
                         
                             

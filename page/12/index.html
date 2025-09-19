@@ -190,66 +190,6 @@
 
 <div class="post-preview">
 
-    <a href="/2020/02/05/链表/">
-        <h2 class="post-title">
-            链表
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            初始化一个结点1234ListNode node = new ListNode();  //初始化一个空结点，无值（不提倡这样写）ListNode node = new ListNode(0); //初始化一个节点值为0的空结点（最常用的规范写法）
-
-
-
-手动建链表1234567891011121314151617181920212223242526272829303132333435363......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-02-05
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/02/02/搭建Jekyll博客/">
-        <h2 class="post-title">
-            Jekyll搭建博客
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            1.先安装rvm  通过rvm安装ruby环境1curl -sSL https://get.rvm.io | bash -s stable
-
-查看是否安装成功
-1rvm -v 
-
-
-
-2.换国内源查看现在的源
-1gem sources -l
-
-删除之前的源
-1gem sources --remove
-
-增加国内源
-1gem sources -a https://gems.ruby-china......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-02-02
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
     <a href="/2020/01/31/安装deepin后要做的事情/">
         <h2 class="post-title">
             安装deepin后要做的事情
@@ -456,6 +396,66 @@ s.empty()检查栈是否为空，为空返回true，否则返回false
 </div>
 <hr>
 
+<div class="post-preview">
+
+    <a href="/2019/11/05/Docker/">
+        <h2 class="post-title">
+            docker
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            基本操作启动
+docker start   
+查看
+sudo docker images ls  sudo docker ps -a 
+先停止后删除
+sudo docker stop 容器id
+删除 
+sudo docker rm 容器id 
+Mysql
+创建
+sudo docker run --name mysql -e MYSQL_ROOT_PASSWORD=11 -d -p 3306:......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-11-05
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/10/12/JWT/">
+        <h2 class="post-title">
+            JWT
+        </h2>
+        <h3 class="post-subtitle">
+            基于Token的身份认证
+        </h3>
+        <div class="post-content-preview">
+            JWT是什么
+JWT本质是Token，用于验证身份的凭证。这个凭证能允许我们使用JWT在用户和服务器之间传递安全可靠的信息。
+
+是经过base64编码字符串。
+
+
+Cookie-Session认证机制
+​    客户端（用户）通过用户名和密码进行身份认证，但是下回发请求的时候又得验证以下。
+​    解决的办法是，用户成功登录之后，会在服务器端产生一条记录（Session），说明这用户是谁，......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-10-12
+    </p>
+
+</div>
+<hr>
+
 
 
 <!-- Pager -->
@@ -495,7 +495,7 @@ s.empty()检查栈是否为空，为空返回true，否则返回false
                     <div class="tags">
                         
                             
-                            <a href="/tags/#设计模式" title="设计模式" rel="14">设计模式</a>
+                            <a href="/tags/#设计模式" title="设计模式" rel="13">设计模式</a>
                             
                         
                             
@@ -586,8 +586,6 @@ s.empty()检查栈是否为空，为空返回true，否则返回false
                         
                             
                             <a href="/tags/#图论" title="图论" rel="2">图论</a>
-                            
-                        
                             
                         
                             

@@ -190,66 +190,6 @@
 
 <div class="post-preview">
 
-    <a href="/2019/11/05/Docker/">
-        <h2 class="post-title">
-            docker
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            基本操作启动
-docker start   
-查看
-sudo docker images ls  sudo docker ps -a 
-先停止后删除
-sudo docker stop 容器id
-删除 
-sudo docker rm 容器id 
-Mysql
-创建
-sudo docker run --name mysql -e MYSQL_ROOT_PASSWORD=11 -d -p 3306:......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-11-05
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/10/12/JWT/">
-        <h2 class="post-title">
-            JWT
-        </h2>
-        <h3 class="post-subtitle">
-            基于Token的身份认证
-        </h3>
-        <div class="post-content-preview">
-            JWT是什么
-JWT本质是Token，用于验证身份的凭证。这个凭证能允许我们使用JWT在用户和服务器之间传递安全可靠的信息。
-
-是经过base64编码字符串。
-
-
-Cookie-Session认证机制
-​    客户端（用户）通过用户名和密码进行身份认证，但是下回发请求的时候又得验证以下。
-​    解决的办法是，用户成功登录之后，会在服务器端产生一条记录（Session），说明这用户是谁，......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2019-10-12
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
     <a href="/2019/10/12/WaitNotify通知机制/">
         <h2 class="post-title">
             Wait&Notify的通知机制
@@ -462,6 +402,54 @@ http://www.rkpass.cn/tk_jiexi.jsp?product_id=201905281544305456038&amp;tixing=xu
 </div>
 <hr>
 
+<div class="post-preview">
+
+    <a href="/2019/09/12/linux常用命令-/">
+        <h2 class="post-title">
+            linux常用命令
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            SCP上传下载1.从服务器拉取文件夹到本地scp -r root@xx.xxx.x.xx:文件所在路径 /home/Document
+2.从本地上传文件到服务器scp -r /home/Document root@xx.xxx.x.xx:/home/default
+3.rsync文件压缩tar -xvf file.tar
+tar -xzvf  file.tar.gz 
+tar -xjvf f......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-09-12
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/09/04/Bellman-Ford/">
+        <h2 class="post-title">
+            Bellman Ford
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            1.定义     Bellman-Ford 算法是一种用于计算带权有向图中单(一个)源(顶点)最短路径的问题（单源指的是只有一个起点）：给定一个起点，求它到所有结点的最短路径。Bellman-Ford 算法能适应一般的情况（即存在负权边的情况），V*E&lt;10^7。
+
+​		Bellman-Ford 算法采用动态规划进行设计，时间复杂度 O(V*E)，其中 V 为顶点数量，E 为边的数量......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2019-09-04
+    </p>
+
+</div>
+<hr>
+
 
 
 <!-- Pager -->
@@ -501,7 +489,7 @@ http://www.rkpass.cn/tk_jiexi.jsp?product_id=201905281544305456038&amp;tixing=xu
                     <div class="tags">
                         
                             
-                            <a href="/tags/#设计模式" title="设计模式" rel="14">设计模式</a>
+                            <a href="/tags/#设计模式" title="设计模式" rel="13">设计模式</a>
                             
                         
                             
@@ -592,8 +580,6 @@ http://www.rkpass.cn/tk_jiexi.jsp?product_id=201905281544305456038&amp;tixing=xu
                         
                             
                             <a href="/tags/#图论" title="图论" rel="2">图论</a>
-                            
-                        
                             
                         
                             

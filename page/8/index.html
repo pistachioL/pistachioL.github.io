@@ -190,54 +190,6 @@
 
 <div class="post-preview">
 
-    <a href="/2020/05/13/MySQL事务隔离级别/">
-        <h2 class="post-title">
-            MySQL事务
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            事务事务是由一组SQL语句组成的一个执行单元，该执行单元要么全部执行或全部不执行
-事务四大特质（ACID）
-原子性(Atomicity)：指事务包含的所有操作（sql）要么全部成功，要么全部失败回滚。事务是最小单位，不可再分。
-
-回滚通过undo log实现，回滚行记录到某个特定版本
-undo log 记录的是逻辑操作日志（如对某行数据进行insert操作，那么undo log会记录一条与之......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-05-13
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2020/05/12/斐波那契数列/">
-        <h2 class="post-title">
-            斐波那契数列
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            斐波那契一个重要性质:斐波那契数列的相邻每个数的最大公约数gcd(n-2,n-1)是相同的。
-...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-05-12
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
     <a href="/2020/05/09/Trie树/">
         <h2 class="post-title">
             Trie树
@@ -436,6 +388,57 @@ POST比GET安全，因为数据在地址栏上不可见。通过GET提交数据�
 </div>
 <hr>
 
+<div class="post-preview">
+
+    <a href="/2020/04/22/红黑树/">
+        <h2 class="post-title">
+            红黑树
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            红黑树（Red Black Tree）是对二叉搜索树的改进，解决二叉搜索树多次插入新节点导致的不平衡问题。对于搜索、插入和删除较多操作的情况下，通常使用红黑树。
+红黑树的底层结构是二叉查找树。
+其产生过程：链表-&gt;二叉树-&gt;二叉查找树-&gt;自平衡的二叉查找树
+
+特性以下特性保证了红黑树的平衡特性，确保没有一条路径比其它路径长出两倍
+
+是自平衡的二叉查找树
+结点是红色或黑色
+根......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-04-22
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/04/21/Redis基础知识/">
+        <h2 class="post-title">
+            Redis基础知识
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            一、简介Redis是一种高性能的NoSQL(not only sql)非关系型数据库，key-value存储。key可以是任意类型，redis底层会转换为string。而value可以是五种的基本类型。
+二、启动、状态、结束123systemctl start redis-serversystemctl status redis-serversystemctl stop redis-serv......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-04-21
+    </p>
+
+</div>
+<hr>
+
 
 
 <!-- Pager -->
@@ -475,7 +478,7 @@ POST比GET安全，因为数据在地址栏上不可见。通过GET提交数据�
                     <div class="tags">
                         
                             
-                            <a href="/tags/#设计模式" title="设计模式" rel="14">设计模式</a>
+                            <a href="/tags/#设计模式" title="设计模式" rel="13">设计模式</a>
                             
                         
                             
@@ -566,8 +569,6 @@ POST比GET安全，因为数据在地址栏上不可见。通过GET提交数据�
                         
                             
                             <a href="/tags/#图论" title="图论" rel="2">图论</a>
-                            
-                        
                             
                         
                             

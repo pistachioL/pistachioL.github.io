@@ -190,57 +190,6 @@
 
 <div class="post-preview">
 
-    <a href="/2022/04/21/GC/">
-        <h2 class="post-title">
-            GC算法
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            一、背景知识
-bbs数据段：全局变量、静态数据
-函数栈帧（栈）：函数的局部变量、参数、返回值。栈是系统自动分配空间的，例如定义一个var a string；系统会自动在栈上为其开辟空间。
-堆：函数内部动态分配的内存，由程序员申请分配和释放。在编译阶段不能确定数据对象的大小、或者对象的生命周期超出了当前所在函数，则不适合分配在栈上，要分配在堆。
-
-分配在堆上的数据需要程序主动释放才可以重新使用......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2022-04-21
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2022/04/20/channel/">
-        <h2 class="post-title">
-            channel
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            一、定义Channel 是 goroutine 之间的通信方式，Go语言的并发模型是CSP（Communicating Sequential Processes），提倡通信来共享内存，而不是共享内存来通信。
-gorotine由 runtime来管理
-二、创建创建有缓冲的缓存
-1ch := make(chan int, 2)   //创建channel,类型为char, buffer大小是2
-......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2022-04-20
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
     <a href="/2020/07/30/Redis持久化机制/">
         <h2 class="post-title">
             Redis持久化机制
@@ -463,6 +412,57 @@ x = inroot - il + pl，求出左子树右边界的下标。
 </div>
 <hr>
 
+<div class="post-preview">
+
+    <a href="/2020/05/19/树的序列化与反序列化/">
+        <h2 class="post-title">
+            树的序列化与反序列化
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+序列化是将数据结构或对象转换为一系列位的过程，以便它可以存储在文件或内存缓冲区中，或通过网络连接链路传输，以便稍后在同一个或另一个计算机环境中重建。
+
+树的序列化就是把树转化成字符串存储，反序列化就是把树从字符串转回树形
+
+序列化的过程就是，先把根结点存入队列，（若不为空）则把其转成字符串存入字符流中（其实就是拼接字符串），再把它的左右子树加入到队列，作为根节点继续递归构造。如果结点为空，......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-05-19
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/05/19/C++字符串转数字/">
+        <h2 class="post-title">
+            C++字符串转数字
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            通过几种方法，把数字字符串转成int输出
+stoi(string s)
+stoi()会做范围检查，默认范围是在int的范围内的，如果超出范围的话则会runtime error！
+
+12345678910111213#include &lt;iostream&gt;//#include &lt;cstring&gt;using namespace std;int main()&#123;	st......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-05-19
+    </p>
+
+</div>
+<hr>
+
 
 
 <!-- Pager -->
@@ -502,7 +502,7 @@ x = inroot - il + pl，求出左子树右边界的下标。
                     <div class="tags">
                         
                             
-                            <a href="/tags/#设计模式" title="设计模式" rel="14">设计模式</a>
+                            <a href="/tags/#设计模式" title="设计模式" rel="13">设计模式</a>
                             
                         
                             
@@ -593,8 +593,6 @@ x = inroot - il + pl，求出左子树右边界的下标。
                         
                             
                             <a href="/tags/#图论" title="图论" rel="2">图论</a>
-                            
-                        
                             
                         
                             
