@@ -190,32 +190,6 @@
 
 <div class="post-preview">
 
-    <a href="/2022/06/22/Map/">
-        <h2 class="post-title">
-            go Map
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            一、定义1a := map[string]string&#123;&#125;
-
-map类型的变量本质上是一个指针，指向hmap结构体
-/runtime/map.go
-hmaphmap是哈希表
-1234567891011121314type hmap struct &#123;	count     int // （记录已经存储的键值对的数量） # live cells == size of ......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2022-06-22
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
     <a href="/2022/06/22/Sync包/">
         <h2 class="post-title">
             Sync包
@@ -340,28 +314,6 @@ LeetCode题目总结和为s的连续正数序列滑动窗口
 
 <div class="post-preview">
 
-    <a href="/2022/06/01/2022/">
-        <h2 class="post-title">
-            我的2022
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-  786788bab830c39ff9970ffaa14eb72514832f601fb8767dc1622aceb8bec433914216baaef5947115e2bb68f026026b845fdcb4c42913b293d1484ca8d637bdaab4b66e928e16c404bb46863ec4e06a4b9c98251cee95bbe594e3f41e58a548d2......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2022-06-01
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
     <a href="/2022/04/29/GMP/">
         <h2 class="post-title">
             go GMP模型
@@ -439,6 +391,58 @@ gorotine由 runtime来管理
 </div>
 <hr>
 
+<div class="post-preview">
+
+    <a href="/2020/07/30/Redis持久化机制/">
+        <h2 class="post-title">
+            Redis持久化机制
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            Redis除了可以保存在内存中，但是内存的数据容易丢失，因此有两种持久化策略：快照RDB（Redis Database Backup file）和追加式文件AOF机制（Append Only File）。 
+RDB机制（默认）定义在指定的时间间隔内将内存中的数据集以快照文件的形式写入磁盘。当Redis实例故障重启后，从磁盘读取快照文件，恢复数据。默认使用这种方式。
+工作原理
+Redis调用f......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-07-30
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2020/06/12/解决系统并发问题/">
+        <h2 class="post-title">
+            解决系统并发问题
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            前言之前开发了办公室预约系统，功能上基本实现了，现在需要提升性能问题，比如考虑并发情况，在多个人同时预约的时候，怎样解决并发问题呢？其实本质是要对事务上锁。
+1. 在MySQL方面提升MySQL的性能分析
+
+MySQL Query Optimizer(自带的优化器)
+MySQL常见的瓶颈
+CPU饱和：通常发生在数据装入内存或者从磁盘中读数据
+磁盘IO饱和：载入的数据远大于内存的容量
+服务器性......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2020-06-12
+    </p>
+
+</div>
+<hr>
+
 
 
 <!-- Pager -->
@@ -481,8 +485,6 @@ gorotine由 runtime来管理
                             <a href="/tags/#设计模式" title="设计模式" rel="13">设计模式</a>
                             
                         
-                            
-                            <a href="/tags/#生活" title="生活" rel="2">生活</a>
                             
                         
                             
@@ -569,8 +571,6 @@ gorotine由 runtime来管理
                         
                             
                             <a href="/tags/#图论" title="图论" rel="2">图论</a>
-                            
-                        
                             
                         
                             
