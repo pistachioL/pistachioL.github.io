@@ -217,11 +217,15 @@
 
 
 
-<h2><span id="数组">数组</span></h2><p>子数组问题：没有负数 同向滑动 考虑滑动窗口； 有负数 前缀和</p>
-<p>循环数组：(negidx-i + n) % n  向左取数，防止越界； (negidx+i)%n 向右取数 ；保证下标是在0-n-1之间<br>负数 (I%n +n) % n  ； 正数： (I%n) % n</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-caesar-cipher-pairs/">https://leetcode.cn/problems/count-caesar-cipher-pairs/</a></li>
-<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/transformed-array/submissions/696555484/?envType=daily-question&amp;envId=2026-02-05">https://leetcode.cn/problems/transformed-array/submissions/696555484/?envType=daily-question&amp;envId=2026-02-05</a></li>
+<h2><span id="数组">数组</span></h2><ul>
+<li><p>子数组问题：没有负数 同向滑动 考虑滑动窗口； 有负数 前缀和</p>
+</li>
+<li><p>循环数组：(negidx-i + n) % n  向左取数，防止越界； (negidx+i)%n 向右取数 ；保证下标是在0-n-1之间<br>负数 (I%n +n) % n  ； 正数： (I%n) % n</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-caesar-cipher-pairs/">https://leetcode.cn/problems/count-caesar-cipher-pairs/</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/transformed-array/submissions/696555484/?envType=daily-question&amp;envId=2026-02-05">https://leetcode.cn/problems/transformed-array/submissions/696555484/?envType=daily-question&amp;envId=2026-02-05</a></p>
+</li>
 </ul>
 <h2><span id="回溯分类">回溯分类</span></h2><ul>
 <li>子集型回溯（0-1背包属于子集型）<ul>
@@ -249,6 +253,7 @@
 <li>任意两个点的最短路：floyd ； 一个起点的最短路：dijstra</li>
 </ul>
 <h2><span id="数学公式">数学公式</span></h2><p>向上取整：a b均为整数， 有恒等式：<br>$$<br>\left\lceil \frac{a}{b} \right\rceil<br>&#x3D; \left\lfloor \frac{a + b - 1}{b} \right\rfloor<br>&#x3D; \left\lfloor \frac{a - 1}{b} \right\rfloor + 1<br>$$</p>
+<p>向上取整恒等式（a, b 为正整数）：<br>[<br>\left\lceil \frac{a}{b} \right\rceil &#x3D; \left\lfloor \frac{a + b - 1}{b} \right\rfloor &#x3D; \left\lfloor \frac{a - 1}{b} \right\rfloor + 1<br>]</p>
 
 
                 <hr>
