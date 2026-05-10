@@ -190,6 +190,32 @@
 
 <div class="post-preview">
 
+    <a href="/2022/06/22/Map/">
+        <h2 class="post-title">
+            go Map
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            一、定义1a := map[string]string&#123;&#125;
+
+map类型的变量本质上是一个指针，指向hmap结构体
+/runtime/map.go
+hmaphmap是哈希表
+1234567891011121314type hmap struct &#123;	count     int // （记录已经存储的键值对的数量） # live cells == size of ......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Liao on
+        2022-06-22
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2022/06/22/Sync包/">
         <h2 class="post-title">
             Sync包
@@ -415,34 +441,6 @@ Redis调用f......
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2020/06/12/解决系统并发问题/">
-        <h2 class="post-title">
-            解决系统并发问题
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            前言之前开发了办公室预约系统，功能上基本实现了，现在需要提升性能问题，比如考虑并发情况，在多个人同时预约的时候，怎样解决并发问题呢？其实本质是要对事务上锁。
-1. 在MySQL方面提升MySQL的性能分析
-
-MySQL Query Optimizer(自带的优化器)
-MySQL常见的瓶颈
-CPU饱和：通常发生在数据装入内存或者从磁盘中读数据
-磁盘IO饱和：载入的数据远大于内存的容量
-服务器性......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Liao on
-        2020-06-12
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -502,7 +500,7 @@ CPU饱和：通常发生在数据装入内存或者从磁盘中读数据
                             
                         
                             
-                            <a href="/tags/#算法" title="算法" rel="17">算法</a>
+                            <a href="/tags/#算法" title="算法" rel="18">算法</a>
                             
                         
                             
@@ -668,7 +666,7 @@ CPU饱和：通常发生在数据装入内存或者从磁盘中读数据
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Pistachio&#39;s Blog 2025 
+                    Copyright &copy; Pistachio&#39;s Blog 2026 
                     <br>
                     Theme by <a target="_blank" rel="noopener" href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">
